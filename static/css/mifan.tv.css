@@ -2,6 +2,11 @@ body {
   background: #ebebeb;
 }
 
+a:link { text-decoration: none;}
+a:active { text-decoration:blink}
+a:hover { text-decoration:none;} 
+a:visited { text-decoration: none;}
+
 .navbar .nav {
   background: #fe4e5b;
 }
@@ -26,13 +31,17 @@ body {
   border-right: 2px solid #ee4a55;
 }
 
+#logo {
+  width: 261px;
+}
+
 .navbar-inverse .navbar-search .search-query {
   color: #ffffff;
   background-color: #ffffff;
   border: 0px;
   border-radius: 1px;
   margin: 5px 20px;
-  width: 250px;
+  width: 280px;
 }
 
 .navbar-search .search-query {
@@ -44,3 +53,29 @@ body {
   border: 1px;
   border-color: #ee4a55;
 }
+
+.left-bar {
+
+position: fixed;
+margin-left: 0px;
+top: 0px;
+height: 100%;
+width: 260px;
+background-color: #ffffff;
+padding: 80px 0px;
+
+}
+
+.nav-list > li > a {
+  padding: 15px 35px;
+}
+
+.nav-list .nav-header {
+  margin-right: -15px;
+  margin-left: 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
+
