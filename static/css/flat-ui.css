@@ -745,6 +745,7 @@ h6 {
 }
 .navbar .nav {
   margin-right: 0;
+  background: #ee4a55;
 }
 .navbar .nav > li {
   position: relative;
@@ -930,7 +931,7 @@ h6 {
 
 }
 .navbar-inverse .navbar-inner {
-  background: #E74C3C;
+  background: #34495e;
   filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
 .navbar-inverse .brand {
@@ -952,7 +953,7 @@ h6 {
 .navbar-inverse .nav > li.active > a,
 .navbar-inverse .nav > li.active > a:hover,
 .navbar-inverse .nav > li.active > a:focus {
-  background-color: #C0392B;
+  background-color: #1abc9c;
   border-bottom-color: #16a085;
   border-left: none;
   color: #ffffff;
