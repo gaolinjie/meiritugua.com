@@ -85,8 +85,8 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .post-card {
-  width: 500px;
-  height: 400px;
+  width: 600px;
+  height: 420px;
   margin-bottom: 30px;
   background: #fff;
 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -100,4 +100,50 @@ overflow: hidden;
 }
 .post-card > a:hover{text-decoration: none;}
 
+
+.Ep {
+float: left;
+margin: 20px 15px 0 20px;
+padding: 0;
+}
+
+.qKndRb {
+-webkit-border-radius: 50%;
+border-radius: 50%;
+}
+
+img {
+border: 0;
+}
+img[Attributes Style] {
+width: 46px;
+height: 46px;
+}
+
+article, aside, footer, header, hgroup, main, nav, section {
+display: block;
+}
+.MI {
+margin: 0 0 15px 61px;
+padding: 23px 0 0 0;
+text-overflow: ellipsis;
+}
+
+.cK {
+margin: 0;
+border: 0;
+font-size: 14px;
+font-weight: normal;
+unicode-bidi: normal;
+}
+
+.mc, .Bf, .Bf.g-M-n, .mc .pl, .XX .pl {
+color: #999;
+display: inline-block;
+font-size: 12px;
+}
+
+.post-video {
+  margin: 30px 10px;
+}
 
