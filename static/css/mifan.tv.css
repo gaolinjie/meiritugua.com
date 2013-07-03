@@ -78,15 +78,13 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   padding-bottom: 15px;
 }
 
-.post-list {
+.feeds {
   width: 500px;
-  height: 1300px;
   margin: 100px 300px;
 }
 
-.post-card {
-  width: 600px;
-  height: 420px;
+.card {
+  width: 478px;
   margin-bottom: 30px;
   background: #fff;
 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -95,41 +93,28 @@ position: relative;
 overflow: hidden;
 }
 
-.post-card:hover {
+.card:hover {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
-.post-card > a:hover{text-decoration: none;}
+.card > a:hover{text-decoration: none;}
 
 
-.Ep {
+.avatar img {
 float: left;
+width: 46px;
+height: 46px;
 margin: 20px 15px 0 20px;
 padding: 0;
-}
-
-.qKndRb {
 -webkit-border-radius: 50%;
 border-radius: 50%;
 }
 
-img {
-border: 0;
-}
-img[Attributes Style] {
-width: 46px;
-height: 46px;
+.info {
+  float: left;
+  margin-top: 8px
 }
 
-article, aside, footer, header, hgroup, main, nav, section {
-display: block;
-}
-.MI {
-margin: 0 0 15px 61px;
-padding: 23px 0 0 0;
-text-overflow: ellipsis;
-}
-
-.cK {
+.username {
 margin: 0;
 border: 0;
 font-size: 14px;
@@ -143,7 +128,33 @@ display: inline-block;
 font-size: 12px;
 }
 
-.post-video {
-  margin: 30px 10px;
+.intro {
+  clear: both;
+  padding: 20px 20px 0 20px;
+}
+
+p {
+  color: #000;
+  line-height:150%
+}
+
+.thumb {
+  padding: 20px;
+
+}
+
+.thumb img {
+  width: 130px;
+  height: 78px;
+
+}
+
+.thumb i {
+background: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yG/r/Gj2ad6O09TZ.png) no-repeat 0 0;
+bottom: 25px;
+height: 26px;
+left: 25px;
+position: absolute;
+width: 35px;
 }
 
