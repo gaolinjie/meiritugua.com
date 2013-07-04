@@ -167,3 +167,23 @@ top: 20px;
 position: absolute;
 }
 
+.right-bar {
+position: fixed;
+margin-left: 818px;
+top: 101px;
+width: 259px;
+height: 100%;
+}
+
+.maylike {
+width: 240px;
+height: 400px;
+background-color: #ffffff;
+padding: 20px;;
+}
+
+.maylike:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.maylike > a:hover{text-decoration: none;}
+
