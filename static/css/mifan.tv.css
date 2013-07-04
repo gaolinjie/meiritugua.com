@@ -109,7 +109,7 @@ padding: 0;
 border-radius: 50%;
 }
 
-.info {
+.card .info {
   float: left;
   margin-top: 8px
 }
@@ -160,7 +160,7 @@ position: absolute;
 width: 35px;
 }
 
-.title {
+.thumb .title {
   width: 280px;
 left: 170px;
 top: 20px;
@@ -177,9 +177,10 @@ height: 100%;
 
 .maylike {
 width: 240px;
-height: 400px;
+
 background-color: #ffffff;
-padding: 20px;;
+padding: 20px;
+float: left;
 }
 
 .maylike:hover {
@@ -187,3 +188,39 @@ padding: 20px;;
 }
 .maylike > a:hover{text-decoration: none;}
 
+.channels {
+  margin-top: 20px;
+
+}
+
+
+.channel-item .cover{
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  clear: left;
+  width: 46px;
+  height: 46px;
+}
+
+.channel-item  .info{
+  float: left;
+  margin-top: 5px;
+}
+
+.info .title a{
+  color: #262626;
+display: block;
+font-size: 14px;
+font-weight: bold;
+line-height: 1.4;
+}
+
+.info .like a{
+color: #999;
+font-size: 12px;
+margin-top: 4px;
+
+white-space: nowrap;
+
+}
