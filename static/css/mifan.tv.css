@@ -140,6 +140,8 @@ p {
 
 .thumb {
   padding: 20px;
+  position: relative;
+
 
 }
 
@@ -156,5 +158,12 @@ height: 26px;
 left: 25px;
 position: absolute;
 width: 35px;
+}
+
+.title {
+  width: 280px;
+left: 170px;
+top: 20px;
+position: absolute;
 }
 
