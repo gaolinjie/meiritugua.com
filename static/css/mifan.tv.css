@@ -122,7 +122,7 @@ font-weight: normal;
 unicode-bidi: normal;
 }
 
-.mc, .Bf, .Bf.g-M-n, .mc .pl, .XX .pl {
+.ct, .ic, .it{
 color: #999;
 display: inline-block;
 font-size: 12px;
