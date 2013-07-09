@@ -38,6 +38,18 @@ a:visited {
   border-left: 2px solid #fe4e5b;
 }
 
+.navbar-inverse .nav > li > a.avatar_c {
+  padding: 11px 30px 10px 20px;
+}
+
+.navbar .nav ul li {
+background-color: #fe4e5b;
+}
+
+.navbar .nav > li > ul:before {
+border-color: transparent transparent #fe4e5b transparent;
+}
+
 .navbar-inverse .brand {
   border-right: 2px solid #ee4a55;
 }
@@ -510,8 +522,6 @@ border: 0;
   width: 1360px;
 }
 
-.navbar-inverse .nav > li > a.avatar_c {
-  padding: 11px 30px 10px 20px;
-}
+
 
 
