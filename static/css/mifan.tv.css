@@ -379,85 +379,17 @@ clear:both;
 
 .comment-editor>.divider {
 border-top: 1px solid #e5e5e5;
-}
-.divider {
 padding-bottom: 16px;
 }
 
-.tr, .uy {
-cursor: pointer;
-}
-.tr {
-border-bottom: none;
-border-top: none;
-background-color: #f8f8f8;
-margin: 0 20px 12px 20px;
-padding: 0 0 0 0;
-}
 
-.CLSMk {
-max-height: 400px;
-}
-.mP {
-margin-right: 0;
-overflow-y: auto;
-width: auto;
-}
 
 .wrapper {
 margin: 0 20px 0 20px;
 padding: 0 0 15px 38px;
 }
 
-.iP {
-background-color: #f8f8f8;
-color: #262626;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-}
 
-.ad .a-n, .ad .a-n-E {
-outline: none;
-}
-.sF, .WQ {
--webkit-transition: color .218s;
-transition: color .218s;
-background-color: #f8f8f8;
-color: #262626;
-font-size: 12px;
-padding-right: 5px;
-}
-
-.Su {
-background-color: #f8f8f8;
-display: inline-block;
-vertical-align: top;
-}
-
-
-.Hm {
-filter: alpha(opacity=70);
-opacity: .7;
-background: no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) 0 -661px;
-height: 16px;
-float: right;
-margin-top: 0;
-width: 16px;
-}
-
-.uz {
-position: relative;
-}
-
-
-.VQ {
-border-bottom: 0;
-cursor: pointer;
-display: block;
-padding: 7px;
-text-align: center;
-}
 
 .editor-box {
 background-color: #fff;
