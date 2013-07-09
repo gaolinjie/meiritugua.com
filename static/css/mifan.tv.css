@@ -493,4 +493,8 @@ img {
 border: 0;
 }
 
+.container {
+  width: 100%;
+  float: left;
+}
 
