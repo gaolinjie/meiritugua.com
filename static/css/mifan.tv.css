@@ -494,7 +494,24 @@ border: 0;
 }
 
 .container {
-  width: 100%;
   float: left;
 }
+
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 1360px;
+}
+
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 1360px;
+}
+
+.navbar-inverse .nav > li > a.avatar_c {
+  padding: 11px 30px 10px 20px;
+}
+
 
