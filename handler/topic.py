@@ -30,3 +30,8 @@ class IndexHandler(BaseHandler):
 
         self.render("index.html", **template_variables)
 
+class VideoHandler(BaseHandler):
+    def get(self, template_variables = {}):
+
+        self.render("video.html", **template_variables)
+

@@ -210,11 +210,11 @@ p {
   text-decoration: none;
 }
 
-.channels {
+.maylike .like-channels {
   margin-top: 20px;
 }
 
-.channel-item .cover {
+.maylike .channel-item .cover {
   float: left;
   margin-right: 15px;
   margin-bottom: 15px;
@@ -223,7 +223,7 @@ p {
   height: 46px;
 }
 
-.channel-item  .info {
+.maylike .channel-item  .info {
   float: left;
   margin-top: 5px;
 }
@@ -522,6 +522,41 @@ border: 0;
   width: 1360px;
 }
 
+.channels {
+  width: 800px;
+  margin: 100px 300px;
+}
 
+.channels .channel {
+  width: 236px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  display: block;
+  float: left;
+  margin-right: 20px;
+  margin-top: 40px;
+
+}
+
+.channels .channel:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.channels .channel > a:hover {
+  text-decoration: none;
+}
+
+.avt {
+  width: 34px;
+  height: 34px;
+}
+
+.channels .channel .info {
+  padding: 10px;
+}
+
+.channels .channel .info .title{
+  margin: 10px 0px;
+}
 
 
