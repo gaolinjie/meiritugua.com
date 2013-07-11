@@ -228,7 +228,7 @@ p {
   margin-top: 5px;
 }
 
-.info .title a {
+.maylike .channel-item .info .title a {
   color: #262626;
   display: block;
   font-size: 14px;
@@ -236,7 +236,7 @@ p {
   line-height: 1.4;
 }
 
-.info .like a {
+.maylike .channel-item .info .like a {
   color: #999;
   font-size: 12px;
   margin-top: 4px;
@@ -557,6 +557,12 @@ border: 0;
 
 .channels .channel .info .title{
   margin: 10px 0px;
+}
+
+.channels .channel .info .discription {
+  color: #999;
+  display: inline-block;
+  font-size: 12px;
 }
 
 
