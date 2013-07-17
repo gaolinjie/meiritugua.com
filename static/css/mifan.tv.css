@@ -523,19 +523,21 @@ border: 0;
 }
 
 .channels {
-  width: 800px;
+  width: 1000px;
   margin: 100px 300px;
 }
 
 .channels .channel {
-  width: 236px;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   display: block;
   float: left;
   margin-right: 20px;
-  margin-top: 40px;
-
+  margin-bottom: 40px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  word-wrap: break-word;
 }
 
 .channels .channel:hover {
@@ -551,8 +553,28 @@ border: 0;
   height: 34px;
 }
 
+.channels .channel .cover {
+  float: left
+}
+
+.channels .channel .cover .c-avatar {
+display: block;
+width: 214px;
+height: 162px;
+overflow: hidden;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+text-indent: -9999px;
+background-color: #E5E8E8;
+background-position: center center;
+background-repeat: no-repeat;
+box-shadow: 1px 0 1px #cacaca;
+}
+
 .channels .channel .info {
-  padding: 10px;
+  padding: 10px 20px;
+  float: left
 }
 
 .channels .channel .info .title{
@@ -560,6 +582,7 @@ border: 0;
 }
 
 .channels .channel .info .discription {
+  width: 160px;
   color: #999;
   display: inline-block;
   font-size: 12px;
