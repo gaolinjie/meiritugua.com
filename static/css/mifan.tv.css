@@ -644,3 +644,66 @@ img {
 
 
 
+.channel-tag:hover {
+-webkit-transition: box-shadow .218s ease,background-color .218s ease,max-width .218s step-start;
+transition: box-shadow .218s ease,background-color .218s ease,max-width .218s step-start;
+box-shadow: 0 0 20px rgba(0,0,0,.2);
+max-width: 100%;
+z-index: 3;
+}
+
+.channel-tag {
+-webkit-transition: box-shadow .218s ease,background-color .218s ease,max-width .218s step-end;
+transition: box-shadow .218s ease,background-color .218s ease,max-width .218s step-end;
+font-size: 14px;
+margin: 38px 0 0 0;
+max-width: 5%;
+position: absolute;
+right: 0;
+top: 0;
+}
+
+.channel-tag:hover .tag-wapper {
+background-color: #fff;
+cursor: pointer;
+display: block;
+float: none;
+white-space: nowrap;
+}
+
+.channel-tag:hover .tag {
+-webkit-transition: opacity .218s ease,max-width .218s step-start,visibility .218s step-start;
+transition: opacity .218s ease,max-width .218s step-start,visibility .218s step-start;
+max-width: 360px;
+}
+
+.tag-wapper {
+background-color: #f5f5f5;
+float: right;
+clear: both;
+height: 26px;
+line-height: 26px;
+word-wrap: normal;
+}
+
+.tag {
+max-width: 130px;
+outline: none;
+-webkit-transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
+transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
+color: #999;
+display: block;
+float: right;
+max-width: 180px;
+overflow: hidden;
+padding: 0 10px;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+
+
+
+
+
+
