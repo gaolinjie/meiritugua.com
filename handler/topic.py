@@ -35,3 +35,8 @@ class VideoHandler(BaseHandler):
 
         self.render("video.html", **template_variables)
 
+
+class ChannelHandler(BaseHandler):
+    def get(self, channel_id, template_variables = {}):
+
+        self.render("channel.html", **template_variables)

@@ -51,6 +51,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", handler.topic.IndexHandler),
             (r"/video", handler.topic.VideoHandler),
+            (r"/c/(\d+)", handler.topic.ChannelHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
