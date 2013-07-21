@@ -703,6 +703,65 @@ white-space: nowrap;
 
 
 
+.nav-list [class^="icon-"], .nav-list [class*=" icon-"] {
+width: 25px;
+height: 25px;
+margin-top: -3px;
+margin-right: 6px;
+vertical-align: text-top;
+background-position: 0px 0px;
+background-size:25px;
+background-repeat: no-repeat;
+display: inline-block;
+}
+
+.icon-home {
+  background-image: url(/static/images/web-icon-large.png);
+}
+
+.icon-message {
+  background-image: url(/static/images/email-icon-large.png);
+}
+
+.icon-fav {
+  background-image: url(/static/images/folder-icon-large.png);
+}
+
+.icon-latter {
+  background-image: url(/static/images/note-icon-large.png);
+}
+
+.icon-follow {
+  background-image: url(/static/images/file-icon-large.png);
+}
+
+.icon-history {
+  background-image: url(/static/images/cart-icon-large.png);
+}
+
+.icon-first {
+  background-image: url(/static/images/iTunes.png);
+}
+
+.icon-second {
+  background-image: url(/static/images/Time-Machine.png);
+}
+
+.nav-list .icon-header {
+  width: 48px;
+height: 48px;
+margin-top: -15px;
+margin-left: -7px;
+margin-right: 6px;
+vertical-align: text-top;
+background-position: 0px 0px;
+background-size:48px;
+background-repeat: no-repeat;
+display: inline-block;
+}
+
+
+
 
 
 
