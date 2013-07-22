@@ -589,14 +589,13 @@ img {
 }
 
 .channel-timeline {
-  width: 1000px;
+  width: 851px;
   margin: 100px 300px;
 }
 
 .timeline {
   background: url(/static/images/line.png) top repeat-y;
   list-style: none;
-  padding: 7.5px;
   margin: 0;
   position: relative;
 }
@@ -616,6 +615,12 @@ img {
 }
 
 .timeline .card {
+  width: 411px;
+}
+
+.timeline .card .thumb .title {
+  width: 230px;
+
 }
 
 .timeline .pointer {
