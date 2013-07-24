@@ -1,5 +1,23 @@
 {% extends 'snippet/layout.html' %}
 
+{% block javascript %}
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
+          $(this).parent().html("<p class=\"medis_func S_txt3\"><a href=\"javascript:void(0);\" action-type=\"feed_list_media_toSmall\" class=\"retract\"><em class=\"W_ico12 ico_retract\"></em>收起</a><i class=\"W_vline\">|</i><a href=\"http://t.cn/zQ7uetb\" title=\"视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" class=\"show_big\" target=\"_blank\"><em class=\"W_ico12 ico_showbig\"></em>视频-荣耀之路致敬艺术大...</a><i class=\"W_vline\">|</i><a action-type=\"feed_list_media_toFloat\" action-data=\"title=视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" href=\"javascript:void(0);\" class=\"turn_right\">弹出</a></p><embed width=\"350\" height=\"270\" src=\"http://player.youku.com/player.php/sid/XNDc1NzAyMDYw/v.swf\" allowFullScreen=\"true\" quality=\"high\" align=\"middle\" allowScriptAccess=\"always\" flashvars=\"isAutoPlay=true\" type=\"application/x-shockwave-flash\"></embed>");
+        });
+      });
+    </script>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.retract',  function() {
+          $(this).parent().parent().html("<img src=\"http://p3.v.iask.com/849/338/108335999_1.jpg\"><i class=\"play\"></i><div class=\"title\"><a href=\"javascript:void(0);\" class=\"a-n ot-anchor YF\">吉米鸡毛秀 约翰尼德普做客热吻连连 @铁手Desperado译制</a></div>");
+        });
+      });
+    </script>
+{% endblock %}
+
 {% block main %}
 <div class="channel-timeline">
     <ol id="timeline" class="timeline clearfix">

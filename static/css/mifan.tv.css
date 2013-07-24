@@ -55,7 +55,7 @@ a:visited {
 }
 
 #logo {
-  width: 261px;
+  width: 220px;
 }
 
 .navbar-inverse .navbar-search .search-query {
@@ -82,7 +82,7 @@ a:visited {
   margin-left: 0px;
   top: 0px;
   height: 100%;
-  width: 259px;
+  width: 218px;
   background-color: #ffffff;
   padding: 80px 0px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -101,7 +101,7 @@ a:visited {
 
 .feeds {
   width: 500px;
-  margin: 100px 300px;
+  margin: 100px 259px;
 }
 
 .card {
@@ -189,7 +189,7 @@ p {
 
 .right-bar {
   position: fixed;
-  margin-left: 818px;
+  margin-left: 777px;
   top: 101px;
   width: 259px;
   height: 100%;
@@ -524,7 +524,7 @@ img {
 
 .channels {
   width: 1000px;
-  margin: 100px 300px;
+  margin: 100px 259px;
 }
 
 .channels .channel {
@@ -559,8 +559,8 @@ img {
 
 .channels .channel .cover .c-avatar {
   display: block;
-  width: 214px;
-  height: 162px;
+  width: 187px;
+  height: 140px;
   overflow: hidden;
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -589,8 +589,8 @@ img {
 }
 
 .channel-timeline {
-  width: 851px;
-  margin: 100px 300px;
+  width: 801px;
+  margin: 100px 259px;
 }
 
 .timeline {
@@ -615,11 +615,11 @@ img {
 }
 
 .timeline .card {
-  width: 411px;
+  width: 386px;
 }
 
 .timeline .card .thumb .title {
-  width: 230px;
+  width: 205px;
 
 }
 
@@ -764,7 +764,6 @@ background-size:48px;
 background-repeat: no-repeat;
 display: inline-block;
 }
-
 
 
 
