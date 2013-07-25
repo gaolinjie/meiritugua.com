@@ -534,9 +534,9 @@ img {
   float: left;
   margin-right: 20px;
   margin-bottom: 40px;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   word-wrap: break-word;
 }
 
@@ -562,9 +562,9 @@ img {
   width: 187px;
   height: 140px;
   overflow: hidden;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   text-indent: -9999px;
   background-color: #E5E8E8;
   background-position: center center;
