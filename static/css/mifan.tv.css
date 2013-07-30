@@ -766,23 +766,349 @@ display: inline-block;
 }
 
 
-.channel-timeline .cover .cover-link {
-  display: block;
-  width: 801px;
-  height: 220px;
-  overflow: hidden;
-  border-radius: 0px;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
-  text-indent: -9999px;
-  background-color: #E5E8E8;
-  background-position: center center;
-  background-repeat: no-repeat;
-  box-shadow: 1px 0 1px #cacaca;
-  margin-bottom: 30px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+
+
+
+
+.b-profile__top {
+box-shadow: 0 0 3px #d6d6d6;
+width: 801px;
+margin-bottom: 30px;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-.channel-timeline .cover .cover-link:hover {
+.b-profile__top:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
+
+.b-profile__wrapper {
+height: 140px;
+background: #ffffff;
+overflow: hidden;
+}
+
+.b-author.m-profile {
+position: relative;
+width: auto;
+left: 0;
+top: 0;
+height: 140px;
+border-radius: 0;
+}
+
+.b-author {
+position: absolute;
+height: 64px;
+width: 79px;
+z-index: 10;
+}
+
+.b-author.m-expanded.m-profile .b-author__image {
+width: 97px;
+border-radius: 55px;
+left: 30px;
+top: 25px;
+}
+
+.b-author.m-expanded .b-author__image {
+width: 43px;
+left: 19px;
+top: 5px;
+width: 43px;
+}
+
+.b-author__image {
+border-radius: 30px 30px 30px 30px;
+left: 19px;
+position: absolute;
+top: 5px;
+width: 55px;
+z-index: 2;
+}
+
+.b-author.m-expanded .b-author__bg {
+display: none;
+}
+
+.b-author__bg {
+background: url(http://www.shopperly.co/img/posts/profile-circles.png) -179px 0 no-repeat;
+height: 72px;
+position: relative;
+z-index: 3;
+cursor: pointer;
+}
+
+.b-author.m-expanded.m-profile .b-author__content {
+border: none;
+background: transparent;
+padding-left: 153px;
+width: 318px;
+overflow: visible;
+padding-right: 50px;
+border-right: 1px solid #dddedf;
+}
+
+.b-author.m-profile.m-expanded .b-author__content, .b-author.m-profile {
+position: relative;
+width: auto;
+left: 0;
+top: 0;
+height: 140px;
+border-radius: 0;
+}
+
+.b-author.m-expanded .b-author__content {
+position: relative;
+opacity: 1;
+top: -8px;
+left: -5px;
+}
+
+.b-author__content {
+position: absolute;
+left: -9999px;
+top: -9999px;
+width: 350px;
+position: relative;
+z-index: 1;
+border-radius: 4px;
+border: 2px solid rgba(230, 230, 230, 0.7);
+overflow: hidden;
+background: #f9f9f9;
+opacity: 0;
+-moz-transition-property: opacity;
+-moz-transition-duration: .2s;
+-webkit-transition-property: opacity;
+-webkit-transition-duration: .2s;
+transition-property: opacity;
+transition-duration: .2s;
+}
+
+.m-profile .b-author__username {
+font-size: 24px;
+padding-left: 0;
+padding-top: 22px;
+width: 240px;
+}
+
+.b-author__username {
+color: #58595B;
+font-size: 17px;
+height: 43px;
+line-height: 43px;
+margin: 0;
+overflow: hidden;
+padding-left: 85px;
+padding-top: 12px;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: 155px;
+}
+
+h4 {
+font-size: 1em;
+margin: 1.33em 0;
+}
+
+.b-author__username a {
+text-decoration: none;
+color: #58595B;
+}
+
+.b-author__username {
+color: #58595B;
+font-size: 17px;
+line-height: 43px;
+white-space: nowrap;
+}
+
+.m-profile .b-author__text {
+padding: 8px 0 0;
+border: none;
+color: #808184;
+}
+
+.b-author__text {
+padding: 10px 25px;
+font-size: 15px;
+line-height: 22px;
+margin: 0;
+color: #58595B;
+border-bottom: 1px solid #e4e5e6;
+}
+
+.cover p, pre {
+margin: 1em 0;
+}
+
+.m-profile.b-stat-list {
+border-left: 1px solid #e2e2e2;
+height: 140px;
+padding: 0;
+position: absolute;
+right: -20px;
+top: 0;
+width: 380px;
+border-top: 0;
+}
+
+.b-stat-list {
+overflow: hidden;
+border-top: 1px solid #fbfbfb;
+padding: 8px 9px;
+margin: 0;
+}
+
+.b-stat-list.m-profile .b-stat-list__el {
+font-weight: 700;
+height: 62px;
+margin-top: 40px;
+padding-top: 0;
+width: 120px;
+color: #f06789;
+}
+.b-stat-list__el.m-clickable {
+cursor: pointer;
+}
+.b-stat-list__el {
+float: left;
+height: 55px;
+width: 109px;
+border-right: 1px solid #e2e2e2;
+font-size: 32px;
+text-align: center;
+padding-top: 5px;
+}
+
+.b-stat-list.m-profile .b-stat-list__el span {
+color: #78797B;
+padding-top: 8px;
+font-weight: 100;
+}
+.b-stat-list__el span {
+font-style: italic;
+color: #58595B;
+font-size: 13px;
+display: block;
+padding-top: 3px;
+}
+
+.b-profile__tabs {
+height: 40px;
+border-top: 2px solid #eaeaeb;
+padding: 0;
+margin: 0;
+}
+.clearfix {
+zoom: 1;
+}
+menu,  ul {
+padding: 0 0 0 40px;
+list-style: none;
+}
+dl, menu,  ul {
+margin: 1em 0;
+}
+
+.b-profile__tab:first-child {
+border-left: 0;
+}
+
+.b-profile__tab {
+float: left;
+width: 25%;
+height: 40px;
+color: #bbbdbf;
+line-height: 36px;
+font-size: 16px;
+text-align: center;
+border-right: 1px solid #dadcdd;
+background: #f1f1f2;
+cursor: pointer;
+position: relative;
+text-indent: 25px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+
+.b-profile__tab.m-posts.m-active .b-profile__tab-icon {
+background-position: -1px -20px;
+}
+
+.b-profile__tab.m-posts .b-profile__tab-icon {
+width: 17px;
+height: 20px;
+margin-top: -10px;
+background-position: -1px 0;
+}
+
+.b-profile__tab-icon {
+position: absolute;
+background: url(http://www.shopperly.co/img/profile-tabs-sprite.png) no-repeat;
+left: 52px;
+top: 48%;
+}
+
+.b-profile__tab.m-posts .b-profile__tab-icon {
+width: 17px;
+height: 20px;
+margin-top: -10px;
+background-position: -1px 0;
+}
+
+.b-profile__tab.m-likes .b-profile__tab-icon {
+width: 16px;
+height: 14px;
+margin-top: -7px;
+background-position: -40px 0;
+}
+
+.b-profile__tab.m-votes .b-profile__tab-icon {
+width: 18px;
+height: 14px;
+margin-top: -7px;
+left: 48px;
+background-position: -56px 0;
+}
+
+.b-profile__tab.m-suggestions .b-profile__tab-icon {
+width: 21px;
+height: 17px;
+margin-top: -9px;
+left: 25px;
+background-position: -19px 0;
+}
+
+.b-profile__tab.m-active .b-profile__tab-highlight {
+display: block;
+}
+
+.b-profile__tab.m-active a {
+color: #404041;
+}
+
+.b-profile__tab a {
+display: block;
+height: 40px;
+text-decoration: none;
+color: #bbbdbf;
+}
+
+.b-profile__tab:last-child {
+border-right: 0;
+}
+
+.b-profile__tab-highlight {
+background: #0099ff;
+bottom: -2px;
+height: 2px;
+width: 100%;
+left: 0;
+display: none;
+position: absolute;
+}
+
+
+
+
