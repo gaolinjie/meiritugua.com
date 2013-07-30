@@ -930,15 +930,12 @@ color: #808184;
 
 .b-author__text {
 padding: 10px 25px;
-font-size: 15px;
+font-size: 13px;
 line-height: 22px;
 margin: 0;
 color: #58595B;
 border-bottom: 1px solid #e4e5e6;
-}
-
-.cover p, pre {
-margin: 1em 0;
+width: 300px;
 }
 
 .m-profile.b-stat-list {
@@ -960,11 +957,11 @@ margin: 0;
 
 .b-stat-list.m-profile .b-stat-list__el {
 font-weight: 700;
-height: 62px;
+height: 52px;
 margin-top: 40px;
-padding-top: 0;
+padding-top: 10px;
 width: 120px;
-color: #f06789;
+color: #1abc9c;
 }
 .b-stat-list__el.m-clickable {
 cursor: pointer;
@@ -1099,7 +1096,7 @@ border-right: 0;
 }
 
 .b-profile__tab-highlight {
-background: #0099ff;
+background: #1abc9c;
 bottom: -2px;
 height: 2px;
 width: 100%;
