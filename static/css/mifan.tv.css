@@ -523,7 +523,7 @@ img {
 }
 
 .channels {
-  width: 780px;
+  width: 786px;
   margin: 100px 259px;
 }
 
@@ -998,10 +998,16 @@ margin: 0;
 .clearfix {
 zoom: 1;
 }
-menu,  ul {
+
+ul {
 list-style: none;
 }
-dl, menu,  ul {
+
+.b-stat-list ul {
+margin: 1em 0;
+}
+
+.taglist-holder ul {
 margin: 1em 0;
 }
 
@@ -1292,11 +1298,21 @@ direction: ltr;
 unicode-bidi: embed;
 }
 
-.KBylAf {
+.Ltb {
   margin-right: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
+.Ltb:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
 
+.taglist-holder {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.taglist-holder:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
 
 
 
