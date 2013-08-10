@@ -1407,7 +1407,7 @@ height: 30px;
   width: 478px;
   height: 45px;
   background: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   border-radius: 2px;
 }
@@ -1449,4 +1449,82 @@ height: 30px;
   border-radius: 3px;
   margin-top: 6px;
   padding: 6px 20px;
+}
+
+.post-box {
+  width: 478px;
+  border-radius: 2px;
+  margin-bottom: 30px;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.t-avatar {
+  float: left;
+}
+.t-link {
+  float: left;
+  margin: 20px 15px 0 20px;
+}
+.t-channel {
+  float: left;
+  margin: 20px 15px 0 20px;
+}
+
+.t-avatar img {
+  float: left;
+  width: 46px;
+  height: 46px;
+  margin: 20px 15px 0 20px;
+  padding: 0;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.row2 {
+  clear: both;
+}
+
+.row3 {
+  clear: both;
+}
+
+.row4 {
+  clear: both;
+  background: #fff;
+  padding: 20px 0;
+  margin-top: 70px;
+}
+
+
+.v-description {
+  float: left;
+  margin: 20px 20px 0 20px;
+}
+
+.v-link {
+  float: left;
+  margin: 14px 20px 0 8px;
+  font-size: 12px;
+}
+
+.v-channel {
+  float: left;
+  margin: 14px 20px 0 8px;
+}
+
+.post-box textarea {
+width: 340px;
+height: 80px;
+border-radius: 0px;
+font-size: 12px;
+}
+.post-box input {
+  width: 340px;
+border-radius: 0px;
+font-size: 12px;
+}
+
+.post-btn-wrap {
+  margin-left: 20px;
 }
