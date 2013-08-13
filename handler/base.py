@@ -27,6 +27,9 @@ class BaseHandler(tornado.web.RequestHandler):
     def mc(self):
         return self.application.mc
 
+    @property
+    def user_model(self):
+        return self.application.user_model
 
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
@@ -43,3 +46,8 @@ class BaseHandler(tornado.web.RequestHandler):
     def render_from_string(self, template_string, **template_vars):
         template = self.jinja2.from_string(template_string)
         return template.render(**template_vars)
+
+    def get_current_user(self):
+        user_id = self.get_secure_cookie("user")
+        if not user_id: return None
+        return self.user_model.get_user_by_uid(int(user_id))

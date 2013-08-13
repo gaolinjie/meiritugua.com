@@ -21,6 +21,7 @@ import tornado.web
 
 
 import handler.topic
+import handler.user
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -29,14 +30,14 @@ from jinja2 import Environment, FileSystemLoader
 
 define("port", default = 80, help = "run on the given port", type = int)
 define("mysql_host", default = "localhost", help = "community database host")
-define("mysql_database", default = "tuila", help = "community database name")
-define("mysql_user", default = "tuila", help = "community database user")
-define("mysql_password", default = "tuila", help = "community database password")
+define("mysql_database", default = "mifan", help = "community database name")
+define("mysql_user", default = "mifan", help = "community database user")
+define("mysql_password", default = "mifan", help = "community database password")
 
 class Application(tornado.web.Application):
     def __init__(self):
         settings = dict(
-            blog_title = u"tuila.me",
+            blog_title = u"mifan.tv",
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
             static_path = os.path.join(os.path.dirname(__file__), "static"),
             xsrf_cookies = True,
@@ -52,6 +53,9 @@ class Application(tornado.web.Application):
             (r"/", handler.topic.IndexHandler),
             (r"/video", handler.topic.VideoHandler),
             (r"/c/(\d+)", handler.topic.ChannelHandler),
+            (r"/login", handler.user.LoginHandler),
+            (r"/register", handler.user.RegisterHandler),
+            (r"/forgot", handler.user.ForgotPasswordHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -69,6 +73,9 @@ class Application(tornado.web.Application):
 
         # Have one global loader for loading models and handles
         self.loader = Loader(self.db)
+
+        # Have one global model for db query
+        self.user_model = self.loader.use("user.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)
