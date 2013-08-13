@@ -26,21 +26,9 @@ CREATE TABLE `user` (
   `email` text,
   `password` text,
   `username` text,
-  `nickname` text,
   `avatar` text,
-  `signature` text,
-  `location` text,
-  `website` text,
-  `company` text,
-  `role` int(11) DEFAULT NULL,
-  `balance` int(11) DEFAULT NULL,
-  `reputation` int(11) DEFAULT NULL,
-  `self_intro` text,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
-  `twitter` text,
-  `github` text,
-  `douban` text,
   `last_login` datetime DEFAULT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -53,3 +41,53 @@ CREATE TRIGGER `user_delete_trigger` BEFORE DELETE ON `user` FOR EACH ROW BEGIN
     END;
  ;;
 delimiter ;
+
+-- ----------------------------
+--  Table structure for `post`
+-- ----------------------------
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author_id` int(11) DEFAULT NULL,
+  `channel_id` int(11) DEFAULT NULL,
+  `video_id` int(11) DEFAULT NULL,
+  `intro` text,  
+  `plus` int(11) DEFAULT NULL,
+  `share` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+delimiter ;;
+CREATE TRIGGER `post_delete_trigger` BEFORE DELETE ON `post` FOR EACH ROW BEGIN
+        DELETE FROM reply WHERE reply.topic_id = OLD.id;
+        DELETE FROM notification WHERE notification.involved_topic_id = OLD.id;
+    END;
+ ;;
+delimiter ;
+
+-- ----------------------------
+--  Table structure for `video`
+-- ----------------------------
+DROP TABLE IF EXISTS `video`;
+CREATE TABLE `video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `link` text,
+  `title` text,
+  `thumb` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `channel`
+-- ----------------------------
+DROP TABLE IF EXISTS `channel`;
+CREATE TABLE `channel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `intro` text,
+  `avatar` text,
+  `type` text,
+  `followers` int(11) DEFAULT NULL,
+  `posts` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
