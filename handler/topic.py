@@ -27,6 +27,13 @@ from lib.reddit import hot
 
 class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        if(user_info):
+            template_variables["posts"] = self.follow_model.get_user_all_follow_topics(user_id = user_info["uid"], current_page = page)
+        else:
+            self.redirect("/login")
 
         self.render("index.html", **template_variables)
 

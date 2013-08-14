@@ -31,6 +31,10 @@ class BaseHandler(tornado.web.RequestHandler):
     def user_model(self):
         return self.application.user_model
 
+    @property
+    def follow_model(self):
+        return self.application.follow_model
+
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
         self.write(html)

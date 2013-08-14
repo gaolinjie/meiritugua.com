@@ -76,6 +76,7 @@ class Application(tornado.web.Application):
 
         # Have one global model for db query
         self.user_model = self.loader.use("user.model")
+        self.follow_model = self.loader.use("follow.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)
