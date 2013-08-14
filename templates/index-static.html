@@ -1,0 +1,482 @@
+{% extends 'snippet/layout.html' %}
+
+{% block javascript %}
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
+          $(this).parent().html("<p class=\"medis_func S_txt3\"><a href=\"javascript:void(0);\" action-type=\"feed_list_media_toSmall\" class=\"retract\"><em class=\"W_ico12 ico_retract\"></em>收起</a><i class=\"W_vline\">|</i><a href=\"http://t.cn/zQ7uetb\" title=\"视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" class=\"show_big\" target=\"_blank\"><em class=\"W_ico12 ico_showbig\"></em>视频-荣耀之路致敬艺术大...</a><i class=\"W_vline\">|</i><a action-type=\"feed_list_media_toFloat\" action-data=\"title=视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" href=\"javascript:void(0);\" class=\"turn_right\">弹出</a></p><embed width=\"440\" height=\"340\" src=\"http://player.youku.com/player.php/sid/XNDc1NzAyMDYw/v.swf\" allowFullScreen=\"true\" quality=\"high\" align=\"middle\" allowScriptAccess=\"always\" flashvars=\"isAutoPlay=true\" type=\"application/x-shockwave-flash\"></embed>");
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.retract',  function() {
+          $(this).parent().parent().html("<img src=\"http://p3.v.iask.com/849/338/108335999_1.jpg\"><i class=\"play\"></i><div class=\"title\"><a href=\"javascript:void(0);\" class=\"a-n ot-anchor YF\">吉米鸡毛秀 约翰尼德普做客热吻连连 @铁手Desperado译制</a></div>");
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.comment',  function() {
+          $(this).hide();
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./\" class=\"\" aria-hidden=\"true\"><img src=\"//lh4.googleusercontent.com/-deUkWpgvu6o/AAAAAAAAAAI/AAAAAAAAAAA/p6RFKhrUf1g/s28-c-k-no/photo.jpg\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><div class=\"editor-box\"><div class=\"inner\"><div class=\"input\" role=\"textbox\" contenteditable=\"plaintext-only\"></div></div></div><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\" aria-disabled=\"true\" style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+        });
+
+        $(document).on('click', '.cancel-comment',  function() {
+          $(this).parent().parent().parent().html("");
+          $(".comment").show();
+        });
+
+        $(document).on('click', '.post-btn',  function() {
+          $(this).hide();
+          $(".post-box").show();
+        });
+
+        $(document).on('click', '.cancel-post',  function() {
+          $(".post-box").hide();
+          $(".post-btn").show();
+        });
+      });
+    </script>
+{% endblock %}
+
+{% block main %}
+<div class="feeds">
+  <div class="tabbar">
+    <div class="tab">
+      <a href="/" class="tab-link">所有</a>
+    </div>
+    <div class="tab">
+      <a href="/" class="tab-link">短片</a>
+    </div>
+    <div class="tab">
+      <a href="/" class="tab-link">电影</a>
+    </div>
+    <div class="tab">
+      <a href="/" class="tab-link">电视剧</a>
+    </div>
+    <div class="tab">
+      <a href="/" class="tab-link">明星</a>
+    </div>
+    <div class="post-btn">
+      <a href="#fakelink" class="btn btn-primary">分享视频</a>
+    </div>
+  </div>
+  <div class="post-box" style="display:none">
+    <div class="row1">
+      <div class="t-avatar">
+        <a href="/">
+          <img src="/static/images/photo.jpg"></a>
+      </div>
+      <div class="v-description">
+        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="t-link">视频链接:</div>
+      <div class="v-link">
+        <input type="text" placeholder="输入或粘贴链接" name="title"></div>
+    </div>
+
+    <div class="row3">
+      <div class="t-channel">选择频道:</div>
+      <div class="v-channel">
+        <input type="text" placeholder="+ 添加视频的频道" name="title"></div>
+    </div>
+    <div class="row4">
+      <span class="post-btn-wrap">
+      <div role="button" id=":61.post" class="gbtn post gbtn-unenable" aria-disabled="true" style="-webkit-user-select: none;">分享视频</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+    </span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/">
+          <img src="/static/images/a.gif"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/">Moses Mason</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="分享细节">
+            <a href="/" class="ic">公开分享</a>
+          </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#TheDailyShow</a>
+        </div>
+      </div>
+    </div>
+    <p class="intro">discovery回复：探索频道系列节目shark week的广告之一，效果是制作出来的，不是偶然拍到的！</p>
+    <div class="content">
+      <div class="thumb">
+        <img src="http://p1.v.iask.com/349/782/108331779_1.jpg"> <i class="play"></i>
+        <div class="title">
+          <a href="javascript:void(0);" class="a-n ot-anchor YF">U.S. Postal Service Logging All Mail for Law Enforcement</a>
+        </div>
+      </div>
+      <div class="bottom">
+        <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+          <span class="btn-wrap">
+            <span class="plus-icon"></span>
+            <span class="plus-num">2</span>
+          </span>
+        </div>
+        <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+          <span class="btn-wrap">
+            <span class="share-icon"></span>
+            <span class="share-num">5</span>
+          </span>
+        </div>
+        <div class="comment" style="">
+          <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+        </div>
+      </div>
+      <div class="comment-editor"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/">
+          <img src="https://lh5.googleusercontent.com/-jlJJsvoBTMc/AAAAAAAAAAI/AAAAAAAAYc8/3gaxqt-2vq8/s46-c-k-no/photo.jpg"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/">Moses Mason</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="分享细节">
+            <a href="/" class="ic">公开分享</a>
+          </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#搞笑视频精选</a>
+        </div>
+      </div>
+    </div>
+    <p class="intro">
+      YOUTUBE点击过200多万。她打扮得像小公主，说话奶声奶气的，可是一张嘴唱歌全场震惊了。6岁的Aaralyn在哥哥Izzy的鼓声下演唱自己的原创重金属摇滚歌曲《Zombie Skin》，整个一“嘶吼小辣妹”啊！
+    </p>
+    <div class="thumb">
+      <img src="http://p3.v.iask.com/849/338/108335999_1.jpg"> <i class="play"></i>
+      <div class="title">
+        <a href="javascript:void(0);" class="a-n ot-anchor YF">吉米鸡毛秀 约翰尼德普做客热吻连连 @铁手Desperado译制</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+        <span class="btn-wrap">
+          <span class="plus-icon"></span>
+          <span class="plus-num">12</span>
+        </span>
+      </div>
+      <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+        <span class="btn-wrap">
+          <span class="share-icon"></span>
+          <span class="share-num">7</span>
+        </span>
+      </div>
+      <div class="comment" style="">
+        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+      </div>
+    </div>
+    <div class="comment-editor"></div>
+
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/">
+          <img src="https://lh5.googleusercontent.com/-PfnIgLK9xe8/AAAAAAAAAAI/AAAAAAABJoQ/sBeWxai_8lw/s46-c-k-no/photo.jpg"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/">Moses Mason</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="分享细节">
+            <a href="/" class="ic">公开分享</a>
+          </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#我有港片情意结</a>
+        </div>
+      </div>
+    </div>
+    <p class="intro">
+      白天鹅一家子在马路中间气定神闲地走着，一辆警车在后面跟着缓缓前行，挡住后方的来车，为他们“保驾护航”~~直到他们走到路边。超级有爱呀~~~博爱的警察蜀黍！
+    </p>
+    <div class="thumb">
+      <img src="http://p2.v.iask.com/336/345/108037927_1.jpg">
+      <i class="play"></i>
+      <div class="title">
+        <a href="javascript:void(0);" class="a-n ot-anchor YF">棕色的时钟 (2012)</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+        <span class="btn-wrap">
+          <span class="plus-icon"></span>
+          <span class="plus-num">4</span>
+        </span>
+      </div>
+      <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+        <span class="btn-wrap">
+          <span class="share-icon"></span>
+          <span class="share-num">3</span>
+        </span>
+      </div>
+      <div class="comment" style="">
+        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+      </div>
+    </div>
+    <div class="comment-editor"></div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/">
+          <img src="https://lh5.googleusercontent.com/-tlMaQEsSK2Q/AAAAAAAAAAI/AAAAAAAAETA/bZW9GRDPeMo/s120-c/photo.jpg"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/">Moses Mason</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="分享细节">
+            <a href="/" class="ic">公开分享</a>
+          </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#短片工坊</a>
+        </div>
+      </div>
+    </div>
+    <p class="intro">笨贼一箩筐啊啊！！不信你不想笑！做贼也是需要相当资质的。。各种逗......没有笨贼的世界是不完整的！</p>
+    <div class="thumb">
+      <img src="http://p4.v.iask.com/525/605/108268325_1.jpg">
+      <i class="play"></i>
+      <div class="title">
+        <a href="javascript:void(0);" class="a-n ot-anchor YF">【@世界流行音乐】天籁之声Aldrich《Titanium》</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+        <span class="btn-wrap">
+          <span class="plus-icon"></span>
+          <span class="plus-num">8</span>
+        </span>
+      </div>
+      <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+        <span class="btn-wrap">
+          <span class="share-icon"></span>
+          <span class="share-num">11</span>
+        </span>
+      </div>
+      <div class="comment" style="">
+        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+      </div>
+    </div>
+    <div class="comment-editor"></div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/">
+          <img src="https://lh6.googleusercontent.com/-48Zg-48VYO8/AAAAAAAAAAI/AAAAAAACroA/-Y46kh5qq5w/s120-c/photo.jpg"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/">Moses Mason</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="分享细节">
+            <a href="/" class="ic">公开分享</a>
+          </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#霍格沃茨特快列车</a>
+        </div>
+      </div>
+    </div>
+    <p class="intro">
+      美国的一个高尔夫球场因为上游水獭勤奋筑坝而惨遭水淹，球场方不得已请来了专家实施拆迁。专家先是从水草和线缆缠绕中的困境中救出企图逃窜水獭，然后将其带到野外重新放归自然，没想到遭到强拆的水獭毫不买账新家，在走出笼子后耿耿于怀地找专家算账 http://t.cn/zH2CMrX 这水獭也算个钉子户啊XD
+    </p>
+    <div class="thumb">
+      <img src="http://p2.v.iask.com/519/85/104131040_1.jpg">
+      <i class="play"></i>
+      <div class="title">
+        <a href="javascript:void(0);" class="a-n ot-anchor YF">视频:实拍美国男子拍摄警察遭逮捕 爱犬被射杀</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+        <span class="btn-wrap">
+          <span class="plus-icon"></span>
+          <span class="plus-num">9</span>
+        </span>
+      </div>
+      <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+        <span class="btn-wrap">
+          <span class="share-icon"></span>
+          <span class="share-num">21</span>
+        </span>
+      </div>
+      <div class="comment" style="">
+        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+      </div>
+    </div>
+    <div class="comment-editor"></div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/">
+          <img src="https://lh3.googleusercontent.com/-880sohy5t9A/AAAAAAAAAAI/AAAAAAAAFd0/mYs6ySjpaB4/s120-c/photo.jpg"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/">Moses Mason</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="分享细节">
+            <a href="/" class="ic">公开分享</a>
+          </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#♥ Sherlock ♥</a>
+        </div>
+      </div>
+    </div>
+    <p class="intro">
+      “致那些疯狂的人，致那些格格不入的人，和那些心怀叛逆的人；因为只有那些疯狂到自认为能改变世界的人，才真正改变了世界” 阿什顿·库彻饰演的乔布斯真是好帅 影片预计于8月16日在美上映 （@铁手Desperado 译制）
+    </p>
+    <div class="thumb">
+      <img src="http://p1.v.iask.com/7/515/108065644_1.jpg">
+      <i class="play"></i>
+      <div class="title">
+        <a href="javascript:void(0);" class="a-n ot-anchor YF">超搞笑的终极网络音乐视频合辑</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+        <span class="btn-wrap">
+          <span class="plus-icon"></span>
+          <span class="plus-num">22</span>
+        </span>
+      </div>
+      <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+        <span class="btn-wrap">
+          <span class="share-icon"></span>
+          <span class="share-num">51</span>
+        </span>
+      </div>
+      <div class="comment" style="">
+        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+      </div>
+    </div>
+    <div class="comment-editor"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block right %}
+<div class="right-bar">
+  <div class="maylike">
+    <h4 class="header">
+      <span>你可能喜欢的频道</span>
+    </h4>
+    <div class="like-channels">
+
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-bf4rSxrZmR0/AAAAAAAAAAI/AAAAAAAAADA/ycDTEuOuL5A/s120-c/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">V for Vendetta</a>
+          </div>
+          <div class="like">
+            <a href="/">1211 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-w5lqw_FT-JM/AAAAAAAAAAI/AAAAAAAAABw/oCXK48O0H7M/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">皮克斯短片集</a>
+          </div>
+          <div class="like">
+            <a href="/">219 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh3.googleusercontent.com/-F1ARRPUL8nY/AAAAAAAAAAI/AAAAAAAAAFs/3cuRu2ZBwkg/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">America's Funniest Ho...</a>
+          </div>
+          <div class="like">
+            <a href="/">337 人喜欢</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

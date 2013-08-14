@@ -31,7 +31,7 @@ class IndexHandler(BaseHandler):
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
-            template_variables["posts"] = self.follow_model.get_user_all_follow_topics(user_id = user_info["uid"], current_page = page)
+            template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)
         else:
             self.redirect("/login")
 
