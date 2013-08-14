@@ -1528,3 +1528,21 @@ font-size: 12px;
 .post-btn-wrap {
   margin-left: 20px;
 }
+
+
+.create-channel {
+  position: absolute;
+  left: 900px;
+  top: 220px;
+  width: 100px;
+}
+
+.create-channel a {
+  font-size: 13px;
+}
+
+.create-channel .btn {
+  border-radius: 3px;
+  margin-top: 6px;
+  padding: 6px 20px;
+}
