@@ -1,5 +1,22 @@
 {% extends 'snippet/layout.html' %}
 
+{% block javascript %}
+<script type="text/javascript">
+      $(document).ready(function(){
+
+        $(document).on('click', '.create-channel',  function() {
+          $(this).hide();
+          $(".channel-box").show();
+        });
+
+        $(document).on('click', '.cancel-post',  function() {
+          $(".channel-box").hide();
+          $(".create-channel").show();
+        });
+      });
+    </script>
+{% endblock %}
+
 {% block main %}
 <div class="channels">
     <div class="taglist-holder">
@@ -8,6 +25,35 @@
       <a href="#fakelink" class="btn btn-primary">创建频道</a>
     </div>
 </div>
+
+<div class="channel-box" style="display:none">
+    <div class="row1">
+      <div class="t-avatar">
+        <a href="/">
+          <img src="/static/images/photo.jpg"></a>
+      </div>
+      <div class="v-description">
+        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="t-link">视频链接:</div>
+      <div class="v-link">
+        <input type="text" placeholder="输入或粘贴链接" name="title"></div>
+    </div>
+
+    <div class="row3">
+      <div class="t-channel">选择频道:</div>
+      <div class="v-channel">
+        <input type="text" placeholder="+ 添加视频的频道" name="title"></div>
+    </div>
+    <div class="row4">
+      <span class="post-btn-wrap">
+      <div role="button" id=":61.post" class="gbtn post" aria-disabled="true" style="-webkit-user-select: none;">分享视频</div>
+      <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+    </span>
+    </div>
+  </div>
 
     <div class="KBylAf kmGW6b"><div class="cja Os3xkf Ltb"><div class="r6Rtbe vlMSze TjKfDe Eqy3Ue j8T7he" role="article"><div class="sNZZue l8zNY"><a href="/c/1" class="FW9qdb Wk gosnEc HF7jKf" aria-hidden="true" data-tileposition="5"><img src="//lh3.googleusercontent.com/-vdFZnVWkv4A/AAAAAAAAAAI/AAAAAAAAAF4/htRO1z5SDeU/s170-c-k-no/photo.jpg" width="170px" height="170px" alt="" class="Rf " data-pinit="registered"></a></div><div class="JZc2Fe"></div><div class="gecJce Xk6Ee"><a href="/u/0/103975337181399609435" class="fmPSLc Dt0N7d WBzBVe HF7jKf FW9qdb" data-tileposition="5">Disney Pixar</a><div class="We4Wwc ljarXd">Welcome to the official Disney Pixar page on Google+</div></div><div class="kOVcgc dS"><div class="Dq er a-f-e"><div role="button" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b" tabindex="0" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;"><div class="y-qa-za-qd"></div><span class="y-qa-za-b-W-s" dir="ltr">关注</span></div></div></div></div></div></div>
 

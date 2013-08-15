@@ -1565,3 +1565,23 @@ background: #3e802f;
 border: 1px solid transparent;
 border-top: 1px solid #2f6124;
 }
+
+.channel-box {
+  width: 746px;
+  border-radius: 2px;
+  margin-bottom: 30px;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.channel-box textarea {
+width: 610px;
+height: 80px;
+border-radius: 0px;
+font-size: 12px;
+}
+.channel-box input {
+  width: 610px;
+border-radius: 0px;
+font-size: 12px;
+}
