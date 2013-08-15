@@ -1546,3 +1546,22 @@ font-size: 12px;
   margin-top: 6px;
   padding: 6px 20px;
 }
+
+.post:hover {
+-webkit-box-shadow: inset 0 -1px 0 #4c8534;
+box-shadow: inset 0 -1px 0 #4c8534;
+background-color: #65b045;
+background-image: -webkit-linear-gradient(top,transparent,transparent);
+background-image: linear-gradient(top,transparent,transparent);
+border: 1px solid transparent;
+border-bottom: 1px solid #4c8534;
+text-shadow: none;
+}
+
+.post:active {
+-webkit-box-shadow: inset 0 1px 0 #2f6124;
+box-shadow: inset 0 1px 0 #2f6124;
+background: #3e802f;
+border: 1px solid transparent;
+border-top: 1px solid #2f6124;
+}
