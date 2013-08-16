@@ -67,7 +67,7 @@
           <ul class="b-stat-list m-profile">
             <li class="b-stat-list__el m-clickable" data-type="Following" title="Show people you follow">
               12
-              <span>following</span>
+              <span>plus</span>
             </li>
             <li class="b-stat-list__el m-clickable" data-type="Followers" title="Show your followers">
               20
@@ -85,82 +85,58 @@
 
     <ul class="b-profile__tabs clearfix">
       <li class="b-profile__tab m-posts   m-active" title="My Posts" data-tab="Posts">
-        <span class="b-profile__tab-icon"></span>
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=1" title="My Posts">My Posts</a>
+        <a href="/user/profile/439?st=1" title="My Posts">所 有</a>
       </li>
       <li class="b-profile__tab m-likes " title="My Likes" data-tab="Likes">
-        <span class="b-profile__tab-icon"></span>
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=2" title="My Likes">My Likes</a>
+        <a href="/user/profile/439?st=2" title="My Likes">热 门</a>
       </li>
       <li class="b-profile__tab m-votes " title="My Votes" data-tab="Votes">
-        <span class="b-profile__tab-icon"></span>
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=3" title="My Votes">My Votes</a>
+        <a href="/user/profile/439?st=3" title="My Votes">商 店</a>
       </li>
       <li class="b-profile__tab m-suggestions " title="My Suggestions" data-tab="Suggestions">
-        <span class="b-profile__tab-icon"></span>
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=4" title="My Suggestions">My Suggestions</a>
+        <a href="/user/profile/439?st=4" title="My Suggestions">论 坛</a>
+      </li>
+      <li class="channel-post-btn" title="My Suggestions" data-tab="Suggestions">
+
+      <a href="#fakelink" class="btn btn-primary">+1</a>
       </li>
     </ul>
+    
   </div>
 </div>
 <ol id="timeline" class="timeline clearfix">
   <li class="spine"></li>
+  {% if author_uid!=user_info.uid %}
   <li class="left"> <i class="pointer"></i>
 
-    <div class="card">
-      <div class="header">
-        <div class="avatar">
-          <a href="/">
-            <img src="/static/images/a.gif"></a>
-        </div>
-        <div class="info">
-          <h3 class="username">
-            <a href="/">Moses Mason</a>
-          </h3>
-          <span class="ct">
-            <span class="channel" title="分享细节">
-              <a href="/" class="ic">公开分享</a>
-            </span>
-            &nbsp;-&nbsp;
-            <span class="time">
-              <a href="/" class="it" title="2013年6月27日 下午10:13:26">下午10:13</a>
-            </span>
-          </span>
-        </div>
+    <div class="post-box" >
+    <div class="row1">
+      <div class="t-avatar">
+        <a href="/">
+          <img src="/static/images/photo.jpg"></a>
       </div>
-      <p class="intro">discovery回复：探索频道系列节目shark week的广告之一，效果是制作出来的，不是偶然拍到的！</p>
-      <div class="content">
-        <div class="thumb">
-          <img src="http://p1.v.iask.com/349/782/108331779_1.jpg"> <i class="play"></i>
-          <div class="title">
-            <a href="javascript:void(0);" class="a-n ot-anchor YF">U.S. Postal Service Logging All Mail for Law Enforcement</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
-            <span class="btn-wrap">
-              <span class="plus-icon"></span>
-              <span class="plus-num">2</span>
-            </span>
-          </div>
-          <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
-            <span class="btn-wrap">
-              <span class="share-icon"></span>
-              <span class="share-num">5</span>
-            </span>
-          </div>
-          <div class="comment" style="">
-            <div class="comment-box" tabindex="0" role="button">发表评论...</div>
-          </div>
-        </div>
-        <div class="comment-editor"></div>
+      <div class="v-description">
+        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
       </div>
     </div>
+    <div class="row2">
+      <div class="t-link">视频链接:</div>
+      <div class="v-link">
+        <input type="text" placeholder="输入或粘贴链接" name="title"></div>
+    </div>
+
+    <div class="row4">
+      <span class="post-btn-wrap">
+      <div role="button" id=":61.post" class="gbtn post gbtn-unenable" aria-disabled="true" style="-webkit-user-select: none;">分享视频</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+    </span>
+    </div>
+  </div>
   </li>
+  {% endif %}
 
   <li class="right">
     <i class="pointer"></i>
