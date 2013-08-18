@@ -15,13 +15,17 @@ class PostModel(Query):
     def get_all_posts_by_channel_id(self, num = 32, current_page = 1, channel_id = None):
         where = "channel.id = '%s'" % channel_id
         join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
-                LEFT JOIN channel ON post.channel_id = channel.id"
+                LEFT JOIN channel ON post.channel_id = channel.id \
+                LEFT JOIN video ON video_id = video.id"
         order = "created DESC, id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
                 author_user.uid as author_uid, \
-                channel.name as channel_name"
+                channel.name as channel_name, \
+                video.title as video_title, \
+                video.thumb as video_thumb, \
+                video.link as video_link"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_posts_count(self, uid):

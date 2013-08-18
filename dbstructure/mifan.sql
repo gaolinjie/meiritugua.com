@@ -87,8 +87,10 @@ CREATE TABLE `channel` (
   `intro` text,
   `avatar` text,
   `type` text,
+  `plus` int(11) DEFAULT NULL,
   `followers` int(11) DEFAULT NULL,
   `posts` int(11) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -1034,15 +1034,11 @@ box-sizing: border-box;
 display: block;
 }
 
-.b-profile__tab.m-active a {
-color: #404041;
-}
-
 .b-profile__tab a {
 display: block;
 height: 40px;
 text-decoration: none;
-color: #bbbdbf;
+color: #404041;
 }
 
 .b-profile__tab:last-child {
@@ -1533,7 +1529,7 @@ width: 610px;
 }
 
 .channel-post-btn a {
-  font:italic bold 15px arial,sans-serif;
+  font:italic bold 13px arial,sans-serif;
 }
 
 .channel-post-btn .btn {
@@ -1542,6 +1538,15 @@ width: 610px;
   margin-top: 6px;
   padding: 4px 20px;
 }
+
+.channel-post-btn {
+  padding: 4px 0px;
+}
+
+.follow-btn a {
+  font:bold 13px arial,sans-serif;
+}
+
 
 .timeline .post-box {
   width: 386px;

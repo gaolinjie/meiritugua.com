@@ -49,6 +49,7 @@ class ChannelHandler(BaseHandler):
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
+            template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
             template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, channel_id = channel_id)
         else:
             self.redirect("/login")
