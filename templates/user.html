@@ -1,0 +1,220 @@
+{% extends 'snippet/layout.html' %}
+
+{% block javascript %}
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
+          $(this).parent().html("<p class=\"medis_func S_txt3\"><a href=\"javascript:void(0);\" action-type=\"feed_list_media_toSmall\" class=\"retract\"><em class=\"W_ico12 ico_retract\"></em>收起</a><i class=\"W_vline\">|</i><a href=\"http://t.cn/zQ7uetb\" title=\"视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" class=\"show_big\" target=\"_blank\"><em class=\"W_ico12 ico_showbig\"></em>视频-荣耀之路致敬艺术大...</a><i class=\"W_vline\">|</i><a action-type=\"feed_list_media_toFloat\" action-data=\"title=视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" href=\"javascript:void(0);\" class=\"turn_right\">弹出</a></p><embed width=\"350\" height=\"270\" src=\"http://player.youku.com/player.php/sid/XNDc1NzAyMDYw/v.swf\" allowFullScreen=\"true\" quality=\"high\" align=\"middle\" allowScriptAccess=\"always\" flashvars=\"isAutoPlay=true\" type=\"application/x-shockwave-flash\"></embed>");
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.retract',  function() {
+          $(this).parent().parent().html("<img src=\"http://p3.v.iask.com/849/338/108335999_1.jpg\"><i class=\"play\"></i><div class=\"title\"><a href=\"javascript:void(0);\" class=\"a-n ot-anchor YF\">吉米鸡毛秀 约翰尼德普做客热吻连连 @铁手Desperado译制</a></div>");
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '.comment',  function() {
+          $(this).hide();
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./\" class=\"\" aria-hidden=\"true\"><img src=\"//lh4.googleusercontent.com/-deUkWpgvu6o/AAAAAAAAAAI/AAAAAAAAAAA/p6RFKhrUf1g/s28-c-k-no/photo.jpg\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><div class=\"editor-box\"><div class=\"inner\"><div class=\"input\" role=\"textbox\" contenteditable=\"plaintext-only\"></div></div></div><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\" aria-disabled=\"true\" style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+        });
+
+        $(document).on('click', '.cancel',  function() {
+          $(this).parent().parent().parent().html("");
+          $(".comment").show();
+        });
+
+        $(document).on('click', '.cancel-comment',  function() {
+          $(this).parent().parent().parent().html("");
+          $(".comment").show();
+        });
+
+        $(document).on('click', '.post-btn',  function() {
+          $(this).hide();
+          $(".post-box").show();
+        });
+
+        $(document).on('click', '.cancel-post',  function() {
+          $(".post-box").hide();
+          $(".post-btn").show();
+        });
+      });
+    </script>
+{% endblock %}
+
+{% block main %}
+<div class="channel-timeline">
+  <div class="cover">
+    <div class="b-profile__top">
+      <div class="b-profile__wrapper">
+        <!-- a href="#" class="b-profile__add"> </a -->
+      <div class="b-author  m-noclick m-expanded m-profile">
+        <img src="https://lh3.googleusercontent.com/-vdFZnVWkv4A/AAAAAAAAAAI/AAAAAAAAAF4/htRO1z5SDeU/s120-c/photo.jpg" alt="Jay Gao" class="b-author__image">
+
+        <div class="b-author__bg"></div>
+
+        <div class="b-author__content">
+          <h4 class="b-author__username    ">
+            <a href="/user/profile/439" title="{{user_info.username}}">{{user_info.username}}</a>
+          </h4>
+
+          <p class="b-author__text">{{user_info.intro}}</p>
+          <ul class="b-stat-list m-profile">
+            <li class="b-stat-list__el m-clickable" data-type="Following" title="Show people you follow">
+              {{user_info.plus}}
+              <span>plus</span>
+            </li>
+            <li class="b-stat-list__el m-clickable" data-type="Followers" title="Show your followers">
+              {{user_info.followers}}
+              <span>followers</span>
+            </li>
+            <li class="b-stat-list__el">
+              {{user_info.posts}}
+              <span>posts</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <ul class="b-profile__tabs clearfix">
+      <li class="b-profile__tab m-posts   m-active" title="My Posts" data-tab="Posts">
+        <span class="b-profile__tab-highlight"></span>
+        <a href="/user/profile/439?st=1" title="My Posts">所 有</a>
+      </li>
+      <li class="b-profile__tab m-likes " title="My Likes" data-tab="Likes">
+        <span class="b-profile__tab-highlight"></span>
+        <a href="/user/profile/439?st=2" title="My Likes">热 门</a>
+      </li>
+      <li class="b-profile__tab m-votes " title="My Votes" data-tab="Votes">
+        <span class="b-profile__tab-highlight"></span>
+        <a href="/user/profile/439?st=3" title="My Votes">商 店</a>
+      </li>
+      <li class="b-profile__tab m-suggestions " title="My Suggestions" data-tab="Suggestions">
+        <span class="b-profile__tab-highlight"></span>
+        <a href="/user/profile/439?st=4" title="My Suggestions">论 坛</a>
+      </li>
+      {% if current_user_info.uid!=user_info.uid %}
+      <li class="channel-post-btn" title="My Suggestions" data-tab="Suggestions">
+
+      <a href="#fakelink" class="btn btn-primary">+1</a>
+      </li>
+
+      <li class="channel-post-btn follow-btn" title="My Suggestions" data-tab="Suggestions">
+
+      <a href="#fakelink" class="btn btn-primary">关注</a>
+      </li>
+      {% endif %}
+    </ul>
+    
+  </div>
+</div>
+<ol id="timeline" class="timeline clearfix">
+  <li class="spine"></li>
+  {% if current_user_info.uid==user_info.uid %}
+  <li class="left"> <i class="pointer"></i>
+    <div class="post-box" >
+    <div class="row1">
+      <div class="t-avatar">
+        <a href="/">
+          <img src="/static/images/photo.jpg"></a>
+      </div>
+      <div class="v-description">
+        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="t-link">视频链接:</div>
+      <div class="v-link">
+        <input type="text" placeholder="输入或粘贴链接" name="title"></div>
+    </div>
+
+    <div class="row4">
+      <span class="post-btn-wrap">
+      <div role="button" id=":61.post" class="gbtn post gbtn-unenable" aria-disabled="true" style="-webkit-user-select: none;">分享视频</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+    </span>
+    </div>
+  </div>
+  </li>
+  {% endif %}
+  
+  
+  {% if current_user_info.uid==user_info.uid %}
+  {%set index = 1%}
+  {% else %}
+  {%set index = 0%}
+  {% endif %}
+
+{% for post in posts.list %}
+{% if index%2 == 0 %}
+  <li class="left">
+  {% else %}
+  <li class="right">
+  {% endif %}
+  {%set index = index+1%}
+    <i class="pointer"></i>
+    <div class="card">
+      <div class="header">
+        <div class="avatar">
+          <a href="/">
+            <img src="https://lh5.googleusercontent.com/-jlJJsvoBTMc/AAAAAAAAAAI/AAAAAAAAYc8/3gaxqt-2vq8/s46-c-k-no/photo.jpg"></a>
+        </div>
+        <div class="info">
+          <h3 class="username">
+            <a href="/">{{ post.author_username }}</a>
+          </h3>
+          <span class="ct">
+            <span class="channel" title="分享细节">
+              <a href="/" class="ic">公开分享</a>
+            </span>
+            &nbsp;-&nbsp;
+            <span class="time">
+              <a href="/" class="it" title="2013年6月27日 下午10:13:26">{{ post.created }}</a>
+            </span>
+          </span>
+        </div>
+      </div>
+      <p class="intro">
+        {{ post.intro }}
+      </p>
+      <div class="thumb">
+        <img src="{{ post.video_thumb }}">
+        <i class="play"></i>
+        <div class="title">
+          <a href="javascript:void(0);" class="a-n ot-anchor YF">{{ post.video_title }}</a>
+        </div>
+      </div>
+      <div class="bottom">
+        <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+          <span class="btn-wrap">
+            <span class="plus-icon"></span>
+            <span class="plus-num">{{ post.plus }}</span>
+          </span>
+        </div>
+        <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+          <span class="btn-wrap">
+            <span class="share-icon"></span>
+            <span class="share-num">{{ post.share }}</span>
+          </span>
+        </div>
+        <div class="comment" style="">
+          <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+        </div>
+      </div>
+      <div class="comment-editor"></div>
+
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+</div>
+{% endblock %}
+
+{% block right %}
+{% endblock %}

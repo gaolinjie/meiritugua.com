@@ -53,6 +53,7 @@ class Application(tornado.web.Application):
             (r"/", handler.topic.IndexHandler),
             (r"/video", handler.topic.VideoHandler),
             (r"/c/(\d+)", handler.topic.ChannelHandler),
+            (r"/u/(.*)", handler.topic.UserHandler),
             (r"/login", handler.user.LoginHandler),
             (r"/register", handler.user.RegisterHandler),
             (r"/forgot", handler.user.ForgotPasswordHandler),

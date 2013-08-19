@@ -334,6 +334,10 @@ class RegisterHandler(BaseHandler):
             "email": form.email.data,
             "password": secure_password,
             "username": form.username.data,
+            "intro": "",
+            "plus": 0,
+            "followers": 0,
+            "posts": 0,
             "created": time.strftime('%Y-%m-%d %H:%M:%S')
         }
 
