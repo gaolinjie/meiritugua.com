@@ -21,7 +21,7 @@
       $(document).ready(function(){
         $(document).on('click', '.comment',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./\" class=\"\" aria-hidden=\"true\"><img src=\"//lh4.googleusercontent.com/-deUkWpgvu6o/AAAAAAAAAAI/AAAAAAAAAAA/p6RFKhrUf1g/s28-c-k-no/photo.jpg\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><div class=\"editor-box\"><div class=\"inner\"><div class=\"input\" role=\"textbox\" contenteditable=\"plaintext-only\"></div></div></div><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\" aria-disabled=\"true\" style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><div class=\"editor-box\"><div class=\"inner\"><div class=\"input\" role=\"textbox\" contenteditable=\"plaintext-only\"></div></div></div><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\" aria-disabled=\"true\" style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
         });
 
         $(document).on('click', '.cancel-comment',  function() {
@@ -67,8 +67,8 @@
   <div class="post-box" style="display:none">
     <div class="row1">
       <div class="t-avatar">
-        <a href="/">
-          <img src="/static/images/photo.jpg"></a>
+        <a href="/u/{{ user_info.username }}">
+          <img src="{{ user_info.avatar }}"></a>
       </div>
       <div class="v-description">
         <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
@@ -97,8 +97,8 @@
   <div class="card">
     <div class="header">
       <div class="avatar">
-        <a href="/">
-          <img src="/static/images/a.gif"></a>
+        <a href="/u/{{ post.author_username }}">
+          <img src="{{ post.author_avatar }}"></a>
       </div>
       <div class="info">
         <h3 class="username">
@@ -116,7 +116,7 @@
       </div>
       <div class="channel-tag">
         <div class="tag-wapper" data-topicindex="1">
-          <a href="/" target="_top" class="tag" aria-label="#TheDailyShow">#{{ post.channel_name }}</a>
+          <a href="/c/{{ post.channel_id }}" target="_top" class="tag" aria-label="#TheDailyShow">#{{ post.channel_name }}</a>
         </div>
       </div>
     </div>

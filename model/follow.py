@@ -37,6 +37,7 @@ class FollowModel(Query):
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
+                channel.id as channel_id, \
                 channel.name as channel_name, \
                 video.title as video_title, \
                 video.thumb as video_thumb, \
