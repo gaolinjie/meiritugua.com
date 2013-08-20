@@ -16,14 +16,18 @@ class ReplyForm(Form):
     ])
 
 class CreateForm(Form):
-    title = TextField('Title', [
-        validators.Required(message = "请填写帖子标题"),
-        validators.Length(min = 3, message = "帖子标题长度过短（3-56个字符）"),
-        validators.Length(max = 56, message = "帖子标题长度过长（3-56个字符）"),
+    intro = TextField('Intro', [
+        validators.Required(message = "请填写视频介绍"),
+        validators.Length(min = 3, message = "介绍长度过短（3-56个字符）"),
+        validators.Length(max = 156, message = "介绍长度过长（3-56个字符）"),
     ])
 
-    content = TextField('Content', [
-        validators.Required(message = "请填写帖子内容"),
+    link = TextField('Link', [
+        validators.Required(message = "请填写视频链接"),
+    ])
+
+    channel = TextField('Channel', [
+        validators.Required(message = "请填写视频频道"),
     ])
 
 class ReplyEditForm(Form):

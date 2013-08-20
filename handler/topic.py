@@ -37,6 +37,34 @@ class IndexHandler(BaseHandler):
 
         self.render("index.html", **template_variables)
 
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+        form = CreateForm(self)
+
+        if not form.validate():
+            self.get({"errors": form.errors})
+            return
+
+        # continue while validate succeed
+        
+        post_info = {
+            "author_id": self.current_user["uid"],
+            "channel_id": 1,
+            "video_id": 1,
+            "intro": form.intro.data,
+            "plus": 0,
+            "share": 0,
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        self.post_model.add_new_post(post_info)
+
+
+        self.redirect("/")
+
 class VideoHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
