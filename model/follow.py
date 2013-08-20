@@ -32,13 +32,16 @@ class FollowModel(Query):
         join = "RIGHT JOIN post ON follow.channel_id = post.channel_id \
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
                 LEFT JOIN channel ON post.channel_id = channel.id \
-                LEFT JOIN video ON post.video_id = video.id"
+                LEFT JOIN video ON post.video_id = video.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id"
         order = "post.created DESC, post.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
                 channel.id as channel_id, \
                 channel.name as channel_name, \
+                nav.name as nav_name, \
+                nav.title as nav_title, \
                 video.title as video_title, \
                 video.thumb as video_thumb, \
                 video.link as video_link"

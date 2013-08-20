@@ -105,8 +105,8 @@
           <a href="/">{{ post.author_username }}</a>
         </h3>
         <span class="ct">
-          <span class="channel" title="分享细节">
-            <a href="/" class="ic">公开分享</a>
+          <span class="channel" title="{{ post.nav_title }}">
+            <a href="/{{ post.nav_name }}" class="ic">{{ post.nav_title }}</a>
           </span>
           &nbsp;-&nbsp;
           <span class="time">
@@ -116,7 +116,7 @@
       </div>
       <div class="channel-tag">
         <div class="tag-wapper" data-topicindex="1">
-          <a href="/c/{{ post.channel_id }}" target="_top" class="tag" aria-label="#TheDailyShow">#{{ post.channel_name }}</a>
+          <a href="/c/{{ post.channel_id }}" target="_top" class="tag" aria-label="#{{ post.channel_name }}">#{{ post.channel_name }}</a>
         </div>
       </div>
     </div>

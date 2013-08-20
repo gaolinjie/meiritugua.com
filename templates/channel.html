@@ -54,7 +54,7 @@
       <div class="b-profile__wrapper">
         <!-- a href="#" class="b-profile__add"> </a -->
       <div class="b-author  m-noclick m-expanded m-profile">
-        <img src="https://lh3.googleusercontent.com/-vdFZnVWkv4A/AAAAAAAAAAI/AAAAAAAAAF4/htRO1z5SDeU/s120-c/photo.jpg" alt="Jay Gao" class="b-author__image">
+        <img src="{{ channel.avatar }}" alt="Jay Gao" class="b-author__image">
 
         <div class="b-author__bg"></div>
 
@@ -122,8 +122,8 @@
     <div class="post-box" >
     <div class="row1">
       <div class="t-avatar">
-        <a href="/">
-          <img src="/static/images/photo.jpg"></a>
+        <a href="/u/{{ user_info.username }}">
+          <img src="{{ user_info.avatar }}"></a>
       </div>
       <div class="v-description">
         <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
@@ -162,16 +162,16 @@
     <div class="card">
       <div class="header">
         <div class="avatar">
-          <a href="/">
-            <img src="https://lh5.googleusercontent.com/-jlJJsvoBTMc/AAAAAAAAAAI/AAAAAAAAYc8/3gaxqt-2vq8/s46-c-k-no/photo.jpg"></a>
+          <a href="/u/{{ post.author_username }}">
+            <img src="{{ post.author_avatar }}"></a>
         </div>
         <div class="info">
           <h3 class="username">
             <a href="/">{{ post.author_username }}</a>
           </h3>
           <span class="ct">
-            <span class="channel" title="分享细节">
-              <a href="/" class="ic">公开分享</a>
+            <span class="channel" title="{{ post.nav_title }}">
+              <a href="/{{ post.nav_name }}" class="ic">{{ post.nav_title }}</a>
             </span>
             &nbsp;-&nbsp;
             <span class="time">

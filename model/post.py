@@ -16,13 +16,16 @@ class PostModel(Query):
         where = "channel.id = '%s'" % channel_id
         join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
                 LEFT JOIN channel ON post.channel_id = channel.id \
-                LEFT JOIN video ON video_id = video.id"
+                LEFT JOIN video ON video_id = video.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id"
         order = "created DESC, id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
                 author_user.uid as author_uid, \
                 channel.name as channel_name, \
+                nav.name as nav_name, \
+                nav.title as nav_title, \
                 video.title as video_title, \
                 video.thumb as video_thumb, \
                 video.link as video_link"
@@ -32,13 +35,17 @@ class PostModel(Query):
         where = "post.author_id = '%s'" % user_id
         join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
                 LEFT JOIN channel ON post.channel_id = channel.id \
-                LEFT JOIN video ON video_id = video.id"
+                LEFT JOIN video ON video_id = video.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id"
         order = "created DESC, id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
                 author_user.uid as author_uid, \
+                channel.id as channel_id, \
                 channel.name as channel_name, \
+                nav.name as nav_name, \
+                nav.title as nav_title, \
                 video.title as video_title, \
                 video.thumb as video_thumb, \
                 video.link as video_link"

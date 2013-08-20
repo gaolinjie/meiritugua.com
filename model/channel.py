@@ -23,8 +23,8 @@ class ChannelModel(Query):
         where = "id = '%s'" % channel_id
         return self.where(where).find()
 
-    def get_channels_by_type(self, type):
-        where = "type = '%s'" % type
+    def get_channels_by_nav_id(self, nav_id):
+        where = "nav_id = '%s'" % nav_id
         return self.where(where).select()
     
 
