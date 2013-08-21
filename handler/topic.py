@@ -81,6 +81,37 @@ class VideoHandler(BaseHandler):
 
         self.render("video.html", **template_variables)
 
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        template_variables = {}
+        print "aaa"
+
+        # validate the fields
+        form = ChannelForm(self)
+        print "aaa"
+
+        if not form.validate():
+            self.get({"errors": form.errors})
+            return
+
+        # continue while validate succeed
+        print "hhhhhhh"
+        channel_info = {
+            "name": form.name.data,
+            "intro": form.intro.data,
+            "avatar": form.avatar.data,
+            "nav_id": 1,
+            "plus": 0,
+            "followers": 0,
+            "posts": 0,
+            "author_id": self.current_user["uid"],
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        self.channel_model.add_new_channel(channel_info)
+
+        self.redirect("/video")
+
 
 class ChannelHandler(BaseHandler):
     def get(self, channel_id, template_variables = {}):

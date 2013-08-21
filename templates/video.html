@@ -27,32 +27,34 @@
 </div>
 
 <div class="channel-box" style="display:none">
+  <form class="mt10" action="/video" method="post">
     <div class="row1">
       <div class="t-avatar">
         <a href="/">
           <img src="/static/images/photo.jpg"></a>
       </div>
       <div class="v-description">
-        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
+        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点频道介绍吧..." name="intro"></textarea>
       </div>
     </div>
     <div class="row2">
-      <div class="t-link">视频链接:</div>
+      <div class="t-link">频道名称:</div>
       <div class="v-link">
-        <input type="text" placeholder="输入或粘贴链接" name="title"></div>
+        <input type="text" placeholder="输入频道名称" name="name"></div>
     </div>
 
     <div class="row3">
-      <div class="t-channel">选择频道:</div>
+      <div class="t-channel">选择头像:</div>
       <div class="v-channel">
-        <input type="text" placeholder="+ 添加视频的频道" name="title"></div>
+        <input type="text" placeholder="输入频道头像图片链接" name="avatar"></div>
     </div>
     <div class="row4">
       <span class="post-btn-wrap">
-      <div role="button" id=":61.post" class="gbtn post" aria-disabled="true" style="-webkit-user-select: none;">分享视频</div>
+      <input role="button"  type="submit" id="61.post" class="gbtn post" value="创建频道">{{ xsrf_form_html() }}
       <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
     </span>
     </div>
+  </form>
   </div>
 
   {% for channel in channels %}

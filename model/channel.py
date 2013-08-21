@@ -34,5 +34,8 @@ class ChannelModel(Query):
     def get_user_all_channels(self, user_id):
         where = "author_id = '%s'" % user_id
         return self.where(where).select()
+
+    def add_new_channel(self, channel_info):
+        return self.data(channel_info).add()
     
 

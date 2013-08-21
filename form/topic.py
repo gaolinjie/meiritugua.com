@@ -41,6 +41,21 @@ class PostForm2(Form):
         validators.Required(message = "请填写视频链接"),
     ])
 
+class ChannelForm(Form):
+    intro = TextField('Intro', [
+        validators.Required(message = "请填写频道介绍"),
+        validators.Length(min = 3, message = "介绍长度过短（3-56个字符）"),
+        validators.Length(max = 156, message = "介绍长度过长（3-56个字符）"),
+    ])
+
+    name = TextField('Name', [
+        validators.Required(message = "请填写频道名称"),
+    ])
+
+    avatar = TextField('Avatar', [
+        validators.Required(message = "请填写频道头像图片链接"),
+    ])
+
 class ReplyEditForm(Form):
     content = TextField('Content', [
         validators.Required(message = "请填写回复内容"),
