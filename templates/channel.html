@@ -120,26 +120,29 @@
   {% if channel.author_id==user_info.uid %}
   <li class="left"> <i class="pointer"></i>
     <div class="post-box" >
+    <form class="mt10" action="/c/{{ channel.id }}" method="post">
     <div class="row1">
       <div class="t-avatar">
         <a href="/u/{{ user_info.username }}">
           <img src="{{ user_info.avatar }}"></a>
       </div>
       <div class="v-description">
-        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
+        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
       </div>
     </div>
     <div class="row2">
       <div class="t-link">视频链接:</div>
       <div class="v-link">
-        <input type="text" placeholder="输入或粘贴链接" name="title"></div>
+        <input type="text" placeholder="输入或粘贴链接" name="link"></div>
     </div>
 
     <div class="row4">
       <span class="post-btn-wrap">
-      <div role="button" id=":61.post" class="gbtn post gbtn-unenable" aria-disabled="true" style="-webkit-user-select: none;">分享视频</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+      <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">{{ xsrf_form_html() }}
+      <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
     </span>
     </div>
+  </form>
   </div>
   </li>
   {% endif %}

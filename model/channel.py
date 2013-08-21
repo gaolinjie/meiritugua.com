@@ -23,8 +23,16 @@ class ChannelModel(Query):
         where = "id = '%s'" % channel_id
         return self.where(where).find()
 
+    def get_channel_by_name(self, channel_name):
+        where = "name = '%s'" % channel_name
+        return self.where(where).find()
+
     def get_channels_by_nav_id(self, nav_id):
         where = "nav_id = '%s'" % nav_id
+        return self.where(where).select()
+
+    def get_user_all_channels(self, user_id):
+        where = "author_id = '%s'" % user_id
         return self.where(where).select()
     
 

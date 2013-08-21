@@ -15,7 +15,7 @@ class ReplyForm(Form):
         validators.Required(message = "要回复的帖子不明确"),
     ])
 
-class CreateForm(Form):
+class PostForm(Form):
     intro = TextField('Intro', [
         validators.Required(message = "请填写视频介绍"),
         validators.Length(min = 3, message = "介绍长度过短（3-56个字符）"),
@@ -28,6 +28,17 @@ class CreateForm(Form):
 
     channel = TextField('Channel', [
         validators.Required(message = "请填写视频频道"),
+    ])
+
+class PostForm2(Form):
+    intro = TextField('Intro', [
+        validators.Required(message = "请填写视频介绍"),
+        validators.Length(min = 3, message = "介绍长度过短（3-56个字符）"),
+        validators.Length(max = 156, message = "介绍长度过长（3-56个字符）"),
+    ])
+
+    link = TextField('Link', [
+        validators.Required(message = "请填写视频链接"),
     ])
 
 class ReplyEditForm(Form):

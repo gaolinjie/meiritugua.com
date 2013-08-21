@@ -31,6 +31,7 @@ class IndexHandler(BaseHandler):
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
+            template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)
         else:
             self.redirect("/login")
@@ -42,17 +43,20 @@ class IndexHandler(BaseHandler):
         template_variables = {}
 
         # validate the fields
-        form = CreateForm(self)
+        form = PostForm(self)
 
         if not form.validate():
             self.get({"errors": form.errors})
             return
 
         # continue while validate succeed
+
+        channel_name = form.channel.data
+        channel = self.channel_model.get_channel_by_name(channel_name = channel_name)
         
         post_info = {
             "author_id": self.current_user["uid"],
-            "channel_id": 1,
+            "channel_id": channel["id"],
             "video_id": 1,
             "intro": form.intro.data,
             "plus": 0,
@@ -91,6 +95,34 @@ class ChannelHandler(BaseHandler):
 
 
         self.render("channel.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, channel_id, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+        form = PostForm2(self)
+
+        if not form.validate():
+            self.get(channel_id, {"errors": form.errors})
+            return
+
+        # continue while validate succeed
+        
+        post_info = {
+            "author_id": self.current_user["uid"],
+            "channel_id": channel_id,
+            "video_id": 1,
+            "intro": form.intro.data,
+            "plus": 0,
+            "share": 0,
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        self.post_model.add_new_post(post_info)
+
+
+        self.redirect("/c/" + channel_id)
 
 class UserHandler(BaseHandler):
     def get(self, user, template_variables = {}):
