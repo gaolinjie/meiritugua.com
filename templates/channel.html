@@ -138,6 +138,10 @@
         <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
         {% endif %}   
       </li>
+      {% else %}
+      <li class="channel-post-btn follow-btn" title="关注">
+      <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
+      </li>
       {% endif %}
     </ul>
     

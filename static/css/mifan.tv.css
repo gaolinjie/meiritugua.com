@@ -1621,6 +1621,7 @@ text-shadow: none;
 background-color: #ec7063;
 }
 
-.channel-card .disabled {
+.channel-card .disabled, .channel-post-btn .disabled {
   background-color: #ec7063;
 }
+
