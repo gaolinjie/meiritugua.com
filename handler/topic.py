@@ -75,7 +75,7 @@ class VideoHandler(BaseHandler):
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
-            template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1)
+            template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
         else:
             self.redirect("/login")
 

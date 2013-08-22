@@ -1059,7 +1059,7 @@ display: none;
 position: absolute;
 }
 
-.kmGW6b {
+.channel-card {
 display: inline-block;
 vertical-align: top;
 }
@@ -1197,9 +1197,7 @@ display: -moz-inline-box;
 display: inline-block;
 }
 
-.kOVcgc .c-b-T {
-background: white;
-}
+
 .kOVcgc .c-b {
 width: 124px;
 }
@@ -1607,6 +1605,18 @@ width: 54px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-.followed{
-  background-color: #e74c3c;
+
+.channel-card .followed {
+-webkit-box-shadow: 0 1px 0 rgba(0,0,0,.05);
+box-shadow: 0 1px 0 rgba(0,0,0,.05);
+background-color: #e74c3c;
+background-image: -webkit-linear-gradient(top,transparent,transparent);
+background-image: linear-gradient(top,transparent,transparent);
+border: 1px solid transparent;
+color: #fff;
+text-shadow: none;
+}
+
+.channel-card .followed:hover {
+background-color: #ec7063;
 }

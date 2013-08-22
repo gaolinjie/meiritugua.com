@@ -27,15 +27,19 @@ class ChannelModel(Query):
         where = "name = '%s'" % channel_name
         return self.where(where).find()
 
-    def get_channels_by_nav_id(self, nav_id):
-        where = "nav_id = '%s'" % nav_id
-        return self.where(where).select()
-
     def get_user_all_channels(self, user_id):
         where = "author_id = '%s'" % user_id
         return self.where(where).select()
 
     def add_new_channel(self, channel_info):
         return self.data(channel_info).add()
+
+    def get_channels_by_nav_id(self, nav_id, user_id, num = 16, current_page = 1):
+        where = "channel.nav_id = %s" % nav_id
+        join = "LEFT JOIN follow ON channel.id = follow.channel_id AND '%s' = follow.user_id" % user_id
+        order = "channel.created DESC, channel.id DESC"
+        field = "channel.*, \
+                follow.id as follow_id"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
     
 
