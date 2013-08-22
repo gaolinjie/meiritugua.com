@@ -1606,3 +1606,7 @@ width: 54px;
   background-color: #ebebeb;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
+
+.followed{
+  background-color: #e74c3c;
+}

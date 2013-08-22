@@ -127,6 +127,11 @@ class ChannelHandler(BaseHandler):
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
+            follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            if(follow):
+                template_variables["followed"]=1;
+            else:
+                template_variables["followed"]=0;
             template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
             template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, channel_id = channel_id)
         else:
@@ -180,3 +185,28 @@ class UserHandler(BaseHandler):
             self.redirect("/login")
 
         self.render("user.html", **template_variables)
+
+class FollowHandler(BaseHandler):
+    def get(self, channel_id, template_variables = {}):
+        print "aaaaaaaaaaaa"
+        user_info = self.current_user
+
+        if(user_info):
+            follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            if(follow):
+                self.follow_model.delete_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "revert_followed",
+                }))
+            else:
+                follow_info = {
+                    "user_id": user_info["uid"],
+                    "channel_id": channel_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.follow_model.add_new_follow(follow_info)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_followed",
+                }))

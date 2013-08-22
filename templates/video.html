@@ -15,6 +15,31 @@
         });
       });
     </script>
+
+<script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.follow-toggle').click(function() {
+                var channel_id = $(this).find('input').val();            
+                if($(this).hasClass('followed')) {
+                        $.getJSON('/f/'+channel_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_followed") {
+                                $(this).removeClass('followed');
+                                $(this).removeClass('btn-danger');
+                                $(this).text("关注");
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/f/'+channel_id, function(data) {
+                        if(data.success!=0&&data.message=="success_followed") {
+                            $(this).addClass('followed');
+                            $(this).addClass('btn-danger');
+                            $(this).text("取消关注");
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -58,7 +83,7 @@
   </div>
 
   {% for channel in channels %}
-    <div class="KBylAf kmGW6b"><div class="cja Os3xkf Ltb"><div class="r6Rtbe vlMSze TjKfDe Eqy3Ue j8T7he" role="article"><div class="sNZZue l8zNY"><a href="/c/{{ channel.id }}" class="FW9qdb Wk gosnEc HF7jKf" aria-hidden="true" data-tileposition="5"><img src="{{ channel.avatar }}" width="170px" height="170px" alt="" class="Rf " data-pinit="registered"></a></div><div class="JZc2Fe"></div><div class="gecJce Xk6Ee"><a href="/c/{{ channel.id }}" class="fmPSLc Dt0N7d WBzBVe HF7jKf FW9qdb" data-tileposition="5">{{ channel.name }}</a><div class="We4Wwc ljarXd">{{ channel.intro }}</div></div><div class="kOVcgc dS"><div class="Dq er a-f-e"><div role="button" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" tabindex="0" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;"><div class="y-qa-za-qd"></div><span class="y-qa-za-b-W-s" dir="ltr">关注</span></div></div></div></div></div></div>
+    <div class="KBylAf kmGW6b"><div class="cja Os3xkf Ltb"><div class="r6Rtbe vlMSze TjKfDe Eqy3Ue j8T7he" role="article"><div class="sNZZue l8zNY"><a href="/c/{{ channel.id }}" class="FW9qdb Wk gosnEc HF7jKf" aria-hidden="true" data-tileposition="5"><img src="{{ channel.avatar }}" width="170px" height="170px" alt="" class="Rf " data-pinit="registered"></a></div><div class="JZc2Fe"></div><div class="gecJce Xk6Ee"><a href="/c/{{ channel.id }}" class="fmPSLc Dt0N7d WBzBVe HF7jKf FW9qdb" data-tileposition="5">{{ channel.name }}</a><div class="We4Wwc ljarXd">{{ channel.intro }}</div></div><div class="kOVcgc dS"><div class="Dq er a-f-e follow-toggle"><input type="hidden" name="channel_id" value="{{ channel.id }}"><div role="button" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;"><div class="y-qa-za-qd"></div><span class="y-qa-za-b-W-s" dir="ltr">关注</span></div></div></div></div></div></div>
   {% endfor %}
 </div>
 {% endblock %}

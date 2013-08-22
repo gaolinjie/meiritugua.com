@@ -45,6 +45,31 @@
         });
       });
     </script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.follow-toggle').click(function() {
+                var channel_id = {{ channel.id}};             
+                if($(this).hasClass('followed')) {
+                        $.getJSON('/f/'+channel_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_followed") {
+                                $('.follow-toggle').removeClass('followed');
+                                $('.follow-toggle').removeClass('btn-danger');
+                                $('.follow-toggle').text("关注");
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/f/'+channel_id, function(data) {
+                        if(data.success!=0&&data.message=="success_followed") {
+                            $('.follow-toggle').addClass('followed');
+                            $('.follow-toggle').addClass('btn-danger');
+                            $('.follow-toggle').text("取消关注");
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -101,14 +126,17 @@
         <a href="/user/profile/439?st=4" title="My Suggestions">论 坛</a>
       </li>
       {% if channel.author_id!=user_info.uid %}
-      <li class="channel-post-btn" title="My Suggestions" data-tab="Suggestions">
+      <li class="channel-post-btn" title="+1">
 
       <a href="javascript:void(0)" class="btn btn-primary">+1</a>
       </li>
 
-      <li class="channel-post-btn follow-btn" title="My Suggestions" data-tab="Suggestions">
-
-      <a href="javascript:void(0)" class="btn btn-primary">关注</a>
+      <li class="channel-post-btn follow-btn" title="关注">
+        {% if followed == 1 %}
+        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
+        {% else %}
+        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
+        {% endif %}   
       </li>
       {% endif %}
     </ul>
