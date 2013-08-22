@@ -1620,3 +1620,7 @@ text-shadow: none;
 .channel-card .followed:hover {
 background-color: #ec7063;
 }
+
+.channel-card .disabled {
+  background-color: #ec7063;
+}

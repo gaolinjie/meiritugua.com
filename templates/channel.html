@@ -49,7 +49,7 @@
     <script type="text/javascript">
         jQuery(document).ready(function() {
             $('.follow-toggle').click(function() {
-                var channel_id = {{ channel.id}};             
+                var channel_id = {{ channel.id }};             
                 if($(this).hasClass('followed')) {
                         $.getJSON('/f/'+channel_id, function(data) {
                             if(data.success!=0&&data.message=="revert_followed") {

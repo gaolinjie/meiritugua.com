@@ -198,11 +198,18 @@
         <div class="kOVcgc dS">
           <div class="Dq er a-f-e follow-toggle">
             
-            {% if channel.follow_id %}
+            {% if channel.follow_user_id %}
+            {% if channel.follow_user_id==channel.author_id %}
+            <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b followed disabled" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
+              <input type="hidden" name="channel_id" value="{{ channel.id }}">
+              <span class="follow-text" dir="ltr">已关注</span>
+            </div>
+            {% else %}
             <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow followed" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
               <input type="hidden" name="channel_id" value="{{ channel.id }}">
               <span class="follow-text" dir="ltr">取消关注</span>
             </div>
+            {% endif %}
             {% else %}
             <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
               <input type="hidden" name="channel_id" value="{{ channel.id }}">

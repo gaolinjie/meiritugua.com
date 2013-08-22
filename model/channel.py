@@ -39,7 +39,7 @@ class ChannelModel(Query):
         join = "LEFT JOIN follow ON channel.id = follow.channel_id AND '%s' = follow.user_id" % user_id
         order = "channel.created DESC, channel.id DESC"
         field = "channel.*, \
-                follow.id as follow_id"
+                follow.user_id as follow_user_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
     
 
