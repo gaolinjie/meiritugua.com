@@ -83,6 +83,7 @@
                                 $('.plus-toggle').removeClass('btn-danger');
                                 plus=plus-1
                                 $('.plus-toggle').text("+"+plus);
+                                $('.plus-num').html(plus + "<span>plus</span>");
                             }
                         });                        
                 } else {
@@ -92,6 +93,7 @@
                             $('.plus-toggle').addClass('btn-danger');
                             plus=plus+1
                             $('.plus-toggle').text("+"+plus);
+                            $('.plus-num').html(plus + "<span>plus</span>");
                         }
                     }); 
                 }
@@ -118,7 +120,7 @@
 
           <p class="b-author__text">{{channel.intro}}</p>
           <ul class="b-stat-list m-profile">
-            <li class="b-stat-list__el m-clickable" data-type="Following" title="Show people you follow">
+            <li class="b-stat-list__el m-clickable plus-num" data-type="Following" title="Show people you follow">
               {{channel.plus}}
               <span>plus</span>
             </li>
