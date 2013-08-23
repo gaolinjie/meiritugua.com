@@ -42,4 +42,6 @@ class ChannelModel(Query):
                 follow.user_id as follow_user_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
     
-
+    def update_channel_info_by_channel_id(self, channel_id, channel_info):
+        where = "channel.id = %s" % channel_id
+        return self.where(where).data(channel_info).save()

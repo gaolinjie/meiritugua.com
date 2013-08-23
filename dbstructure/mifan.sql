@@ -122,3 +122,16 @@ CREATE TABLE `nav` (
   `title` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `plus`
+-- ----------------------------
+DROP TABLE IF EXISTS `plus`;
+CREATE TABLE `plus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` text,
+  `user_id` int(11) DEFAULT NULL,
+  `object_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

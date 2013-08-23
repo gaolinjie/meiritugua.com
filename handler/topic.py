@@ -128,15 +128,21 @@ class ChannelHandler(BaseHandler):
         template_variables["user_info"] = user_info
         if(user_info):
             follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             if(follow):
                 template_variables["followed"]=1;
             else:
                 template_variables["followed"]=0;
+            if(plus):
+                print "has plused"
+                template_variables["plused"]=1;
+            else:
+                print "no plused"
+                template_variables["plused"]=0;
             template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
             template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, channel_id = channel_id)
         else:
             self.redirect("/login")
-
 
         self.render("channel.html", **template_variables)
 
@@ -158,7 +164,7 @@ class ChannelHandler(BaseHandler):
             "channel_id": channel_id,
             "video_id": 1,
             "intro": form.intro.data,
-            "plus": 0,
+            "plus": 1,
             "share": 0,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
@@ -188,7 +194,6 @@ class UserHandler(BaseHandler):
 
 class FollowHandler(BaseHandler):
     def get(self, channel_id, template_variables = {}):
-        print "aaaaaaaaaaaa"
         user_info = self.current_user
 
         if(user_info):
@@ -209,4 +214,33 @@ class FollowHandler(BaseHandler):
                 self.write(lib.jsonp.print_JSON({
                     "success": 1,
                     "message": "success_followed",
+                }))
+
+class PlusChannelHandler(BaseHandler):
+    def get(self, channel_id, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            channle = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
+            plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            if(plus):
+                self.plus_model.delete_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+                self.channel_model.update_channel_info_by_channel_id(channel_id, {"plus": channle.plus-1,})
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "revert_plused",
+                }))
+            else:
+                print "fasdfasd"
+                plus_info = {
+                    "type": "channel",
+                    "user_id": user_info["uid"],
+                    "object_id": channel_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.plus_model.add_new_plus(plus_info)
+                self.channel_model.update_channel_info_by_channel_id(channel_id, {"plus": channle.plus+1,})
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_plused",
                 }))

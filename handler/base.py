@@ -40,6 +40,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.channel_model
 
     @property
+    def plus_model(self):
+        return self.application.plus_model
+
+    @property
     def post_model(self):
         return self.application.post_model
 

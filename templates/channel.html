@@ -70,6 +70,34 @@
             });        
         });
     </script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.plus-toggle').click(function() {              
+                var channel_id = {{ channel.id }};
+                var plus = parseInt($('.plus-toggle').text())     
+                if($(this).hasClass('plused')) {
+                        $.getJSON('/p/'+channel_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_plused") {
+                                $('.plus-toggle').removeClass('plused');
+                                $('.plus-toggle').removeClass('btn-danger');
+                                plus=plus-1
+                                $('.plus-toggle').text("+"+plus);
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/p/'+channel_id, function(data) {
+                        if(data.success!=0&&data.message=="success_plused") {
+                            $('.plus-toggle').addClass('plused');
+                            $('.plus-toggle').addClass('btn-danger');
+                            plus=plus+1
+                            $('.plus-toggle').text("+"+plus);
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -127,8 +155,11 @@
       </li>
       {% if channel.author_id!=user_info.uid %}
       <li class="channel-post-btn" title="+1">
-
-      <a href="javascript:void(0)" class="btn btn-primary">+1</a>
+        {% if plused == 1 %}
+        <a href="javascript:void(0)" class="btn btn-primary plus-toggle btn-danger plused">+{{ channel.plus }}</a>
+        {% else %}
+        <a href="javascript:void(0)" class="btn btn-primary plus-toggle">+{{ channel.plus }}</a>
+        {% endif %} 
       </li>
 
       <li class="channel-post-btn follow-btn" title="关注">
