@@ -83,7 +83,7 @@
                                 $('.plus-toggle').removeClass('btn-danger');
                                 plus=plus-1
                                 $('.plus-toggle').text("+"+plus);
-                                $('.plus-num').html(plus + "<span>plus</span>");
+                                $('#plus-num').html(plus + "<span>plus</span>");
                             }
                         });                        
                 } else {
@@ -93,7 +93,7 @@
                             $('.plus-toggle').addClass('btn-danger');
                             plus=plus+1
                             $('.plus-toggle').text("+"+plus);
-                            $('.plus-num').html(plus + "<span>plus</span>");
+                            $('#plus-num').html(plus + "<span>plus</span>");
                         }
                     }); 
                 }
@@ -120,7 +120,7 @@
 
           <p class="b-author__text">{{channel.intro}}</p>
           <ul class="b-stat-list m-profile">
-            <li class="b-stat-list__el m-clickable plus-num" data-type="Following" title="Show people you follow">
+            <li id="plus-num" class="b-stat-list__el m-clickable" title="">
               {{channel.plus}}
               <span>plus</span>
             </li>
@@ -141,19 +141,19 @@
     <ul class="b-profile__tabs clearfix">
       <li class="b-profile__tab m-posts   m-active" title="My Posts" data-tab="Posts">
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=1" title="My Posts">所 有</a>
+        <a href="javascript:void(0)" title="所 有">所 有</a>
       </li>
       <li class="b-profile__tab m-likes " title="My Likes" data-tab="Likes">
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=2" title="My Likes">热 门</a>
+        <a href="javascript:void(0)" title="热 门">热 门</a>
       </li>
       <li class="b-profile__tab m-votes " title="My Votes" data-tab="Votes">
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=3" title="My Votes">商 店</a>
+        <a href="javascript:void(0)" title="商 店">商 店</a>
       </li>
       <li class="b-profile__tab m-suggestions " title="My Suggestions" data-tab="Suggestions">
         <span class="b-profile__tab-highlight"></span>
-        <a href="/user/profile/439?st=4" title="My Suggestions">论 坛</a>
+        <a href="javascript:void(0)" title="论 坛">论 坛</a>
       </li>
       {% if channel.author_id!=user_info.uid %}
       <li class="channel-post-btn" title="+1">
