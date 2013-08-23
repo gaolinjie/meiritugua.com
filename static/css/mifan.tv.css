@@ -1334,36 +1334,44 @@ height: 30px;
   height: 45px;
   background: #fff;
   margin-bottom: 10px;
-
   border-radius: 2px;
 }
 
-
-
 .tab {
   float: left;
-  padding: 14px 20px;
 }
 
 .tab:hover{
-  background-color: #3e8bf5;
+  background-color: #1abc9c;
 }
 
 .tab:hover a {
   color: #fff;
 }
 
+.tab a {
+  padding: 14px 20px;
+  display: block;
+}
+
 .tab-link {
   font-size: 13px;
   color: #999;
-
 }
 
+.tab.m-active .tab-highlight {
+display: block;
+}
+
+.tab-highlight {
+background: #1abc9c;
+height: 2px;
+width: 100%;
+}
 
 .post-btn {
   float: right;
-  width: 100px;
-  
+  width: 100px; 
 }
 
 .post-btn a {
