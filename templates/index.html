@@ -71,40 +71,40 @@
   </div>
   <div class="post-box" style="display:none">
     <form class="mt10" action="/" method="post">
-    <div class="row1">
-      <div class="t-avatar">
-        <a href="/u/{{ user_info.username }}">
-          <img src="{{ user_info.avatar }}"></a>
+      <div class="row1">
+        <div class="t-avatar">
+          <a href="/u/{{ user_info.username }}">
+            <img src="{{ user_info.avatar }}"></a>
+        </div>
+        <div class="v-description">
+          <textarea rows="3" class="content" placeholder="写点视频介绍吧..." name="intro"></textarea>
+        </div>
       </div>
-      <div class="v-description">
-        <textarea rows="3" class="content" placeholder="写点视频介绍吧..." name="intro"></textarea>
+      <div class="row2">
+        <div class="t-link">视频链接:</div>
+        <div class="v-link">
+          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
       </div>
-    </div>
-    <div class="row2">
-      <div class="t-link">视频链接:</div>
-      <div class="v-link">
-        <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-    </div>
 
-    <div class="row3">
-      <div class="t-channel">选择频道:</div>
-      <div class="v-channel">
-        <select name="channel">
-          {% for channel in channels %}
-          <option> {{ channel.name }}</option>
-          {% endfor %}
-        </select>
+      <div class="row3">
+        <div class="t-channel">选择频道:</div>
+        <div class="v-channel">
+          <select name="channel">
+            {% for channel in channels %}
+            <option>{{ channel.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="row4">
-      <span class="post-btn-wrap">
-      <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">{{ xsrf_form_html() }}
-      <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
-    </span>
-    </div>
+      <div class="row4">
+        <span class="post-btn-wrap">
+          <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">
+          {{ xsrf_form_html() }}
+          <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+        </span>
+      </div>
     </form>
   </div>
-
   {% for post in posts.list %}
   <div class="card">
     <div class="header">
@@ -158,6 +158,81 @@
         </div>
       </div>
       <div class="comment-editor"></div>
+    </div>
+    <div class="comment-card">
+      <div class="divider" style=""></div>
+      <div class="comment-list">
+      <div class="ftRt">
+        <div class="c-num">
+          <a class="c-link">8 条评论 ></a>
+        </div>
+        <ul class="jspScrollable" tabindex="" style="overflow: hidden; padding: 0px;">
+              <li>
+                <div class="pic">
+                  <a href="http://weibo.com/3097378697" target="_blank">
+                    <img src="https://lh3.googleusercontent.com/-z2uoLUyWCqw/AAAAAAAAAAI/AAAAAAAAAAA/HTCi3KBuPc4/s28-c-k-no/photo.jpg" alt="头像"></a>
+                </div>
+                <div class="doSth">
+                  <p>
+                    <a class="mb_name" href="http://weibo.com/3097378697" target="_blank">Zealer中国</a>
+                    :
+                  </p>
+                  <p>
+                    <span class="time">下午11:05</span>
+                  </p>
+                  <p>
+                    <span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559" target="_blank">
+                      超精准“抛投”！！[赞] 你以为所有事情都如此简单？短短几分钟的视频，该国外团队却花了一年时间左右拍摄。http://t.cn/z8hMCAJ
+                    </span>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="pic">
+                  <a href="http://weibo.com/3097378697" target="_blank">
+                    <img src="https://lh4.googleusercontent.com/-fjXVlGdyq8Y/AAAAAAAAAAI/AAAAAAAAAAA/YVfIkEr04iw/s28-c-k-no/photo.jpg" alt="头像"></a>
+                </div>
+                <div class="doSth">
+                  <p>
+                    <a class="mb_name" href="http://weibo.com/3097378697" target="_blank">Zealer中国</a>
+                    :
+                  </p>
+                  <p>
+                    <span class="time">下午11:05</span>
+                  </p>
+                  <p>
+                    <span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559" target="_blank">
+                      超精准“抛投”！！[赞] 你以为所有事情都如此简单？短短几分钟的视频，该国外团队却花了一年时间左右拍摄。http://t.cn/z8hMCAJ
+                    </span>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="pic">
+                  <a href="http://weibo.com/3097378697" target="_blank">
+                    <img src="http://tp2.sinaimg.cn/3097378697/30/40013207664/1" alt="头像"></a>
+                </div>
+                <div class="doSth">
+                  <p>
+                    <a class="mb_name" href="http://weibo.com/3097378697" target="_blank">Zealer中国</a>
+                    :
+                  </p>
+                  <p>
+                    <span class="time">下午11:05</span>
+                  </p>
+                  <p>
+                    <span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559" target="_blank">
+                      超精准“抛投”！！[赞] 你以为所有事情都如此简单？短短几分钟的视频，该国外团队却花了一年时间左右拍摄。http://t.cn/z8hMCAJ
+                    </span>
+                  </p>
+                </div>
+              </li>
+        </ul>
+
+          <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+
+      </div>
+    </div>
     </div>
   </div>
   {% endfor %}
