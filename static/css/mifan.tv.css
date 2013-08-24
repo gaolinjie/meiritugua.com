@@ -1656,18 +1656,18 @@ background-color: #ec7063;
 unicode-bidi: normal
 }
 
-.comment-list {
-  padding: 20px;
+.ftRt{
+  padding: 0 20px;
 }
 
 .ftRt {
 color: #686c74;
 }
 
-.ftRt .c-num {
+.comment-card .c-num {
 height: 11px;
 font-size: 13px;
-margin-bottom: 20px;
+margin: 20px 0 20px 20px;
 }
 
 body, ul, dl, dd, p, h1, h2, h3, form, input, textarea, select {
@@ -1703,7 +1703,7 @@ margin-right: 10px;
 }
 
 .ftRt .doSth {
-width: 380px;
+width: 366px;
 float: left;
 margin-bottom: 10px;
 }
@@ -1759,4 +1759,8 @@ margin-top: 20px;
 
 .comment-card>.divider {
   border-top: 1px solid #e5e5e5;
+}
+
+.comment-input-wraper {
+  padding: 20px;
 }
