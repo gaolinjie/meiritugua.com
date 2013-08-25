@@ -1764,3 +1764,38 @@ margin-top: 20px;
 .comment-input-wraper {
   padding: 20px;
 }
+
+.comment-list {
+  max-height: 360px;
+  width:auto;
+  overflow:auto;
+}
+
+.c-link {
+  float: left;
+  cursor: pointer;
+}
+
+.c-link:hover {
+  text-decoration: underline;
+}
+
+.c-icon {
+filter: alpha(opacity=70);
+opacity: .7;
+background: no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -347px -183px;
+height: 16px;
+float: left;
+margin-top: 0;
+margin-left: 3px;
+width: 16px;
+outline: none;
+color: #427fed;
+cursor: pointer;
+}
+
+.c-icon:hover {
+filter: alpha(opacity=90);
+opacity: .9;
+}
+
