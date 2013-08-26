@@ -1798,3 +1798,8 @@ opacity: .9;
   width: 386px;
   height: 60px;
 }
+
+body, ul, dl, dd, p, h1, h2, h3, form, input, select {
+margin: 0;
+padding: 0;
+}
