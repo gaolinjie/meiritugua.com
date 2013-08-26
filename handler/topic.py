@@ -244,3 +244,36 @@ class PlusChannelHandler(BaseHandler):
                     "success": 1,
                     "message": "success_plused",
                 }))
+
+class CommentHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        user_info = self.current_user
+
+        uri = self.request.body
+        mydict = {}
+        for i in uri.split('&'):
+            data = i.split('=')
+            mydict[data[0]]=data[1]
+        post_id = mydict['post_id']
+        comment_content = mydict['comment_content']
+
+        if(user_info):
+            comment_info = {
+                "author_id": user_info["uid"],
+                "post_id": post_id,
+                "content": comment_content,
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+            comment_id = self.comment_model.add_new_comment(comment_info)
+
+            post = self.post_model.get_post_by_post_id(post_id)
+            self.post_model.update_post_by_post_id(post_id, {"last_comment": comment_id, 
+                                                            "comment_count": post.comment_count+1,})
+
+        
+
+        

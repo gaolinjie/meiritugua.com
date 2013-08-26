@@ -66,7 +66,6 @@ CREATE TABLE `post` (
 delimiter ;;
 CREATE TRIGGER `post_delete_trigger` BEFORE DELETE ON `post` FOR EACH ROW BEGIN
         DELETE FROM comment WHERE comment.post_id = OLD.id;
-        DELETE FROM notification WHERE notification.involved_topic_id = OLD.id;
     END;
  ;;
 delimiter ;
@@ -83,7 +82,6 @@ CREATE TABLE `comment` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-delimiter ;;
 
 -- ----------------------------
 --  Table structure for `video`

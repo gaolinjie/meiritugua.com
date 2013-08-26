@@ -44,6 +44,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.plus_model
 
     @property
+    def comment_model(self):
+        return self.application.comment_model
+
+    @property
     def post_model(self):
         return self.application.post_model
 

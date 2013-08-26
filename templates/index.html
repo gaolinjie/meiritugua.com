@@ -21,7 +21,7 @@
       $(document).ready(function(){
         $(document).on('click', '.comment',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
         });
 
         $(document).on('click', '.cancel-comment',  function() {
@@ -45,6 +45,16 @@
       $(document).ready(function(){
         $(document).on('input', '.editor-box',  function() {
           $(this).parent().find('.gbtn-unenable').removeClass('gbtn-unenable');
+        });
+
+        $(document).on('click', '.post-comment',  function() {
+          var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
+          var comment_content = $(".editor-box").val();
+          $.post("/comment", 
+                 {post_id: post_id,
+                  comment_content: comment_content})
+           .done(function() {})
+           .fail(function() { alert("error"); })
         });
       });
     </script>
@@ -166,6 +176,7 @@
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
+        <input type="hidden" name="post_id" value="{{ post.id }}">
       </div>
       <div class="comment-editor"></div>
     </div>
@@ -178,7 +189,6 @@
       </div>
       <div class="comment-list">
         <div class="ftRt " >
-
           <ul class="jspScrollable" tabindex="" >
             <li>
               <div class="pic">

@@ -21,3 +21,6 @@ class CommentModel(Query):
                 user.avatar as author_avatar"
         return self.where(where).order(order).join(join).field(field).select()
 
+    def add_new_comment(self, comment_info):
+        return self.data(comment_info).add()
+

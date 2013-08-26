@@ -40,7 +40,7 @@ class Application(tornado.web.Application):
             blog_title = u"mifan.tv",
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
             static_path = os.path.join(os.path.dirname(__file__), "static"),
-            xsrf_cookies = True,
+            xsrf_cookies = False,
             cookie_secret = "cookie_secret_code",
             login_url = "/login",
             autoescape = None,
@@ -59,6 +59,7 @@ class Application(tornado.web.Application):
             (r"/forgot", handler.user.ForgotPasswordHandler),
             (r"/f/(\d+)", handler.topic.FollowHandler),
             (r"/p/(\d+)", handler.topic.PlusChannelHandler),
+            (r"/comment", handler.topic.CommentHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -83,6 +84,7 @@ class Application(tornado.web.Application):
         self.post_model = self.loader.use("post.model")
         self.channel_model = self.loader.use("channel.model")
         self.plus_model = self.loader.use("plus.model")
+        self.comment_model = self.loader.use("comment.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)
