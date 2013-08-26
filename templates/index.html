@@ -1,6 +1,8 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
+<script src="/static/js/json2.js"></script>
+
 <script type="text/javascript">
       $(document).ready(function(){
         $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
@@ -46,23 +48,33 @@
         $(document).on('input', '.editor-box',  function() {
           $(this).parent().find('.gbtn-unenable').removeClass('gbtn-unenable');
         });
-
-        $(document).on('click', '.post-comment',  function() {
-          var comment_editor = $(this).parent().parent().parent();
-          var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
-          var comment_content = $(".editor-box").val();
-          $.post("/comment", 
-                 {post_id: post_id,
-                  comment_content: comment_content})
-           .done(function() {
-            comment_editor.hide();
-           })
-           .fail(function() { alert("error"); })
-        });
       });
+
+      $(document).on('click', '.post-comment',  function() {
+    var comment_editor = $(this).parent().parent().parent();
+    var comment_card = $(this).parent().parent().parent().parent().parent().find(".comment-card");
+    var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
+    var comment_content = $(".editor-box").val();
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        url: "/comment",
+        data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
+        success: function (msg) {
+          comment_editor.html("");
+      comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt " ><ul class="jspScrollable" tabindex="" ><li><div class="pic"><a href="http://weibo.com/3097378697" target="_blank"><img src="https://lh3.googleusercontent.com/-z2uoLUyWCqw/AAAAAAAAAAI/AAAAAAAAAAA/HTCi3KBuPc4/s28-c-k-no/photo.jpg" alt="头像"></a></div><div class="doSth"><p><a class="mb_name" href="http://weibo.com/3097378697" target="_blank">Zealer中国</a></p><p><span class="time">下午11:05</span></p><p><span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559">超精准“抛投”！！[赞] 你以为所有事情都如此简单？短短几分钟的视频，该国外团队却花了一年时间左右拍摄。http://t.cn/z8hMCAJ</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div>');
+        },
+        error: function (msg) {
+          alert("error");
+        }
+    });
+
+
+  });
     </script>
 
-    <script src="/static/js/index.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -188,30 +200,28 @@
     
     <div class="comment-card">
       {% if post.last_comment %}
-      <div class="divider" style=""></div>
+      <div class="divider"></div>
       <div class="c-num">
         <a class="c-link">{{ post.comment_count }} 条评论</a>
         <span class="c-icon"></span>
       </div>
       <div class="comment-list">
         <div class="ftRt " >
-          <ul class="jspScrollable" tabindex="" >
+          <ul class="jspScrollable" >
             <li>
               <div class="pic">
-                <a href="http://weibo.com/3097378697" target="_blank">
-                  <img src="https://lh3.googleusercontent.com/-z2uoLUyWCqw/AAAAAAAAAAI/AAAAAAAAAAA/HTCi3KBuPc4/s28-c-k-no/photo.jpg" alt="头像"></a>
+                <a href="/u/{{ post.comment_user_name }}" target="_blank">
+                  <img src="{{ post.comment_user_avatar }}"></a>
               </div>
               <div class="doSth">
                 <p>
-                  <a class="mb_name" href="http://weibo.com/3097378697" target="_blank">Zealer中国</a>
+                  <a class="mb_name" href="/u/{{ post.comment_user_name }}" target="_blank">{{ post.comment_user_name }}</a>
                 </p>
                 <p>
-                  <span class="time">下午11:05</span>
+                  <span class="time">{{ post.comment_created|pretty_date }}</span>
                 </p>
                 <p>
-                  <span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559">
-                    超精准“抛投”！！[赞] 你以为所有事情都如此简单？短短几分钟的视频，该国外团队却花了一年时间左右拍摄。http://t.cn/z8hMCAJ
-                  </span>
+                  <span class="text">{{ post.comment_content }}</span>
                 </p>
               </div>
             </li>

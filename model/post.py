@@ -34,7 +34,7 @@ class PostModel(Query):
                 comment.content as comment_content, \
                 comment.created as comment_created, \
                 comment_user.username as comment_user_name, \
-                comment_user.avatar as comment_user_name"
+                comment_user.avatar as comment_user_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_posts(self, num = 32, current_page = 1, user_id = None):
@@ -60,7 +60,7 @@ class PostModel(Query):
                 comment.content as comment_content, \
                 comment.created as comment_created, \
                 comment_user.username as comment_user_name, \
-                comment_user.avatar as comment_user_name"
+                comment_user.avatar as comment_user_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_posts_count(self, uid):

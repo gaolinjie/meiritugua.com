@@ -1,8 +1,6 @@
 
+  $(document).ready(function(){
 
-  $(document).on('input', '.editor-box',  function() {
-    $(this).parent().find('.gbtn-unenable').removeClass('gbtn-unenable');
-  });
 
   $(document).on('click', '.post-comment',  function() {
     var comment_editor = $(this).parent().parent().parent();
@@ -14,7 +12,7 @@
         comment_content: comment_content})
     .done(function() {
       comment_editor.hide();
-      comment_card.html('<div class="divider" style=""></div>
+      comment_card.html('<div class="divider"></div>
       <div class="c-num">
         <a class="c-link">{{ post.comment_count }} 条评论</a>
         <span class="c-icon"></span>
@@ -43,16 +41,17 @@
             </li>
             
           </ul>
-
         </div>
-
       </div>
       <div class="divider" style=""></div>
       <div class="comment-input-wraper">
         <div class="comment-box" tabindex="0" role="button">发表评论...</div>
-      </div>')
+      </div>');
     })
     .fail(function() { alert("error"); })
   });
+});
 
+
+  
 

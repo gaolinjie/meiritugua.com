@@ -15,7 +15,7 @@ import tornado.web
 import lib.jsonp
 import pprint
 import math
-import datetime
+import datetime 
 
 from base import *
 from lib.variables import *
@@ -253,13 +253,9 @@ class CommentHandler(BaseHandler):
     def post(self, template_variables = {}):
         user_info = self.current_user
 
-        uri = self.request.body
-        mydict = {}
-        for i in uri.split('&'):
-            data = i.split('=')
-            mydict[data[0]]=data[1]
-        post_id = mydict['post_id']
-        comment_content = mydict['comment_content']
+        data = json.loads(self.request.body)
+        post_id = data["post_id"]
+        comment_content = data["comment_content"]
 
         if(user_info):
             comment_info = {

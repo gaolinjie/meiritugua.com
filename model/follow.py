@@ -50,6 +50,6 @@ class FollowModel(Query):
                 comment.content as comment_content, \
                 comment.created as comment_created, \
                 comment_user.username as comment_user_name, \
-                comment_user.avatar as comment_user_name"
+                comment_user.avatar as comment_user_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 

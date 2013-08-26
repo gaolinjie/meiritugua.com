@@ -1691,6 +1691,11 @@ float: left;
 margin-right: 10px;
 }
 
+.ftRt .pic img {
+  width: 28px;
+  height: 28px;
+}
+
 .ftRt .doSth {
 width: 366px;
 float: left;
@@ -1704,7 +1709,6 @@ margin-bottom: 3px;
 
 .doSth .mb_name {
 color: #262626;
-text-transform: uppercase;
 -webkit-transition: color .218s;
 transition: color .218s;
 font-size: 13px;
@@ -1722,9 +1726,9 @@ font-weight: bold;
 
 .doSth .text {
 display: block;
-float: left;
 font-size: 12px;
 line-height: 1.5;
+clear: both;
 }
 
 .doSth .time {
