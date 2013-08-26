@@ -56,7 +56,7 @@ CREATE TABLE `post` (
   `channel_id` int(11) DEFAULT NULL,
   `video_id` int(11) DEFAULT NULL,
   `last_comment` int(11) DEFAULT NULL,
-  `comment_count` int(11) DEFAULT NULL,
+  `comment_count` int(11) DEFAULT 0,
   `intro` text,  
   `plus` int(11) DEFAULT NULL,
   `share` int(11) DEFAULT NULL,

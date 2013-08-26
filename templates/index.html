@@ -21,7 +21,7 @@
       $(document).ready(function(){
         $(document).on('click', '.comment',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><div class=\"editor-box\"><div class=\"inner\"><div class=\"input\" role=\"textbox\" contenteditable=\"plaintext-only\"></div></div></div><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\" aria-disabled=\"true\" style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
         });
 
         $(document).on('click', '.cancel-comment',  function() {
@@ -37,6 +37,14 @@
         $(document).on('click', '.cancel-post',  function() {
           $(".post-box").hide();
           $(".post-btn").show();
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('input', '.editor-box',  function() {
+          $(this).parent().find('.gbtn-unenable').removeClass('gbtn-unenable');
         });
       });
     </script>
@@ -165,7 +173,7 @@
     <div class="comment-card">
       <div class="divider" style=""></div>
       <div class="c-num">
-        <a class="c-link">8 条评论</a>
+        <a class="c-link">{{ post.comment_count }} 条评论</a>
         <span class="c-icon"></span>
       </div>
       <div class="comment-list">
@@ -180,13 +188,12 @@
               <div class="doSth">
                 <p>
                   <a class="mb_name" href="http://weibo.com/3097378697" target="_blank">Zealer中国</a>
-                  :
                 </p>
                 <p>
                   <span class="time">下午11:05</span>
                 </p>
                 <p>
-                  <span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559" target="_blank">
+                  <span class="text" href="http://api.t.sina.com.cn/3097378697/statuses/3614910061880559">
                     超精准“抛投”！！[赞] 你以为所有事情都如此简单？短短几分钟的视频，该国外团队却花了一年时间左右拍摄。http://t.cn/z8hMCAJ
                   </span>
                 </p>

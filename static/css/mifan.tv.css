@@ -413,13 +413,7 @@ p {
 
 
 
-.editor-box {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  margin-bottom: 7px;
-  min-height: 0;
-  padding: 6px 6px;
-}
+
 
 .wrapper .inner {
   max-height: 3.9em;
@@ -1799,3 +1793,13 @@ filter: alpha(opacity=90);
 opacity: .9;
 }
 
+.editor-box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  margin-bottom: 7px;
+  min-height: 0;
+  padding: 6px 6px;
+  width: 386px;
+  height: 60px;
+}
