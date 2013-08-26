@@ -48,16 +48,21 @@
         });
 
         $(document).on('click', '.post-comment',  function() {
+          var comment_editor = $(this).parent().parent().parent();
           var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
           var comment_content = $(".editor-box").val();
           $.post("/comment", 
                  {post_id: post_id,
                   comment_content: comment_content})
-           .done(function() {})
+           .done(function() {
+            comment_editor.hide();
+           })
            .fail(function() { alert("error"); })
         });
       });
     </script>
+
+    <script src="/static/js/index.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -180,8 +185,9 @@
       </div>
       <div class="comment-editor"></div>
     </div>
-    {% if post.last_comment %}
+    
     <div class="comment-card">
+      {% if post.last_comment %}
       <div class="divider" style=""></div>
       <div class="c-num">
         <a class="c-link">{{ post.comment_count }} 条评论</a>
@@ -219,8 +225,9 @@
       <div class="comment-input-wraper">
         <div class="comment-box" tabindex="0" role="button">发表评论...</div>
       </div>
+      {% endif %}
     </div>
-    {% endif %}
+    
   </div>
   {% endfor %}
 </div>
