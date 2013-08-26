@@ -55,6 +55,8 @@ CREATE TABLE `post` (
   `author_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
   `video_id` int(11) DEFAULT NULL,
+  `last_comment` int(11) DEFAULT NULL,
+  `comment_count` int(11) DEFAULT NULL,
   `intro` text,  
   `plus` int(11) DEFAULT NULL,
   `share` int(11) DEFAULT NULL,
@@ -63,11 +65,25 @@ CREATE TABLE `post` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 delimiter ;;
 CREATE TRIGGER `post_delete_trigger` BEFORE DELETE ON `post` FOR EACH ROW BEGIN
-        DELETE FROM reply WHERE reply.topic_id = OLD.id;
+        DELETE FROM comment WHERE comment.post_id = OLD.id;
         DELETE FROM notification WHERE notification.involved_topic_id = OLD.id;
     END;
  ;;
 delimiter ;
+
+-- ----------------------------
+--  Table structure for `post`
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author_id` int(11) DEFAULT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `content` text,  
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+delimiter ;;
 
 -- ----------------------------
 --  Table structure for `video`
