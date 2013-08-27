@@ -48,9 +48,8 @@
         $(document).on('input', '.editor-box',  function() {
           $(this).parent().find('.gbtn-unenable').removeClass('gbtn-unenable');
         });
-      });
 
-      $(document).on('click', '.post-comment',  function() {
+        $(document).on('click', '.post-comment',  function() {
     var comment_editor = $(this).parent().parent().parent();
     var comment_card = $(this).parent().parent().parent().parent().parent().find(".comment-card");
     var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
@@ -64,15 +63,27 @@
         data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
         success: function (msg) {
           comment_editor.html("");
-      comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a></p><p><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div>');
+      comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a></p><p><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
         },
         error: function (msg) {
           alert("error");
         }
     });
-
-
   });
+
+$(document).on('click', '.comment-box',  function() {
+          $(this).hide();
+          $(this).parent().parent().find(".comment-editor").html('<div class="wrapper" style="margin-top: -20px;"><a href="./u/{{ user_info.username }}" class="" aria-hidden="true"><img src="{{user_info.avatar}}"width="28px" height="28px" alt="" class="avatar"></a><textarea class="editor-box"></textarea><span class="button-wrap"><div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-comment" style="-webkit-user-select: none;">取消</div></span></div>');
+        });
+
+$(document).on('click', '.cancel-comment',  function() {
+          $(this).parent().parent().parent().html("");
+          $(".comment-box").show();
+        });
+
+      });
+
+      
     </script>
 
 {% endblock %}
@@ -235,6 +246,7 @@
       <div class="comment-input-wraper">
         <div class="comment-box" tabindex="0" role="button">发表评论...</div>
       </div>
+      <div class="comment-editor"></div>
       {% endif %}
     </div>
     
