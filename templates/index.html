@@ -26,10 +26,7 @@
           $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
         });
 
-        $(document).on('click', '.cancel-comment',  function() {
-          $(this).parent().parent().parent().html("");
-          $(".comment").show();
-        });
+        
 
         $(document).on('click', '.post-btn',  function() {
           $(this).hide();
@@ -50,26 +47,52 @@
         });
 
         $(document).on('click', '.post-comment',  function() {
-    var comment_editor = $(this).parent().parent().parent();
-    var comment_card = $(this).parent().parent().parent().parent().parent().find(".comment-card");
-    var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
-    var comment_content = $(".editor-box").val();
+          if ($(this).parent().parent().parent().parent().hasClass('comment-card')) {
+            var comment_editor = $(this).parent().parent().parent();
+            var comment_box = $(this).parent().parent().parent().parent().find('.comment-box');
+            var post_id = $(this).parent().parent().parent().parent().parent().find('.bottom').find('input').val();
+            var comment_content = $(this).parent().parent().find(".editor-box").val();
+            var comment_list = $(this).parent().parent().parent().parent().find('.jspScrollable');
+            var comment_string = comment_list.html() + '<li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li>';
 
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        url: "/comment",
-        data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
-        success: function (msg) {
-          comment_editor.html("");
-      comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
-        },
-        error: function (msg) {
-          alert("error");
-        }
-    });
-  });
+            $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/comment",
+              data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
+              success: function (msg) {
+                comment_editor.html("");
+                comment_box.show();
+                comment_list.html(comment_string);
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+          }
+          else {
+            var comment_editor = $(this).parent().parent().parent();
+            var comment_card = $(this).parent().parent().parent().parent().parent().find(".comment-card");
+            var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
+            var comment_content = $(".editor-box").val();
+
+            $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/comment",
+              data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
+              success: function (msg) {
+                comment_editor.html("");
+                comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+          }
+        });
 
 $(document).on('click', '.comment-box',  function() {
           $(this).hide();
@@ -77,15 +100,15 @@ $(document).on('click', '.comment-box',  function() {
         });
 
 $(document).on('click', '.cancel-comment',  function() {
-          $(this).parent().parent().parent().html("");
-          $(".comment-box").show();
+          $(".comment-editor").html("");
+          $(".comment").show();
+          $(".comment-box").show();          
         });
 
       });
 
       
     </script>
-
 {% endblock %}
 
 {% block main %}
@@ -204,11 +227,10 @@ $(document).on('click', '.cancel-comment',  function() {
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-      </div>
+        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
       <div class="comment-editor"></div>
     </div>
-    
+
     <div class="comment-card">
       {% if post.last_comment %}
       <div class="divider"></div>
@@ -234,7 +256,7 @@ $(document).on('click', '.cancel-comment',  function() {
                 </p>
               </div>
             </li>
-            
+
           </ul>
 
         </div>
@@ -247,7 +269,7 @@ $(document).on('click', '.cancel-comment',  function() {
       <div class="comment-editor"></div>
       {% endif %}
     </div>
-    
+
   </div>
   {% endfor %}
 </div>
