@@ -63,7 +63,7 @@
         data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
         success: function (msg) {
           comment_editor.html("");
-      comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a></p><p><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
+      comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
         },
         error: function (msg) {
           alert("error");
@@ -227,8 +227,6 @@ $(document).on('click', '.cancel-comment',  function() {
               <div class="doSth">
                 <p>
                   <a class="mb_name" href="/u/{{ post.comment_user_name }}" target="_blank">{{ post.comment_user_name }}</a>
-                </p>
-                <p>
                   <span class="time">{{ post.comment_created|pretty_date }}</span>
                 </p>
                 <p>

@@ -1661,7 +1661,7 @@ color: #686c74;
 .comment-card .c-num {
 height: 11px;
 font-size: 13px;
-margin: 20px 0 20px 20px;
+margin: 10px 0 10px 20px;
 }
 
 .ftRt ul {
@@ -1713,6 +1713,7 @@ color: #262626;
 transition: color .218s;
 font-size: 13px;
 font-weight: bold;
+float: left;
 }
 
 .doSth a {
