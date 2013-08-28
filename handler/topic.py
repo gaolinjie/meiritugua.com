@@ -246,15 +246,15 @@ class PlusChannelHandler(BaseHandler):
                 }))
 
 class CommentHandler(BaseHandler):
-    def get(self, template_variables = {}):
+    def get(self, post_id, template_variables = {}):
         user_info = self.current_user
 
+
     @tornado.web.authenticated
-    def post(self, template_variables = {}):
+    def post(self, post_id, template_variables = {}):
         user_info = self.current_user
 
         data = json.loads(self.request.body)
-        post_id = data["post_id"]
         comment_content = data["comment_content"]
 
         if(user_info):

@@ -62,8 +62,8 @@
               type: "POST",
               contentType: "application/json; charset=utf-8",
               dataType: "json",
-              url: "/comment",
-              data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
+              url: "/comment/"+post_id,
+              data: JSON.stringify({comment_content: comment_content}), 
               success: function (msg) {
                 comment_editor.html("");
                 comment_box.show();
@@ -78,14 +78,14 @@
             var comment_editor = $(this).parent().parent().parent();
             var comment_card = $(this).parent().parent().parent().parent().parent().find(".comment-card");
             var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
-            var comment_content = $(".editor-box").val();
+            var comment_content = $(this).parent().parent().find(".editor-box").val();
 
             $.ajax({
               type: "POST",
               contentType: "application/json; charset=utf-8",
               dataType: "json",
-              url: "/comment",
-              data: JSON.stringify({post_id: post_id, comment_content: comment_content}), 
+              url: "/comment/"+post_id,
+              data: JSON.stringify({comment_content: comment_content}), 
               success: function (msg) {
                 comment_editor.html("");
                 comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="{{ user_info.avatar }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
@@ -107,9 +107,17 @@ $(document).on('click', '.cancel-comment',  function() {
           $(".comment-box").show();
         });
 
+$(document).on('click', '.c-icon',  function() {
+        if ($(this).hasClass('up')) {
+          $(this).removeClass('up');
+          $(this).css("background","no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -347px -183px");
+        }
+        else {
+          $(this).addClass('up');
+          $(this).css("background","no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -37px -121px");
+        }
+        });
       });
-
-      
     </script>
 {% endblock %}
 
