@@ -1,7 +1,9 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
+<script src="/static/js/json_parse.js"></script>
 <script src="/static/js/json2.js"></script>
+
 
 <script type="text/javascript">
       $(document).ready(function(){
@@ -108,13 +110,25 @@ $(document).on('click', '.cancel-comment',  function() {
         });
 
 $(document).on('click', '.c-icon',  function() {
+        var comment_list = $(this).parent().parent().find(".jspScrollable");
         if ($(this).hasClass('up')) {
           $(this).removeClass('up');
           $(this).css("background","no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -347px -183px");
+          var comment_string=comment_list.html();
+          comment_string = comment_string.slice(comment_string.lastIndexOf("<li>"), comment_string.lastIndexOf("</li>"));
+          comment_list.html(comment_string);
         }
         else {
           $(this).addClass('up');
           $(this).css("background","no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -37px -121px");
+          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          $.getJSON('/comment/'+post_id, function(data) {
+            var comment_string='';
+            for(i=0;i<data.comments.length;i++){
+              comment_string+='<li><div class="pic"><a href="/u/'+data.comments[i].author_username+'" target="_blank"><img src="'+data.comments[i].author_avatar+'"></a></div><div class="doSth"><p><a class="mb_name" href="/u/'+data.comments[i].author_username+'" target="_blank">'+data.comments[i].author_username+'</a><span class="time">26 秒前</span></p><p><span class="text">'+data.comments[i].content+'</span></p></div></li>'
+            }
+            comment_list.html(comment_string);
+          });
         }
         });
       });

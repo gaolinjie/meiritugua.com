@@ -249,6 +249,21 @@ class CommentHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user
 
+        if(user_info):
+            comments = self.comment_model.get_all_comments_by_post_id(post_id)
+
+            jarray = []
+            i = 0
+            for comment in comments:
+                jobject = {
+                    "content": comment.content,
+                    "author_username": comment.author_username,
+                    "author_avatar": comment.author_avatar
+                }
+                jarray.append(jobject)
+                i=i+1
+
+            self.write(lib.jsonp.print_JSON({"comments": jarray}))
 
     @tornado.web.authenticated
     def post(self, post_id, template_variables = {}):
