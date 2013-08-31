@@ -55,7 +55,6 @@ class SettingHandler(BaseHandler):
         user_info = self.get_current_user()
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        template_variables["wallpaper"] = self.get_wallpaper()
         self.render("user/setting.html", **template_variables)
 
     @tornado.web.authenticated
@@ -96,7 +95,6 @@ class SettingAvatarHandler(BaseHandler):
         user_info = self.get_current_user()
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        template_variables["wallpaper"] = self.get_wallpaper()
         self.render("user/setting_avatar.html", **template_variables)
 
     @tornado.web.authenticated

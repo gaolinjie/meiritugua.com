@@ -1856,3 +1856,64 @@ padding: 12px 0px 12px 20px;
 .navbar .nav ul a:hover {
 background-color: #ee4a55;
 }
+
+.dropdown-menu li > a:hover, .dropdown-menu li > a:active, .dropdown-menu li > a:focus {
+color: #1abc9c;
+}
+
+.setting-card {
+  width: 500px;
+  margin: 100px 259px;
+  background: #fff;
+  padding: 30px;
+}
+
+.setting-title {
+margin-bottom: 40px;
+font-size: 21px;
+line-height: 40px;
+color: #16a085;
+}
+
+.form-horizontal .control-group {
+margin-bottom: 40px;
+}
+
+.form-horizontal .control-label {
+float: left;
+width: 50px;
+padding-top: 5px;
+
+
+}
+
+.form-horizontal .controls {
+margin-left: 100px;
+width: 370px;
+}
+
+.input-xlarge {
+  width: 370px;
+}
+
+input.input-xlarge {
+  height: 31px;
+}
+
+textarea.input-xlarge {
+  height: 93px;
+}
+.avatar-btn {
+  width: 360px;
+  
+  margin-top: 10px;
+}
+
+.s-avatar {
+  width: 96px;
+  height: 96px;
+}
+
+.btn {
+  border-radius: 3px;
+}

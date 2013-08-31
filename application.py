@@ -55,11 +55,13 @@ class Application(tornado.web.Application):
             (r"/c/(\d+)", handler.topic.ChannelHandler),
             (r"/u/(.*)", handler.topic.UserHandler),
             (r"/login", handler.user.LoginHandler),
+            (r"/logout", handler.user.LogoutHandler),
             (r"/register", handler.user.RegisterHandler),
             (r"/forgot", handler.user.ForgotPasswordHandler),
             (r"/f/(\d+)", handler.topic.FollowHandler),
             (r"/p/(\d+)", handler.topic.PlusChannelHandler),
             (r"/comment/(\d+)", handler.topic.CommentHandler),
+            (r"/setting", handler.user.SettingHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
