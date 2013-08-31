@@ -50,10 +50,6 @@ a:visited {
   background-color: #fe4e5b;
 }
 
-.navbar .nav > li > ul:before {
-  border-color: transparent transparent #fe4e5b transparent;
-}
-
 .navbar-inverse .brand {
   border-right: 2px solid #ee4a55;
 }
@@ -517,14 +513,9 @@ img {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 1360px;
+  width: 100%;
 }
 
-.navbar-static-top .container,
-.navbar-fixed-top .container,
-.navbar-fixed-bottom .container {
-  width: 1360px;
-}
 
 .channels {
   width: 786px;
@@ -1807,4 +1798,61 @@ opacity: .9;
 body, ul, dl, dd, p, h1, h2, h3, form, input, select {
 margin: 0;
 padding: 0;
+}
+
+.navbar .nav > li > ul {
+padding-top: 0;
+top: 80%;
+}
+
+.dropdown-menu {
+
+  min-width: 60px;
+  margin-top: 0px;
+
+}
+
+.navbar .nav ul {
+
+  width: 80px;
+
+}
+
+.navbar .nav ul li:first-child {
+border-radius: 0px;
+}
+
+.navbar .nav ul li:last-child {
+border-radius: 0 
+}
+
+.navbar-inverse .nav > li.active > a, .navbar-inverse .nav > li.active > a:hover, .navbar-inverse .nav > li.active > a:focus {
+
+padding-left: 20px;
+
+}
+
+.dropdown-menu li:first-child > a {
+border-radius: 0px;
+}
+
+.dropdown-menu li:last-child > a {
+border-radius: 0px;
+}
+
+.navbar .nav ul li {
+padding: 0px;
+}
+
+.navbar .nav ul li:first-child {
+padding-top: 0px;
+}
+
+.navbar .nav ul a {
+
+padding: 12px 0px 12px 20px;
+}
+
+.navbar .nav ul a:hover {
+background-color: #ee4a55;
 }

@@ -4697,7 +4697,7 @@ input[type="submit"].btn.btn-mini {
 .btn-navbar .icon-bar + .icon-bar {
   margin-top: 3px;
 }
-
+/*
 .navbar .nav > li > .dropdown-menu:before {
   position: absolute;
   top: -7px;
@@ -4720,6 +4720,7 @@ input[type="submit"].btn.btn-mini {
   border-left: 6px solid transparent;
   content: '';
 }
+*/
 
 .navbar-fixed-bottom .nav > li > .dropdown-menu:before {
   top: auto;
@@ -4728,13 +4729,13 @@ input[type="submit"].btn.btn-mini {
   border-bottom: 0;
   border-top-color: rgba(0, 0, 0, 0.2);
 }
-
+/*
 .navbar-fixed-bottom .nav > li > .dropdown-menu:after {
   top: auto;
   bottom: -6px;
   border-top: 6px solid #ffffff;
   border-bottom: 0;
-}
+}*/
 
 .navbar .nav li.dropdown > a:hover .caret,
 .navbar .nav li.dropdown > a:focus .caret {

@@ -64,15 +64,16 @@
 
             </div>
             <!--/.nav -->
-            <div class="nav-collapse collapse pull-right">
-              <ul class="nav">
+            <ul class="nav pull-right">
                 <li class="active">
-                  <a title="jay_gao" class="avatar_c" href="/">
-                    <img src="http://img3.douban.com/icon/u2386491-1.jpg" width="30" alt="jay_gao"></a>
+                  <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.username}}">
+                    <img src="{{ user_info.avatar }}" width="30" alt="{{ user_info.username }}"></a>
+                    <ul class="dropdown-menu">
+                          <li><a href="/setting">设置</a></li>
+                          <li><a href="/logout">退出</a></li>
+                        </ul>
                 </li>
-
-              </ul>
-            </div>
+            </ul>
 
           </div>
 

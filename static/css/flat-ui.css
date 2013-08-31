@@ -771,18 +771,7 @@ h6 {
   padding-top: 13px;
   top: 80%;
 }
-.navbar .nav > li > ul:before {
-  content: "";
-  border-style: solid;
-  border-width: 0 9px 9px 9px;
-  border-color: transparent transparent #34495e transparent;
-  height: 0;
-  position: absolute;
-  left: 15px;
-  top: 5px;
-  width: 0;
-  -webkit-transform: rotate(360deg);
-}
+
 .navbar .nav > li > ul li:hover ul {
   opacity: 1;
   -webkit-transform: scale(1, 1);
