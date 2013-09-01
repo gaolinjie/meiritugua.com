@@ -63,6 +63,7 @@ class Application(tornado.web.Application):
             (r"/comment/(\d+)", handler.topic.CommentHandler),
             (r"/setting", handler.user.SettingHandler),
             (r"/setting/avatar", handler.user.SettingAvatarHandler),
+            (r"/setting/password", handler.user.SettingPasswordHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),

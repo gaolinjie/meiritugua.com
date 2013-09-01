@@ -162,7 +162,7 @@ class SettingPasswordHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, template_variables = {}):
         user_info = self.get_current_user()
-        template_variables["wallpaper"] = self.get_wallpaper()
+        template_variables["user_info"] = user_info
         self.render("user/setting_password.html", **template_variables)
 
     @tornado.web.authenticated

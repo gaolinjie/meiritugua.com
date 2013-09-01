@@ -25,7 +25,7 @@
       $(document).ready(function(){
         $(document).on('click', '.comment',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"/static/avatar/m_{{user_info.avatar}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
         });
 
         $(document).on('click', '.cancel-comment',  function() {
