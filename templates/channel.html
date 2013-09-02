@@ -155,6 +155,10 @@
         <span class="b-profile__tab-highlight"></span>
         <a href="javascript:void(0)" title="论 坛">论 坛</a>
       </li>
+      <li class="b-profile__tab m-suggestions " title="My Suggestions" data-tab="Suggestions">
+        <span class="b-profile__tab-highlight"></span>
+        <a href="javascript:void(0)" title="设 置">设 置</a>
+      </li>
       {% if channel.author_id!=user_info.uid %}
       <li class="channel-post-btn" title="+1">
         {% if plused == 1 %}
@@ -189,7 +193,7 @@
     <div class="row1">
       <div class="t-avatar">
         <a href="/u/{{ user_info.username }}">
-          <img src="/static/avatar/m_{{ user_info.avatar }}"></a>
+          <img src="/static/avatar/m_{{ user_info.avatar or 'default.png' }}"></a>
       </div>
       <div class="v-description">
         <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
@@ -230,7 +234,7 @@
       <div class="header">
         <div class="avatar">
           <a href="/u/{{ post.author_username }}">
-            <img src="/static/avatar/m_{{ post.author_avatar }}"></a>
+            <img src="/static/avatar/m_{{ post.author_avatar or 'default.png'}}"></a>
         </div>
         <div class="info">
           <h3 class="username">

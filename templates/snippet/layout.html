@@ -67,7 +67,7 @@
             <ul class="nav pull-right">
                 <li class="active">
                   <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.username}}">
-                    <img src="/static/avatar/m_{{ user_info.avatar }}" width="30"></a>
+                    <img src="/static/avatar/m_{{ user_info.avatar or 'default.png'}}" width="30"></a>
                     <ul class="dropdown-menu">
                           <li><a href="/setting">设置</a></li>
                           <li><a href="/logout">退出</a></li>

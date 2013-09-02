@@ -54,7 +54,7 @@
       <div class="b-profile__wrapper">
         <!-- a href="#" class="b-profile__add"> </a -->
       <div class="b-author  m-noclick m-expanded m-profile">
-        <img src="/static/avatar/b_{{user_info.avatar}}" alt="Jay Gao" class="b-author__image">
+        <img src="/static/avatar/b_{{user_info.avatar or 'default.png'}}" alt="Jay Gao" class="b-author__image">
 
         <div class="b-author__bg"></div>
 
@@ -123,7 +123,7 @@
     <div class="row1">
       <div class="t-avatar">
         <a href="/u/{{user_info.username}}">
-          <img src="/static/avatar/m_{{user_info.avatar}}"></a>
+          <img src="/static/avatar/m_{{user_info.avatar or 'default.png'}}"></a>
       </div>
       <div class="v-description">
         <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="content"></textarea>
@@ -163,7 +163,7 @@
       <div class="header">
         <div class="avatar">
           <a href="/u/{{ post.author_username }}">
-            <img src="/static/avatar/m_{{ post.author_avatar }}"></a>
+            <img src="/static/avatar/m_{{ post.author_avatar or 'default.png' }}"></a>
         </div>
         <div class="info">
           <h3 class="username">

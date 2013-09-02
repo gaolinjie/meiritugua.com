@@ -122,7 +122,7 @@ class SettingAvatarHandler(BaseHandler):
         template_variables["success_message"] = [u"用户头像更新成功"]
         # update `updated`
         updated = self.user_model.set_user_base_info_by_uid(user_id, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        self.get(template_variables)
+        self.redirect("/setting")
 
 class SettingPasswordHandler(BaseHandler):
     @tornado.web.authenticated
@@ -162,7 +162,7 @@ class SettingPasswordHandler(BaseHandler):
         template_variables["success_message"] = [u"您的用户密码已更新"]
         # update `updated`
         updated = self.user_model.set_user_base_info_by_uid(user_id, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        self.get(template_variables)
+        self.redirect("/setting")
 
 class ForgotPasswordHandler(BaseHandler):
     def get(self, template_variables = {}):

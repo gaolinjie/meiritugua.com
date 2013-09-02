@@ -12,7 +12,9 @@
                 <!-- Avatar -->
                 <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
                 <div class="controls">
-                    <img src="/static/avatar/b_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="s-avatar" />
+                    <img src="/static/avatar/b_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                    <img src="/static/avatar/m_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                    <img src="/static/avatar/s_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
                     <a href="/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
                 </div>
             </div>
