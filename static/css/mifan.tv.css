@@ -1862,9 +1862,12 @@ color: #1abc9c;
 }
 
 .setting-card {
-  width: 500px;
+  width: 478px;
   margin: 100px 259px;
   background: #fff;
+}
+
+.setting-card fieldset {
   padding: 30px;
 }
 
@@ -1881,19 +1884,17 @@ margin-bottom: 40px;
 
 .form-horizontal .control-label {
 float: left;
-width: 50px;
+width: 45px;
 padding-top: 5px;
-
-
 }
 
 .form-horizontal .controls {
 margin-left: 100px;
-width: 370px;
+width: 300px;
 }
 
 .input-xlarge {
-  width: 370px;
+  width: 300px;
 }
 
 input.input-xlarge {
@@ -1903,9 +1904,9 @@ input.input-xlarge {
 textarea.input-xlarge {
   height: 93px;
 }
+
 .avatar-btn {
-  width: 360px;
-  
+  width: 290px;
   margin-top: 10px;
 }
 
