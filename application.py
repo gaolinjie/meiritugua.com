@@ -22,6 +22,7 @@ import tornado.web
 
 import handler.topic
 import handler.user
+import handler.channel
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -64,6 +65,7 @@ class Application(tornado.web.Application):
             (r"/setting", handler.user.SettingHandler),
             (r"/setting/avatar", handler.user.SettingAvatarHandler),
             (r"/setting/password", handler.user.SettingPasswordHandler),
+            (r"/c/(\d+)/setting", handler.channel.ChannelSettingHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
