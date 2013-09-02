@@ -134,30 +134,6 @@ class SettingAvatarHandler(BaseHandler):
         updated = self.user_model.set_user_base_info_by_uid(user_id, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
         self.get(template_variables)
 
-class SettingAvatarFromGravatarHandler(BaseHandler):
-    @tornado.web.authenticated
-    def get(self, template_variables = {}):
-        user_info = self.current_user
-        user_id = user_info["uid"]
-        avatar_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(user_id))
-        gravatar = Gravatar(user_info["email"])
-        avatar_96x96 = gravatar.get_image(size = 96, filetype_extension = False)
-        avatar_48x48 = gravatar.get_image(size = 48, filetype_extension = False)
-        avatar_32x32 = gravatar.get_image(size = 32, filetype_extension = False)
-        usr_home = os.path.expanduser('~')
-        print usr_home
-        urllib.urlretrieve(avatar_96x96, usr_home+"/www/tuila/static/avatar/b_%s.png" % avatar_name)
-        urllib.urlretrieve(avatar_48x48, usr_home+"/www/tuila/static/avatar/m_%s.png" % avatar_name)
-        urllib.urlretrieve(avatar_32x32, usr_home+"/www/tuila/static/avatar/s_%s.png" % avatar_name)
-        result = self.user_model.set_user_avatar_by_uid(user_id, "%s.png" % avatar_name)
-        template_variables["success_message"] = [u"用户头像更新成功"]
-        # update `updated`
-        updated = self.user_model.set_user_base_info_by_uid(user_id, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        template_variables["user_info"] = user_info
-        template_variables["gen_random"] = gen_random
-        template_variables["wallpaper"] = self.get_wallpaper()
-        self.render("user/setting_avatar.html", **template_variables)
-
 class SettingPasswordHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, template_variables = {}):

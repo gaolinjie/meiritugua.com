@@ -176,7 +176,7 @@ p {
 }
 
 .thumb .play {
-  background: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yG/r/Gj2ad6O09TZ.png) no-repeat 0 0;
+  background: url(/static/images/play.png) no-repeat 0 0;
   bottom: 25px;
   height: 26px;
   left: 25px;
@@ -256,8 +256,8 @@ p {
   display: inline-block;
   width: 12px;
   height: 12px;
-  background-image: url("http://img.t.sinajs.cn/t5/style/images/common/icon.png?id=201307021600");
-  _background-image: url("http://img.t.sinajs.cn/t5/style/images/common/icon.png?id=201307021600");
+  background-image: url(/static/images/icon.png);
+  _background-image: url(/static/images/icon.png);
   background-repeat: no-repeat;
 }
 
@@ -302,7 +302,7 @@ p {
 }
 
 .plus-icon {
-  background: no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) 0 -948px;
+  background: no-repeat url(/static/images/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) 0 -948px;
   display: inline-block;
   height: 8px;
   margin-bottom: 1px;
@@ -331,7 +331,7 @@ p {
 }
 
 .share-icon {
-  background: no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) -7px -194px;
+  background: no-repeat url(/static/images/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) -7px -194px;
   display: inline-block;
   height: 16px;
   margin-bottom: 3px;
@@ -1768,7 +1768,7 @@ margin-top: 20px;
 .c-icon {
 filter: alpha(opacity=70);
 opacity: .7;
-background: no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -347px -183px;
+background: no-repeat url(/static/images/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -347px -183px;
 height: 16px;
 float: left;
 margin-top: 0;
