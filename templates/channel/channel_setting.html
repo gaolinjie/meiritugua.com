@@ -139,23 +139,23 @@
     </div>
 
     <ul class="b-profile__tabs clearfix">
-      <li class="b-profile__tab m-posts m-active">
+      <li class="b-profile__tab">
         <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">所 有</a>
+        <a href="/c/{{ channel.id }}">所 有</a>
       </li>
-      <li class="b-profile__tab m-likes ">
+      <li class="b-profile__tab">
         <span class="b-profile__tab-highlight"></span>
         <a href="javascript:void(0)">热 门</a>
       </li>
-      <li class="b-profile__tab m-votes ">
+      <li class="b-profile__tab">
         <span class="b-profile__tab-highlight"></span>
         <a href="javascript:void(0)">商 店</a>
       </li>
-      <li class="b-profile__tab m-suggestions ">
+      <li class="b-profile__tab">
         <span class="b-profile__tab-highlight"></span>
         <a href="javascript:void(0)">论 坛</a>
       </li>
-      <li class="b-profile__tab m-suggestions ">
+      <li class="b-profile__tab m-active">
         <span class="b-profile__tab-highlight"></span>
         <a href="/c/{{channel.id}}/setting">设 置</a>
       </li>
@@ -185,104 +185,7 @@
   </div>
 </div>
 <ol id="timeline" class="timeline clearfix">
-  <li class="spine"></li>
-  {% if channel.author_id==user_info.uid %}
-  <li class="left"> <i class="pointer"></i>
-    <div class="post-box" >
-    <form class="mt10" action="/c/{{ channel.id }}" method="post">
-    <div class="row1">
-      <div class="t-avatar">
-        <a href="/u/{{ user_info.username }}">
-          <img src="/static/avatar/m_{{ user_info.avatar or 'default.png' }}"></a>
-      </div>
-      <div class="v-description">
-        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
-      </div>
-    </div>
-    <div class="row2">
-      <div class="t-link">视频链接:</div>
-      <div class="v-link">
-        <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-    </div>
-
-    <div class="row4">
-      <span class="post-btn-wrap">
-      <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">{{ xsrf_form_html() }}
-    </span>
-    </div>
-  </form>
-  </div>
-  </li>
-  {% endif %}
   
-  
-  {% if channel.author_id==user_info.uid %}
-  {%set index = 1%}
-  {% else %}
-  {%set index = 0%}
-  {% endif %}
-
-{% for post in posts.list %}
-{% if index%2 == 0 %}
-  <li class="left">
-  {% else %}
-  <li class="right">
-  {% endif %}
-  {%set index = index+1%}
-    <i class="pointer"></i>
-    <div class="card">
-      <div class="header">
-        <div class="avatar">
-          <a href="/u/{{ post.author_username }}">
-            <img src="/static/avatar/m_{{ post.author_avatar or 'default.png'}}"></a>
-        </div>
-        <div class="info">
-          <h3 class="username">
-            <a href="/u/{{ post.author_username }}">{{ post.author_username }}</a>
-          </h3>
-          <span class="ct">
-            <span class="channel" title="{{ post.nav_title }}">
-              <a href="/{{ post.nav_name }}" class="ic">{{ post.nav_title }}</a>
-            </span>
-            &nbsp;-&nbsp;
-            <span class="time">
-              <a href="javascript:void(0)" class="it" title="{{ post.created }}">{{ post.created|pretty_date }}</a>
-            </span>
-          </span>
-        </div>
-      </div>
-      <p class="intro">
-        {{ post.intro }}
-      </p>
-      <div class="thumb">
-        <img src="{{ post.video_thumb }}">
-        <i class="play"></i>
-        <div class="title">
-          <a href="javascript:void(0);" class="a-n ot-anchor YF">{{ post.video_title }}</a>
-        </div>
-      </div>
-      <div class="bottom">
-        <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
-          <span class="btn-wrap">
-            <span class="plus-icon"></span>
-            <span class="plus-num">{{ post.plus }}</span>
-          </span>
-        </div>
-        <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
-          <span class="btn-wrap">
-            <span class="share-icon"></span>
-            <span class="share-num">{{ post.share }}</span>
-          </span>
-        </div>
-        <div class="comment" style="">
-          <div class="comment-box" tabindex="0" role="button">发表评论...</div>
-        </div>
-      </div>
-      <div class="comment-editor"></div>
-
-    </div>
-  </li>
-  {% endfor %}
 </ol>
 </div>
 {% endblock %}

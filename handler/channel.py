@@ -27,7 +27,7 @@ from lib.reddit import hot
 
 class ChannelSettingHandler(BaseHandler):
     @tornado.web.authenticated
-    def get(self, template_variables = {}):
+    def get(self, channel_id, template_variables = {}):
         user_info = self.current_user
         template_variables["user_info"] = user_info
         if(user_info):
@@ -45,7 +45,7 @@ class ChannelSettingHandler(BaseHandler):
         else:
             self.redirect("/login")
 
-        self.render("channel_setting.html", **template_variables)
+        self.render("channel/channel_setting.html", **template_variables)
 
     @tornado.web.authenticated
     def post(self, template_variables = {}):
