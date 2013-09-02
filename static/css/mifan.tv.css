@@ -1898,11 +1898,11 @@ width: 300px;
 }
 
 input.input-xlarge {
-  height: 31px;
+  height: 24px;
 }
 
 textarea.input-xlarge {
-  height: 93px;
+  height: 62px;
 }
 
 .avatar-btn {
@@ -1917,6 +1917,7 @@ textarea.input-xlarge {
 
 .btn {
   border-radius: 3px;
+  padding: 6px 12px;
 }
 
 form .controls .avatar {
