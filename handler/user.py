@@ -73,21 +73,11 @@ class SettingHandler(BaseHandler):
 
         user_info = self.current_user
         update_result = self.user_model.set_user_base_info_by_uid(user_info["uid"], {
-            "nickname": form.nickname.data,
-            "signature": form.signature.data,
-            "location": form.location.data,
-            "website": form.website.data,
-            "company": form.company.data,
-            "github": form.github.data,
-            "twitter": form.twitter.data,
-            "douban": form.douban.data,
-            "self_intro": form.self_intro.data,
+            "intro": form.self_intro.data,
         })
 
-        template_variables["success_message"] = [u"用户基本资料更新成功"]
-        # update `updated`
         updated = self.user_model.set_user_base_info_by_uid(user_info["uid"], {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        self.get(template_variables)
+        self.redirect("/u/" + user_info["username"])
 
 class SettingAvatarHandler(BaseHandler):
     @tornado.web.authenticated
