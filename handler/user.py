@@ -125,9 +125,9 @@ class SettingAvatarHandler(BaseHandler):
         avatar_32x32 = avatar.resize((32, 32), Image.ANTIALIAS)
         usr_home = os.path.expanduser('~')
         print usr_home
-        avatar_96x96.save(usr_home+"/www/tuila/static/avatar/b_%s.png" % avatar_name, "PNG")
-        avatar_48x48.save(usr_home+"/www/tuila/static/avatar/m_%s.png" % avatar_name, "PNG")
-        avatar_32x32.save(usr_home+"/www/tuila/static/avatar/s_%s.png" % avatar_name, "PNG")
+        avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/b_%s.png" % avatar_name, "PNG")
+        avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/m_%s.png" % avatar_name, "PNG")
+        avatar_32x32.save(usr_home+"/www/mifan.tv/static/avatar/s_%s.png" % avatar_name, "PNG")
         result = self.user_model.set_user_avatar_by_uid(user_id, "%s.png" % avatar_name)
         template_variables["success_message"] = [u"用户头像更新成功"]
         # update `updated`
