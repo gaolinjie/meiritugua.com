@@ -42,6 +42,6 @@ nosetests.xml
 
 # avatar
 static/avatar/
-!/static/avatar/b_default.png
-!/static/avatar/m_default.png
-!/static/avatar/s_default.png
+!/static/avatar/user/b_default.png
+!/static/avatar/user/m_default.png
+!/static/avatar/user/s_default.png

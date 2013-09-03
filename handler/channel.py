@@ -30,6 +30,7 @@ class ChannelSettingHandler(BaseHandler):
     def get(self, channel_id, template_variables = {}):
         user_info = self.current_user
         template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
         if(user_info):
             follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
@@ -105,9 +106,9 @@ class ChannelSettingAvatarHandler(BaseHandler):
         avatar_32x32 = avatar.resize((32, 32), Image.ANTIALIAS)
         usr_home = os.path.expanduser('~')
         print usr_home
-        avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/b_%s.png" % avatar_name, "PNG")
-        avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/m_%s.png" % avatar_name, "PNG")
-        avatar_32x32.save(usr_home+"/www/mifan.tv/static/avatar/s_%s.png" % avatar_name, "PNG")
+        avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/user/b_%s.png" % avatar_name, "PNG")
+        avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/user/m_%s.png" % avatar_name, "PNG")
+        avatar_32x32.save(usr_home+"/www/mifan.tv/static/avatar/user/s_%s.png" % avatar_name, "PNG")
         result = self.user_model.set_user_avatar_by_uid(user_id, "%s.png" % avatar_name)
         template_variables["success_message"] = [u"用户头像更新成功"]
         # update `updated`

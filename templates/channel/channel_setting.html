@@ -184,9 +184,43 @@
     
   </div>
 </div>
-<ol id="timeline" class="timeline clearfix">
-  
-</ol>
+<div class="c-setting-card">
+    <form class="form-horizontal" action='' method="POST">
+        <fieldset>
+            <div id="legend">
+                <legend class="setting-title">频道设置</legend>
+            </div>
+            {{ errors|dump_errors }}
+            <div class="control-group">
+                <!-- Avatar -->
+                <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
+                <div class="controls">
+                    <img src="/static/avatar/user/b_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                    <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                    <img src="/static/avatar/user/s_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                    <a href="/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- E-mail -->
+                <label class="control-label" for="self_intro">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
+                <div class="controls">
+                    <textarea type="text" id="self_intro" name="self_intro" placeholder="" class="input-xlarge">{{ user_info.self_intro or '' }}</textarea>
+                    <p class="help-block">可以稍微详细的介绍自己。</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button class="btn btn-primary">保存改动</button>
+                </div>
+            </div>
+        </fieldset>
+        {{ xsrf_form_html() }}
+    </form>
+</div>
 </div>
 {% endblock %}
 
