@@ -45,3 +45,9 @@ class ChannelModel(Query):
     def update_channel_info_by_channel_id(self, channel_id, channel_info):
         where = "channel.id = %s" % channel_id
         return self.where(where).data(channel_info).save()
+
+    def set_channel_avatar_by_channel_id(self, channel_id, avatar_name):
+        where = "id = %s" % channel_id
+        return self.data({
+            "avatar": avatar_name
+        }).where(where).save()

@@ -74,6 +74,7 @@ class VideoHandler(BaseHandler):
         user_info = self.current_user
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
         if(user_info):
             template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
         else:

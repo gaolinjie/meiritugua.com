@@ -185,36 +185,33 @@
   </div>
 </div>
 <div class="c-setting-card">
-    <form class="form-horizontal" action='' method="POST">
+    <form class="form-horizontal" action='' method="POST" enctype="multipart/form-data">
         <fieldset>
             <div id="legend">
-                <legend class="setting-title">频道设置</legend>
+                <legend class="setting-title">设置头像</legend>
             </div>
             {{ errors|dump_errors }}
             <div class="control-group">
                 <!-- Avatar -->
                 <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
                 <div class="controls">
-                    <img src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/channel/s_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <a href="/c/{{channel.id}}/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
+                    <img src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="s-avatar" />
                 </div>
             </div>
 
             <div class="control-group">
-                <!-- E-mail -->
-                <label class="control-label" for="self_intro">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
+                <!-- Avatar-->
+                <label class="control-label" for="avatar">上&nbsp;&nbsp;&nbsp;&nbsp;传</label>
                 <div class="controls">
-                    <textarea type="text" id="self_intro" name="self_intro" placeholder="" class="input-xlarge">{{ user_info.self_intro or '' }}</textarea>
-                    <p class="help-block">可以稍微详细的介绍自己。</p>
+                    <input type="file" id="avatar" name="avatar" placeholder="" class="input-xlarge">
+                    <p class="help-block">请选择要上传的头像文件</p>
                 </div>
             </div>
 
             <div class="control-group">
                 <!-- Button -->
                 <div class="controls">
-                    <button class="btn btn-primary">保存改动</button>
+                    <button class="btn btn-primary">保存更改</button>
                 </div>
             </div>
         </fieldset>

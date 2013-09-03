@@ -25,7 +25,7 @@
       $(document).ready(function(){
         $(document).on('click', '.comment',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"/static/avatar/user/m_{{user_info.avatar or 'default.png'}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"/static/avatar/user/s_{{user_info.avatar or 'default.png'}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
         });
 
         $(document).on('click', '.cancel-comment',  function() {
@@ -58,7 +58,7 @@
             var post_id = $(this).parent().parent().parent().parent().parent().find('.bottom').find('input').val();
             var comment_content = $(this).parent().parent().find(".editor-box").val();
             var comment_list = $(this).parent().parent().parent().parent().find('.jspScrollable');
-            var comment_string = comment_list.html() + '<li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/m_{{ user_info.avatar or "default.png" }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li>';
+            var comment_string = comment_list.html() + '<li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/s_{{ user_info.avatar or "default.png" }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li>';
 
             $.ajax({
               type: "POST",
@@ -90,7 +90,7 @@
               data: JSON.stringify({comment_content: comment_content}), 
               success: function (msg) {
                 comment_editor.html("");
-                comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/m_{{ user_info.avatar or "default.png"}}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
+                comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/s_{{ user_info.avatar or "default.png"}}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
               },
               error: function (msg) {
                 alert("error");
@@ -101,7 +101,7 @@
 
 $(document).on('click', '.comment-box',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html('<div class="wrapper" style="margin-top: -20px;"><a href="./u/{{ user_info.username }}" class="" aria-hidden="true"><img src="/static/avatar/user/m_{{user_info.avatar or "default.png"}}"width="28px" height="28px" alt="" class="avatar"></a><textarea class="editor-box"></textarea><span class="button-wrap"><div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-comment" style="-webkit-user-select: none;">取消</div></span></div>');
+          $(this).parent().parent().find(".comment-editor").html('<div class="wrapper" style="margin-top: -20px;"><a href="./u/{{ user_info.username }}" class="" aria-hidden="true"><img src="/static/avatar/user/s_{{user_info.avatar or "default.png"}}"width="28px" height="28px" alt="" class="avatar"></a><textarea class="editor-box"></textarea><span class="button-wrap"><div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-comment" style="-webkit-user-select: none;">取消</div></span></div>');
         });
 
 $(document).on('click', '.cancel-comment',  function() {
@@ -128,7 +128,7 @@ $(document).on('click', '.c-icon',  function() {
               if (!data.comments[i].author_avatar) {
                 data.comments[i].author_avatar = 'default.png';
               }
-              comment_string+='<li><div class="pic"><a href="/u/'+data.comments[i].author_username+'" target="_blank"><img src="/static/avatar/user/m_'+data.comments[i].author_avatar+'"></a></div><div class="doSth"><p><a class="mb_name" href="/u/'+data.comments[i].author_username+'" target="_blank">'+data.comments[i].author_username+'</a><span class="time">26 秒前</span></p><p><span class="text">'+data.comments[i].content+'</span></p></div></li>'
+              comment_string+='<li><div class="pic"><a href="/u/'+data.comments[i].author_username+'" target="_blank"><img src="/static/avatar/user/s_'+data.comments[i].author_avatar+'"></a></div><div class="doSth"><p><a class="mb_name" href="/u/'+data.comments[i].author_username+'" target="_blank">'+data.comments[i].author_username+'</a><span class="time">26 秒前</span></p><p><span class="text">'+data.comments[i].content+'</span></p></div></li>'
             }
             comment_list.html(comment_string);
           });
@@ -271,7 +271,7 @@ $(document).on('click', '.c-icon',  function() {
             <li>
               <div class="pic">
                 <a href="/u/{{ post.comment_user_name }}" target="_blank">
-                  <img src="/static/avatar/user/m_{{ post.comment_user_avatar or 'default.png' }}"></a>
+                  <img src="/static/avatar/user/s_{{ post.comment_user_avatar or 'default.png' }}"></a>
               </div>
               <div class="doSth">
                 <p>

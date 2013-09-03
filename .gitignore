@@ -45,3 +45,6 @@ static/avatar/
 !/static/avatar/user/b_default.png
 !/static/avatar/user/m_default.png
 !/static/avatar/user/s_default.png
+!/static/avatar/channel/b_default.png
+!/static/avatar/channel/m_default.png
+!/static/avatar/channel/s_default.png

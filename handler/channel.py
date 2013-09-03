@@ -11,19 +11,16 @@ import time
 import json
 import re
 import urllib2
+import urllib
 import tornado.web
 import lib.jsonp
-import pprint
-import math
-import datetime 
+import os.path
 
 from base import *
-from lib.variables import *
-from form.topic import *
+from lib.sendmail import send
 from lib.variables import gen_random
-from lib.xss import XssCleaner
-from lib.utils import find_mentions
-from lib.reddit import hot
+from lib.gravatar import Gravatar
+from form.user import *
 
 class ChannelSettingHandler(BaseHandler):
     @tornado.web.authenticated
@@ -72,14 +69,29 @@ class ChannelSettingHandler(BaseHandler):
 
 class ChannelSettingAvatarHandler(BaseHandler):
     @tornado.web.authenticated
-    def get(self, template_variables = {}):
+    def get(self, channel_id, template_variables = {}):
         user_info = self.get_current_user()
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        self.render("user/setting_avatar.html", **template_variables)
+        if(user_info):
+            follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            if(follow):
+                template_variables["followed"]=1;
+            else:
+                template_variables["followed"]=0;
+            if(plus):
+                template_variables["plused"]=1;
+            else:
+                template_variables["plused"]=0;
+            template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
+        else:
+            self.redirect("/login")
+
+        self.render("channel/channel_setting_avatar.html", **template_variables)
 
     @tornado.web.authenticated
-    def post(self, template_variables = {}):
+    def post(self, channel_id, template_variables = {}):
         template_variables = {}
 
         if(not "avatar" in self.request.files):
@@ -101,16 +113,17 @@ class ChannelSettingAvatarHandler(BaseHandler):
         avatar_crop_region = (0, 0, avatar_border, avatar_border)
         avatar = avatar.crop(avatar_crop_region)
 
+        avatar_192x192 = avatar.resize((192, 192), Image.ANTIALIAS)
         avatar_96x96 = avatar.resize((96, 96), Image.ANTIALIAS)
         avatar_48x48 = avatar.resize((48, 48), Image.ANTIALIAS)
-        avatar_32x32 = avatar.resize((32, 32), Image.ANTIALIAS)
+        
         usr_home = os.path.expanduser('~')
         print usr_home
-        avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/user/b_%s.png" % avatar_name, "PNG")
-        avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/user/m_%s.png" % avatar_name, "PNG")
-        avatar_32x32.save(usr_home+"/www/mifan.tv/static/avatar/user/s_%s.png" % avatar_name, "PNG")
-        result = self.user_model.set_user_avatar_by_uid(user_id, "%s.png" % avatar_name)
-        template_variables["success_message"] = [u"用户头像更新成功"]
-        # update `updated`
-        updated = self.user_model.set_user_base_info_by_uid(user_id, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        self.redirect("/setting")
+        avatar_192x192.save(usr_home+"/www/mifan.tv/static/avatar/channel/b_%s.png" % avatar_name, "PNG")
+        avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/channel/m_%s.png" % avatar_name, "PNG")
+        avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/channel/s_%s.png" % avatar_name, "PNG")
+        
+        result = self.channel_model.set_channel_avatar_by_channel_id(channel_id, "%s.png" % avatar_name)
+        template_variables["success_message"] = [u"频道头像更新成功"]
+
+        self.redirect("/")
