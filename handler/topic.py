@@ -98,7 +98,6 @@ class VideoHandler(BaseHandler):
         channel_info = {
             "name": form.name.data,
             "intro": form.intro.data,
-            "avatar": form.avatar.data,
             "nav_id": 1,
             "plus": 0,
             "followers": 0,

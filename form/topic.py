@@ -52,10 +52,6 @@ class ChannelForm(Form):
         validators.Required(message = "请填写频道名称"),
     ])
 
-    avatar = TextField('Avatar', [
-        validators.Required(message = "请填写频道头像图片链接"),
-    ])
-
 class ReplyEditForm(Form):
     content = TextField('Content', [
         validators.Required(message = "请填写回复内容"),
