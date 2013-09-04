@@ -15,3 +15,16 @@ INSERT INTO `nav` VALUES (1, 'video', '短片');
 INSERT INTO `nav` VALUES (2, 'movie', '电影');
 INSERT INTO `nav` VALUES (3, 'tv', '电视剧');
 INSERT INTO `nav` VALUES (4, 'star', '明星');
+
+INSERT INTO `subnav` VALUES (1, 1, 'design', '设计');
+INSERT INTO `subnav` VALUES (2, 1, 'music', '音乐');
+INSERT INTO `subnav` VALUES (3, 1, 'fation', '时尚');
+INSERT INTO `subnav` VALUES (4, 1, 'creative', '创意');
+INSERT INTO `subnav` VALUES (1, 1, 'catoon', '动漫');
+INSERT INTO `subnav` VALUES (2, 1, 'clture', '文化');
+INSERT INTO `subnav` VALUES (3, 1, 'funny', '怪趣');
+INSERT INTO `subnav` VALUES (4, 1, 'food', '美食');
+INSERT INTO `subnav` VALUES (1, 1, 'life', '生活');
+INSERT INTO `subnav` VALUES (2, 1, 'game', '游戏');
+INSERT INTO `subnav` VALUES (3, 1, 'sicince', '科学');
+INSERT INTO `subnav` VALUES (4, 1, 'sport', '运动');

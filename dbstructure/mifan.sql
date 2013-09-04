@@ -105,6 +105,7 @@ CREATE TABLE `channel` (
   `intro` text,
   `avatar` text,
   `nav_id` int(11) DEFAULT NULL,
+  `subnav_id` int(11) DEFAULT NULL,
   `plus` int(11) DEFAULT NULL,
   `followers` int(11) DEFAULT NULL,
   `posts` int(11) DEFAULT NULL,
@@ -133,6 +134,18 @@ CREATE TABLE `follow` (
 DROP TABLE IF EXISTS `nav`;
 CREATE TABLE `nav` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `title` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `subnav`
+-- ----------------------------
+DROP TABLE IF EXISTS `subnav`;
+CREATE TABLE `subnav` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nav_id` int(11) DEFAULT NULL,
   `name` text,
   `title` text,
   PRIMARY KEY (`id`)
