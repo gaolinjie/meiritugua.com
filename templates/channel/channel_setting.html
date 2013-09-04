@@ -109,7 +109,7 @@
       <div class="b-profile__wrapper">
         <!-- a href="#" class="b-profile__add"> </a -->
       <div class="b-author  m-noclick m-expanded m-profile">
-        <img src="{{ channel.avatar }}" alt="Jay Gao" class="b-author__image">
+        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="Jay Gao" class="b-author__image">
 
         <div class="b-author__bg"></div>
 
@@ -195,9 +195,7 @@
                 <!-- Avatar -->
                 <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
                 <div class="controls">
-                    <img src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
                     <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/channel/s_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
                     <a href="/c/{{channel.id}}/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
                 </div>
             </div>

@@ -93,6 +93,7 @@ class ChannelSettingAvatarHandler(BaseHandler):
     @tornado.web.authenticated
     def post(self, channel_id, template_variables = {}):
         template_variables = {}
+        print channel_id
 
         if(not "avatar" in self.request.files):
             template_variables["errors"] = {}
@@ -101,8 +102,8 @@ class ChannelSettingAvatarHandler(BaseHandler):
             return
 
         user_info = self.current_user
-        user_id = user_info["uid"]
-        avatar_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(user_id))
+
+        avatar_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(channel_id))
         avatar_raw = self.request.files["avatar"][0]["body"]
         avatar_buffer = StringIO.StringIO(avatar_raw)
         avatar = Image.open(avatar_buffer)
@@ -118,7 +119,6 @@ class ChannelSettingAvatarHandler(BaseHandler):
         avatar_48x48 = avatar.resize((48, 48), Image.ANTIALIAS)
         
         usr_home = os.path.expanduser('~')
-        print usr_home
         avatar_192x192.save(usr_home+"/www/mifan.tv/static/avatar/channel/b_%s.png" % avatar_name, "PNG")
         avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/channel/m_%s.png" % avatar_name, "PNG")
         avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/channel/s_%s.png" % avatar_name, "PNG")
