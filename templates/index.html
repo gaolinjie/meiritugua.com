@@ -140,27 +140,21 @@ $(document).on('click', '.c-icon',  function() {
 
 {% block main %}
 <div class="feeds">
+  {% set tab_bar = [
+      ('/', 'all', '所有'),
+      ('/?tab=video', 'video', '短片'),                   
+      ('/?tab=movie', 'movie', '电影'),
+      ('/?tab=tv', 'tv', '电视剧'),
+      ('/?tab=star', 'star', '明星'),               
+  ] -%}
+  {% set active_tab = active_tab|default('index') -%}
   <div class="tabbar">
-    <div class="tab ">
-      <a href="/" class="tab-link">所有</a>
+    {% for href, id, caption in tab_bar %}
+    <div {% if id == active_tab %} class="tab m-active"{% else %} class="tab" {% endif %}>
+      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
       <span class="tab-highlight"></span>
     </div>
-    <div class="tab m-active">
-      <a href="/" class="tab-link">短片</a>
-      <span class="tab-highlight"></span>
-    </div>
-    <div class="tab">
-      <a href="/" class="tab-link">电影</a>
-      <span class="tab-highlight"></span>
-    </div>
-    <div class="tab">
-      <a href="/" class="tab-link">电视剧</a>
-      <span class="tab-highlight"></span>
-    </div>
-    <div class="tab">
-      <a href="/" class="tab-link">明星</a>
-      <span class="tab-highlight"></span>
-    </div>
+    {% endfor %}
     <div class="post-btn">
       <a href="javascript:void(0)" class="btn btn-primary">分享视频</a>
     </div>

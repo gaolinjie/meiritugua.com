@@ -27,12 +27,27 @@ from lib.reddit import hot
 
 class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "index")
         user_info = self.current_user
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
-            template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)
+            
+            if(tab=="index"):
+                template_variables["active_tab"] = "all"
+                template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)           
+            else:
+                if (tab=="video"):
+                    nav_id=1
+                if (tab=="movie"):
+                    nav_id=2
+                if (tab=="tv"):
+                    nav_id=3
+                if (tab=="star"):
+                    nav_id=4
+                template_variables["active_tab"] = tab
+                template_variables["posts"] = self.follow_model.get_user_all_follow_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
         else:
             self.redirect("/login")
 
@@ -113,6 +128,7 @@ class VideoHandler(BaseHandler):
         follow_info = {
             "user_id": self.current_user["uid"],
             "channel_id": channel["id"],
+            "nav_id": 1,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
@@ -206,9 +222,11 @@ class FollowHandler(BaseHandler):
                     "message": "revert_followed",
                 }))
             else:
+                channel = self.channel_model.get_channel_by_channel_id(channel_id)
                 follow_info = {
                     "user_id": user_info["uid"],
                     "channel_id": channel_id,
+                    "nav_id": channel.nav_id,
                     "created": time.strftime('%Y-%m-%d %H:%M:%S'),
                 }
                 self.follow_model.add_new_follow(follow_info)
