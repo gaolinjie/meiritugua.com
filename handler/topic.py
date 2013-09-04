@@ -90,6 +90,7 @@ class VideoHandler(BaseHandler):
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "video"
         if(user_info):
             template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
         else:
@@ -135,6 +136,39 @@ class VideoHandler(BaseHandler):
         self.follow_model.add_new_follow(follow_info)
 
         self.redirect("/video")
+
+class MovieHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "movie"        
+
+        self.render("movie.html", **template_variables)
+
+class TVHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "tv"        
+
+        self.render("tv.html", **template_variables)
+
+class StarHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "star"        
+
+        self.render("star.html", **template_variables)
+
+    
+
 
 
 class ChannelHandler(BaseHandler):

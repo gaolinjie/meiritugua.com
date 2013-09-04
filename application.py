@@ -67,6 +67,9 @@ class Application(tornado.web.Application):
             (r"/setting/password", handler.user.SettingPasswordHandler),
             (r"/c/(\d+)/setting", handler.channel.ChannelSettingHandler),
             (r"/c/(\d+)/setting/avatar", handler.channel.ChannelSettingAvatarHandler),
+            (r"/movie", handler.topic.MovieHandler),
+            (r"/tv", handler.topic.TVHandler),
+            (r"/star", handler.topic.StarHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),

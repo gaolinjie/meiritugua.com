@@ -48,18 +48,18 @@
                   <form class="navbar-search pull-left">
                     <input type="text" class="search-query" placeholder="Search"></form>
                 </li>
-                <li class="active">
-                  <a href="/video">短片</a>
+                {% set web_page = [
+                  ('/video', 'video', '短片'),                   
+                  ('/movie', 'movie', '电影'),
+                  ('/tv', 'tv', '电视剧'),
+                  ('/star', 'star', '明星'),               
+                ] -%}
+                {% set active_page = active_page|default('index') -%}
+                {% for href, id, caption in web_page %}
+                <li {% if id == active_page %} class="active" {% endif %}>
+                  <a href="{{ href|e }}">{{ caption|e }}</a>
                 </li>
-                <li>
-                  <a href="#fakelink">电影</a>
-                </li>
-                <li>
-                  <a href="#fakelink">电视剧</a>
-                </li>
-                <li>
-                  <a href="#fakelink">明星</a>
-                </li>
+                {% endfor %}
               </ul>
 
             </div>
