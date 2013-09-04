@@ -46,7 +46,7 @@ class ChannelSettingHandler(BaseHandler):
         self.render("channel/channel_setting.html", **template_variables)
 
     @tornado.web.authenticated
-    def post(self, template_variables = {}):
+    def post(self, channel_id, template_variables = {}):
         template_variables = {}
 
         # validate the fields
@@ -60,12 +60,11 @@ class ChannelSettingHandler(BaseHandler):
         # continue while validate succeed
 
         user_info = self.current_user
-        update_result = self.user_model.set_user_base_info_by_uid(user_info["uid"], {
+        update_result = self.channel_model.update_channel_info_by_channel_id(channel_id, {
             "intro": form.self_intro.data,
         })
 
-        updated = self.user_model.set_user_base_info_by_uid(user_info["uid"], {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        self.redirect("/u/" + user_info["username"])
+        self.redirect("/c/" + channel_id)
 
 class ChannelSettingAvatarHandler(BaseHandler):
     @tornado.web.authenticated
@@ -126,4 +125,4 @@ class ChannelSettingAvatarHandler(BaseHandler):
         result = self.channel_model.set_channel_avatar_by_channel_id(channel_id, "%s.png" % avatar_name)
         template_variables["success_message"] = [u"频道头像更新成功"]
 
-        self.redirect("/")
+        self.redirect("/c/"+channel_id)

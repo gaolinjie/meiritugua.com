@@ -155,10 +155,12 @@
         <span class="b-profile__tab-highlight"></span>
         <a href="javascript:void(0)">论 坛</a>
       </li>
+      {% if channel.author_id==user_info.uid %}
       <li class="b-profile__tab">
         <span class="b-profile__tab-highlight"></span>
         <a href="/c/{{channel.id}}/setting">设 置</a>
       </li>
+      {% endif %}
       {% if channel.author_id!=user_info.uid %}
       <li class="channel-post-btn" title="+1">
         {% if plused == 1 %}
