@@ -86,13 +86,19 @@ class IndexHandler(BaseHandler):
 
 class VideoHandler(BaseHandler):
     def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "video"
         if(user_info):
-            template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
+            template_variables["active_tab"] = tab
+            template_variables["subnavs"] = self.subnav_model.get_subnavs_by_nav_id(1)
+            if (tab=="all"):
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
+            else:
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
         else:
             self.redirect("/login")
 

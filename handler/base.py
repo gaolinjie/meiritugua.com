@@ -51,6 +51,10 @@ class BaseHandler(tornado.web.RequestHandler):
     def post_model(self):
         return self.application.post_model
 
+    @property
+    def subnav_model(self):
+        return self.application.subnav_model
+
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
         self.write(html)
