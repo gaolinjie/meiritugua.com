@@ -1306,28 +1306,6 @@ line-height: 26px;
 color: #838484;
 padding: 0 10px;
 }
-.taglist li a, .taglist li a:link, .taglist li a:visited {
-font-size: 14px;
-float: left;
-height: 26px;
-line-height: 26px;
-color: #838484;
-padding: 0 10px;
-}
-.taglist li a, .taglist li a:link, .taglist li a:visited {
-font-size: 14px;
-float: left;
-height: 26px;
-line-height: 26px;
-color: #838484;
-padding: 0 10px;
-}
-
-.taglist li {
-float: left;
-width: 75px;
-height: 30px;
-}
 
 .tabbar {
   width: 478px;

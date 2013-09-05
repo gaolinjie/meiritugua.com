@@ -98,7 +98,8 @@ class VideoHandler(BaseHandler):
             if (tab=="all"):
                 template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
             else:
-                template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
+                subnav_id = self.subnav_model.get_subnav_by_subnav_name(tab).id
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id_and_subnav_id(1, user_info["uid"], subnav_id)
         else:
             self.redirect("/login")
 
