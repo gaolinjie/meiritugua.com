@@ -43,7 +43,7 @@ a:visited {
 }
 
 .navbar-inverse .nav > li > a.avatar_c {
-  padding: 11px 30px 10px 20px;
+  padding: 11px 30px 8px 20px;
 }
 
 .navbar .nav ul li {
@@ -1791,9 +1791,7 @@ top: 80%;
 }
 
 .navbar .nav ul {
-
-  width: 80px;
-
+  width: 82px;
 }
 
 .navbar .nav ul li:first-child {
@@ -1827,8 +1825,7 @@ padding-top: 0px;
 }
 
 .navbar .nav ul a {
-
-padding: 12px 0px 12px 20px;
+padding: 12px 0px 12px 22px;
 }
 
 .navbar .nav ul a:hover {
@@ -1910,4 +1907,11 @@ background: #fff;
 
 .c-setting-card fieldset {
   padding: 30px;
+}
+
+.avatar_c img {
+width: 32px;
+height: 32px;
+-webkit-border-radius: 50%;
+border-radius: 50%;
 }
