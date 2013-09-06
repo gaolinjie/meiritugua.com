@@ -118,16 +118,30 @@ class VideoHandler(BaseHandler):
 
         # continue while validate succeed
 
-        channel_info = {
-            "name": form.name.data,
-            "intro": form.intro.data,
-            "nav_id": 1,
-            "plus": 0,
-            "followers": 0,
-            "posts": 0,
-            "author_id": self.current_user["uid"],
-            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
-        }
+        if (form.subnav_name.data != "all"):
+            subnav_id = self.subnav_model.get_subnav_by_subnav_name(form.subnav_name.data).id
+            channel_info = {
+                "name": form.name.data,
+                "intro": form.intro.data,
+                "nav_id": 1,
+                "subnav_id": subnav_id,
+                "plus": 0,
+                "followers": 0,
+                "posts": 0,
+                "author_id": self.current_user["uid"],
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+        else:
+            channel_info = {
+                "name": form.name.data,
+                "intro": form.intro.data,
+                "nav_id": 1,
+                "plus": 0,
+                "followers": 0,
+                "posts": 0,
+                "author_id": self.current_user["uid"],
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
 
         self.channel_model.add_new_channel(channel_info)
 
@@ -142,7 +156,10 @@ class VideoHandler(BaseHandler):
 
         self.follow_model.add_new_follow(follow_info)
 
-        self.redirect("/video")
+        if (form.subnav_name.data != "all"):
+            self.redirect("/video?tab="+form.subnav_name.data)
+        else:
+            self.redirect("/video")
 
 class MicroHandler(BaseHandler):
     def get(self, template_variables = {}):
