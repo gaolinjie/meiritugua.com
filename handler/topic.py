@@ -40,9 +40,9 @@ class IndexHandler(BaseHandler):
             else:
                 if (tab=="video"):
                     nav_id=1
-                if (tab=="movie"):
+                if (tab=="micro"):
                     nav_id=2
-                if (tab=="tv"):
+                if (tab=="movie"):
                     nav_id=3
                 if (tab=="star"):
                     nav_id=4
@@ -143,6 +143,16 @@ class VideoHandler(BaseHandler):
         self.follow_model.add_new_follow(follow_info)
 
         self.redirect("/video")
+
+class MicroHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "micro"        
+
+        self.render("micro.html", **template_variables)
 
 class MovieHandler(BaseHandler):
     def get(self, template_variables = {}):

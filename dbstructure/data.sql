@@ -3,8 +3,8 @@ INSERT INTO `video` VALUES (2, 'http://v.youku.com/v_show/id_XNTk0NDU4ODU2.html?
 INSERT INTO `video` VALUES (3, 'http://v.youku.com/v_show/id_XNTk0NDU4ODU2.html?f=19561778', '棕色的时钟 (2012)', 'http://p2.v.iask.com/336/345/108037927_1.jpg');
 
 INSERT INTO `nav` VALUES (1, 'video', '短片');
-INSERT INTO `nav` VALUES (2, 'movie', '电影');
-INSERT INTO `nav` VALUES (3, 'tv', '电视剧');
+INSERT INTO `nav` VALUES (2, 'micro', '微电影');
+INSERT INTO `nav` VALUES (3, 'movie', '电影');
 INSERT INTO `nav` VALUES (4, 'star', '明星');
 
 INSERT INTO `subnav` VALUES (1, 1, 'design', '设计');

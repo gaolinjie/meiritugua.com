@@ -142,9 +142,9 @@ $(document).on('click', '.c-icon',  function() {
 <div class="feeds">
   {% set tab_bar = [
       ('/', 'all', '所有'),
-      ('/?tab=video', 'video', '短片'),                   
-      ('/?tab=movie', 'movie', '电影'),
-      ('/?tab=tv', 'tv', '电视剧'),
+      ('/?tab=video', 'video', '短片'),
+      ('/?tab=micro', 'micro', '微电影'),           
+      ('/?tab=movie', 'movie', '电影'),     
       ('/?tab=star', 'star', '明星'),               
   ] -%}
   {% set active_tab = active_tab|default('index') -%}

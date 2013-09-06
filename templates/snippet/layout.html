@@ -49,9 +49,9 @@
                     <input type="text" class="search-query" placeholder="搜索..."></form>
                 </li>
                 {% set web_page = [
-                  ('/video', 'video', '短片'),                   
+                  ('/video', 'video', '短片'),
+                  ('/micro', 'micro', '微电影'),                   
                   ('/movie', 'movie', '电影'),
-                  ('/tv', 'tv', '电视剧'),
                   ('/star', 'star', '明星'),               
                 ] -%}
                 {% set active_page = active_page|default('index') -%}
