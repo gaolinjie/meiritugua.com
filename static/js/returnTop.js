@@ -8,7 +8,7 @@
 			var backToTopEle = this.click( function() {
 				$("html, body").animate({
 					scrollTop: 0
-				}, 120);
+				}, 500);
 			});
 			var timeDelay = null;
 			var backToTopFun = function() {	
