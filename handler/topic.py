@@ -25,6 +25,8 @@ from lib.xss import XssCleaner
 from lib.utils import find_mentions
 from lib.reddit import hot
 
+from lib.utils import find_video_id_from_url
+
 class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "index")
@@ -66,13 +68,29 @@ class IndexHandler(BaseHandler):
 
         # continue while validate succeed
 
+        video_link = form.link.data
+        video_id = find_video_id_from_url(video_link)
+        json_link = "http://v.youku.com/player/getPlayList/VideoIDS/"+video_id+"/timezone/+08/version/5/source/out?password=&ran=2513&n=3"
+        video_json = json.load(urllib2.urlopen(json_link))
+        video_logo = video_json[u'data'][0][u'logo']
+        video_title = video_json[u'data'][0][u'title']
+        print video_title
+
+        video_info = {
+            "link": video_link,
+            "title": video_title,
+            "thumb": video_logo,
+        }
+        vid = self.video_model.add_new_video(video_info)
+        print vid
+
         channel_name = form.channel.data
         channel = self.channel_model.get_channel_by_name(channel_name = channel_name)
         
         post_info = {
             "author_id": self.current_user["uid"],
             "channel_id": channel["id"],
-            "video_id": 1,
+            "video_id": vid,
             "intro": form.intro.data,
             "plus": 0,
             "share": 0,

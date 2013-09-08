@@ -155,3 +155,6 @@ class Filters():
         if not content:
             return ""
         return markdown(content, extensions = ['codehilite', 'fenced_code', 'mathjax'], safe_mode = 'escape')
+
+
+    
