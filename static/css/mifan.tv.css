@@ -1941,3 +1941,7 @@ border-radius: 50%;
 #returnTop:hover {
   background-position: -61px 0px;
 }
+
+p.intro {
+  color: #404040;
+}
