@@ -8,9 +8,10 @@
 <script type="text/javascript">
       $(document).ready(function(){
         $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
-          var video_title = $(this).parent().parent().find(".thumb").find("input[name='video_title']").val();
-          var video_flash = $(this).parent().parent().find(".thumb").find("input[name='video_flash']").val();
-          $(this).parent().html('<p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>'+video_title+'</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="440" height="340" src="'+video_flash+'" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></embed>');
+          var video_title = $(this).parent().parent().parent().find(".content").find("input[name='video_title']").val();
+          var video_flash = $(this).parent().parent().parent().find(".content").find("input[name='video_flash']").val();
+          var video_link = $(this).parent().parent().parent().find(".content").find("input[name='video_link']").val();
+          $(this).parent().html('<p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>'+video_title+'</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="440" height="340" src="'+video_flash+'" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></embed>');
         });
       });
     </script>
@@ -18,7 +19,9 @@
 <script type="text/javascript">
       $(document).ready(function(){
         $(document).on('click', '.retract',  function() {
-          $(this).parent().parent().html("<img src=\"http://p3.v.iask.com/849/338/108335999_1.jpg\"><i class=\"play\"></i><div class=\"title\"><a href=\"javascript:void(0);\" class=\"a-n ot-anchor YF\">吉米鸡毛秀 约翰尼德普做客热吻连连 @铁手Desperado译制</a></div>");
+          var video_title = $(this).parent().parent().parent().parent().find(".content").find("input[name='video_title']").val();
+          var video_thumb = $(this).parent().parent().parent().parent().find(".content").find("input[name='video_thumb']").val();
+          $(this).parent().parent().html('<img src="'+video_thumb+'"><i class="play"></i><div class="title"><a href="javascript:void(0);" class="a-n ot-anchor YF">'+video_title+'</a></div>');
         });
       });
     </script>
@@ -226,9 +229,11 @@ $(document).on('click', '.c-icon',  function() {
     </div>
     <p class="intro">{{ post.intro }}</p>
     <div class="content">
+      <input type="hidden" name="video_title" value="{{ post.video_title }}">
+      <input type="hidden" name="video_flash" value="{{ post.video_flash }}">
+      <input type="hidden" name="video_thumb" value="{{ post.video_thumb }}">
+      <input type="hidden" name="video_link" value="{{ post.video_link }}">
       <div class="thumb">
-        <input type="hidden" name="video_title" value="{{ post.video_title }}">
-        <input type="hidden" name="video_flash" value="{{ post.video_flash }}">
         <img src="{{ post.video_thumb }}"> <i class="play"></i>
         <div class="title">
           <a href="javascript:void(0);" class="a-n ot-anchor YF">{{ post.video_title }}</a>
