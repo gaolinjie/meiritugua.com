@@ -89,6 +89,8 @@ CREATE TABLE `comment` (
 DROP TABLE IF EXISTS `video`;
 CREATE TABLE `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `source` text,
+  `flash` text,
   `link` text,
   `title` text,
   `thumb` text,

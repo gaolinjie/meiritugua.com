@@ -74,9 +74,12 @@ class IndexHandler(BaseHandler):
         video_json = json.load(urllib2.urlopen(json_link))
         video_logo = video_json[u'data'][0][u'logo']
         video_title = video_json[u'data'][0][u'title']
+        video_flash = "http://player.youku.com/player.php/sid/"+video_id+"/v.swf"
         print video_title
 
         video_info = {
+            "source": "youku",
+            "flash": video_flash,
             "link": video_link,
             "title": video_title,
             "thumb": video_logo,

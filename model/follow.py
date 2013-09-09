@@ -44,6 +44,8 @@ class FollowModel(Query):
                 channel.name as channel_name, \
                 nav.name as nav_name, \
                 nav.title as nav_title, \
+                video.source as video_source, \
+                video.flash as video_flash, \
                 video.title as video_title, \
                 video.thumb as video_thumb, \
                 video.link as video_link, \
