@@ -170,7 +170,7 @@ p {
   position: relative;
 }
 
-.thumb img {
+.thumb-img {
   width: 130px;
   height: 78px;
 }
@@ -1944,4 +1944,11 @@ border-radius: 50%;
 
 p.intro {
   color: #404040;
+}
+
+.rating {
+  width: 280px;
+  left: 170px;
+  top: 70px;
+  position: absolute;
 }

@@ -4,10 +4,17 @@
 <script src="/static/js/json_parse.js"></script>
 <script src="/static/js/json2.js"></script>
 
+<script src="/static/js/raty/jquery.raty.min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+      $.fn.raty.defaults.path = '/static/js/raty/img';
+      $('.rating').raty({ half: true });})
+</script>
 
 <script type="text/javascript">
       $(document).ready(function(){
-        $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
+        $(document).on('click', '.thumb-img, .thumb i, .thumb .title',  function() {
           var video_title = $(this).parent().parent().parent().find(".content").find("input[name='video_title']").val();
           var video_flash = $(this).parent().parent().parent().find(".content").find("input[name='video_flash']").val();
           var video_link = $(this).parent().parent().parent().find(".content").find("input[name='video_link']").val();
@@ -21,7 +28,7 @@
         $(document).on('click', '.retract',  function() {
           var video_title = $(this).parent().parent().parent().parent().find(".content").find("input[name='video_title']").val();
           var video_thumb = $(this).parent().parent().parent().parent().find(".content").find("input[name='video_thumb']").val();
-          $(this).parent().parent().html('<img src="'+video_thumb+'"><i class="play"></i><div class="title"><a href="javascript:void(0);" class="a-n ot-anchor YF">'+video_title+'</a></div>');
+          $(this).parent().parent().html('<img class="thumb-img" src="'+video_thumb+'"><i class="play"></i><div class="title"><a href="javascript:void(0);" class="a-n ot-anchor YF">'+video_title+'</a></div>');
         });
       });
     </script>
@@ -234,10 +241,11 @@ $(document).on('click', '.c-icon',  function() {
       <input type="hidden" name="video_thumb" value="{{ post.video_thumb }}">
       <input type="hidden" name="video_link" value="{{ post.video_link }}">
       <div class="thumb">
-        <img src="{{ post.video_thumb }}"> <i class="play"></i>
+        <img class="thumb-img" src="{{ post.video_thumb }}"> <i class="play"></i>
         <div class="title">
           <a href="javascript:void(0);" class="a-n ot-anchor YF">{{ post.video_title }}</a>
         </div>
+        <div class="rating" id="rating-{{ post.id }}"></div>
       </div>
       <div class="bottom">
         <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
