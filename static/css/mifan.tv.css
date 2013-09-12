@@ -1953,6 +1953,14 @@ p.intro {
   position: absolute;
 }
 
+.score {
+left: 277px;
+  top: 51px;
+  position: absolute;
+  color: #f39c12;
+  font-size: 15px;
+}
+
 .a-n {
 outline: none;
 -webkit-transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
