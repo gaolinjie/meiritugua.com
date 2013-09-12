@@ -1949,6 +1949,34 @@ p.intro {
 .rating {
   width: 280px;
   left: 170px;
-  top: 70px;
+  top: 50px;
   position: absolute;
+}
+
+.a-n {
+outline: none;
+-webkit-transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
+transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
+display: block;
+float: left;
+max-width: 280px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.retract, .W_vline, .turn_right {
+display: block;
+float: left;
+}
+.show_big {
+outline: none;
+-webkit-transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
+transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
+display: block;
+float: left;
+max-width: 280px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
 }
