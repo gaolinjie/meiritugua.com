@@ -392,6 +392,15 @@ class CommentHandler(BaseHandler):
             post = self.post_model.get_post_by_post_id(post_id)
             self.post_model.update_post_by_post_id(post_id, {"last_comment": comment_id, 
                                                             "comment_count": post.comment_count+1,})
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "successed",
+            }))
+        else:
+            self.write(lib.jsonp.print_JSON({
+                    "success": 0,
+                    "message": "failed",
+            }))
 
 class RateHandler(BaseHandler):
 
@@ -418,12 +427,12 @@ class RateHandler(BaseHandler):
             self.post_model.update_post_by_post_id(post_id, post_info)
             self.write(lib.jsonp.print_JSON({
                     "success": 1,
-                    "message": "success_rated",
+                    "message": "successed",
                 }))
         else:
             self.write(lib.jsonp.print_JSON({
                     "success": 0,
-                    "message": "fail_rated",
+                    "message": "failed",
                 }))
 
         
