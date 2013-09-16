@@ -393,6 +393,27 @@ class CommentHandler(BaseHandler):
             self.post_model.update_post_by_post_id(post_id, {"last_comment": comment_id, 
                                                             "comment_count": post.comment_count+1,})
 
-        
+class RateHandler(BaseHandler):
+    @tornado.web.authenticated
+    def post(self, post_id, template_variables = {}):
+        print post_id
+        user_info = self.current_user
+
+        data = json.loads(self.request.body)
+        score = data["score"]*2
+        print score
+
+        if(user_info):
+            post = self.post_model.get_post_by_post_id(post_id)
+            total_score = post.score * post.votes + score
+            print total_score
+            print post.votes+1
+            print total_score / (post.votes+1)
+            post_info = {
+                "score": total_score / (post.votes+1),
+                "votes": post.votes+1,
+            }
+
+            self.post_model.update_post_by_post_id(post_id, post_info)
 
         

@@ -60,7 +60,7 @@ CREATE TABLE `post` (
   `intro` text,  
   `plus` int(11) DEFAULT NULL,
   `share` int(11) DEFAULT NULL,
-  `score` int(11) DEFAULT 0,
+  `score` float(2,1) DEFAULT 0,
   `votes` int(11) DEFAULT 0,  
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
