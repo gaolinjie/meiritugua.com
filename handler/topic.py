@@ -394,6 +394,7 @@ class CommentHandler(BaseHandler):
                                                             "comment_count": post.comment_count+1,})
 
 class RateHandler(BaseHandler):
+
     @tornado.web.authenticated
     def post(self, post_id, template_variables = {}):
         print post_id
@@ -415,5 +416,14 @@ class RateHandler(BaseHandler):
             }
 
             self.post_model.update_post_by_post_id(post_id, post_info)
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_rated",
+                }))
+        else:
+            self.write(lib.jsonp.print_JSON({
+                    "success": 0,
+                    "message": "fail_rated",
+                }))
 
         
