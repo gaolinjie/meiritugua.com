@@ -1946,10 +1946,10 @@ p.intro {
   color: #404040;
 }
 
-.rating {
+.rateit {
   width: 280px;
   left: 170px;
-  top: 50px;
+  top: 51px;
   position: absolute;
 }
 
