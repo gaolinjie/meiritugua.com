@@ -1961,6 +1961,15 @@ left: 277px;
   font-size: 15px;
 }
 
+.votes {
+  left: 172px;
+  top: 80px;
+  position: absolute;
+  color: #999;
+display: inline-block;
+font-size: 12px;
+}
+
 .a-n {
 outline: none;
 -webkit-transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;

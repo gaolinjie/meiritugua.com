@@ -444,7 +444,7 @@
     click         : undefined,
     half          : false,
     halfShow      : true,
-    hints         : ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],
+    hints         : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
     iconRange     : undefined,
     mouseout      : undefined,
     mouseover     : undefined,

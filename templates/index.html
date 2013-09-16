@@ -9,7 +9,17 @@
 <script type="text/javascript">
     $(function() {
       $.fn.raty.defaults.path = '/static/js/raty/img';
-      $('.rating').raty({ half: true });})
+      $('.rating').raty({ 
+        half: true,
+        score: function() {
+          return $(this).parent().find('.score').text();
+        },
+        click: function(score, evt) {
+          $(this).parent().find('.score').text(score*2);
+        },
+        hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
+      });
+    })
 </script>
 
 <script type="text/javascript">
@@ -246,7 +256,8 @@ $(document).on('click', '.c-icon',  function() {
           <a href="javascript:void(0);" class="a-n ot-anchor YF" title="{{ post.video_title }}">{{ post.video_title }}</a>
         </div>
         <div class="rating" id="rating-{{ post.id }}"></div>
-        <div class="score">5.5</div>
+        <div class="score">{{ post.score }}</div>
+        <div class="votes">{{ post.votes }}人评价</div>
       </div>
       <div class="bottom">
         <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
