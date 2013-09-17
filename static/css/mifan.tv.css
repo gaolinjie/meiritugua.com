@@ -331,12 +331,11 @@ p {
 }
 
 .share-icon {
-  background: no-repeat url(/static/images/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) -7px -194px;
+  background: no-repeat url(/static/images/www-hitchhiker-vfl6--saa.webp) 0 -773px;
   display: inline-block;
-  height: 16px;
-  margin-bottom: 3px;
-  width: 16px;
-  vertical-align: middle;
+height: 13px;
+margin-bottom: -2px;
+width: 13px;
 }
 
 .bottom>.comment {
@@ -363,7 +362,7 @@ p {
   color: #999;
   cursor: text;
   font-size: 12px;
-  height: 31px;
+  height: 30px;
   padding: 6px 8px;
 }
 
