@@ -302,12 +302,13 @@ p {
 }
 
 .plus-icon {
-  background: no-repeat url(/static/images/stream_showroom-5e642ff96b1bc52e1e70300ffab85ded.png) 0 -948px;
+  background: url(/static/images/heart.png) left bottom;
   display: inline-block;
-  height: 8px;
-  margin-bottom: 1px;
+  height: 13px;
+  margin-bottom: -2px;
   margin-right: 2px;
-  width: 8px;
+  width: 13px;
+  background-size: 13px 13px;
 }
 
 .share-btn {
@@ -331,11 +332,12 @@ p {
 }
 
 .share-icon {
-  background: no-repeat url(/static/images/www-hitchhiker-vfl6--saa.webp) 0 -773px;
+  background: no-repeat url(/static/images/clock.png);
   display: inline-block;
 height: 13px;
 margin-bottom: -2px;
 width: 13px;
+background-size: 13px 13px;
 }
 
 .bottom>.comment {
@@ -344,6 +346,7 @@ width: 13px;
 .comment {
   margin: 0 20px 0 20px;
   padding: 0 0 20px 0;
+
 }
 
 .bottom>.comment>.comment-box {
@@ -358,12 +361,13 @@ width: 13px;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #d9d9d9;
   color: #999;
   cursor: text;
   font-size: 12px;
   height: 30px;
   padding: 6px 8px;
+  border-radius: 3px;
 }
 
 .plus-btn:hover {
