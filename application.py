@@ -72,6 +72,7 @@ class Application(tornado.web.Application):
             (r"/movie", handler.topic.MovieHandler),
             (r"/tv", handler.topic.TVHandler),
             (r"/star", handler.topic.StarHandler),
+            (r"/favorite/(\d+)", handler.topic.FavoriteHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -99,6 +100,7 @@ class Application(tornado.web.Application):
         self.comment_model = self.loader.use("comment.model")
         self.subnav_model = self.loader.use("subnav.model")
         self.video_model = self.loader.use("video.model")
+        self.favorite_model = self.loader.use("favorite.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)

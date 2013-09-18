@@ -36,6 +36,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.follow_model
 
     @property
+    def favorite_model(self):
+        return self.application.favorite_model
+
+    @property
     def channel_model(self):
         return self.application.channel_model
 

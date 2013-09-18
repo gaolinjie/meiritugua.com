@@ -435,4 +435,27 @@ class RateHandler(BaseHandler):
                     "message": "failed",
                 }))
 
-        
+class FavoriteHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        print "fafafa"
+
+        if(user_info):
+            favorite = self.favorite_model.get_favorite_by_post_id_and_user_id(user_info["uid"], post_id)
+            if(favorite):
+                self.favorite_model.delete_favorite_info_by_user_id_and_post_id(user_info["uid"], post_id)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "revert_favorited",
+                }))
+            else:
+                favorite_info = {
+                    "user_id": user_info["uid"],
+                    "post_id": post_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.favorite_model.add_new_favorite(favorite_info)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_favorited",
+                }))
