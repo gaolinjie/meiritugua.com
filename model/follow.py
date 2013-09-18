@@ -35,7 +35,8 @@ class FollowModel(Query):
                 LEFT JOIN video ON post.video_id = video.id \
                 LEFT JOIN nav ON channel.nav_id = nav.id \
                 LEFT JOIN comment ON post.last_comment = comment.id \
-                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid"
+                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
+                LEFT JOIN favorite ON '%s' = favorite.user_id AND post.id = favorite.post_id" % user_id
         order = "post.created DESC, post.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
@@ -52,7 +53,8 @@ class FollowModel(Query):
                 comment.content as comment_content, \
                 comment.created as comment_created, \
                 comment_user.username as comment_user_name, \
-                comment_user.avatar as comment_user_avatar"
+                comment_user.avatar as comment_user_avatar, \
+                favorite.id as favorite_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_follow_posts_by_nav_id(self, user_id, nav_id, num = 16, current_page = 1):

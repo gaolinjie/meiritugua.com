@@ -304,6 +304,10 @@ color: #fff;
 text-shadow: none;
 }
 
+.plus-num {
+  font-family: 'Roboto', sans-serif;
+}
+
 .btn-wrap {
   color: #262626;
   display: inline-block;

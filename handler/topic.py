@@ -95,8 +95,6 @@ class IndexHandler(BaseHandler):
             "channel_id": channel["id"],
             "video_id": vid,
             "intro": form.intro.data,
-            "plus": 0,
-            "share": 0,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
@@ -438,12 +436,13 @@ class RateHandler(BaseHandler):
 class FavoriteHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user
-        print "fafafa"
 
         if(user_info):
             favorite = self.favorite_model.get_favorite_by_post_id_and_user_id(user_info["uid"], post_id)
+            post = self.post_model.get_post_by_post_id(post_id)
             if(favorite):
                 self.favorite_model.delete_favorite_info_by_user_id_and_post_id(user_info["uid"], post_id)
+                self.post_model.update_post_by_post_id(post_id, {"favorite": post.favorite-1})
                 self.write(lib.jsonp.print_JSON({
                     "success": 1,
                     "message": "revert_favorited",
@@ -455,6 +454,7 @@ class FavoriteHandler(BaseHandler):
                     "created": time.strftime('%Y-%m-%d %H:%M:%S'),
                 }
                 self.favorite_model.add_new_favorite(favorite_info)
+                self.post_model.update_post_by_post_id(post_id, {"favorite": post.favorite+1})
                 self.write(lib.jsonp.print_JSON({
                     "success": 1,
                     "message": "success_favorited",
