@@ -459,3 +459,27 @@ class FavoriteHandler(BaseHandler):
                     "success": 1,
                     "message": "success_favorited",
                 }))
+
+class LaterHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            later = self.later_model.get_later_by_post_id_and_user_id(user_info["uid"], post_id)
+            if(later):
+                self.later_model.delete_later_info_by_user_id_and_post_id(user_info["uid"], post_id)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "revert_latered",
+                }))
+            else:
+                later_info = {
+                    "user_id": user_info["uid"],
+                    "post_id": post_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.later_model.add_new_later(later_info)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_latered",
+                }))

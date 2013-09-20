@@ -194,6 +194,28 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.share-btn').click(function() {
+                var post_id = $(this).parent().find('input').val();
+                var share_btn = $(this);
+                if($(this).hasClass('latered')) {
+                        $.getJSON('/later/'+post_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_latered") {
+                                share_btn.removeClass('latered');
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/later/'+post_id, function(data) {
+                        if(data.success!=0&&data.message=="success_latered") {
+                            share_btn.addClass('latered');
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -301,7 +323,7 @@ $(document).on('click', '.c-icon',  function() {
             <span class="plus-num">{{ post.favorite }}</span>
           </span>
         </div>
-        <div class="share-btn">
+        <div class="share-btn {% if post.later_id %}latered{% endif %}">
           <span class="btn-wrap">
             <span class="share-icon"></span>
           </span>
