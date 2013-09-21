@@ -293,16 +293,7 @@ p {
   -webkit-appearance: none;
 }
 
-.plus-btn.favorited{
-  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.05);
-box-shadow: 0 1px 0 rgba(0,0,0,.05);
-background-color: #e74c3c;
-background-image: -webkit-linear-gradient(top,transparent,transparent);
-background-image: linear-gradient(top,transparent,transparent);
-border: 1px solid transparent;
-color: #fff;
-text-shadow: none;
-}
+
 
 .plus-num {
   font-family: 'Roboto', sans-serif;
@@ -320,15 +311,25 @@ opacity: 1;
 }
 
 .plus-btn.favorited .plus-icon {
-opacity: 0.7;
+opacity: 1;
 }
 
 .plus-btn.favorited .plus-num {
-color: #fff;
+color: #e74c3c;
 opacity: 1;
 }
 .plus-icon {
   background: url(/static/images/heart.png) left bottom;
+  display: inline-block;
+  height: 13px;
+  margin-bottom: -2px;
+  margin-right: 2px;
+  width: 13px;
+  background-size: 13px 13px;
+}
+
+.plus-btn.favorited .plus-icon{
+  background: url(/static/images/heart-color.png) left bottom;
   display: inline-block;
   height: 13px;
   margin-bottom: -2px;
@@ -357,16 +358,7 @@ opacity: 1;
   width: auto;
 }
 
-.share-btn.latered{
-  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.05);
-box-shadow: 0 1px 0 rgba(0,0,0,.05);
-background-color: #e74c3c;
-background-image: -webkit-linear-gradient(top,transparent,transparent);
-background-image: linear-gradient(top,transparent,transparent);
-border: 1px solid transparent;
-color: #fff;
-text-shadow: none;
-}
+
 
 .share-icon {
   background: no-repeat url(/static/images/clock.png);
@@ -375,6 +367,16 @@ height: 13px;
 margin-bottom: -2px;
 width: 13px;
 background-size: 13px 13px;
+}
+
+.share-btn.latered .share-icon{
+background: no-repeat url(/static/images/clock-color.png);
+background-size: 13px 13px;
+opacity: 1;
+}
+
+.share-btn.latered .btn-wrap {
+opacity: 1;
 }
 
 .bottom>.comment {
