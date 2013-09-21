@@ -35,7 +35,8 @@ class LaterModel(Query):
                 LEFT JOIN video ON post.video_id = video.id \
                 LEFT JOIN nav ON channel.nav_id = nav.id \
                 LEFT JOIN comment ON post.last_comment = comment.id \
-                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid"
+                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
+                LEFT JOIN favorite ON '%s' = favorite.user_id AND post.id = favorite.post_id" % user_id
         order = "post.created DESC, post.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
@@ -52,5 +53,36 @@ class LaterModel(Query):
                 comment.content as comment_content, \
                 comment.created as comment_created, \
                 comment_user.username as comment_user_name, \
-                comment_user.avatar as comment_user_avatar"
+                comment_user.avatar as comment_user_avatar, \
+                favorite.id as favorite_id"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_user_all_later_posts_by_nav_id(self, user_id, nav_id, num = 16, current_page = 1):
+        where = "later.user_id = %s AND '%s' = later.nav_id" % (user_id, nav_id)
+        join = "LEFT JOIN post ON later.post_id = post.id\
+                LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
+                LEFT JOIN channel ON post.channel_id = channel.id \
+                LEFT JOIN video ON post.video_id = video.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id \
+                LEFT JOIN comment ON post.last_comment = comment.id \
+                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
+                LEFT JOIN favorite ON '%s' = favorite.user_id AND post.id = favorite.post_id" % user_id
+        order = "post.created DESC, post.id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar, \
+                channel.id as channel_id, \
+                channel.name as channel_name, \
+                nav.name as nav_name, \
+                nav.title as nav_title, \
+                video.source as video_source, \
+                video.flash as video_flash, \
+                video.title as video_title, \
+                video.thumb as video_thumb, \
+                video.link as video_link, \
+                comment.content as comment_content, \
+                comment.created as comment_created, \
+                comment_user.username as comment_user_name, \
+                comment_user.avatar as comment_user_avatar, \
+                favorite.id as favorite_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)

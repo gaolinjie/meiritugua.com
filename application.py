@@ -53,6 +53,8 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", handler.topic.IndexHandler),
             (r"/video", handler.topic.VideoHandler),
+            (r"/favorite", handler.topic.FavoriteHandler),
+            (r"/later", handler.topic.LaterHandler),
             (r"/c/(\d+)", handler.topic.ChannelHandler),
             (r"/u/(.*)", handler.topic.UserHandler),
             (r"/login", handler.user.LoginHandler),
@@ -72,8 +74,8 @@ class Application(tornado.web.Application):
             (r"/movie", handler.topic.MovieHandler),
             (r"/tv", handler.topic.TVHandler),
             (r"/star", handler.topic.StarHandler),
-            (r"/favorite/(\d+)", handler.topic.FavoriteHandler),
-            (r"/later/(\d+)", handler.topic.LaterHandler),
+            (r"/favorite/(\d+)", handler.topic.FavoriteManagerHandler),
+            (r"/later/(\d+)", handler.topic.LaterManagerHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),

@@ -60,14 +60,14 @@ class FollowModel(Query):
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_follow_posts_by_nav_id(self, user_id, nav_id, num = 16, current_page = 1):
-        where = "follow.user_id = %s AND follow.nav_id = %s" % (user_id, nav_id)
-        join = "RIGHT JOIN post ON follow.channel_id = post.channel_id \
+        where = "follow.user_id = %s" % user_id
+        join = "RIGHT JOIN post ON follow.channel_id = post.channel_id AND '%s' = post.nav_id\
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
                 LEFT JOIN channel ON post.channel_id = channel.id \
                 LEFT JOIN video ON post.video_id = video.id \
                 LEFT JOIN nav ON channel.nav_id = nav.id \
                 LEFT JOIN comment ON post.last_comment = comment.id \
-                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid"
+                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid" % nav_id
         order = "post.created DESC, post.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \

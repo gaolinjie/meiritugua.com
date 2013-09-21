@@ -93,6 +93,7 @@ class IndexHandler(BaseHandler):
         post_info = {
             "author_id": self.current_user["uid"],
             "channel_id": channel["id"],
+            "nav_id": channel["nav_id"],
             "video_id": vid,
             "intro": form.intro.data,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -102,6 +103,64 @@ class IndexHandler(BaseHandler):
 
 
         self.redirect("/")
+
+class FavoriteHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "index")
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        if(user_info):
+            template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
+            
+            if(tab=="index"):
+                template_variables["active_tab"] = "all"
+                template_variables["posts"] = self.favorite_model.get_user_all_favorites(user_id = user_info["uid"], current_page = page)           
+            else:
+                print tab
+                if (tab=="video"):
+                    nav_id=1
+                if (tab=="micro"):
+                    nav_id=2
+                if (tab=="movie"):
+                    nav_id=3
+                if (tab=="star"):
+                    nav_id=4
+                template_variables["active_tab"] = tab
+                template_variables["posts"] = self.favorite_model.get_user_all_favorite_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+        else:
+            self.redirect("/login")
+
+        self.render("favorite.html", **template_variables)
+
+class LaterHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "index")
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        if(user_info):
+            template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
+            
+            if(tab=="index"):
+                template_variables["active_tab"] = "all"
+                template_variables["posts"] = self.later_model.get_user_all_laters(user_id = user_info["uid"], current_page = page)           
+            else:
+                print tab
+                if (tab=="video"):
+                    nav_id=1
+                if (tab=="micro"):
+                    nav_id=2
+                if (tab=="movie"):
+                    nav_id=3
+                if (tab=="star"):
+                    nav_id=4
+                template_variables["active_tab"] = tab
+                template_variables["posts"] = self.later_model.get_user_all_later_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+        else:
+            self.redirect("/login")
+
+        self.render("later.html", **template_variables)
 
 class VideoHandler(BaseHandler):
     def get(self, template_variables = {}):
@@ -313,7 +372,6 @@ class FollowHandler(BaseHandler):
                 follow_info = {
                     "user_id": user_info["uid"],
                     "channel_id": channel_id,
-                    "nav_id": channel.nav_id,
                     "created": time.strftime('%Y-%m-%d %H:%M:%S'),
                 }
                 self.follow_model.add_new_follow(follow_info)
@@ -433,7 +491,7 @@ class RateHandler(BaseHandler):
                     "message": "failed",
                 }))
 
-class FavoriteHandler(BaseHandler):
+class FavoriteManagerHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user
 
@@ -451,6 +509,7 @@ class FavoriteHandler(BaseHandler):
                 favorite_info = {
                     "user_id": user_info["uid"],
                     "post_id": post_id,
+                    "nav_id": post.nav_id,
                     "created": time.strftime('%Y-%m-%d %H:%M:%S'),
                 }
                 self.favorite_model.add_new_favorite(favorite_info)
@@ -460,12 +519,13 @@ class FavoriteHandler(BaseHandler):
                     "message": "success_favorited",
                 }))
 
-class LaterHandler(BaseHandler):
+class LaterManagerHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user
 
         if(user_info):
             later = self.later_model.get_later_by_post_id_and_user_id(user_info["uid"], post_id)
+            post = self.post_model.get_post_by_post_id(post_id)
             if(later):
                 self.later_model.delete_later_info_by_user_id_and_post_id(user_info["uid"], post_id)
                 self.write(lib.jsonp.print_JSON({
@@ -476,6 +536,7 @@ class LaterHandler(BaseHandler):
                 later_info = {
                     "user_id": user_info["uid"],
                     "post_id": post_id,
+                    "nav_id": post.nav_id,
                     "created": time.strftime('%Y-%m-%d %H:%M:%S'),
                 }
                 self.later_model.add_new_later(later_info)

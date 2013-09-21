@@ -54,6 +54,7 @@ CREATE TABLE `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
+  `nav_id` int(11) DEFAULT NULL,
   `video_id` int(11) DEFAULT NULL,
   `last_comment` int(11) DEFAULT NULL,
   `comment_count` int(11) DEFAULT 0,
@@ -126,7 +127,6 @@ CREATE TABLE `follow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
-  `nav_id` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -175,6 +175,7 @@ CREATE TABLE `favorite` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
+  `nav_id` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -187,6 +188,7 @@ CREATE TABLE `later` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
+  `nav_id` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
