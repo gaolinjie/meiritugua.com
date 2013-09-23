@@ -224,8 +224,7 @@ $(document).on('click', '.c-icon',  function() {
     $(".feeds").infinitescroll({
           navSelector: "#navigation",      //页面分页元素--本页的导航，意思就是一个可以触发ajax函数的模块
           nextSelector: "#navigation a",  //下一页的导航
-          itemSelector: ".card " ,             //此处我用了类选择器，选择的是你要加载的那一个块（每次载入的数据放的地方）      
-          animate: true,                          //加载时候时候需要动画，默认是false
+          itemSelector: ".card " ,             //此处我用了类选择器，选择的是你要加载的那一个块（每次载入的数据放的地方）                              //加载时候时候需要动画，默认是false
           maxPage: 6,                            //最大的页数，也就是滚动多少次停。这个页码必须得要你从数据库里面拿       
       }, function(newElems) {
                 $.fn.raty.defaults.path = '/static/js/raty/img';
