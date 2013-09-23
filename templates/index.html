@@ -1,6 +1,8 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
+
+
 <script src="/static/js/json_parse.js"></script>
 <script src="/static/js/json2.js"></script>
 
@@ -172,7 +174,7 @@ $(document).on('click', '.c-icon',  function() {
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('.plus-btn').click(function() {
+            $(document).on('click', '.plus-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
                 var plus_btn = $(this);
                 var plus_num = $(this).find('.plus-num');
@@ -197,7 +199,7 @@ $(document).on('click', '.c-icon',  function() {
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('.share-btn').click(function() {
+            $(document).on('click', '.share-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
                 var share_btn = $(this);
                 if($(this).hasClass('latered')) {
@@ -215,6 +217,44 @@ $(document).on('click', '.c-icon',  function() {
                 }
             });        
         });
+    </script>
+    <script src="/static/js/jquery.infinitescroll.js"></script>
+ <script>
+ $(document).ready(function (){
+    $(".feeds").infinitescroll({
+          navSelector: "#navigation",      //页面分页元素--本页的导航，意思就是一个可以触发ajax函数的模块
+          nextSelector: "#navigation a",  //下一页的导航
+          itemSelector: ".card " ,             //此处我用了类选择器，选择的是你要加载的那一个块（每次载入的数据放的地方）      
+          animate: true,                          //加载时候时候需要动画，默认是false
+          maxPage: 6,                            //最大的页数，也就是滚动多少次停。这个页码必须得要你从数据库里面拿       
+      }, function(newElems) {
+                $.fn.raty.defaults.path = '/static/js/raty/img';
+      $('.rating').raty({ 
+        half: true,
+        score: function() {
+          return $(this).parent().find('.score').text()/2;
+        },
+        click: function(score, evt) {
+          $(this).parent().find('.score').text(score*2);
+          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/rate/"+post_id,
+              data: JSON.stringify({score: score}), 
+              success: function (msg) {
+                //alert("success")
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+        },
+        hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
+      });
+            });
+ }); 
     </script>
 {% endblock %}
 
@@ -379,7 +419,9 @@ $(document).on('click', '.c-icon',  function() {
 
   </div>
   {% endfor %}
-  <div class="pagination">{{ posts.page|pagination(request.uri) }}</div>
+   <div id="navigation" align="center">
+        <a href="/?page={{next_page}}"></a>        
+    </div>
 </div>
 {% endblock %}
 

@@ -58,7 +58,7 @@ class Filters():
                     {% for p in gen_page_list(page.current, page.pages, list_rows) %}
                         <li {% if page.current == p %}class="active"{% endif %}>
                             {% if not page.current == p %}
-                                <a href="{{ uri|build_uri('p', p) }}">{{ p }}</a>
+                                <a href="{{ uri|build_uri('page', p) }}">{{ p }}</a>
                             {% else %}
                                 <a href="javascript:;">{{ p }}</a>
                             {% endif %}

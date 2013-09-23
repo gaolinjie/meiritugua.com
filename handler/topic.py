@@ -31,14 +31,16 @@ class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "index")
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
+        template_variables["next_page"] = page+1
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
             if(tab=="index"):
                 template_variables["active_tab"] = "all"
-                template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)           
+                template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)
+                template_variables["max_page"] = page+1
             else:
                 if (tab=="video"):
                     nav_id=1
