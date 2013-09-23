@@ -225,7 +225,7 @@ $(document).on('click', '.c-icon',  function() {
           navSelector: "#navigation",
           nextSelector: "#navigation a",
           itemSelector: ".card",
-          maxPage: 3,   
+          maxPage: {{posts.page.pages}},   
       }, function(newElems) {
                 $.fn.raty.defaults.path = '/static/js/raty/img';
       $('.rating').raty({ 
@@ -419,7 +419,7 @@ $(document).on('click', '.c-icon',  function() {
   </div>
   {% endfor %}
    <div id="navigation" align="center">
-        <a href="/?page={{next_page}}"></a>        
+        <a href="/?page={{posts.page.next}}"></a>        
     </div>
 </div>
 {% endblock %}

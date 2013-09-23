@@ -27,7 +27,7 @@ class FollowModel(Query):
         where = "user_id = %s" % user_id
         return self.where(where).count()
 
-    def get_user_all_follow_posts(self, user_id, num = 10, current_page = 1):
+    def get_user_all_follow_posts(self, user_id, num = 3, current_page = 1):
         where = "follow.user_id = %s" % user_id
         join = "RIGHT JOIN post ON follow.channel_id = post.channel_id \
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid \

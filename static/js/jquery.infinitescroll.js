@@ -135,7 +135,7 @@
             opts.loading.selector = opts.loading.selector || opts.contentSelector;
 
             // Define loading.msg
-            opts.loading.msg = $('<div class="loader"><h1>加载更多...</h1><span></span><span></span><span></span></div>');
+            opts.loading.msg = $('<div class="infscr-loading"><h1>加载更多...</h1><span></span><span></span><span></span></div>');
 
             // Preload loading.img
             (new Image()).src = opts.loading.img;
@@ -477,12 +477,10 @@
             }
 
             opts.loading.msg
-            .find('img')
+            .find('span')
             .hide()
             .parent()
-            .find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000, function () {
-                $(this).parent().fadeOut(opts.loading.speed);
-            });
+            .find('h1').text("没有更多了");
 
             // user provided callback when done    
             opts.errorCallback.call($(opts.contentSelector)[0],'done');

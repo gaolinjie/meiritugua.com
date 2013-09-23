@@ -2041,10 +2041,10 @@ white-space: nowrap;
 }
 
 
-.loader{
+.infscr-loading{
   margin-top: -20px;
 }
-.loader h1{
+.infscr-loading h1{
   font-family: 'Actor', sans-serif;
   color: #999;
   font-size:16px;
@@ -2053,7 +2053,7 @@ white-space: nowrap;
   position:relative;
   left: 200px;
 }
-.loader span{
+.infscr-loading span{
   width:16px;
   height:16px;
   border-radius:50%;
@@ -2067,18 +2067,18 @@ white-space: nowrap;
 }
 
 
-.loader span:nth-child(2){
+.infscr-loading span:nth-child(2){
   background:#E84C3D;
   -webkit-animation:kiri 1.2s infinite linear;
   -moz-animation:kiri 1.2s infinite linear;
   -o-animation:kiri 1.2s infinite linear;
   
 }
-.loader span:nth-child(3){
+.infscr-loading span:nth-child(3){
   background:#F1C40F;
   z-index:100;
 }
-.loader span:nth-child(4){
+.infscr-loading span:nth-child(4){
   background:#2FCC71;
   -webkit-animation:kanan 1.2s infinite linear;
   -moz-animation:kanan 1.2s infinite linear;
