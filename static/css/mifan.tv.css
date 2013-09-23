@@ -2042,15 +2042,16 @@ white-space: nowrap;
 
 
 .loader{
-  margin: -20px auto 20px auto;
+  margin-top: -20px;
 }
 .loader h1{
   font-family: 'Actor', sans-serif;
-  color: #16a085;
+  color: #999;
   font-size:16px;
   letter-spacing:1px;
   font-weight:200;
-  text-align:center;
+  position:relative;
+  left: 200px;
 }
 .loader span{
   width:16px;
@@ -2058,8 +2059,7 @@ white-space: nowrap;
   border-radius:50%;
   display:inline-block;
   position:absolute;
-  left: 510px;
-  margin-left:-10px;
+  left: 484px;
   -webkit-animation:3s infinite linear;
   -moz-animation:3s infinite linear;
   -o-animation:3s infinite linear;
