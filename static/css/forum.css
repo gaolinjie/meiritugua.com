@@ -766,3 +766,8 @@ margin: 100px 259px;
 .forum .tabbar {
 width: 648px;
 }
+
+.fr {
+  float: right;
+  display: inline;
+}

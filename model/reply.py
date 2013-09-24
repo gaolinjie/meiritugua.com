@@ -19,7 +19,6 @@ class ReplyModel(Query):
         order = "id ASC"
         field = "reply.*, \
                 user.username as author_username, \
-                user.nickname as author_nickname, \
                 user.avatar as author_avatar, \
                 vote.status as vote_status"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)

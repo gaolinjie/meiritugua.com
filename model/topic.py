@@ -84,14 +84,11 @@ class TopicModel(Query):
                 LEFT JOIN user AS last_replied_user ON topic.last_replied_by = last_replied_user.uid"
         field = "topic.*, \
                 author_user.username as author_username, \
-                author_user.nickname as author_nickname, \
                 author_user.avatar as author_avatar, \
                 author_user.uid as author_uid, \
-                author_user.reputation as author_reputation, \
                 node.name as node_name, \
                 node.slug as node_slug, \
-                last_replied_user.username as last_replied_username, \
-                last_replied_user.nickname as last_replied_nickname"
+                last_replied_user.username as last_replied_username"
         return self.where(where).join(join).field(field).find()
 
     def add_new_topic(self, topic_info):

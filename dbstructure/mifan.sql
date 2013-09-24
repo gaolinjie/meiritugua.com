@@ -299,3 +299,21 @@ CREATE TABLE `notification` (
   `occurrence_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `vote`
+-- ----------------------------
+DROP TABLE IF EXISTS `vote`;
+CREATE TABLE `vote` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` int(11) DEFAULT NULL,
+  `involved_type` int(11) DEFAULT NULL,
+  `involved_user_id` int(11) DEFAULT NULL,
+  `involved_topic_id` int(11) DEFAULT NULL,
+  `involved_reply_id` int(11) DEFAULT NULL,
+  `trigger_user_id` int(11) DEFAULT NULL,
+  `occurrence_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+SET FOREIGN_KEY_CHECKS = 1;
