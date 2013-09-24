@@ -462,26 +462,33 @@ class RateHandler(BaseHandler):
 
     @tornado.web.authenticated
     def post(self, post_id, template_variables = {}):
-        print post_id
         user_info = self.current_user
 
         data = json.loads(self.request.body)
         score = data["score"]*2
-        print score
 
         if(user_info):
+            rate = self.rate_model.get_rate_by_post_id_and_user_id(user_info["uid"], post_id)
             post = self.post_model.get_post_by_post_id(post_id)
-            total_score = post.score * post.votes + score
-            print total_score
-            print post.votes+1
-            print total_score / (post.votes+1)
-            post_info = {
-                "score": total_score / (post.votes+1),
-                "votes": post.votes+1,
-            }
-
-            self.post_model.update_post_by_post_id(post_id, post_info)
-            self.write(lib.jsonp.print_JSON({
+            if(rate):
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "rated",
+                }))
+            else:
+                total_score = post.score * post.votes + score
+                post_info = {
+                    "score": total_score / (post.votes+1),
+                    "votes": post.votes+1,
+                }
+                self.post_model.update_post_by_post_id(post_id, post_info)
+                rate_info = {
+                    "user_id": user_info["uid"],
+                    "post_id": post_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.rate_model.add_new_rate(rate_info)
+                self.write(lib.jsonp.print_JSON({
                     "success": 1,
                     "message": "successed",
                 }))

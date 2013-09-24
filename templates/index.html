@@ -17,8 +17,9 @@
           return $(this).parent().find('.score').text()/2;
         },
         click: function(score, evt) {
-          $(this).parent().find('.score').text(score*2);
           var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          var scroe_text = $(this).parent().find('.score');
+          var rating = $(this);
           $.ajax({
               type: "POST",
               contentType: "application/json; charset=utf-8",
@@ -26,7 +27,19 @@
               url: "/rate/"+post_id,
               data: JSON.stringify({score: score}), 
               success: function (msg) {
-                //alert("success")
+                if (msg.success != 0) {
+                  if (msg.message == "rated") {
+                    rating.raty({ score: parseInt(scroe_text.text())/2 });
+                    alert("对不起，你已经评过分了！");
+                    return;
+                  }
+                  scroe_text.text(score*2);
+                }
+                else {
+                  alert("评分没有成功，请重试！");
+                }
+                
+
               },
               error: function (msg) {
                 alert("error");
