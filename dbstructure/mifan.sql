@@ -204,3 +204,98 @@ CREATE TABLE `rate` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `topic`
+-- ----------------------------
+DROP TABLE IF EXISTS `topic`;
+CREATE TABLE `topic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text,
+  `content` text,
+  `status` int(11) DEFAULT NULL,
+  `hits` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
+  `node_id` int(11) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `reply_count` int(11) DEFAULT NULL,
+  `last_replied_by` text,
+  `last_replied_time` datetime DEFAULT NULL,
+  `up_vote` int(11) DEFAULT NULL,
+  `down_vote` int(11) DEFAULT NULL,
+  `last_touched` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+delimiter ;;
+CREATE TRIGGER `topic_delete_trigger` BEFORE DELETE ON `topic` FOR EACH ROW BEGIN
+        DELETE FROM reply WHERE reply.topic_id = OLD.id;
+        DELETE FROM notification WHERE notification.involved_topic_id = OLD.id;
+    END;
+ ;;
+delimiter ;
+
+-- ----------------------------
+--  Table structure for `node`
+-- ----------------------------
+DROP TABLE IF EXISTS `node`;
+CREATE TABLE `node` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `slug` text,
+  `thumb` text,
+  `introduction` text,
+  `created` text,
+  `updated` text,
+  `plane_id` int(11) DEFAULT NULL,
+  `topic_count` int(11) DEFAULT NULL,
+  `custom_style` text,
+  `limit_reputation` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `plane`
+-- ----------------------------
+DROP TABLE IF EXISTS `plane`;
+CREATE TABLE `plane` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `created` text,
+  `updated` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `reply`
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `topic_id` int(11) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `content` text,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
+  `up_vote` int(11) DEFAULT NULL,
+  `down_vote` int(11) DEFAULT NULL,
+  `last_touched` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `notification`
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `status` int(11) DEFAULT NULL,
+  `involved_type` int(11) DEFAULT NULL,
+  `involved_user_id` int(11) DEFAULT NULL,
+  `involved_topic_id` int(11) DEFAULT NULL,
+  `involved_reply_id` int(11) DEFAULT NULL,
+  `trigger_user_id` int(11) DEFAULT NULL,
+  `occurrence_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

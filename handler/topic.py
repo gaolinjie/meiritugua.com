@@ -104,6 +104,37 @@ class IndexHandler(BaseHandler):
 
         self.redirect("/")
 
+class ForumHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        if(user_info):
+            template_variables["user_info"]["counter"] = {
+                "topics": self.topic_model.get_user_all_topics_count(user_info["uid"]),
+                "replies": self.reply_model.get_user_all_replies_count(user_info["uid"]),
+                "notifications": self.notification_model.get_user_unread_notification_count(user_info["uid"]),
+                "favorites": self.favorite_model.get_user_favorite_count(user_info["uid"]),
+            }
+            template_variables["topics"] = self.topic_model.get_all_topics(current_page = page)           
+        else:
+            self.redirect("/register")
+
+        template_variables["status_counter"] = {
+            "users": self.user_model.get_all_users_count(),
+            "nodes": self.node_model.get_all_nodes_count(),
+            "topics": self.topic_model.get_all_topics_count(),
+            "replies": self.reply_model.get_all_replies_count(),
+        }
+        template_variables["node"] = self.node_model.get_node_by_node_slug("qna")    
+        template_variables["planes"] = self.plane_model.get_all_planes_with_nodes()
+        template_variables["hot_nodes"] = self.node_model.get_all_hot_nodes()
+        template_variables["hot_topics"] = self.topic_model.get_all_hot_topics()         
+        template_variables["gen_random"] = gen_random    
+        notice_text = "暂时还没有话题，发出您的讨论吧。"
+        template_variables["notice_text"] = notice_text
+        self.render("topics.html", **template_variables)
+
 class FavoriteHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "index")

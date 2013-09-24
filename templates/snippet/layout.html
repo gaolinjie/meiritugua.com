@@ -13,6 +13,7 @@
 
   <!-- Loading mifan.tv -->
   <link href="/static/css/mifan.tv.css" rel="stylesheet">
+  <link href="/static/css/forum.css" rel="stylesheet">
 
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
@@ -60,7 +61,8 @@
                   ('/video', 'video', '短片'),
                   ('/micro', 'micro', '微电影'),                   
                   ('/movie', 'movie', '电影'),
-                  ('/star', 'star', '明星'),               
+                  ('/star', 'star', '明星'),
+                  ('/forum', 'forum', '论坛'),                             
                 ] -%}
                 {% set active_page = active_page|default('index') -%}
                 {% for href, id, caption in web_page %}
