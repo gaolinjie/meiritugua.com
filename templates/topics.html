@@ -30,7 +30,7 @@
     {% for topic in topics.list %}
     <div class="topic-item">
         <a href="/u/{{ topic.author_username }}">
-            <img src="/static/avatar/m_{{ topic.author_avatar or 'default.png' }}" alt="" class="avatar" />
+            <img src="/static/avatar/user/m_{{ topic.author_avatar or 'default.png' }}" alt="" class="avatar" />
         </a>
         <div class="main">
             <h3 class="title">

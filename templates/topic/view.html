@@ -1,5 +1,9 @@
 {% extends 'snippet/layout.html' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/css/codehilite.css" />
+{% endblock %}
+
 {% block javascript %}
 <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -79,7 +83,7 @@
 <div class="topic-detail container-box">
     <div class="ui-header">
         <a href="/u/{{ topic.author_username or topic.author_uid }}">
-            <img src="/static/avatar/m_{{ topic.author_avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+            <img src="/static/avatar/user/m_{{ topic.author_avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
         </a>
         <div class="main">
             <h3 class="title">{{ topic.title }}</h3>
@@ -133,7 +137,7 @@
             {% set floor = floor + 1 %}
         <div class="reply-item">
             <a href="/u/{{ reply.author_username }}">
-                <img src="/static/avatar/m_{{ reply.author_avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                <img src="/static/avatar/user/m_{{ reply.author_avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
             </a>
             <div class="main">
                 <div class="meta">

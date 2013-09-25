@@ -79,6 +79,8 @@ class Application(tornado.web.Application):
             (r"/later/(\d+)", handler.topic.LaterManagerHandler),
             (r"/t/create/(.*)", handler.topic.CreateTopicHandler),
             (r"/t/(\d+)", handler.topic.ViewHandler),
+            (r"/node/(.*)", handler.topic.NodeTopicsHandler),
+            (r"/nodes", handler.topic.NodesHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -115,6 +117,7 @@ class Application(tornado.web.Application):
         self.node_model = self.loader.use("node.model")
         self.notification_model = self.loader.use("notification.model")
         self.vote_model = self.loader.use("vote.model")
+        self.interest_model = self.loader.use("interest.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)

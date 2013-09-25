@@ -34,14 +34,11 @@ class TopicModel(Query):
         order = "last_touched DESC, created DESC, last_replied_time DESC, id DESC"
         field = "topic.*, \
                 author_user.username as author_username, \
-                author_user.nickname as author_nickname, \
                 author_user.avatar as author_avatar, \
                 author_user.uid as author_uid, \
-                author_user.reputation as author_reputation, \
                 node.name as node_name, \
                 node.slug as node_slug, \
-                last_replied_user.username as last_replied_username, \
-                last_replied_user.nickname as last_replied_nickname"
+                last_replied_user.username as last_replied_username"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_all_topics_count(self):

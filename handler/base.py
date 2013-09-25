@@ -95,6 +95,10 @@ class BaseHandler(tornado.web.RequestHandler):
     def vote_model(self):
         return self.application.vote_model
 
+    @property
+    def interest_model(self):
+        return self.application.interest_model
+
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
         self.write(html)

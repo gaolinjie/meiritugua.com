@@ -748,3 +748,35 @@ class ViewHandler(BaseHandler):
 
         # self.get(form.tid.data)
         self.redirect("/t/%s#reply%s" % (form.tid.data, topic_info["reply_count"] + 1))
+
+class NodeTopicsHandler(BaseHandler):
+    def get(self, node_slug, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        current_node = self.node_model.get_node_by_node_slug(node_slug);
+        follow_text = "+关注"
+        if(user_info):
+            interest = self.interest_model.get_interest_info_by_user_id_and_node_id(user_info["uid"], current_node.id)
+            if(interest):
+                follow_text = "取消关注"
+        template_variables["follow_text"] = follow_text
+        template_variables["topics"] = self.topic_model.get_all_topics_by_node_slug(current_page = page, node_slug = node_slug)
+        template_variables["node"] = current_node;
+        template_variables["gen_random"] = gen_random
+        self.render("topic/node_topics.html", **template_variables)
+
+class NodesHandler(BaseHandler):
+    def get(self, node = None, template_variables = {}):
+        print "NodesHandler:get"
+        user_info = self.current_user
+        template_variables["user_info"] = user_info
+
+        if (self.request.path == "/nodes"):
+            node_prefix = "/node/"
+        else:
+            node_prefix = "/t/create/?n="              
+        template_variables["node_prefix"] = node_prefix
+        template_variables["planes"] = self.plane_model.get_all_planes_with_nodes()  
+        template_variables["gen_random"] = gen_random    
+        self.render("topic/nodes.html", **template_variables)
