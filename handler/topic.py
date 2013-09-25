@@ -780,3 +780,88 @@ class NodesHandler(BaseHandler):
         template_variables["planes"] = self.plane_model.get_all_planes_with_nodes()  
         template_variables["gen_random"] = gen_random    
         self.render("topic/nodes.html", **template_variables)
+
+class EditHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self, topic_id, template_variables = {}):
+        user_info = self.current_user
+        template_variables["user_info"] = user_info
+        template_variables["topic"] = self.topic_model.get_topic_by_topic_id(topic_id)
+        template_variables["gen_random"] = gen_random
+        self.render("topic/edit.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, topic_id, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+
+        form = CreateForm(self)
+
+        if not form.validate():
+            self.get(topic_id, {"errors": form.errors})
+            return
+
+        # continue while validate succeed
+
+        topic_info = self.topic_model.get_topic_by_topic_id(topic_id)
+
+        if(not topic_info["author_id"] == self.current_user["uid"]):
+            template_variables["errors"] = {}
+            template_variables["errors"]["invalid_permission"] = [u"没有权限修改该话题"]
+            self.get(topic_id, template_variables)
+            return
+
+        update_topic_info = {
+            "title": form.title.data,
+            # "content": XssCleaner().strip(form.content.data),
+            "content": form.content.data,
+            "updated": time.strftime('%Y-%m-%d %H:%M:%S'),
+            "last_touched": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        reply_id = self.topic_model.update_topic_by_topic_id(topic_id, update_topic_info)
+
+        self.redirect("/t/%s" % topic_id)
+
+
+class ReplyEditHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self, reply_id, template_variables = {}):
+        user_info = self.current_user
+        template_variables["user_info"] = user_info
+        template_variables["reply"] = self.reply_model.get_reply_by_reply_id(reply_id)
+        template_variables["gen_random"] = gen_random
+        self.render("topic/reply_edit.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, reply_id, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+
+        form = ReplyEditForm(self)
+
+        if not form.validate():
+            self.get(reply_id, {"errors": form.errors})
+            return
+
+        # continue while validate succeed
+
+        reply_info = self.reply_model.get_reply_by_reply_id(reply_id)
+
+        if(not reply_info["author_id"] == self.current_user["uid"]):
+            template_variables["errors"] = {}
+            template_variables["errors"]["invalid_permission"] = [u"没有权限修改该回复"]
+            self.get(reply_id, template_variables)
+            return
+
+        update_reply_info = {
+            # "content": XssCleaner().strip(form.content.data),
+            "content": form.content.data,
+            "updated": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        reply_id = self.reply_model.update_reply_by_reply_id(reply_id, update_reply_info)
+
+        self.redirect("/t/%s" % reply_info["topic_id"])
