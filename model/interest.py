@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 3n1b.com
+# Copyright 2013 tuila.me
 
 import time
 from lib.query import Query

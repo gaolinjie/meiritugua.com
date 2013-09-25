@@ -19,6 +19,7 @@ class ReplyModel(Query):
         order = "id ASC"
         field = "reply.*, \
                 user.username as author_username, \
+                user.nickname as author_nickname, \
                 user.avatar as author_avatar, \
                 vote.status as vote_status"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
@@ -53,7 +54,8 @@ class ReplyModel(Query):
     def get_reply_by_reply_id(self, reply_id):
         where = "id = %s" % reply_id
         join = "LEFT JOIN user AS author_user ON reply.author_id = author_user.uid"
-        field = "reply.*"
+        field = "reply.*, \
+                author_user.reputation as author_reputation"
         return self.where(where).join(join).field(field).find()
 
     def update_reply_by_reply_id(self, reply_id, reply_info):

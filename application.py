@@ -74,15 +74,8 @@ class Application(tornado.web.Application):
             (r"/movie", handler.topic.MovieHandler),
             (r"/tv", handler.topic.TVHandler),
             (r"/star", handler.topic.StarHandler),
-            (r"/forum", handler.topic.ForumHandler),
             (r"/favorite/(\d+)", handler.topic.FavoriteManagerHandler),
             (r"/later/(\d+)", handler.topic.LaterManagerHandler),
-            (r"/t/create/(.*)", handler.topic.CreateTopicHandler),
-            (r"/t/(\d+)", handler.topic.ViewHandler),
-            (r"/node/(.*)", handler.topic.NodeTopicsHandler),
-            (r"/nodes", handler.topic.NodesHandler),
-            (r"/t/edit/(.*)", handler.topic.EditHandler),
-            (r"/reply/edit/(.*)", handler.topic.ReplyEditHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -113,13 +106,6 @@ class Application(tornado.web.Application):
         self.favorite_model = self.loader.use("favorite.model")
         self.later_model = self.loader.use("later.model")
         self.rate_model = self.loader.use("rate.model")
-        self.topic_model = self.loader.use("topic.model")
-        self.reply_model = self.loader.use("reply.model")
-        self.plane_model = self.loader.use("plane.model")
-        self.node_model = self.loader.use("node.model")
-        self.notification_model = self.loader.use("notification.model")
-        self.vote_model = self.loader.use("vote.model")
-        self.interest_model = self.loader.use("interest.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)
