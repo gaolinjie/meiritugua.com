@@ -1,10 +1,61 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
+
+
+<script src="/static/js/json_parse.js"></script>
+<script src="/static/js/json2.js"></script>
+
+<script src="/static/js/raty/jquery.raty.min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+      $.fn.raty.defaults.path = '/static/js/raty/img';
+      $('.rating').raty({ 
+        half: true,
+        score: function() {
+          return $(this).parent().find('.score').text()/2;
+        },
+        click: function(score, evt) {
+          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          var scroe_text = $(this).parent().find('.score');
+          var rating = $(this);
+          $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/rate/"+post_id,
+              data: JSON.stringify({score: score}), 
+              success: function (msg) {
+                if (msg.success != 0) {
+                  if (msg.message == "rated") {
+                    rating.raty({ score: parseInt(scroe_text.text())/2 });
+                    alert("对不起，你已经评过分了！");
+                    return;
+                  }
+                  scroe_text.text(score*2);
+                }
+                else {
+                  alert("评分没有成功，请重试！");
+                }
+                
+
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+        },
+        hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
+      });
+    })
+</script>
+
 <script type="text/javascript">
       $(document).ready(function(){
-        $(document).on('click', '.thumb img, .thumb i, .thumb .title',  function() {
-          $(this).parent().html("<p class=\"medis_func S_txt3\"><a href=\"javascript:void(0);\" action-type=\"feed_list_media_toSmall\" class=\"retract\"><em class=\"W_ico12 ico_retract\"></em>收起</a><i class=\"W_vline\">|</i><a href=\"http://t.cn/zQ7uetb\" title=\"视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" class=\"show_big\" target=\"_blank\"><em class=\"W_ico12 ico_showbig\"></em>视频-荣耀之路致敬艺术大...</a><i class=\"W_vline\">|</i><a action-type=\"feed_list_media_toFloat\" action-data=\"title=视频-荣耀之路致敬艺术大师 家嫂33岁生日快乐！\" href=\"javascript:void(0);\" class=\"turn_right\">弹出</a></p><embed width=\"350\" height=\"270\" src=\"http://player.youku.com/player.php/sid/XNDc1NzAyMDYw/v.swf\" allowFullScreen=\"true\" quality=\"high\" align=\"middle\" allowScriptAccess=\"always\" flashvars=\"isAutoPlay=true\" type=\"application/x-shockwave-flash\"></embed>");
+        $(document).on('click', '.thumb-img, .thumb i, .thumb .title',  function() {  
+          $(this).parent().hide();
+          $(this).parent().parent().find('.thumb-video').show();
         });
       });
     </script>
@@ -12,7 +63,8 @@
 <script type="text/javascript">
       $(document).ready(function(){
         $(document).on('click', '.retract',  function() {
-          $(this).parent().parent().html("<img src=\"http://p3.v.iask.com/849/338/108335999_1.jpg\"><i class=\"play\"></i><div class=\"title\"><a href=\"javascript:void(0);\" class=\"a-n ot-anchor YF\">吉米鸡毛秀 约翰尼德普做客热吻连连 @铁手Desperado译制</a></div>");
+          $(this).parent().parent().hide();
+          $(this).parent().parent().parent().find('.thumb-imgs').show();
         });
       });
     </script>
@@ -21,12 +73,8 @@
       $(document).ready(function(){
         $(document).on('click', '.comment',  function() {
           $(this).hide();
-          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./\" class=\"\" aria-hidden=\"true\"><img src=\"//lh4.googleusercontent.com/-deUkWpgvu6o/AAAAAAAAAAI/AAAAAAAAAAA/p6RFKhrUf1g/s28-c-k-no/photo.jpg\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><div class=\"editor-box\"><div class=\"inner\"><div class=\"input\" role=\"textbox\" contenteditable=\"plaintext-only\"></div></div></div><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post gbtn-unenable\" aria-disabled=\"true\" style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
-        });
-
-        $(document).on('click', '.cancel',  function() {
-          $(this).parent().parent().parent().html("");
-          $(".comment").show();
+          $(this).parent().parent().find(".comment-editor").html("<div class=\"divider\" style=\"\"></div><div class=\"wrapper\"><a href=\"./u/{{ user_info.username }}\" class=\"\" aria-hidden=\"true\"><img src=\"/static/avatar/user/s_{{user_info.avatar or 'default.png'}}\"width=\"28px\" height=\"28px\" alt=\"\" class=\"avatar\"></a><textarea class=\"editor-box\"></textarea><span class=\"button-wrap\"><div role=\"button\" id=\":61.post\" class=\"gbtn post post-comment gbtn-unenable\"  style=\"-webkit-user-select: none;\">发布评论</div><div role=\"button\" id=\":61.cancel\" class=\"gbtn cancel cancel-comment\" style=\"-webkit-user-select: none;\">取消</div></span></div>");
+          $(this).parent().parent().find(".comment-editor").find("textarea").focus();
         });
 
         $(document).on('click', '.cancel-comment',  function() {
@@ -46,24 +94,117 @@
       });
     </script>
 
+<script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('input', '.editor-box',  function() {
+          $(this).parent().find('.gbtn-unenable').removeClass('gbtn-unenable');
+        });
+
+        $(document).on('click', '.post-comment',  function() {
+          if ($(this).parent().parent().parent().parent().hasClass('comment-card')) {
+            var comment_editor = $(this).parent().parent().parent();
+            var comment_box = $(this).parent().parent().parent().parent().find('.comment-box');
+            var post_id = $(this).parent().parent().parent().parent().parent().find('.bottom').find('input').val();
+            var comment_content = $(this).parent().parent().find(".editor-box").val();
+            var comment_list = $(this).parent().parent().parent().parent().find('.jspScrollable');
+            var comment_string = comment_list.html() + '<li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/s_{{ user_info.avatar or "default.png" }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li>';
+
+            $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/comment/"+post_id,
+              data: JSON.stringify({comment_content: comment_content}), 
+              success: function (msg) {
+                comment_editor.html("");
+                comment_box.show();
+                comment_list.html(comment_string);
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+          }
+          else {
+            var comment_editor = $(this).parent().parent().parent();
+            var comment_card = $(this).parent().parent().parent().parent().parent().find(".comment-card");
+            var post_id = $(this).parent().parent().parent().parent().find('.bottom').find('input').val();
+            var comment_content = $(this).parent().parent().find(".editor-box").val();
+
+            $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/comment/"+post_id,
+              data: JSON.stringify({comment_content: comment_content}), 
+              success: function (msg) {
+                comment_editor.html("");
+                comment_card.html('<div class="divider"></div><div class="c-num"><a class="c-link">1 条评论</a><span class="c-icon"></span></div><div class="comment-list"><div class="ftRt"><ul class="jspScrollable"><li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/s_{{ user_info.avatar or "default.png"}}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li></ul></div></div><div class="divider" style=""></div><div class="comment-input-wraper"><div class="comment-box" tabindex="0" role="button">发表评论...</div></div><div class="comment-editor"></div>');
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+          }
+        });
+
+$(document).on('click', '.comment-box',  function() {
+          $(this).hide();
+          $(this).parent().parent().find(".comment-editor").html('<div class="wrapper" style="margin-top: -20px;"><a href="./u/{{ user_info.username }}" class="" aria-hidden="true"><img src="/static/avatar/user/s_{{user_info.avatar or "default.png"}}"width="28px" height="28px" alt="" class="avatar"></a><textarea class="editor-box"></textarea><span class="button-wrap"><div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div><div role="button" id=":61.cancel" class="gbtn cancel cancel-comment" style="-webkit-user-select: none;">取消</div></span></div>');
+          $(this).parent().parent().find(".comment-editor").find("textarea").focus();
+        });
+
+$(document).on('click', '.cancel-comment',  function() {
+          $(this).parent().parent().parent().html("");
+          $(".comment-box").show();
+        });
+
+$(document).on('click', '.c-icon',  function() {
+        var comment_list = $(this).parent().parent().find(".jspScrollable");
+        if ($(this).hasClass('up')) {
+          $(this).removeClass('up');
+          $(this).css("background","no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -347px -183px");
+          var comment_string=comment_list.html();
+          comment_string = comment_string.slice(comment_string.lastIndexOf("<li>"), comment_string.lastIndexOf("</li>"));
+          comment_list.html(comment_string);
+        }
+        else {
+          $(this).addClass('up');
+          $(this).css("background","no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/stream_showroom-2739698b14093123705adbfae5a84bd1.png) -37px -121px");
+          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          $.getJSON('/comment/'+post_id, function(data) {
+            var comment_string='';
+            for(i=0;i<data.comments.length;i++){
+              if (!data.comments[i].author_avatar) {
+                data.comments[i].author_avatar = 'default.png';
+              }
+              comment_string+='<li><div class="pic"><a href="/u/'+data.comments[i].author_username+'" target="_blank"><img src="/static/avatar/user/s_'+data.comments[i].author_avatar+'"></a></div><div class="doSth"><p><a class="mb_name" href="/u/'+data.comments[i].author_username+'" target="_blank">'+data.comments[i].author_username+'</a><span class="time">26 秒前</span></p><p><span class="text">'+data.comments[i].content{{content_process}}+'</span></p></div></li>'
+            }
+            comment_list.html(comment_string);
+          });
+        }
+        });
+      });
+    </script>
+
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('.follow-toggle').click(function() {
-                var channel_id = {{ channel.id }};             
-                if($(this).hasClass('followed')) {
-                        $.getJSON('/f/'+channel_id, function(data) {
-                            if(data.success!=0&&data.message=="revert_followed") {
-                                $('.follow-toggle').removeClass('followed');
-                                $('.follow-toggle').removeClass('btn-danger');
-                                $('.follow-toggle').text("关注");
+        $(document).ready(function(){
+            $(document).on('click', '.plus-btn',  function() {
+                var post_id = $(this).parent().find('input').val();
+                var plus_btn = $(this);
+                var plus_num = $(this).find('.plus-num');
+                if($(this).hasClass('favorited')) {
+                        $.getJSON('/favorite/'+post_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_favorited") {
+                                plus_btn.removeClass('favorited');
+                                plus_num.text(parseInt(plus_num.text())-1);
                             }
                         });                        
                 } else {
-                    $.getJSON('/f/'+channel_id, function(data) {
-                        if(data.success!=0&&data.message=="success_followed") {
-                            $('.follow-toggle').addClass('followed');
-                            $('.follow-toggle').addClass('btn-danger');
-                            $('.follow-toggle').text("取消关注");
+                    $.getJSON('/favorite/'+post_id, function(data) {
+                        if(data.success!=0&&data.message=="success_favorited") {
+                            plus_btn.addClass('favorited');
+                            plus_num.text(parseInt(plus_num.text())+1);
                         }
                     }); 
                 }
@@ -72,222 +213,293 @@
     </script>
 
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('.plus-toggle').click(function() {              
-                var channel_id = {{ channel.id }};
-                var plus = parseInt($('.plus-toggle').text())     
-                if($(this).hasClass('plused')) {
-                        $.getJSON('/p/'+channel_id, function(data) {
-                            if(data.success!=0&&data.message=="revert_plused") {
-                                $('.plus-toggle').removeClass('plused');
-                                $('.plus-toggle').removeClass('btn-danger');
-                                plus=plus-1
-                                $('.plus-toggle').text("+"+plus);
-                                $('#plus-num').html(plus + "<span>plus</span>");
+        $(document).ready(function(){
+            $(document).on('click', '.share-btn',  function() {
+                var post_id = $(this).parent().find('input').val();
+                var share_btn = $(this);
+                if($(this).hasClass('latered')) {
+                        $.getJSON('/later/'+post_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_latered") {
+                                share_btn.removeClass('latered');
                             }
                         });                        
                 } else {
-                    $.getJSON('/p/'+channel_id, function(data) {
-                        if(data.success!=0&&data.message=="success_plused") {
-                            $('.plus-toggle').addClass('plused');
-                            $('.plus-toggle').addClass('btn-danger');
-                            plus=plus+1
-                            $('.plus-toggle').text("+"+plus);
-                            $('#plus-num').html(plus + "<span>plus</span>");
+                    $.getJSON('/later/'+post_id, function(data) {
+                        if(data.success!=0&&data.message=="success_latered") {
+                            share_btn.addClass('latered');
                         }
                     }); 
                 }
             });        
         });
+    </script>
+    <script src="/static/js/jquery.infinitescroll.js"></script>
+ <script>
+ $(document).ready(function (){
+    $(".feeds").infinitescroll({
+          navSelector: "#navigation",
+          nextSelector: "#navigation a",
+          itemSelector: ".card",
+          maxPage: {{posts.page.pages}},   
+      }, function(newElems) {
+      $.fn.raty.defaults.path = '/static/js/raty/img';
+      $('.rating').raty({ 
+        half: true,
+        score: function() {
+          return $(this).parent().find('.score').text()/2;
+        },
+        click: function(score, evt) {
+          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          var scroe_text = $(this).parent().find('.score');
+          var rating = $(this);
+          $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/rate/"+post_id,
+              data: JSON.stringify({score: score}), 
+              success: function (msg) {
+                if (msg.success != 0) {
+                  if (msg.message == "rated") {
+                    rating.raty({ score: parseInt(scroe_text.text())/2 });
+                    alert("对不起，你已经评过分了！");
+                    return;
+                  }
+                  scroe_text.text(score*2);
+                }
+                else {
+                  alert("评分没有成功，请重试！");
+                }
+                
+
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+        },
+        hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
+      });
+            });
+ }); 
     </script>
 {% endblock %}
 
 {% block main %}
-<div class="channel-timeline">
-  <div class="cover">
-    <div class="b-profile__top">
-      <div class="b-profile__wrapper">
-        <!-- a href="#" class="b-profile__add"> </a -->
-      <div class="b-author  m-noclick m-expanded m-profile">
-        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="Jay Gao" class="b-author__image">
-
-        <div class="b-author__bg"></div>
-
-        <div class="b-author__content">
-          <h4 class="b-author__username    ">
-            <a href="/user/profile/439" title="{{channel.name}}">{{channel.name}}</a>
-          </h4>
-
-          <p class="b-author__text">{{channel.intro}}</p>
-          <ul class="b-stat-list m-profile">
-            <li id="plus-num" class="b-stat-list__el m-clickable" title="">
-              {{channel.plus}}
-              <span>plus</span>
-            </li>
-            <li class="b-stat-list__el m-clickable" data-type="Followers" title="Show your followers">
-              {{channel.followers}}
-              <span>followers</span>
-            </li>
-            <li class="b-stat-list__el">
-              {{channel.posts}}
-              <span>posts</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
+<div class="feeds">
+  {% set tab_bar = [
+      ('/', 'all', '所有'),
+      ('/?tab=video', 'video', '热门'),              
+  ] -%}
+  {% set active_tab = active_tab|default('index') -%}
+  <div class="tabbar">
+    {% for href, id, caption in tab_bar %}
+    <div {% if id == active_tab %} class="tab m-active"{% else %} class="tab" {% endif %}>
+      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
+      <span class="tab-highlight"></span>
     </div>
-
-    <ul class="b-profile__tabs clearfix">
-      <li class="b-profile__tab m-active">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="/c/{{ channel.id }}">所 有</a>
-      </li>
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">热 门</a>
-      </li>
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">商 店</a>
-      </li>
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">论 坛</a>
-      </li>
-      {% if channel.author_id==user_info.uid %}
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="/c/{{channel.id}}/setting">设 置</a>
-      </li>
-      {% endif %}
-      {% if channel.author_id!=user_info.uid %}
-      <li class="channel-post-btn" title="+1">
-        {% if plused == 1 %}
-        <a href="javascript:void(0)" class="btn btn-primary plus-toggle btn-danger plused">+{{ channel.plus }}</a>
-        {% else %}
-        <a href="javascript:void(0)" class="btn btn-primary plus-toggle">+{{ channel.plus }}</a>
-        {% endif %} 
-      </li>
-
-      <li class="channel-post-btn follow-btn" title="关注">
-        {% if followed == 1 %}
-        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
-        {% else %}
-        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
-        {% endif %}   
-      </li>
-      {% else %}
-      <li class="channel-post-btn follow-btn" title="关注">
-      <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
-      </li>
-      {% endif %}
-    </ul>
-    
+    {% endfor %}
+    <div class="post-btn">
+      <a href="javascript:void(0)" class="btn btn-primary">分享视频</a>
+    </div>
   </div>
-</div>
-<ol id="timeline" class="timeline clearfix">
-  <li class="spine"></li>
-  {% if channel.author_id==user_info.uid %}
-  <li class="left"> <i class="pointer"></i>
-    <div class="post-box" >
-    <form class="mt10" action="/c/{{ channel.id }}" method="post">
-    <div class="row1">
-      <div class="t-avatar">
-        <a href="/u/{{ user_info.username }}">
-          <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}"></a>
-      </div>
-      <div class="v-description">
-        <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
-      </div>
-    </div>
-    <div class="row2">
-      <div class="t-link">视频链接:</div>
-      <div class="v-link">
-        <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-    </div>
-
-    <div class="row4">
-      <span class="post-btn-wrap">
-      <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">{{ xsrf_form_html() }}
-    </span>
-    </div>
-  </form>
-  </div>
-  </li>
-  {% endif %}
-  
-  
-  {% if channel.author_id==user_info.uid %}
-  {%set index = 1%}
-  {% else %}
-  {%set index = 0%}
-  {% endif %}
-
-{% for post in posts.list %}
-{% if index%2 == 0 %}
-  <li class="left">
-  {% else %}
-  <li class="right">
-  {% endif %}
-  {%set index = index+1%}
-    <i class="pointer"></i>
-    <div class="card">
-      <div class="header">
-        <div class="avatar">
-          <a href="/u/{{ post.author_username }}">
-            <img src="/static/avatar/user/m_{{ post.author_avatar or 'default.png'}}"></a>
+  <div class="post-box" style="display:none">
+    <form class="mt10" action="/" method="post">
+      <div class="row1">
+        <div class="t-avatar">
+          <a href="/u/{{ user_info.username }}">
+            <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}"></a>
         </div>
-        <div class="info">
-          <h3 class="username">
-            <a href="/u/{{ post.author_username }}">{{ post.author_username }}</a>
-          </h3>
-          <span class="ct">
-            <span class="channel" title="{{ post.nav_title }}">
-              <a href="/{{ post.nav_name }}" class="ic">{{ post.nav_title }}</a>
-            </span>
-            &nbsp;-&nbsp;
-            <span class="time">
-              <a href="javascript:void(0)" class="it" title="{{ post.created }}">{{ post.created|pretty_date }}</a>
-            </span>
+        <div class="v-description">
+          <textarea rows="3" class="content" placeholder="写点视频介绍吧..." name="intro"></textarea>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="t-link">视频链接:</div>
+        <div class="v-link">
+          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
+      </div>
+
+      <div class="row3">
+        <div class="t-channel">选择频道:</div>
+        <div class="v-channel">
+          <select name="channel">
+            {% for channel in channels %}
+            <option>{{ channel.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="row4">
+        <span class="post-btn-wrap">
+          <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">
+          {{ xsrf_form_html() }}
+          <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
+        </span>
+      </div>
+    </form>
+  </div>
+  {% for post in posts.list %}
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <a href="/u/{{ post.author_username }}">
+          <img src="/static/avatar/user/m_{{ post.author_avatar or 'default.png' }}"></a>
+      </div>
+      <div class="info">
+        <h3 class="username">
+          <a href="/u/{{ post.author_username }}">{{ post.author_username }}</a>
+        </h3>
+        <span class="ct">
+          <span class="channel" title="{{ post.nav_title }}">
+            <a href="/{{ post.nav_name }}" class="ic">{{ post.nav_title }}</a>
           </span>
+          &nbsp;-&nbsp;
+          <span class="time">
+            <a href="javascript:void(0)" class="it" title="{{ post.created }}">{{ post.created|pretty_date }}</a>
+          </span>
+        </span>
+      </div>
+      <div class="channel-tag">
+        <div class="tag-wapper" data-topicindex="1">
+          <a href="/c/{{ post.channel_id }}" target="_top" class="tag" aria-label="#{{ post.channel_name }}">#{{ post.channel_name }}</a>
         </div>
       </div>
-      <p class="intro">
-        {{ post.intro }}
-      </p>
-      <div class="thumb">
-        <img src="{{ post.video_thumb }}">
-        <i class="play"></i>
+    </div>
+    <p class="intro">{{ post.intro|content_process }}</p>
+    <div class="content">
+      <div class="thumb thumb-imgs">
+        <img class="thumb-img" src="{{ post.video_thumb }}"> <i class="play"></i>
         <div class="title">
-          <a href="javascript:void(0);" class="a-n ot-anchor YF">{{ post.video_title }}</a>
+          <a href="javascript:void(0);" class="a-n ot-anchor YF" title="{{ post.video_title }}">{{ post.video_title }}</a>
         </div>
+        <div class="rating" id="rating-{{ post.id }}"></div>
+        <div class="score">{%if post.score!=0 %}{{ post.score }}{%endif%}</div>
+        <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
+      </div>
+      <div class="thumb thumb-video" style="display: none;">
+        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
       </div>
       <div class="bottom">
-        <div id="" href="javascript:void(0);" class="plus-btn" aria-label="为此信息 +1" data-tooltip="为此信息 +1">
+        <div class="plus-btn {% if post.favorite_id %}favorited{% endif %}">
           <span class="btn-wrap">
             <span class="plus-icon"></span>
-            <span class="plus-num">{{ post.plus }}</span>
+            <span class="plus-num">{{ post.favorite }}</span>
           </span>
         </div>
-        <div class="share-btn" role="button" tabindex="0" aria-label="分享此信息" data-tooltip="分享此信息">
+        <div class="share-btn {% if post.later_id %}latered{% endif %}">
           <span class="btn-wrap">
             <span class="share-icon"></span>
-            <span class="share-num">{{ post.share }}</span>
           </span>
         </div>
-        <div class="comment" style="">
+        {% if not post.last_comment%}
+        <div class="comment">
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
+        {% endif %}
+        <input type="hidden" name="post_id" value="{{ post.id }}">
       </div>
       <div class="comment-editor"></div>
-
     </div>
-  </li>
+
+    <div class="comment-card">
+      {% if post.last_comment %}
+      <div class="divider"></div>
+      <div class="c-num">
+        <a class="c-link">{{ post.comment_count }} 条评论</a>
+        <span class="c-icon"></span>
+      </div>
+      <div class="comment-list">
+        <div class="ftRt " >
+          <ul class="jspScrollable" >
+            <li>
+              <div class="pic">
+                <a href="/u/{{ post.comment_user_name }}" target="_blank">
+                  <img src="/static/avatar/user/s_{{ post.comment_user_avatar or 'default.png' }}"></a>
+              </div>
+              <div class="doSth">
+                <p>
+                  <a class="mb_name" href="/u/{{ post.comment_user_name }}" target="_blank">{{ post.comment_user_name }}</a>
+                  <span class="time">{{ post.comment_created|pretty_date }}</span>
+                </p>
+                <p>
+                  <span class="text">{{ post.comment_content|content_process }}</span>
+                </p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+      <div class="divider" style=""></div>
+      <div class="comment-input-wraper">
+        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
+      </div>
+      <div class="comment-editor"></div>
+      {% endif %}
+    </div>
+
+  </div>
   {% endfor %}
-</ol>
+   <div id="navigation" align="center">
+        <a href="/?page={{posts.page.next}}"></a>        
+    </div>
 </div>
 {% endblock %}
 
 {% block right %}
+<div class="right-bar">
+  <div class="maylike">
+    <h4 class="header">
+      <span>你可能喜欢的频道</span>
+    </h4>
+    <div class="like-channels">
+
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-bf4rSxrZmR0/AAAAAAAAAAI/AAAAAAAAADA/ycDTEuOuL5A/s120-c/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">V for Vendetta</a>
+          </div>
+          <div class="like">
+            <a href="/">1211 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-w5lqw_FT-JM/AAAAAAAAAAI/AAAAAAAAABw/oCXK48O0H7M/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">皮克斯短片集</a>
+          </div>
+          <div class="like">
+            <a href="/">219 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh3.googleusercontent.com/-F1ARRPUL8nY/AAAAAAAAAAI/AAAAAAAAAFs/3cuRu2ZBwkg/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">America's Funniest Ho...</a>
+          </div>
+          <div class="like">
+            <a href="/">337 人喜欢</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
