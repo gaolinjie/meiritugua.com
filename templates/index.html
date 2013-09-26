@@ -178,7 +178,7 @@ $(document).on('click', '.c-icon',  function() {
               if (!data.comments[i].author_avatar) {
                 data.comments[i].author_avatar = 'default.png';
               }
-              comment_string+='<li><div class="pic"><a href="/u/'+data.comments[i].author_username+'" target="_blank"><img src="/static/avatar/user/s_'+data.comments[i].author_avatar+'"></a></div><div class="doSth"><p><a class="mb_name" href="/u/'+data.comments[i].author_username+'" target="_blank">'+data.comments[i].author_username+'</a><span class="time">26 秒前</span></p><p><span class="text">'+data.comments[i].content+'</span></p></div></li>'
+              comment_string+='<li><div class="pic"><a href="/u/'+data.comments[i].author_username+'" target="_blank"><img src="/static/avatar/user/s_'+data.comments[i].author_avatar+'"></a></div><div class="doSth"><p><a class="mb_name" href="/u/'+data.comments[i].author_username+'" target="_blank">'+data.comments[i].author_username+'</a><span class="time">26 秒前</span></p><p><span class="text">'+data.comments[i].content{{content_process}}+'</span></p></div></li>'
             }
             comment_list.html(comment_string);
           });
@@ -369,7 +369,7 @@ $(document).on('click', '.c-icon',  function() {
         </div>
       </div>
     </div>
-    <p class="intro">{{ post.intro }}</p>
+    <p class="intro">{{ post.intro|content_process }}</p>
     <div class="content">
       <div class="thumb thumb-imgs">
         <img class="thumb-img" src="{{ post.video_thumb }}"> <i class="play"></i>
@@ -426,7 +426,7 @@ $(document).on('click', '.c-icon',  function() {
                   <span class="time">{{ post.comment_created|pretty_date }}</span>
                 </p>
                 <p>
-                  <span class="text">{{ post.comment_content }}</span>
+                  <span class="text">{{ post.comment_content|content_process }}</span>
                 </p>
               </div>
             </li>
