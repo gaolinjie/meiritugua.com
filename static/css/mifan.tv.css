@@ -200,7 +200,7 @@ p {
 }
 
 .maylike {
-  width: 240px;
+  width: 212px;
   background-color: #ffffff;
   padding: 20px;
   float: left;
@@ -2150,4 +2150,20 @@ white-space: nowrap;
   }
   100%{-o-transform:translateX(-20px);
   }
+}
+
+
+.r_avatar {
+position: relative;
+width: auto;
+left: 65px;
+top: 20px;
+height: 140px;
+border-radius: 0;
+}
+
+.r_avatar_img {
+width: 90px;
+border-radius: 55px;
+
 }
