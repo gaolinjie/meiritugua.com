@@ -44,89 +44,726 @@
 
 {% block main %}
 <div class="channels">
-  <div class="taglist-holder">
-    <ul class="taglist clearfix">
-      {% set active_tab = active_tab|default('all') -%}
-      <li {% if active_tab == 'all' %} class="selected" {% endif %}>
-        <a href="/video">所有</a>
-      </li>
-      {% for subnav in subnavs %}
-      <li {% if subnav.name == active_tab %} class="selected" {% endif %}>
-        <a href="/video?tab={{ subnav.name }}">{{ subnav.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="create-channel">
-      <a href="javascript:void(0)" class="btn btn-primary">创建频道</a>
+
+  <div class="content-header">
+    <div class="header-inner">
+
+        <h2 id="content-main-heading">
+          推荐关注
+        </h2>
+
+        <p class="subheader">根据你关注的人等信息推荐给你的 Twitter 账号。</p>
     </div>
+
+      <form class="js-search-form content-searchbar" action="/who_to_follow/suggestions/search" method="GET">
+        <table class="flex-table">
+          <tbody>
+            <tr>
+              <td class="flex-table-primary">
+                <div class="flex-table-form">
+                  <input class="flex-table-input search-query" type="text" name="q" placeholder="搜索用户的全名或 @用户名">
+                </div>
+              </td>
+              <td class="flex-table-secondary">
+                <button class="btn flex-table-btn js-submit" type="submit">搜索 Twitter</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
   </div>
 
-  <div class="channel-box" style="display:none">
-    <form class="mt10" action="/video" method="post">
-      <div class="row1">
-        <div class="t-avatar">
-          <a href="/u/{{ user_info.username }}">
-            <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}"></a>
+  <div id="timeline">
+        <div class="stream-container " data-cursor="1381275393829:20">
+          <div class="stream discover-stream">
+            <ol class="stream-items js-navigable-stream" id="stream-items-id">  <li class="js-stream-item stream-item stream-item" data-item-id="34888183" id="stream-item-user-34888183" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="guao" data-user-id="34888183" data-feedback-token="117">
+      
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/guao">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/1199997347/guao_square_white_normal.png" alt="谷奥" data-user-id="34888183">
+            <strong class="fullname js-action-profile-name">谷奥</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@guao</span>
+                    </a>
         </div>
-        <div class="v-description">
-          <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点频道介绍吧..." name="intro"></textarea>
-        </div>
+          <p class="bio ">
+              谷奥主站（<a href="http://www.guao.hk" target="_blank" data-expanded-url="" title="" dir="ltr">http://www.guao.hk</a>）：内容涵盖Google新闻，产品，技巧，应用等 | 谷安（<a href="http://android.guao.hk" target="_blank" data-expanded-url="" title="" dir="ltr">http://android.guao.hk</a>）：谷奥Android子站      </p>
+    
+        
+    
+    
+        
+    
+        
       </div>
-      <div class="row2">
-        <div class="t-link">频道名称:</div>
-        <div class="v-link">
-          <input type="text" placeholder="输入频道名称" name="name"></div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="163815030" id="stream-item-user-163815030" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="chenluois" data-user-id="163815030" data-feedback-token="110">
+        
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/chenluois">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/2876219684/f3b82dbe49032ee4707c4ae136abfe16_normal.png" alt="Chen Luo" data-user-id="163815030">
+            <strong class="fullname js-action-profile-name">Chen Luo</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@chenluois</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              Panoramic photographer, Front-end web and Cocoa developer. I made <a href="/Mou" class="tweet-url twitter-atreply pretty-link" rel="nofollow"><s>@</s><b>Mou</b></a>, Smaller, Toau, Resize and resizeMyBrowser. Making hardware too - <a href="http://moustand.com" target="_blank" data-expanded-url="" title="" dir="ltr">http://moustand.com</a>      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="15385842" href="/lgn21st" title="Daniel Lv">Daniel Lv</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14347537" href="/huacnlee" title="李华顺">李华顺</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5563072" href="/poshboytl" title="Terry Tai">Terry Tai</a>.
+  </p>
+    
+    
+        
+    
+        
       </div>
-      <div class="row4">
-        <span class="post-btn-wrap">
-          <input role="button"  type="submit" id="61.post" class="gbtn post" value="创建频道">
-          <input type="hidden" name="subnav_name" value="{{ active_tab }}">
-          {{ xsrf_form_html() }}
-          <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
-        </span>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="56833" id="stream-item-user-56833" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="isaac" data-user-id="56833" data-feedback-token="133">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/isaac">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/2507894059/lefpj52q9fkv7cgmlqc8_normal.jpeg" alt="Isaac Mao" data-user-id="56833">
+            <strong class="fullname js-action-profile-name">Isaac Mao</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@isaac</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              We are all latent enemies to Sharism      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5304602" href="/linjunhalida" title="linjunhalida">linjunhalida</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="1166761" href="/DashHuang" title="Dash">Dash</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="754333" href="/hidecloud" title="潜云">潜云</a>.
+  </p>
+    
+    
+        
+    
+        
       </div>
-    </form>
-  </div>
-  {% for channel in channels.list %}
-  <div class="KBylAf channel-card">
-    <div class="cja Os3xkf Ltb">
-      <div class="r6Rtbe vlMSze TjKfDe Eqy3Ue j8T7he" role="article">
-        <div class="sNZZue l8zNY">
-          <a href="/c/{{ channel.id }}" class="FW9qdb Wk gosnEc HF7jKf" aria-hidden="true" data-tileposition="5">
-            <img src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" width="170px" height="170px" alt="" class="Rf " data-pinit="registered"></a>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="7948282" id="stream-item-user-7948282" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="zhengyun" data-user-id="7948282" data-feedback-token="117">
+        
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/zhengyun">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/27832922/zhengyun_ustc_normal.jpg" alt="zhengyun" data-user-id="7948282">
+            <strong class="fullname js-action-profile-name">zhengyun</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@zhengyun</span>
+                    </a>
         </div>
-        <div class="JZc2Fe"></div>
-        <div class="gecJce Xk6Ee">
-          <a href="/c/{{ channel.id }}" class="fmPSLc Dt0N7d WBzBVe HF7jKf FW9qdb" data-tileposition="5">{{ channel.name }}</a>
-          <div class="We4Wwc ljarXd">{{ channel.intro }}</div>
+          <p class="bio ">
+              中国语义应用探索者。智能语义聚合应用框架的提出者和实践者。现任窝窝团研发副总裁。历任明天高软、神州泰岳等公司的技术总监。曾任玩聚网CEO&amp;创始人。活跃于移动业务、语义、聚合和memeTracker领域。      </p>
+    
+        
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="15570801" id="stream-item-user-15570801" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="xu_lele" data-user-id="15570801" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/xu_lele">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/378800000395394567/6f4d30fa08d199a4c27338a324b7edd0_normal.jpeg" alt="徐 楽楽" data-user-id="15570801">
+            <strong class="fullname js-action-profile-name">徐 楽楽</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@xu_lele</span>
+                    </a>
         </div>
-        <div class="kOVcgc dS">
-          <div class="Dq er a-f-e follow-toggle">
-            
-            {% if channel.follow_user_id %}
-            {% if channel.follow_user_id==channel.author_id %}
-            <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b followed disabled" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-              <input type="hidden" name="channel_id" value="{{ channel.id }}">
-              <span class="follow-text" dir="ltr">已关注</span>
-            </div>
-            {% else %}
-            <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow followed" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-              <input type="hidden" name="channel_id" value="{{ channel.id }}">
-              <span class="follow-text" dir="ltr">取消关注</span>
-            </div>
-            {% endif %}
-            {% else %}
-            <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-              <input type="hidden" name="channel_id" value="{{ channel.id }}">
-              <span class="follow-text" dir="ltr">关注</span>
-            </div>
-            {% endif %}
-          </div>
+          <p class="bio ">
+              Ceremony means nothing to him, the fight is all.      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5563072" href="/poshboytl" title="Terry Tai">Terry Tai</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="7653792" href="/_cxa" title="CHEN Xian'an 陈贤安">CHEN Xian'an 陈贤安</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="754003" href="/herock" title="Herock Xia">Herock Xia</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="14347163" id="stream-item-user-14347163" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="diamondtin" data-user-id="14347163" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/diamondtin">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/2578334351/9m67uc82gxfa6jfbakc5_normal.png" alt="Yue Tian a.k.a. Tin" data-user-id="14347163">
+            <strong class="fullname js-action-profile-name">Yue Tian a.k.a. Tin</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@diamondtin</span>
+                    </a>
         </div>
+          <p class="bio ">
+              A developer in Gree | Openfeint, Front-end developer, Web engineer, interested in scalable web architecture, an organizer of Beijing Open Party, Father      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5234841" href="/Saic" title="Sai">Sai</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="10298742" href="/flycondor" title="flycondor">flycondor</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="1616951" href="/chedong" title="车东">车东</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="34466006" id="stream-item-user-34466006" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="zhuangbiaowei" data-user-id="34466006" data-feedback-token="109">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/zhuangbiaowei">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/597748064/twitterProfilePhoto_normal.jpg" alt="庄表伟" data-user-id="34466006">
+            <strong class="fullname js-action-profile-name">庄表伟</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@zhuangbiaowei</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              thinker,reader,blogger      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="21320324" href="/jeffz_cn" title="老赵">老赵</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="34950061" href="/marchliu" title="刘鑫">刘鑫</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="21308096" href="/cloudwu" title="云风">云风</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="17861157" id="stream-item-user-17861157" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="onlyswan" data-user-id="17861157" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/onlyswan">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/1194645745/_____2010-12-20_14-32-59_normal.jpg" alt="薛定谔的猫" data-user-id="17861157">
+            <strong class="fullname js-action-profile-name">薛定谔的猫</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@onlyswan</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              只有快感和罪孽滔天      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="1166691" href="/lizunlong" title="lizunlong">lizunlong</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="1490631" href="/Fenng" title="Fenng">Fenng</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="25229992" href="/Porce" title="Porcelana">Porcelana</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="17463863" id="stream-item-user-17463863" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="SecretaryZ" data-user-id="17463863" data-feedback-token="109">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/SecretaryZ">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/3046059394/83f78728e190d7c93b7e9ac66a730020_normal.jpeg" alt="张书记" data-user-id="17463863">
+            <strong class="fullname js-action-profile-name">张书记</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@SecretaryZ</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              俺的小店 <a href="http://hippocamp.taobao.com" target="_blank" data-expanded-url="" title="" dir="ltr">http://hippocamp.taobao.com</a> 请大家支持。      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="19609914" href="/TwoCold" title="韩寒">韩寒</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5397942" href="/zuola" title="佐拉Ⓥ">佐拉Ⓥ</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="61356505" href="/xiaolai" title="李笑来">李笑来</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="999081" id="stream-item-user-999081" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="jianshuo" data-user-id="999081" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/jianshuo">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/857910263/sanjose-jianshuo-standard110_normal.PNG" alt="Jian Shuo Wang" data-user-id="999081">
+            <strong class="fullname js-action-profile-name">Jian Shuo Wang</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@jianshuo</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              CEO of <a href="http://Baixing.com" target="_blank" data-expanded-url="" title="" dir="ltr">http://Baixing.com</a> and blogger at <a href="http://wangjianshuo.com" target="_blank" data-expanded-url="" title="" dir="ltr">http://wangjianshuo.com</a>      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="761969" href="/webleon" title="WebLeOn (王力昂)">WebLeOn (王力昂)</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="50504091" href="/ghosTM55" title="Thomas Yao">Thomas Yao</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="1580781" href="/ruanyf" title="yifeng.ruan (阮一峰)">yifeng.ruan (阮一峰)</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="17567078" id="stream-item-user-17567078" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="heqian" data-user-id="17567078" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/heqian">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/1264756538/avatar_normal.png" alt="呵欠" data-user-id="17567078">
+            <strong class="fullname js-action-profile-name">呵欠</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@heqian</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              A Ph.D. student at WPI majoring in Ubiquitous Computing &amp; Healthcare, iOS &amp; Android developer, Lolicon, and No-Z-turn-No-Comfort-sky…      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="21320324" href="/jeffz_cn" title="老赵">老赵</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5375972" href="/Paveo" title="Mod Pav">Mod Pav</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="10511452" href="/adamsxu" title="Adams">Adams</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="52034708" id="stream-item-user-52034708" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="yimaobuba" data-user-id="52034708" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/yimaobuba">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/1215034466/pijiasuo_normal.JPG" alt="一毛不拔" data-user-id="52034708">
+            <strong class="fullname js-action-profile-name">一毛不拔</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@yimaobuba</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              以缺德服人      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="27458668" href="/opensky2" title="Holly Lee">Holly Lee</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="50940456" href="/kaifulee" title="Kai-Fu Lee">Kai-Fu Lee</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu">HowardSu</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="3107351" id="stream-item-user-3107351" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="Yuancheng" data-user-id="3107351" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/Yuancheng">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/1271913168/eightbit-a52e85e6-4b68-41f9-96d3-e4dc74b6e80a_normal.png" alt="Yuancheng" data-user-id="3107351">
+            <strong class="fullname js-action-profile-name">Yuancheng</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@Yuancheng</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              努力成为靠谱男青年      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="761969" href="/webleon" title="WebLeOn (王力昂)">WebLeOn (王力昂)</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="3765871" href="/bang590" title="bang">bang</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="12299932" href="/jason5ng32" title="Jason Ng">Jason Ng</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="13581" id="stream-item-user-13581" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="number5" data-user-id="13581" data-feedback-token="133">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/number5">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/2301048762/musf3z8hwg3133kn68u5_normal.jpeg" alt="Bruce Wang " data-user-id="13581">
+            <strong class="fullname js-action-profile-name">Bruce Wang </strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@number5</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              There is no spoon.      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="12149752" href="/soulhacker" title="Neo">Neo</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="927051" href="/Livid" title="Livid">Livid</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="754333" href="/hidecloud" title="潜云">潜云</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="56591660" id="stream-item-user-56591660" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="googollee" data-user-id="56591660" data-feedback-token="109">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/googollee">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/378800000268567007/3f39b24f56e3126f48426fb2d33cfedc_normal.jpeg" alt="Googol | ・ω・" data-user-id="56591660">
+            <strong class="fullname js-action-profile-name">Googol | ・ω・</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@googollee</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              ／人◕ ‿‿ ◕人＼  <a href="/search?q=%23nowplaying&amp;src=hash" class="twitter-hashtag pretty-link js-nav" data-query-source="hashtag_click" dir="ltr"><s>#</s><b>nowplaying</b></a> G弦上的咏叹调      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="17680612" href="/Anxonli" title="Anson Li">Anson Li</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="15559037" href="/hengdm" title="端木恒 DM.">端木恒 DM.</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="5234841" href="/Saic" title="Sai">Sai</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="6132042" id="stream-item-user-6132042" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="delphij" data-user-id="6132042" data-feedback-token="133">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/delphij">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/1630809793/11427_normal.jpg" alt="Xin Li" data-user-id="6132042">
+            <strong class="fullname js-action-profile-name">Xin Li</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@delphij</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              不折腾就会死/爱抬杠/阿宅/FreeBSD控/GNU黑/北京市172中学校友      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu">HowardSu</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="17680612" href="/Anxonli" title="Anson Li">Anson Li</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="27458668" href="/opensky2" title="Holly Lee">Holly Lee</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="7104942" id="stream-item-user-7104942" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="billzhong" data-user-id="7104942" data-feedback-token="109">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/billzhong">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/17675562/BBSlogo_normal.jpg" alt="Black-Xstar" data-user-id="7104942">
+            <strong class="fullname js-action-profile-name">Black-Xstar</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@billzhong</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              Blogger, Geeker, Student, GoogleIO2K3er. VPN: <a href="https://pptp.us" target="_blank" data-expanded-url="" title="" dir="ltr">https://pptp.us</a>.      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="25229992" href="/Porce" title="Porcelana">Porcelana</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="754003" href="/herock" title="Herock Xia">Herock Xia</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="754333" href="/hidecloud" title="潜云">潜云</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="119609847" id="stream-item-user-119609847" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="aoi_sola" data-user-id="119609847" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/aoi_sola">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/3501986929/a355b2345b14a7874e454864e1dbb3d2_normal.jpeg" alt="蒼井そら（SOLA AOI）" data-user-id="119609847">
+            <strong class="fullname js-action-profile-name">蒼井そら（SOLA AOI）</strong>
+            <span>‏</span>
+    <span class="icon verified"><span class="visuallyhidden">认证账号</span></span>          <span class="username js-action-profile-name">@aoi_sola</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              Hi! Its me,Sola Aoi.I'm a Japanese actress.I've been studying English, Chinese&amp;Korean.
+蒼井そらです。女優とかタレントとか集団で歌ったりしてます。フォロワーに海外の方が多いので英語でもツイートしてますが勉強中です。      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="12299932" href="/jason5ng32" title="Jason Ng">Jason Ng</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="7252032" href="/chloerei" title="迪安娜·索尼尔">迪安娜·索尼尔</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="21718913" href="/turen" title="Tan Xiaosheng">Tan Xiaosheng</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="15215129" id="stream-item-user-15215129" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="hushuqi" data-user-id="15215129" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/hushuqi">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/3712517086/268205d20ca99866e2872bc6e2d841a1_normal.jpeg" alt="Prisca Hu" data-user-id="15215129">
+            <strong class="fullname js-action-profile-name">Prisca Hu</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@hushuqi</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              只要你勇敢地说出再见，生活一定会赐予你一个新的开始。      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="18824096" href="/arthur369" title="西乔">西乔</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="12348502" href="/JunChen" title="JunChen Wu">JunChen Wu</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="15559037" href="/hengdm" title="端木恒 DM.">端木恒 DM.</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+  <li class="js-stream-item stream-item stream-item" data-item-id="4183391" id="stream-item-user-4183391" data-item-type="user">
+      
+    <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="milkr" data-user-id="4183391" data-feedback-token="110">
+        
+    
+
+
+  <div class="content">
+        <div class="stream-item-header">
+          <a class="account-group js-user-profile-link" href="/milkr">
+            <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/178224803/ree_normal.gif" alt="稻草" data-user-id="4183391">
+            <strong class="fullname js-action-profile-name">稻草</strong>
+            <span>‏</span>
+              <span class="username js-action-profile-name">@milkr</span>
+                    </a>
+        </div>
+          <p class="bio ">
+              Designer, Blogger, <a href="http://v4uu.com" target="_blank" data-expanded-url="" title="" dir="ltr">http://v4uu.com</a>      </p>
+    
+        
+          <p class="metadata">    Followed by <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="1166691" href="/lizunlong" title="lizunlong">lizunlong</a>,
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="7653792" href="/_cxa" title="CHEN Xian'an 陈贤安">CHEN Xian'an 陈贤安</a> and
+  <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="25229992" href="/Porce" title="Porcelana">Porcelana</a>.
+  </p>
+    
+    
+        
+    
+        
+      </div>
+    </div>
+    
+    </li>
+</ol>
+              <div class="stream-footer ">
+          <div class="timeline-end has-items has-more-items">
+            <div class="stream-end">
+      <div class="stream-end-inner ">
+            <i class="bird-etched"></i>
+    
+        <p class="empty-text">
+                抱歉，我们暂时已经没有值得推荐的账号了。我们正在寻找更多的推荐，请稍后再来看看吧!
+        </p>
+    
+    
+              <p><button type="button" class="btn-link back-to-top hidden" style="display: inline-block;">回到顶部 ↑</button></p>
+      </div>
+    </div>
+    <div class="stream-loading">
+      <div class="stream-end-inner">
+        <span class="spinner" title="正在载入..."></span>
       </div>
     </div>
   </div>
-  {% endfor %}
+        </div>
+        <div class="stream-fail-container">
+            <div class="js-stream-whale-end stream-whale-end stream-placeholder centered-placeholder">
+      <div class="stream-end-inner">
+        <h2 class="title">加载推文似乎需要更多时间。</h2>
+        <p>
+          Twitter 可能暂时超载啦。<a href="#" class="try-again-after-whale">再试一次</a>或访问 <a target="_blank" href="http://status.twitter.com">Twitter 状态</a>以获取更多信息。
+        </p>
+      </div>
+    </div></div>
+      <ol class="hidden-replies-container"></ol>
+            <div class="stream-autoplay-marker">
+              <i class="arrow"></i>
+              <span class="text"></span>
+            </div>
+          </div>
+        </div>
+        </div>
+
 </div>
 {% endblock %}
 
