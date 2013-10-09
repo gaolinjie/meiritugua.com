@@ -49,10 +49,10 @@
     <div class="header-inner">
 
         <h2 id="content-main-heading">
-          推荐关注
+          推荐频道
         </h2>
 
-        <p class="subheader">根据你关注的人等信息推荐给你的 Twitter 账号。</p>
+        <p class="subheader">根据你关注的信息推荐给你的短片频道。</p>
     </div>
 
       <form class="js-search-form content-searchbar" action="/who_to_follow/suggestions/search" method="GET">
@@ -61,11 +61,11 @@
             <tr>
               <td class="flex-table-primary">
                 <div class="flex-table-form">
-                  <input class="flex-table-input search-query" type="text" name="q" placeholder="搜索用户的全名或 @用户名">
+                  <input class="flex-table-input search-query" type="text" name="q" placeholder="搜索你感兴趣的频道">
                 </div>
               </td>
               <td class="flex-table-secondary">
-                <button class="btn flex-table-btn js-submit" type="submit">搜索 Twitter</button>
+                <button class="btn flex-table-btn js-submit" type="submit">搜索</button>
               </td>
             </tr>
           </tbody>
@@ -115,7 +115,7 @@
             <img class="avatar js-action-profile-avatar " src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}">
             <strong class="fullname js-action-profile-name">{{ channel.name }}</strong>
             <span>‏</span>
-              <span class="username js-action-profile-name">@isaac</span>
+              <span class="username js-action-profile-name">@{{ channel.author_username }}</span>
                     </a>
         </div>
           <p class="bio ">
