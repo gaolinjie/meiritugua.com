@@ -294,13 +294,13 @@ $(document).on('click', '.c-icon',  function() {
 
       <a href="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" class="profile-picture media-thumbnail" data-resolved-url-large="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" data-url="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" target="_blank">
 
-        <img src="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075_bigger.png" alt="Mod Pav" class="avatar size73">
+        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}" class="avatar size73">
       </a>
 
 
     <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
       <h1 class="fullname editable-group">
-          <span class="profile-field">Mod Pav</span>
+          <span class="profile-field">{{ channel.name }}</span>
 
 
 
@@ -310,7 +310,7 @@ $(document).on('click', '.c-icon',  function() {
             <span class="screen-name"><s>@</s>Paveo</span>
       </h2>
       <div class="bio-container editable-group">
-        <p class="bio profile-field">只是一枚芥兰爱好者。</p>
+        <p class="bio profile-field">{{ channel.intro }}</p>
       </div>
       <p class="location-and-url">
         <span class="location-container editable-group">
