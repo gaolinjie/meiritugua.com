@@ -83,12 +83,10 @@
         });
 
         $(document).on('click', '.post-btn',  function() {
-          $(this).hide();
-          $(".post-box").show();
         });
 
         $(document).on('click', '.cancel-post',  function() {
-          $(".post-box").hide();
+          //$(".post-box").hide();
           $(".post-btn").show();
         });
       });
@@ -303,8 +301,51 @@ $(document).on('click', '.c-icon',  function() {
     </div>
     {% endfor %}
     <div class="post-btn">
-      <a href="javascript:void(0)" class="btn btn-primary">分享视频</a>
+      <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">分享视频</a>
     </div>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <form class="mt10" action="/" method="post">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">分享视频</h5>
+  </div>
+  <div class="modal-body">
+
+    
+      <div class="row1">
+        <div class="t-link">视频链接:</div>
+        <div class="v-link">
+          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
+        
+      </div>
+      <div class="row2">
+        <div class="t-link">视频介绍:</div>
+        <div class="v-description">
+          <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点频道介绍吧..." name="intro"></textarea>
+        </div>
+      </div>
+
+      <div class="row3">
+        <div class="t-link">选择频道:</div>
+        <div class="v-channel">
+          <select name="channel">
+            {% for channel in channels %}
+            <option>{{ channel.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+    <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
+    <input type="hidden" name="subnav_name" value="{{ active_tab }}">
+          {{ xsrf_form_html() }}
+  </div>
+  </form>
+</div>
   </div>
   <div class="post-box" style="display:none">
     <form class="mt10" action="/" method="post">

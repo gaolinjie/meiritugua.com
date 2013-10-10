@@ -1140,6 +1140,7 @@ input[type="color"],
           transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
+select:focus,
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
