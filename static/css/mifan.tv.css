@@ -1415,8 +1415,8 @@ width: 100%;
   float: left;
 }
 .t-link {
-  float: left;
-  margin: 20px 15px 0 20px;
+  margin-bottom: 10px;
+  font-size: 13px;
 }
 .t-channel {
   float: left;
@@ -1448,16 +1448,23 @@ width: 100%;
   margin-top: 70px;
 }
 
-
+.modal-body .row1 {
+  margin-bottom: 20px;
+}
 .v-description {
-  float: left;
-  margin: 20px 20px 0 22px;
+}
+
+.v-description textarea {
+  width: 516px;
+  font-size: 13px;
 }
 
 .v-link {
-  float: left;
-  margin: 14px 20px 0 8px;
   font-size: 12px;
+}
+.v-link input {
+  width: 516px;
+  font-size: 13px;
 }
 
 .v-channel {
@@ -1489,10 +1496,10 @@ font-size: 12px;
 
 
 .create-channel {
-  float: right;
-  margin-top: -40px;
-  margin-right: -20px;
-  width: 100px;
+float: right;
+margin-top: -42px;
+margin-right: -10px;
+width: 100px;
 }
 
 .create-channel a {
@@ -2713,6 +2720,10 @@ width: 348px;
 .flex-table-secondary .btn {
 border-radius: 3px;
 padding: 4px 24px;
+}
+
+.modal-body {
+  font-size: 13px;
 }
 
 /* video page css end */

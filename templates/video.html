@@ -5,7 +5,6 @@
       $(document).ready(function(){
 
         $(document).on('click', '.create-channel',  function() {
-          $(this).hide();
           $(".channel-box").show();
         });
 
@@ -51,7 +50,43 @@
       <h2 id="content-main-heading">推荐频道</h2>
 
       <p class="subheader">根据你关注的信息推荐给你的短片频道。</p>
+      <div class="create-channel">
+      <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">创建频道</a>
     </div>
+    </div>
+
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <form class="mt10" action="/video" method="post">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">创建短片频道</h5>
+  </div>
+  <div class="modal-body">
+
+    
+      <div class="row1">
+        <div class="t-link">频道名称:</div>
+        <div class="v-link">
+          <input type="text" placeholder="输入频道名称" name="name"></div>
+        
+      </div>
+      <div class="row2">
+        <div class="t-link">频道介绍:</div>
+        <div class="v-description">
+          <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点频道介绍吧..." name="intro"></textarea>
+        </div>
+      </div>
+    
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+    <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
+    <input type="hidden" name="subnav_name" value="{{ active_tab }}">
+          {{ xsrf_form_html() }}
+  </div>
+  </form>
+</div>
 
     <form class="js-search-form content-searchbar" action="/who_to_follow/suggestions/search" method="GET">
       <table class="flex-table">

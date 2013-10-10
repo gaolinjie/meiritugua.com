@@ -202,7 +202,7 @@ class VideoHandler(BaseHandler):
                 "name": form.name.data,
                 "intro": form.intro.data,
                 "nav_id": 1,
-                "subnav_id": subnav_id,
+                "subnav_id": 1,
                 "plus": 0,
                 "followers": 0,
                 "posts": 0,
@@ -228,7 +228,6 @@ class VideoHandler(BaseHandler):
         follow_info = {
             "user_id": self.current_user["uid"],
             "channel_id": channel["id"],
-            "nav_id": 1,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
