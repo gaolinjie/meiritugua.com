@@ -21,7 +21,10 @@ class ChannelModel(Query):
 
     def get_channel_by_channel_id(self, channel_id):
         where = "id = '%s'" % channel_id
-        return self.where(where).find()
+        join = "LEFT JOIN user AS author_user ON channel.author_id = author_user.uid"
+        field = "channel.*, \
+                author_user.username as author_username"
+        return self.where(where).join(join).field(field).find()
 
     def get_channel_by_name(self, channel_name):
         where = "name = '%s'" % channel_name
