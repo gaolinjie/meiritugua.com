@@ -1,8 +1,6 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
-
-
 <script src="/static/js/json_parse.js"></script>
 <script src="/static/js/json2.js"></script>
 
@@ -187,7 +185,7 @@ $(document).on('click', '.c-icon',  function() {
       });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.plus-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
@@ -212,7 +210,7 @@ $(document).on('click', '.c-icon',  function() {
         });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.share-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
@@ -233,8 +231,8 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
-    <script src="/static/js/jquery.infinitescroll.js"></script>
- <script>
+<script src="/static/js/jquery.infinitescroll.js"></script>
+<script>
  $(document).ready(function (){
     $(".feeds").infinitescroll({
           navSelector: "#navigation",
@@ -288,105 +286,117 @@ $(document).on('click', '.c-icon',  function() {
 {% block main %}
 <div class="feeds">
   <div class="module profile-card component profile-header profile-page-header" data-component-term="profile_follow_card">
-  <div class="profile-header-inner flex-module clearfix" data-background-image="url('/static/images/login.jpg')">
-    <div class="profile-header-inner-overlay"></div>
-
+    <div class="profile-header-inner flex-module clearfix" data-background-image="url('/static/images/login.jpg')">
+      <div class="profile-header-inner-overlay"></div>
 
       <a href="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" class="profile-picture media-thumbnail" data-resolved-url-large="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" data-url="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" target="_blank">
 
-        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}" class="avatar size73">
-      </a>
+        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}" class="avatar size73"></a>
 
-
-    <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
-      <h1 class="fullname editable-group">
+      <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
+        <h1 class="fullname editable-group">
           <span class="profile-field">{{ channel.name }}</span>
 
+        </h1>
 
+        <h2 class="username">
+          <span class="screen-name">
+            <s>@</s>
+            Paveo
+          </span>
+        </h2>
+        <div class="bio-container editable-group">
+          <p class="bio profile-field">{{ channel.intro }}</p>
+        </div>
+        <p class="location-and-url">
+          <span class="location-container editable-group">
+            <span class="location profile-field">没有芥蓝的北京</span>
+          </span>
+          <span class="divider">·</span>
+          <span class="url editable-group">
+            <span class="profile-field">
+              <a target="_blank" rel="me nofollow" href="https://t.co/lSLJVkgTPK" title="https://w3.owind.com">w3.owind.com</a>
 
-      </h1>
-
-      <h2 class="username">
-            <span class="screen-name"><s>@</s>Paveo</span>
-      </h2>
-      <div class="bio-container editable-group">
-        <p class="bio profile-field">{{ channel.intro }}</p>
+            </span>
+          </span>
+        </p>
       </div>
-      <p class="location-and-url">
-        <span class="location-container editable-group">
-          <span class="location profile-field">
-            没有芥蓝的北京
-          </span>
-        </span>
-        <span class="divider">·</span>
-        <span class="url editable-group">
-          <span class="profile-field">
-            <a target="_blank" rel="me nofollow" href="https://t.co/lSLJVkgTPK" title="https://w3.owind.com">
-  w3.owind.com
-</a>
-
-
-          </span>
-        </span>
-      </p>
     </div>
-  </div>
-  <div class="flex-module profile-banner-footer clearfix">
-    <div class="default-footer">
+    <div class="flex-module profile-banner-footer clearfix">
+      <div class="default-footer">
         <ul class="stats js-mini-profile-stats" data-user-id="5375972">
-  <li><a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"><strong>85,270</strong> 推文</a></li>
-  <li><a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"><strong>324</strong> 正在关注</a></li>
-  <li><a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers"><strong>7,424</strong> 关注者</a></li>
+          <li>
+            <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>85,270</strong>
+              推文
+            </a>
+          </li>
+          <li>
+            <a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"> <strong>324</strong>
+              正在关注
+            </a>
+          </li>
+          <li>
+            <a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers">
+              <strong>7,424</strong>
+              关注者
+            </a>
+          </li>
 
-</ul>
-{% if channel.author_id!=user_info.uid %}
-
-      <div class="channel-post-btn follow-btn" title="关注">
-        {% if followed == 1 %}
-        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
+        </ul>
+        {% if channel.author_id!=user_info.uid %}
+        <div class="channel-post-btn follow-btn" title="关注">
+          {% if followed == 1 %}
+          <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
+          {% else %}
+          <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
+          {% endif %}
+        </div>
         {% else %}
-        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
-        {% endif %}   
+        <div class="channel-post-btn follow-btn" title="关注">
+          <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
+        </div>
+        {% endif %}
+        <div class="user-actions btn-group following including  " data-user-id="5375972" data-screen-name="Paveo" data-name="Mod Pav" data-protected="false"></div>
+
       </div>
-      {% else %}
-      <div class="channel-post-btn follow-btn" title="关注">
-      <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
-      </div>
-      {% endif %}
-
-        <div class="user-actions btn-group following including  " data-user-id="5375972" data-screen-name="Paveo" data-name="Mod Pav" data-protected="false">
-
-</div>
-
-
     </div>
-  </div>
-      <div class="profile-social-proof">
-  <div class="follow-bar">
-      <div class="social-proof">
-              <div class="facepile">
-      <a class="pretty-link js-user-profile-link " href="/yegle" data-user-id="14157249" original-title="一阁" title="一阁">
-  <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/3191173348/5df54abee5afeb38f02242caf16ecf27_normal.jpeg" alt="一阁" title="一阁">
-</a>
-      <a class="pretty-link js-user-profile-link " href="/cosbeta" data-user-id="14697308" original-title="东哥" title="东哥">
-  <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/378800000379779080/4a40ca7a32675b9e312a2c046a23dfc8_normal.jpeg" alt="东哥" title="东哥">
-</a>
-      <a class="pretty-link js-user-profile-link " href="/HowardSu" data-user-id="16051594" original-title="HowardSu" title="HowardSu">
-  <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/2770220064/779ae5dbc309a6a7625de6d5df6e8f21_normal.jpeg" alt="HowardSu" title="HowardSu">
-</a>
-      
-    </div>
-  <div class="namepile">
-    <p>
-      被 <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/yegle" title="一阁"><b>一阁</b></a>、<a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14697308" href="/cosbeta" title="东哥"><b>东哥</b></a>、<a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu"><b>HowardSu</b></a> 及<a href="/Paveo/followers_you_follow" class="pretty-link"><b>另外23人关注</b></a>。
-    </p>
-  </div>
+    <div class="profile-social-proof">
+      <div class="follow-bar">
+        <div class="social-proof">
+          <div class="facepile">
+            <a class="pretty-link js-user-profile-link " href="/yegle" data-user-id="14157249" original-title="一阁" title="一阁">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/3191173348/5df54abee5afeb38f02242caf16ecf27_normal.jpeg" alt="一阁" title="一阁"></a>
+            <a class="pretty-link js-user-profile-link " href="/cosbeta" data-user-id="14697308" original-title="东哥" title="东哥">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/378800000379779080/4a40ca7a32675b9e312a2c046a23dfc8_normal.jpeg" alt="东哥" title="东哥"></a>
+            <a class="pretty-link js-user-profile-link " href="/HowardSu" data-user-id="16051594" original-title="HowardSu" title="HowardSu">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/2770220064/779ae5dbc309a6a7625de6d5df6e8f21_normal.jpeg" alt="HowardSu" title="HowardSu"></a>
 
+          </div>
+          <div class="namepile">
+            <p>
+              被
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/yegle" title="一阁"> <b>一阁</b>
+              </a>
+              、
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14697308" href="/cosbeta" title="东哥"> <b>东哥</b>
+              </a>
+              、
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu">
+                <b>HowardSu</b>
+              </a>
+              及
+              <a href="/Paveo/followers_you_follow" class="pretty-link">
+                <b>另外23人关注</b>
+              </a>
+              。
+            </p>
+          </div>
+
+        </div>
       </div>
-  </div>
-</div>
+    </div>
 
-</div>
+  </div>
   {% for post in posts.list %}
   <div class="card">
     <div class="header">
@@ -423,11 +433,22 @@ $(document).on('click', '.c-icon',  function() {
         </div>
         <div class="rating" id="rating-{{ post.id }}"></div>
         <div class="score">{%if post.score!=0 %}{{ post.score }}{%endif%}</div>
-        <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
+        <div class="votes">
+          {%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}
+        </div>
       </div>
       <div class="thumb thumb-video" style="display: none;">
-        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
-      </div>
+        <p class="medis_func S_txt3">
+          <a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"> <em class="W_ico12 ico_retract"></em>
+            收起
+          </a> <i class="W_vline">|</i>
+          <a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"> <em class="W_ico12 ico_showbig"></em>
+            {{ post.video_title }}
+          </a>
+          <i class="W_vline">|</i>
+          <a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a>
+        </p>
+        <embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></div>
       <div class="bottom">
         <div class="plus-btn {% if post.favorite_id %}favorited{% endif %}">
           <span class="btn-wrap">
@@ -445,8 +466,7 @@ $(document).on('click', '.c-icon',  function() {
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-      </div>
+        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
       <div class="comment-editor"></div>
     </div>
 
@@ -491,9 +511,9 @@ $(document).on('click', '.c-icon',  function() {
 
   </div>
   {% endfor %}
-   <div id="navigation" align="center">
-        <a href="/?page={{posts.page.next}}"></a>        
-    </div>
+  <div id="navigation" align="center">
+    <a href="/?page={{posts.page.next}}"></a>
+  </div>
 </div>
 {% endblock %}
 
