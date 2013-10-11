@@ -1947,7 +1947,7 @@ form .controls .avatar {
 }
 
 .c-setting-card {
-width: 800px;
+width: 478px;
 background: #fff;
 }
 
@@ -2777,5 +2777,10 @@ background: -moz-linear-gradient(center top, white 0%, #f3f3f3 50%, #ededed 51%,
 background: -webkit-linear-gradient(top, white 0%, #f3f3f3 50%, #ededed 51%, white 100%) repeat scroll 0 0 transparent;
 border: 1px solid #e5e5e5;
 text-shadow: 0 1px 0 white;
+}
+
+
+.setting-btn {
+padding: 4px 10px;
 }
 /* video page css end */

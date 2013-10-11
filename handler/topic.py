@@ -320,14 +320,33 @@ class ChannelHandler(BaseHandler):
             return
 
         # continue while validate succeed
+        video_link = form.link.data
+        video_id = find_video_id_from_url(video_link)
+        json_link = "http://v.youku.com/player/getPlayList/VideoIDS/"+video_id+"/timezone/+08/version/5/source/out?password=&ran=2513&n=3"
+        video_json = json.load(urllib2.urlopen(json_link))
+        video_logo = video_json[u'data'][0][u'logo']
+        video_title = video_json[u'data'][0][u'title']
+        video_flash = "http://player.youku.com/player.php/sid/"+video_id+"/v.swf"
+        print video_title
+
+        video_info = {
+            "source": "youku",
+            "flash": video_flash,
+            "link": video_link,
+            "title": video_title,
+            "thumb": video_logo,
+        }
+        vid = self.video_model.add_new_video(video_info)
+        print vid
+
+        channel = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
         
         post_info = {
             "author_id": self.current_user["uid"],
             "channel_id": channel_id,
-            "video_id": 1,
+            "nav_id": channel["nav_id"],
+            "video_id": vid,
             "intro": form.intro.data,
-            "plus": 1,
-            "share": 0,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 

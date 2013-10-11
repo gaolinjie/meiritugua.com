@@ -103,87 +103,112 @@
 {% endblock %}
 
 {% block main %}
-<div class="channel-timeline">
-  <div class="cover">
-    <div class="b-profile__top">
-      <div class="b-profile__wrapper">
-        <!-- a href="#" class="b-profile__add"> </a -->
-      <div class="b-author  m-noclick m-expanded m-profile">
-        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="Jay Gao" class="b-author__image">
+<div class="feeds">
+  <div class="module profile-card component profile-header profile-page-header" data-component-term="profile_follow_card">
+    <div class="profile-header-inner flex-module clearfix" data-background-image="url('/static/images/login.jpg')">
+      <div class="profile-header-inner-overlay"></div>
 
-        <div class="b-author__bg"></div>
+      <a href="/c/{{ channel.id }}" class="profile-picture media-thumbnail">
 
-        <div class="b-author__content">
-          <h4 class="b-author__username    ">
-            <a href="/user/profile/439" title="{{channel.name}}">{{channel.name}}</a>
-          </h4>
+        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}" class="avatar size73"></a>
 
-          <p class="b-author__text">{{channel.intro}}</p>
-          <ul class="b-stat-list m-profile">
-            <li id="plus-num" class="b-stat-list__el m-clickable" title="">
-              {{channel.plus}}
-              <span>plus</span>
-            </li>
-            <li class="b-stat-list__el m-clickable" data-type="Followers" title="Show your followers">
-              {{channel.followers}}
-              <span>followers</span>
-            </li>
-            <li class="b-stat-list__el">
-              {{channel.posts}}
-              <span>posts</span>
-            </li>
-          </ul>
+      <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
+        <h1 class="fullname editable-group">
+          <span class="profile-field">{{ channel.name }}</span>
+
+        </h1>
+
+        <h2 class="username">
+          <span class="screen-name">
+            <s>@</s>
+            {{ channel.author_username }}
+          </span>
+        </h2>
+        <div class="bio-container editable-group">
+          <p class="bio profile-field">{{ channel.intro }}</p>
         </div>
+      </div>
+    </div>
+    <div class="flex-module profile-banner-footer clearfix">
+      <div class="default-footer">
+        <ul class="stats js-mini-profile-stats" data-user-id="5375972">
+          <li>
+            <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>{{ channel.posts }}</strong>
+              视频
+            </a>
+          </li>
+          <li>
+            <a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"> <strong>324</strong>
+              正在关注
+            </a>
+          </li>
+          <li>
+            <a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers">
+              <strong>{{ channel.followers }}</strong>
+              关注者
+            </a>
+          </li>
+
+        </ul>
+        
+        {% if channel.author_id!=user_info.uid %}
+        <div class="channel-post-btn follow-btn" title="关注">
+          {% if followed == 1 %}
+          <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
+          {% else %}
+          <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
+          {% endif %}
+        </div>
+        {% else %}
+        <div class="channel-post-btn follow-btn" title="关注">
+          <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
+        </div>
+        <div class="channel-post-btn follow-btn">
+          <a href="/c/{{channel.id}}/setting"  class="btn setting-btn">设置</a>
+        </div>
+        {% endif %}
+        
 
       </div>
     </div>
+    <div class="profile-social-proof">
+      <div class="follow-bar">
+        <div class="social-proof">
+          <div class="facepile">
+            <a class="pretty-link js-user-profile-link " href="/yegle" data-user-id="14157249" original-title="一阁" title="一阁">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/3191173348/5df54abee5afeb38f02242caf16ecf27_normal.jpeg" alt="一阁" title="一阁"></a>
+            <a class="pretty-link js-user-profile-link " href="/cosbeta" data-user-id="14697308" original-title="东哥" title="东哥">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/378800000379779080/4a40ca7a32675b9e312a2c046a23dfc8_normal.jpeg" alt="东哥" title="东哥"></a>
+            <a class="pretty-link js-user-profile-link " href="/HowardSu" data-user-id="16051594" original-title="HowardSu" title="HowardSu">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/2770220064/779ae5dbc309a6a7625de6d5df6e8f21_normal.jpeg" alt="HowardSu" title="HowardSu"></a>
 
-    <ul class="b-profile__tabs clearfix">
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="/c/{{ channel.id }}">所 有</a>
-      </li>
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">热 门</a>
-      </li>
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">商 店</a>
-      </li>
-      <li class="b-profile__tab">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="javascript:void(0)">论 坛</a>
-      </li>
-      <li class="b-profile__tab m-active">
-        <span class="b-profile__tab-highlight"></span>
-        <a href="/c/{{channel.id}}/setting">设 置</a>
-      </li>
-      {% if channel.author_id!=user_info.uid %}
-      <li class="channel-post-btn" title="+1">
-        {% if plused == 1 %}
-        <a href="javascript:void(0)" class="btn btn-primary plus-toggle btn-danger plused">+{{ channel.plus }}</a>
-        {% else %}
-        <a href="javascript:void(0)" class="btn btn-primary plus-toggle">+{{ channel.plus }}</a>
-        {% endif %} 
-      </li>
+          </div>
+          <div class="namepile">
+            <p>
+              被
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/yegle" title="一阁"> <b>一阁</b>
+              </a>
+              、
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14697308" href="/cosbeta" title="东哥"> <b>东哥</b>
+              </a>
+              、
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu">
+                <b>HowardSu</b>
+              </a>
+              及
+              <a href="/Paveo/followers_you_follow" class="pretty-link">
+                <b>另外23人关注</b>
+              </a>
+              。
+            </p>
+          </div>
 
-      <li class="channel-post-btn follow-btn" title="关注">
-        {% if followed == 1 %}
-        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
-        {% else %}
-        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
-        {% endif %}   
-      </li>
-      {% else %}
-      <li class="channel-post-btn follow-btn" title="关注">
-      <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
-      </li>
-      {% endif %}
-    </ul>
-    
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
+  
 <div class="c-setting-card">
     <form class="form-horizontal" action='' method="POST">
         <fieldset>
@@ -223,4 +248,56 @@
 {% endblock %}
 
 {% block right %}
+<div class="right-bar">
+  <div class="maylike">
+    <h4 class="header">
+      <span>你可能喜欢的频道</span>
+    </h4>
+    <div class="like-channels">
+
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-bf4rSxrZmR0/AAAAAAAAAAI/AAAAAAAAADA/ycDTEuOuL5A/s120-c/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">V for Vendetta</a>
+          </div>
+          <div class="like">
+            <a href="/">1211 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-w5lqw_FT-JM/AAAAAAAAAAI/AAAAAAAAABw/oCXK48O0H7M/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">皮克斯短片集</a>
+          </div>
+          <div class="like">
+            <a href="/">219 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh3.googleusercontent.com/-F1ARRPUL8nY/AAAAAAAAAAI/AAAAAAAAAFs/3cuRu2ZBwkg/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">America's Funniest</a>
+          </div>
+          <div class="like">
+            <a href="/">337 人喜欢</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
