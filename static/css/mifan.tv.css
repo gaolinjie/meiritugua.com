@@ -233,7 +233,7 @@ p {
 }
 
 .maylike .channel-item .info .title a {
-  color: #262626;
+  color: #404040;
   display: block;
   font-size: 14px;
   font-weight: bold;
@@ -2306,16 +2306,6 @@ line-height: 24px;
 color: #777;
 }
 
-.username {
-direction: ltr;
-unicode-bidi: embed;
-}
-
-.username, .time, .time a, .metadata, .metadata button.btn-link, .metadata a {
-font-size: 12px;
-color: #999;
-}
-
 h1 {
 font-size: 24px;
 font-weight: bold;
@@ -2527,7 +2517,6 @@ border-bottom-width: 0;
 }
 .content-header, .content-no-header {
 border: 1px solid #eee;
-border: 1px solid rgba(0,0,0,.1);
 border-radius: 6px 6px 0 0;
 background-clip: padding-box;
 }
@@ -2587,19 +2576,10 @@ line-height: inherit;
 .stream-item, .unfocusable-stream-item {
 background: #fff;
 border-left: 1px solid #e8e8e8;
-border-left: 1px solid rgba(0,0,0,.1);
 border-right: 1px solid #e8e8e8;
-border-right: 1px solid rgba(0,0,0,.1);
 background-clip: padding-box;
 }
-.stream-item, .unfocusable-stream-item {
-background: #fff;
-border-left: 1px solid #e8e8e8;
-border-left: 1px solid rgba(0,0,0,.1);
-border-right: 1px solid #e8e8e8;
-border-right: 1px solid rgba(0,0,0,.1);
-background-clip: padding-box;
-}
+
 ol>li {
 line-height: 20px;
 }
@@ -2645,11 +2625,11 @@ color: #333;
 .stream-item-header .account-group {
 color: #999;
 }
-.username {
+.steam .username {
 direction: ltr;
 unicode-bidi: embed;
 }
-.username, .time, .time a, .metadata, .metadata button.btn-link, .metadata a {
+.steam .username, .time, .time a, .metadata, .metadata button.btn-link, .metadata a {
 font-size: 12px;
 color: #999;
 }
@@ -2673,11 +2653,11 @@ text-align: center;
 }
 .stream-end-item, .stream-end, .stream-loading, .stream-placeholder {
 border-left: 1px solid #eee;
-border-left: 1px solid rgba(0,0,0,.1);
+
 border-right: 1px solid #eee;
-border-right: 1px solid rgba(0,0,0,.1);
+
 border-bottom: 1px solid #eee;
-border-bottom: 1px solid rgba(0,0,0,.1);
+
 border-radius: 0 0 6px 6px;
 }
 .stream-end-inner {
@@ -2782,5 +2762,9 @@ text-shadow: 0 1px 0 white;
 
 .setting-btn {
 padding: 4px 10px;
+}
+
+p.bio, strong.fullname {
+  color: #404040;
 }
 /* video page css end */
