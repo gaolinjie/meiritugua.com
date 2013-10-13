@@ -562,6 +562,7 @@ img {
 .channels {
   width: 478px;
   margin: 100px 259px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .channels .channel {
@@ -1496,8 +1497,8 @@ font-size: 12px;
 
 .create-channel {
 float: right;
-margin-top: -42px;
-margin-right: -10px;
+margin-top: -43px;
+margin-right: -26px;
 width: 100px;
 }
 
@@ -1508,7 +1509,7 @@ width: 100px;
 .create-channel .btn {
   border-radius: 3px;
   margin-top: 6px;
-  padding: 6px 20px;
+  padding: 6px 12px;
 }
 
 
@@ -2304,6 +2305,7 @@ font-size: 18px;
 font-weight: normal;
 line-height: 24px;
 color: #777;
+font-weight: bold;
 }
 
 h1 {
@@ -2766,5 +2768,6 @@ padding: 4px 10px;
 
 p.bio, strong.fullname {
   color: #404040;
+  font-weight: bold
 }
 /* video page css end */
