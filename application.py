@@ -70,6 +70,7 @@ class Application(tornado.web.Application):
             (r"/setting/password", handler.user.SettingPasswordHandler),
             (r"/c/(\d+)/setting", handler.channel.ChannelSettingHandler),
             (r"/c/(\d+)/setting/avatar", handler.channel.ChannelSettingAvatarHandler),
+            (r"/c/(\d+)/setting/cover", handler.channel.ChannelSettingCoverHandler),
             (r"/micro", handler.topic.MicroHandler),
             (r"/movie", handler.topic.MovieHandler),
             (r"/tv", handler.topic.TVHandler),

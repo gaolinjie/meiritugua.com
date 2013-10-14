@@ -2188,7 +2188,6 @@ background-clip: padding-box;
 }
 
 .profile-card.profile-header .profile-header-inner {
-background-image: url(https://pbs.twimg.com/profile_banners/5375972/1370486733/web);
 background-color: #444;
 height: 260px;
 padding: 0;
@@ -2768,6 +2767,9 @@ padding: 4px 10px;
 
 p.bio, strong.fullname {
   color: #404040;
+}
+
+.profile-card-inner p.bio, .profile-card-inner strong.fullname {
   font-weight: bold
 }
 /* video page css end */

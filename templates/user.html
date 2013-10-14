@@ -287,9 +287,9 @@ $(document).on('click', '.c-icon',  function() {
     <script type="text/javascript">
         jQuery(document).ready(function() {
             $('.follow-toggle').click(function() {
-                var channel_id = {{ channel.id }};             
+                var user_id = {{ user_info.id }};             
                 if($(this).hasClass('followed')) {
-                        $.getJSON('/f/'+channel_id, function(data) {
+                        $.getJSON('/f/'+user_id, function(data) {
                             if(data.success!=0&&data.message=="revert_followed") {
                                 $('.follow-toggle').removeClass('followed');
                                 $('.follow-toggle').removeClass('btn-danger');
@@ -297,7 +297,7 @@ $(document).on('click', '.c-icon',  function() {
                             }
                         });                        
                 } else {
-                    $.getJSON('/f/'+channel_id, function(data) {
+                    $.getJSON('/f/'+user_id, function(data) {
                         if(data.success!=0&&data.message=="success_followed") {
                             $('.follow-toggle').addClass('followed');
                             $('.follow-toggle').addClass('btn-danger');

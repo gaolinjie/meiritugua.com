@@ -64,3 +64,10 @@ class ChannelModel(Query):
         return self.data({
             "avatar": avatar_name
         }).where(where).save()
+
+    def set_channel_cover_by_channel_id(self, channel_id, cover_name):
+        where = "id = %s" % channel_id
+        return self.data({
+            "cover": cover_name
+        }).where(where).save()
+

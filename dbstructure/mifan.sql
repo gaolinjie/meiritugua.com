@@ -108,6 +108,7 @@ CREATE TABLE `channel` (
   `name` text,
   `intro` text,
   `avatar` text,
+  `cover` text,
   `nav_id` int(11) DEFAULT NULL,
   `subnav_id` int(11) DEFAULT NULL,
   `plus` int(11) DEFAULT NULL,
