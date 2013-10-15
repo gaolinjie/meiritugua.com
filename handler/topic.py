@@ -33,8 +33,10 @@ class IndexHandler(BaseHandler):
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
+            template_variables["maylike_channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
             
             if(tab=="index"):
                 template_variables["active_tab"] = "all"
@@ -289,6 +291,7 @@ class ChannelHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
+            template_variables["maylike_channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
             follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             if(follow):

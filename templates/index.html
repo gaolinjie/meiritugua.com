@@ -495,46 +495,49 @@ $(document).on('click', '.c-icon',  function() {
 
 {% block right %}
 <div class="right-bar">
-<div class="module wtf-module js-wtf-module   has-content">
+<div class="module wtf-module js-wtf-module with-bottom-tab  has-content">
 
   <div class="flex-module">
 
     <div class="flex-module-header">
-      <h3>推荐关注</h3>
+      <h3>推荐频道</h3>
         <small>· </small>
-        <button type="button" class="btn-link js-refresh-suggestions"><small>刷新</small></button>
+        <button type="button" class="refresh-link js-refresh-suggestions"><small>刷新</small></button>
       
-          <small class="view-all">· <a class="js-view-all-link" href="/who_to_follow/suggestions" data-element-term="view_all_link">查看全部</a></small>
     </div>
 
-    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">  <div class="js-account-summary account-summary js-actionable-user " data-user-id="45523" data-feedback-token="121">
+    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">
+{% for channel in maylike_channels.list %}
+
+  <div class="js-account-summary account-summary js-actionable-user " data-user-id="14309969" data-feedback-token="133">
   <div class="dismiss js-action-dismiss"><i class="close"></i></div>
   <div class="content">
-    <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="/LEMONed" data-user-id="45523">
+    <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="/c/{{ channel.id }}" data-user-id="14309969">
       
-      <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/2184512490/me_180_normal.jpg" alt="LEMONed ♺">
-      <span class="account-group-inner js-action-profile-name" data-user-id="45523">
-        <b class="fullname">LEMONed ♺</b>
+      <img class="avatar js-action-profile-avatar " src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}">
+      <span class="account-group-inner js-action-profile-name" data-user-id="14309969">
+        <b class="fullname">{{ channel.name }}</b>
         <span>‏</span>
         
-        <span class="username"><s>@</s><span class="js-username">LEMONed</span></span>
+        <span class="username"><s>@</s><span class="js-username">{{ channel.author_username }}</span></span>
       </span>
     </a>
 
 
     <small class="metadata social-context">
+              {{ channel.posts }} 个视频,
+                  {{ channel.followers}} 人关注.
     </small>
+    <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
+                  <input type="hidden" name="channel_id" value="{{ channel.id }}">
+                  <span class="follow-text" dir="ltr">关注</span>
+                </div>
     
 
 
   </div>
 </div>
-
-
-  
-
-
-  
+{% endfor %}
 
 
 </div>
@@ -544,6 +547,13 @@ $(document).on('click', '.c-icon',  function() {
         热门账号
         </a> · <a href="/who_to_follow/import" class="js-find-friends-link" data-element-term="import_link">查找好友</a>
       </div>
+  </div>
+  <div class="view-all-button">
+    <ul>
+      <li>
+        <a href="/who_to_follow/suggestions" class="list-link follow-more-suggestions">更多推荐用户<i class="chev-right"></i></a>
+      </li>
+    </ul>
   </div>
   
 </div>
