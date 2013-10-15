@@ -495,55 +495,57 @@ $(document).on('click', '.c-icon',  function() {
 
 {% block right %}
 <div class="right-bar">
-  <div class="maylike">
-    <h4 class="header">
-      <span>你可能喜欢的频道</span>
-    </h4>
-    <div class="like-channels">
+<div class="module wtf-module js-wtf-module   has-content">
 
-      <div class="channel-item">
-        <div class="cover">
-          <a href="/">
-            <img src="https://lh4.googleusercontent.com/-bf4rSxrZmR0/AAAAAAAAAAI/AAAAAAAAADA/ycDTEuOuL5A/s120-c/photo.jpg" alt="" class="cover-img"></a>
-        </div>
-        <div class="info">
-          <div class="title">
-            <a href="/">V for Vendetta</a>
-          </div>
-          <div class="like">
-            <a href="/">1211 人喜欢</a>
-          </div>
-        </div>
-      </div>
-      <div class="channel-item">
-        <div class="cover">
-          <a href="/">
-            <img src="https://lh4.googleusercontent.com/-w5lqw_FT-JM/AAAAAAAAAAI/AAAAAAAAABw/oCXK48O0H7M/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
-        </div>
-        <div class="info">
-          <div class="title">
-            <a href="/">皮克斯短片集</a>
-          </div>
-          <div class="like">
-            <a href="/">219 人喜欢</a>
-          </div>
-        </div>
-      </div>
-      <div class="channel-item">
-        <div class="cover">
-          <a href="/">
-            <img src="https://lh3.googleusercontent.com/-F1ARRPUL8nY/AAAAAAAAAAI/AAAAAAAAAFs/3cuRu2ZBwkg/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
-        </div>
-        <div class="info">
-          <div class="title">
-            <a href="/">America's Funniest</a>
-          </div>
-          <div class="like">
-            <a href="/">337 人喜欢</a>
-          </div>
-        </div>
-      </div>
+  <div class="flex-module">
+
+    <div class="flex-module-header">
+      <h3>推荐关注</h3>
+        <small>· </small>
+        <button type="button" class="btn-link js-refresh-suggestions"><small>刷新</small></button>
+      
+          <small class="view-all">· <a class="js-view-all-link" href="/who_to_follow/suggestions" data-element-term="view_all_link">查看全部</a></small>
     </div>
+
+    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">  <div class="js-account-summary account-summary js-actionable-user " data-user-id="45523" data-feedback-token="121">
+  <div class="dismiss js-action-dismiss"><i class="close"></i></div>
+  <div class="content">
+    <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="/LEMONed" data-user-id="45523">
+      
+      <img class="avatar js-action-profile-avatar " src="https://si0.twimg.com/profile_images/2184512490/me_180_normal.jpg" alt="LEMONed ♺">
+      <span class="account-group-inner js-action-profile-name" data-user-id="45523">
+        <b class="fullname">LEMONed ♺</b>
+        <span>‏</span>
+        
+        <span class="username"><s>@</s><span class="js-username">LEMONed</span></span>
+      </span>
+    </a>
+
+
+    <small class="metadata social-context">
+    </small>
+    
+
+
   </div>
+</div>
+
+
+  
+
+
+  
+
+
+</div>
+
+      <div class="flex-module-footer">
+        <a href="/who_to_follow/interests" class="js-interests-link" data-element-term="interests_link">
+        热门账号
+        </a> · <a href="/who_to_follow/import" class="js-find-friends-link" data-element-term="import_link">查找好友</a>
+      </div>
+  </div>
+  
+</div>
 </div>
 {% endblock %}

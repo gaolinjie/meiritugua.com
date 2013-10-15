@@ -2773,3 +2773,172 @@ p.bio, strong.fullname {
   font-weight: bold
 }
 /* video page css end */
+
+
+/* dashboard start */
+
+.right-bar {
+  position: fixed;
+  margin-left: 777px;
+  width: 302px;
+}
+
+.module {
+text-shadow: 0 1px 0 #fff;
+border: 1px solid #eee;
+border: 1px solid rgba(0,0,0,.1);
+}
+.module {
+position: relative;
+margin-bottom: 10px;
+line-height: 16px;
+border-radius: 6px;
+background-clip: padding-box;
+}
+
+.module ul:last-child li:last-child .list-link, .module ul:last-child li.last-item .list-link, .module .list-link.last, .module .flex-module:last-child, .module .contrast-flex-module:last-child {
+border-bottom-right-radius: 5px;
+border-bottom-left-radius: 5px;
+}
+.module ul:first-child li:first-child .list-link, .module .flex-module:first-child, .module .contrast-flex-module:first-child {
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+}
+.module .flex-module {
+background-color: #f9f9f9;
+padding: 12px;
+line-height: 16px;
+}
+
+.flex-module-header h3 {
+display: inline;
+}
+.module h3 {
+font-size: 14px;
+font-weight: normal;
+line-height: 1;
+}
+.module h3 {
+color: #333;
+margin: 0;
+text-rendering: optimizeLegibility;
+}
+
+.flex-module-header small {
+line-height: 1;
+}
+small {
+font-size: 12px;
+}
+user agent stylesheetsmall {
+font-size: smaller;
+}
+
+.btn-link {
+padding: 0;
+background-color: transparent;
+border: 0;
+cursor: pointer;
+border-radius: 0;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+.flex-module-inner, .flex-module-footer {
+color: #999;
+font-size: 12px;
+}
+
+.account-summary {
+position: relative;
+display: block;
+min-height: 48px;
+}
+
+.account-summary .dismiss {
+margin-top: 3px;
+}
+.dismiss {
+float: right;
+width: 10px;
+height: 10px;
+margin-top: 5px;
+cursor: pointer;
+}
+
+.close {
+background-position: -20px -510px;
+width: 9px;
+height: 9px;
+}
+.dismiss i, .dismiss .icon {
+display: inline-block;
+vertical-align: text-top;
+background-image: url(../img/twitter_web_sprite_icons.png);
+background-position: 0 0;
+background-repeat: no-repeat;
+}
+
+.wtf-module .account-summary .content {
+min-height: 48px;
+}
+.account-summary .content {
+margin-left: 58px;
+margin-right: 20px;
+}
+
+.account-summary .account-group, .account-summary .account-action {
+display: block;
+line-height: 16px;
+}
+.account-summary .avatar {
+position: absolute;
+top: 0;
+left: 0;
+}
+.account-summary .avatar {
+width: 48px;
+height: 48px;
+border-radius: 5px;
+-moz-force-broken-image-icon: 1;
+}
+
+.account-group-inner {
+display: block;
+width: 100%;
+}
+.account-summary .account-group-inner, .account-summary .metadata {
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.account-summary .account-group-inner, .account-summary .pretty-link, .account-summary .account-action, .account-summary .location {
+color: #999;
+}
+
+.account-summary .account-group-inner, .account-summary .metadata {
+white-space: nowrap;
+}
+.account-summary .account-group-inner, .account-summary .pretty-link, .account-summary .account-action, .account-summary .location {
+color: #999;
+}
+
+.account-group-inner  .username {
+direction: ltr;
+unicode-bidi: embed;
+}
+.account-group-inner .username {
+font-size: 12px;
+color: #999;
+}
+.username s, .account-group-inner s {
+color: #bbb;
+}
+s {
+text-decoration: none;
+}
+.account-summary .account-group-inner, .account-summary .metadata {
+white-space: nowrap;
+}
+
+/* dashboard end */
