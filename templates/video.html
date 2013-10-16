@@ -179,16 +179,38 @@
 
 {% block right %}
 <div class="right-bar">
-  <div class="subnavs">
-    <h4 class="header">
-      <span>频道分类</span>
-    </h4>
-    <div class="content">
-      {% for subnav in subnavs %}
-        <a href="/video?tab={{ subnav.name }}">{{ subnav.title }}</a>
-        {% endfor %}
+<div class="module wtf-module js-wtf-module with-bottom-tab  has-content">
 
+  <div class="flex-module">
+
+    <div class="flex-module-header">
+      <h3>频道分类</h3>
+      
     </div>
+
+    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">
+<ul class="tag-ranking-list">
+{% for subnav in subnavs %}
+<li><a href="/video?tab={{ subnav.name }}" class="tag" data-tid="1040000000089498">{{ subnav.title }}</a></li>
+        {% endfor %}
+</ul>
+
+</div>
+
+      <div class="flex-module-footer">
+        <a href="/who_to_follow/interests" class="js-interests-link" data-element-term="interests_link">
+        热门频道
+        </a> · <a href="/who_to_follow/import" class="js-find-friends-link" data-element-term="import_link">查找频道</a>
+      </div>
   </div>
+  <div class="view-all-button">
+    <ul>
+      <li>
+        <a href="/who_to_follow/suggestions" class="list-link follow-more-suggestions">更多推荐频道<i class="chev-right"></i></a>
+      </li>
+    </ul>
+  </div>
+  
+</div>
 </div>
 {% endblock %}
