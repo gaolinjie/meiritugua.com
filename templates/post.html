@@ -114,7 +114,6 @@
               url: "/comment/"+post_id,
               data: JSON.stringify({comment_content: comment_content}), 
               success: function (msg) {
-                comment_editor.html("");
                 comment_box.show();
                 comment_list.html(comment_string);
               },
@@ -232,158 +231,10 @@ $(document).on('click', '.c-icon',  function() {
         });
     </script>
     <script src="/static/js/jquery.infinitescroll.js"></script>
- <script>
- $(document).ready(function (){
-    $(".feeds").infinitescroll({
-          navSelector: "#navigation",
-          nextSelector: "#navigation a",
-          itemSelector: ".card",
-          maxPage: {{posts.page.pages}},   
-      }, function(newElems) {
-      $.fn.raty.defaults.path = '/static/js/raty/img';
-      $('.rating').raty({ 
-        half: true,
-        score: function() {
-          return $(this).parent().find('.score').text()/2;
-        },
-        click: function(score, evt) {
-          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
-          var scroe_text = $(this).parent().find('.score');
-          var rating = $(this);
-          $.ajax({
-              type: "POST",
-              contentType: "application/json; charset=utf-8",
-              dataType: "json",
-              url: "/rate/"+post_id,
-              data: JSON.stringify({score: score}), 
-              success: function (msg) {
-                if (msg.success != 0) {
-                  if (msg.message == "rated") {
-                    rating.raty({ score: parseInt(scroe_text.text())/2 });
-                    alert("对不起，你已经评过分了！");
-                    return;
-                  }
-                  scroe_text.text(score*2);
-                }
-                else {
-                  alert("评分没有成功，请重试！");
-                }
-                
-
-              },
-              error: function (msg) {
-                alert("error");
-              }
-            });
-        },
-        hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
-      });
-            });
- }); 
-    </script>
 {% endblock %}
 
 {% block main %}
 <div class="feeds">
-  {% set tab_bar = [
-      ('/', 'all', '所有'),
-      ('/?tab=video', 'video', '短片'),
-      ('/?tab=micro', 'micro', '微电影'),           
-      ('/?tab=movie', 'movie', '电影'),     
-      ('/?tab=star', 'star', '明星'),               
-  ] -%}
-  {% set active_tab = active_tab|default('index') -%}
-  <div class="tabbar">
-    {% for href, id, caption in tab_bar %}
-    <div {% if id == active_tab %} class="tab m-active"{% else %} class="tab" {% endif %}>
-      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
-      <span class="tab-highlight"></span>
-    </div>
-    {% endfor %}
-    <div class="post-btn">
-      <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">分享视频</a>
-    </div>
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <form class="mt10" action="/" method="post">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">分享视频</h5>
-  </div>
-  <div class="modal-body">
-
-    
-      <div class="row1">
-        <div class="t-link">视频链接:</div>
-        <div class="v-link">
-          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-        
-      </div>
-      <div class="row2">
-        <div class="t-link">视频介绍:</div>
-        <div class="v-description">
-          <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
-        </div>
-      </div>
-
-      <div class="row3">
-        <div class="t-link">选择频道:</div>
-        <div class="v-channel">
-          <select name="channel">
-            {% for channel in channels %}
-            <option>{{ channel.name }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-    
-
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-    <button class="btn btn-primary" type="submit" id="61.post" >分享视频</button>
-    <input type="hidden" name="subnav_name" value="{{ active_tab }}">
-          {{ xsrf_form_html() }}
-  </div>
-  </form>
-</div>
-  </div>
-  <div class="post-box" style="display:none">
-    <form class="mt10" action="/" method="post">
-      <div class="row1">
-        <div class="t-avatar">
-          <a href="/u/{{ user_info.username }}">
-            <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}"></a>
-        </div>
-        <div class="v-description">
-          <textarea rows="3" class="content" placeholder="写点视频介绍吧..." name="intro"></textarea>
-        </div>
-      </div>
-      <div class="row2">
-        <div class="t-link">视频链接:</div>
-        <div class="v-link">
-          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-      </div>
-
-      <div class="row3">
-        <div class="t-channel">选择频道:</div>
-        <div class="v-channel">
-          <select name="channel">
-            {% for channel in channels %}
-            <option>{{ channel.name }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="row4">
-        <span class="post-btn-wrap">
-          <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">
-          {{ xsrf_form_html() }}
-          <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
-        </span>
-      </div>
-    </form>
-  </div>
-  {% for post in posts.list %}
   <div class="card">
     <div class="header">
       <div class="avatar">
@@ -412,7 +263,7 @@ $(document).on('click', '.c-icon',  function() {
     </div>
     <p class="intro">{{ post.intro|content_process }}</p>
     <div class="content">
-      <div class="thumb thumb-imgs">
+      <div class="thumb thumb-imgs" style="display: none;">
         <img class="thumb-img" src="{{ post.video_thumb }}"> <i class="play"></i>
         <div class="title">
           <a href="javascript:void(0);" class="a-n ot-anchor YF" title="{{ post.video_title }}">{{ post.video_title }}</a>
@@ -421,7 +272,7 @@ $(document).on('click', '.c-icon',  function() {
         <div class="score">{%if post.score!=0 %}{{ post.score }}{%endif%}</div>
         <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
       </div>
-      <div class="thumb thumb-video" style="display: none;">
+      <div class="thumb thumb-video" >
         <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="480" height="310" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
       </div>
       <div class="bottom">
@@ -436,18 +287,14 @@ $(document).on('click', '.c-icon',  function() {
             <span class="share-icon"></span>
           </span>
         </div>
-        {% if not post.last_comment%}
-        <div class="comment">
-          <div class="comment-box" tabindex="0" role="button">发表评论...</div>
-        </div>
-        {% endif %}
+
         <input type="hidden" name="post_id" value="{{ post.id }}">
       </div>
       <div class="comment-editor"></div>
     </div>
 
     <div class="comment-card">
-      {% if post.last_comment %}
+
       <div class="divider"></div>
       <div class="c-num">
         <a class="c-link">{{ post.comment_count }} 条评论</a>
@@ -456,21 +303,23 @@ $(document).on('click', '.c-icon',  function() {
       <div class="comment-list">
         <div class="ftRt " >
           <ul class="jspScrollable" >
+            {% for comment in comments %}
             <li>
               <div class="pic">
-                <a href="/u/{{ post.comment_user_name }}" target="_blank">
-                  <img src="/static/avatar/user/s_{{ post.comment_user_avatar or 'default.png' }}"></a>
+                <a href="/u/{{ comment.author_username }}" target="_blank">
+                  <img src="/static/avatar/user/m_{{ post.author_avatar or 'default.png' }}"></a>
               </div>
               <div class="doSth">
                 <p>
-                  <a class="mb_name" href="/u/{{ post.comment_user_name }}" target="_blank">{{ post.comment_user_name }}</a>
-                  <span class="time">{{ post.comment_created|pretty_date }}</span>
+                  <a class="mb_name" href="/u/{{ comment.author_username }}" target="_blank">{{ comment.author_username }}</a>
+                  <span class="time">{{ comment.created|pretty_date }}</span>
                 </p>
                 <p>
-                  <span class="text">{{ post.comment_content|content_process }}</span>
+                  <span class="text">{{ comment.content|content_process }}</span>
                 </p>
               </div>
             </li>
+            {% endfor %}
 
           </ul>
 
@@ -479,83 +328,14 @@ $(document).on('click', '.c-icon',  function() {
       </div>
       <div class="divider" style=""></div>
       <div class="comment-input-wraper">
-        <div class="comment-box" tabindex="0" role="button">发表评论...</div>
       </div>
-      <div class="comment-editor"></div>
-      {% endif %}
+      <div class="comment-editor"><div class="wrapper" style="margin-top: -20px;"><a href="./u/{{ user_info.username }}" class="" aria-hidden="true"><img src="/static/avatar/user/s_{{user_info.avatar or "default.png"}}"width="28px" height="28px" alt="" class="avatar"></a><textarea class="editor-box"></textarea><span class="button-wrap"><div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div></span></div></div>
+
     </div>
 
   </div>
-  {% endfor %}
-   <div id="navigation" align="center">
-        <a href="/?page={{posts.page.next}}"></a>        
-    </div>
 </div>
 {% endblock %}
 
 {% block right %}
-<div class="right-bar">
-<div class="module wtf-module js-wtf-module with-bottom-tab  has-content">
-
-  <div class="flex-module">
-
-    <div class="flex-module-header">
-      <h3>推荐频道</h3>
-        <small>· </small>
-        <button type="button" class="refresh-link js-refresh-suggestions"><small>刷新</small></button>
-      
-    </div>
-
-    <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">
-{% for channel in maylike_channels.list %}
-
-  <div class="js-account-summary account-summary js-actionable-user " data-user-id="14309969" data-feedback-token="133">
-  <div class="dismiss js-action-dismiss"><i class="close"></i></div>
-  <div class="content">
-    <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="/c/{{ channel.id }}" data-user-id="14309969">
-      
-      <img class="avatar js-action-profile-avatar " src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}">
-      <span class="account-group-inner js-action-profile-name" data-user-id="14309969">
-        <b class="fullname">{{ channel.name }}</b>
-        <span>‏</span>
-        
-        <span class="username"><s>@</s><span class="js-username">{{ channel.author_username }}</span></span>
-      </span>
-    </a>
-
-
-    <small class="metadata social-context">
-              {{ channel.posts }} 个视频,
-                  {{ channel.followers}} 人关注.
-    </small>
-    <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-                  <input type="hidden" name="channel_id" value="{{ channel.id }}">
-                  <span class="follow-text" dir="ltr">关注</span>
-                </div>
-    
-
-
-  </div>
-</div>
-{% endfor %}
-
-
-</div>
-
-      <div class="flex-module-footer">
-        <a href="/who_to_follow/interests" class="js-interests-link" data-element-term="interests_link">
-        热门频道
-        </a> · <a href="/who_to_follow/import" class="js-find-friends-link" data-element-term="import_link">查找频道</a>
-      </div>
-  </div>
-  <div class="view-all-button">
-    <ul>
-      <li>
-        <a href="/who_to_follow/suggestions" class="list-link follow-more-suggestions">更多推荐频道<i class="chev-right"></i></a>
-      </li>
-    </ul>
-  </div>
-  
-</div>
-</div>
 {% endblock %}

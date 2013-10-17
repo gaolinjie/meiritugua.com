@@ -62,7 +62,7 @@ class Application(tornado.web.Application):
             (r"/register", handler.user.RegisterHandler),
             (r"/forgot", handler.user.ForgotPasswordHandler),
             (r"/f/(\d+)", handler.topic.FollowHandler),
-            (r"/p/(\d+)", handler.topic.PlusChannelHandler),
+            (r"/p/(\d+)", handler.topic.PostHandler),
             (r"/comment/(\d+)", handler.topic.CommentHandler),
             (r"/rate/(\d+)", handler.topic.RateHandler),
             (r"/setting", handler.user.SettingHandler),

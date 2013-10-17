@@ -109,7 +109,7 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6
 }
 
 .card {
-  width: 478px;
+  width: 520px;
   margin-bottom: 20px;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -185,7 +185,7 @@ p {
 }
 
 .thumb .title {
-  width: 280px;
+  width: 330px;
   left: 170px;
   top: 20px;
   position: absolute;
@@ -554,7 +554,7 @@ img {
 
 
 .channels {
-  width: 478px;
+  width: 520px;
   margin: 100px 259px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
@@ -1343,7 +1343,7 @@ padding: 0 10px;
 }
 
 .tabbar {
-  width: 478px;
+  width: 520px;
   height: 45px;
   background: #fff;
   margin-bottom: 10px;
@@ -1399,7 +1399,7 @@ width: 100%;
 }
 
 .post-box {
-  width: 478px;
+  width: 520px;
   border-radius: 2px;
   margin-bottom: 30px;
   background-color: #f5f5f5;
@@ -1707,7 +1707,7 @@ margin-right: 10px;
 }
 
 .ftRt .doSth {
-width: 366px;
+width: 396px;
 float: left;
 margin-bottom: 10px;
 }
@@ -1810,7 +1810,7 @@ opacity: .9;
   margin-bottom: 7px;
   min-height: 0;
   padding: 6px 6px;
-  width: 386px;
+  width: 426px;
   height: 60px;
 }
 
@@ -1878,7 +1878,7 @@ color: #1abc9c;
 }
 
 .setting-card {
-  width: 478px;
+  width: 520px;
   margin: 100px 259px;
   background: #fff;
 }
@@ -1942,12 +1942,12 @@ form .controls .avatar {
 }
 
 .c-setting-card {
-width: 478px;
+width: 520px;
 background: #fff;
 }
 
 .c-setting-card fieldset {
-  padding: 30px;
+  padding: 30px
 }
 
 .avatar_c img {
@@ -2017,7 +2017,7 @@ outline: none;
 transition: opacity .218s ease,max-width .218s step-end,visibility .218s step-end;
 display: block;
 float: left;
-max-width: 280px;
+max-width: 330px;
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
@@ -2166,7 +2166,7 @@ border-radius: 55px;
 
 /* channel page css start */
 .profile-card.profile-header {
-width: 478px;
+width: 520px;
 position: relative;
 }
 
@@ -2189,7 +2189,7 @@ overflow: hidden;
 background-repeat: no-repeat;
 -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
 box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
-background-size: 478px 260px;
+background-size: 520px 260px;
 }
 
 .module .flex-module {
@@ -2203,7 +2203,7 @@ background-color: #fff;
 
 .profile-header-inner-overlay {
 position: absolute;
-width: 478px;
+width: 520px;
 height: 200px;
 top: 60px;
 background: -moz-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,0.55) 100%);
@@ -2680,7 +2680,7 @@ margin-bottom: 0;
 -webkit-border-radius: 3px;
 -moz-border-radius: 3px;
 border-radius: 3px;
-width: 348px;
+width: 390px;
 }
 
 .flex-table-secondary .btn {
@@ -2749,13 +2749,10 @@ p.bio, strong.fullname {
 /* dashboard start */
 .right-bar {
   position: fixed;
-  margin-left: 777px;
+  margin-left: 817px;
   top: 101px;
   width: 259px;
   height: 100%;
-}
-.right-bar {
-  margin-left: 777px;
   width: 302px;
 }
 
@@ -3058,7 +3055,7 @@ line-height: 0;
 .tag-tree section .tag {
 margin-right: 4px;
 }
-a.tag, h4.tag {
+.right-bar a.tag {
 display: inline-block;
 background: #FFF;
 border: 1px solid #e6e6e6;
@@ -3070,7 +3067,7 @@ overflow: hidden;
 color: #666;
 }
 
-a.tag {
+.right-bar a.tag {
 -webkit-border-radius: 2px;
 -moz-border-radius: 2px;
 -ms-border-radius: 2px;
@@ -3079,14 +3076,23 @@ border-radius: 2px;
 }
 
 
-a.tag:hover, h4.tag:hover {
+.right-bar a.tag:hover {
 border-color: #BBB;
 color: #999;
 text-decoration: none;
 }
 
- a:hover {
+ .right-bar a:hover {
 outline: 0;
 }
 
 /* dashboard end */
+
+
+/* post page start */
+.comments {
+width: 520px;
+margin: 0px 0px;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+/* post page end */

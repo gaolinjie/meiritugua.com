@@ -435,7 +435,7 @@ class CommentHandler(BaseHandler):
         user_info = self.current_user
 
         if(user_info):
-            comments = self.comment_model.get_all_comments_by_post_id(post_id)
+            comments = self.comment_model.get_all_comments_by_post_id(user_info["uid"], post_id)
 
             jarray = []
             i = 0
@@ -466,7 +466,7 @@ class CommentHandler(BaseHandler):
             }
             comment_id = self.comment_model.add_new_comment(comment_info)
 
-            post = self.post_model.get_post_by_post_id(post_id)
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
             self.post_model.update_post_by_post_id(post_id, {"last_comment": comment_id, 
                                                             "comment_count": post.comment_count+1,})
             self.write(lib.jsonp.print_JSON({
@@ -572,3 +572,21 @@ class LaterManagerHandler(BaseHandler):
                     "success": 1,
                     "message": "success_latered",
                 }))
+
+class PostHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):           
+            template_variables["post"] = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
+            template_variables["comments"] = self.comment_model.get_all_comments_by_post_id(post_id)
+        else:
+            self.redirect("/login")
+
+        self.render("post.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        self.redirect("/")

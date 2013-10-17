@@ -113,12 +113,12 @@ class ChannelSettingAvatarHandler(BaseHandler):
         avatar_crop_region = (0, 0, avatar_border, avatar_border)
         avatar = avatar.crop(avatar_crop_region)
 
-        avatar_192x192 = avatar.resize((192, 192), Image.ANTIALIAS)
+        avatar_128x128 = avatar.resize((128, 128), Image.ANTIALIAS)
         avatar_96x96 = avatar.resize((96, 96), Image.ANTIALIAS)
         avatar_48x48 = avatar.resize((48, 48), Image.ANTIALIAS)
         
         usr_home = os.path.expanduser('~')
-        avatar_192x192.save(usr_home+"/www/mifan.tv/static/avatar/channel/b_%s.png" % avatar_name, "PNG")
+        avatar_128x128.save(usr_home+"/www/mifan.tv/static/avatar/channel/b_%s.png" % avatar_name, "PNG")
         avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/channel/m_%s.png" % avatar_name, "PNG")
         avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/channel/s_%s.png" % avatar_name, "PNG")
         
@@ -168,10 +168,10 @@ class ChannelSettingCoverHandler(BaseHandler):
         cover_buffer = StringIO.StringIO(cover_raw)
         cover = Image.open(cover_buffer)
 
-        cover_478x260 = cover.resize((478, 260), Image.ANTIALIAS)
+        cover_520x260 = cover.resize((520, 260), Image.ANTIALIAS)
      
         usr_home = os.path.expanduser('~')
-        cover_478x260.save(usr_home+"/www/mifan.tv/static/cover/channel/m_%s.png" % cover_name, "PNG")
+        cover_520x260.save(usr_home+"/www/mifan.tv/static/cover/channel/m_%s.png" % cover_name, "PNG")
         
         result = self.channel_model.set_channel_cover_by_channel_id(channel_id, "%s.png" % cover_name)
         template_variables["success_message"] = [u"频道头像更新成功"]
