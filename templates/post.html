@@ -103,6 +103,8 @@
             var comment_editor = $(this).parent().parent().parent();
             var comment_box = $(this).parent().parent().parent().parent().find('.comment-box');
             var post_id = $(this).parent().parent().parent().parent().parent().find('.bottom').find('input').val();
+            var editor_box = $(this).parent().parent().find(".editor-box");
+            var gbtn = $(this);
             var comment_content = $(this).parent().parent().find(".editor-box").val();
             var comment_list = $(this).parent().parent().parent().parent().find('.jspScrollable');
             var comment_string = comment_list.html() + '<li><div class="pic"><a href="/u/{{ user_info.username }}" target="_blank"><img src="/static/avatar/user/s_{{ user_info.avatar or "default.png" }}"></a></div><div class="doSth"><p><a class="mb_name" href="/u/{{ user_info.username }}" target="_blank">{{ user_info.username }}</a><span class="time">刚刚</span></p><p><span class="text">' + comment_content + '</span></p></div></li>';
@@ -116,6 +118,8 @@
               success: function (msg) {
                 comment_box.show();
                 comment_list.html(comment_string);
+                editor_box.val("");
+                gbtn.addClass('gbtn-unenable');
               },
               error: function (msg) {
                 alert("error");
@@ -298,7 +302,6 @@ $(document).on('click', '.c-icon',  function() {
       <div class="divider"></div>
       <div class="c-num">
         <a class="c-link">{{ post.comment_count }} 条评论</a>
-        <span class="c-icon"></span>
       </div>
       <div class="comment-list">
         <div class="ftRt " >
