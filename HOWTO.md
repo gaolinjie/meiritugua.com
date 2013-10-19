@@ -18,7 +18,7 @@ HOWTO deploy on Linode
 	$ pip install supervisor 
 
 ###Config Git
-	$ ssh-keygen -t rsa -C "mifan.me@gmail.com"
+	$ ssh-keygen -t rsa -C "mifan.tv@gmail.com"
 	$ cat ~/.ssh/id_rsa.pub
 	# copy and paste the RSA key to the Deploy keys setting
 	$ git config --global user.name "mifan.tv"  
@@ -29,8 +29,8 @@ HOWTO deploy on Linode
 
 ###Pull in source code
 	$ cd ~/www/
-	$ git clone git@github.com:gaolinjie/mifan.git
-	$ cd mifan
+	$ git clone git@github.com:gaolinjie/mifan.tv.git
+	$ cd mifan.tv
 
 ###Install web app required modules
 	$ pip install -r requirements.txt
@@ -38,7 +38,7 @@ HOWTO deploy on Linode
 ###Install python mysql
 	$ easy_install -U distribute
 	$ apt-get install libmysqld-dev libmysqlclient-dev
-        $ apt-get install python-dev
+    $ apt-get install python-dev
 	$ pip install mysql-python
 	$ apt-get install python-MySQLdb
 
@@ -65,9 +65,9 @@ HOWTO deploy on Linode
 ###Create symbolic links to conf files
 	$ cd /etc/nginx 
 	$ rm nginx.conf
-	$ ln -s ~/www/mifan/conf/nginx.conf nginx.conf 
+	$ ln -s ~/www/mifan.tv/conf/nginx.conf nginx.conf 
 	$ cd
-	$ ln -s ~/www/mifan/conf/supervisord.conf supervisord.conf  
+	$ ln -s ~/www/mifan.tv/conf/supervisord.conf supervisord.conf  
 
 ###Create nginx user
 	$ adduser --system --no-create-home --disabled-login --disabled-password --group nginx 
