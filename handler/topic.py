@@ -435,7 +435,7 @@ class CommentHandler(BaseHandler):
         user_info = self.current_user
 
         if(user_info):
-            comments = self.comment_model.get_all_comments_by_post_id(user_info["uid"], post_id)
+            comments = self.comment_model.get_all_comments_by_post_id(post_id)
 
             jarray = []
             i = 0
@@ -490,7 +490,7 @@ class RateHandler(BaseHandler):
 
         if(user_info):
             rate = self.rate_model.get_rate_by_post_id_and_user_id(user_info["uid"], post_id)
-            post = self.post_model.get_post_by_post_id(post_id)
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
             if(rate):
                 self.write(lib.jsonp.print_JSON({
                     "success": 1,
@@ -525,7 +525,7 @@ class FavoriteManagerHandler(BaseHandler):
 
         if(user_info):
             favorite = self.favorite_model.get_favorite_by_post_id_and_user_id(user_info["uid"], post_id)
-            post = self.post_model.get_post_by_post_id(post_id)
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
             if(favorite):
                 self.favorite_model.delete_favorite_info_by_user_id_and_post_id(user_info["uid"], post_id)
                 self.post_model.update_post_by_post_id(post_id, {"favorite": post.favorite-1})
@@ -553,7 +553,7 @@ class LaterManagerHandler(BaseHandler):
 
         if(user_info):
             later = self.later_model.get_later_by_post_id_and_user_id(user_info["uid"], post_id)
-            post = self.post_model.get_post_by_post_id(post_id)
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
             if(later):
                 self.later_model.delete_later_info_by_user_id_and_post_id(user_info["uid"], post_id)
                 self.write(lib.jsonp.print_JSON({
