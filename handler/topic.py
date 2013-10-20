@@ -36,7 +36,7 @@ class IndexHandler(BaseHandler):
         template_variables["gen_random"] = gen_random
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
-            template_variables["maylike_channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
+            template_variables["maylike_channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"])
             
             if(tab=="index"):
                 template_variables["active_tab"] = "all"
