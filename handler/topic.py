@@ -305,7 +305,7 @@ class ChannelHandler(BaseHandler):
                 print "no plused"
                 template_variables["plused"]=0;
             template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
-            template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, channel_id = channel_id)
+            template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, user_id = user_info["uid"], channel_id = channel_id)
         else:
             self.redirect("/login")
 
