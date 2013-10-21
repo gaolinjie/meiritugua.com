@@ -1113,7 +1113,6 @@ textarea {
   height: auto;
 }
 
-textarea,
 input[type="text"],
 input[type="password"],
 input[type="datetime"],
@@ -1141,7 +1140,6 @@ input[type="color"],
 }
 
 select:focus,
-textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="datetime"]:focus,

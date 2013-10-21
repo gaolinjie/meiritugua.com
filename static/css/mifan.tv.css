@@ -3322,6 +3322,7 @@ background: #fff;
 }
 .zh-add-question-form .editable {
 min-height: 66px;
+width: 494px;
 }
 
 .modal-dialog, div[contentEditable] {
