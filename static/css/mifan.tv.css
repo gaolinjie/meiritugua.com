@@ -3098,14 +3098,9 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 /* post page end */
 
 /* modal */
-element.style {
-width: 550px;
-left: 398.5px;
-top: 69px;
-}
+
 .modal-dialog {
 position: absolute;
-margin: auto;
 width: 420px;
 border-radius: 8px;
 border: 1px solid #888;
@@ -3159,7 +3154,7 @@ background-position: -60px -53px;
 .modal-dialog-title-close {
 width: 16px;
 height: 16px;
-background-image: url(/static/img/sprites-1.8.9.png);
+background-image: url(http://static.zhihu.com/static/img/sprites-1.8.9.png);
 background-repeat: no-repeat;
 display: inline-block;
 vertical-align: middle;
@@ -3203,11 +3198,7 @@ background: #fff;
 border: 1px solid #ccc;
 color: #222;
 }
-element.style {
-white-space: pre;
-height: 22px;
-min-height: 22px;
-}
+
 
 .zh-add-question-form .add-question-title-form textarea {
 vertical-align: bottom;
@@ -3238,13 +3229,10 @@ border: 0;
 overflow: hidden;
 }
 
-body, input, textarea, select, button {
-font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
-line-height: 1.7;
+input, textarea, select {
 font-size: 13px;
 padding: 0;
 margin: 0;
-color: #222;
 word-wrap: break-word;
 }
 
@@ -3424,15 +3412,7 @@ input[type=text], input[type=password]:focus {
 color: #777!important;
 }
 
-body, input, textarea, select, button {
-font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
-line-height: 1.7;
-font-size: 13px;
-padding: 0;
-margin: 0;
-color: #222;
-word-wrap: break-word;
-}
+
 
 div[contentEditable], input, textarea, button, a:link {
 -webkit-tap-highlight-color: rgba(225,225,225,.5);
@@ -3453,7 +3433,7 @@ text-align: right;
 
 .zh-add-question-form .zm-question-form-hide-in-about-question-el {
 color: #666;
-margin: 5px 0;
+margin: 5px 0 5px 2px;
 }
 
 .zg-left {
@@ -3463,18 +3443,10 @@ float: left;
 
 input[type=checkbox] {
 margin: 0 5px 0 0;
-vertical-align: 0;
+vertical-align: 1px;
 }
 
-body, input, textarea, select, button {
-font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
-line-height: 1.7;
-font-size: 13px;
-padding: 0;
-margin: 0;
-color: #222;
-word-wrap: break-word;
-}
+
 
 div[contentEditable], input, textarea, button, a:link {
 -webkit-tap-highlight-color: rgba(225,225,225,.5);
@@ -3549,4 +3521,25 @@ cursor: text;
 
 .modal-backdrop {
   opacity: 0.5;
+}
+
+.modal-dialog-title-close {
+position: absolute;
+top: 50%;
+_top: 20px;
+right: 3px;
+width: 30px;
+height: 30px;
+margin-top: -15px;
+text-indent: -9999px;
+cursor: pointer;
+background-position: -60px -53px;
+}
+
+.v-channel select {
+  width: 516px;
+}
+
+.zm-command-cancel {
+  font-size: 13px;
 }

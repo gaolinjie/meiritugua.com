@@ -304,7 +304,7 @@ $(document).on('click', '.c-icon',  function() {
       <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">分享视频</a>
     </div>
 
-<div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; left: 398.5px; top: 69px;">
+<div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 219.5px;">
   <div class="modal-dialog-title modal-dialog-title-draggable" id=":21"><span class="modal-dialog-title-text">分享视频</span><span class="modal-dialog-title-close"></span></div><div class="modal-dialog-content"><div id="zh-add-question-wrap" class="zh-add-question-form">
 
 <form class="js-add-question-form" action="/" method="post">
@@ -327,7 +327,7 @@ $(document).on('click', '.c-icon',  function() {
 <span id="zh-question-form-detail-err"></span>
 </div>
 <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
-<div class="zm-editable-editor-wrap no-toolbar" style=""><div class="zm-editable-editor-outer"><div class="zm-editable-editor-field-wrap"><textarea name="intro" id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea></div></div></div>
+<div class="zm-editable-editor-wrap no-toolbar" style=""><div class="zm-editable-editor-outer"><div class="zm-editable-editor-field-wrap"><textarea name="intro" placeholder="输入视频介绍" id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea></div></div></div>
 </div>
 </div>
 <div class="zm-add-question-form-topic-wrap">
@@ -345,7 +345,6 @@ $(document).on('click', '.c-icon',  function() {
             <option>{{ channel.name }}</option>
             {% endfor %}
           </select>
-          <a href="javascript:;" name="cancel" class="zm-command-cancel">新建频道</a>
         </div></div>
 </div>
 </div>
