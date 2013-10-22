@@ -55,6 +55,7 @@ class Application(tornado.web.Application):
             (r"/video", handler.topic.VideoHandler),
             (r"/favorite", handler.topic.FavoriteHandler),
             (r"/later", handler.topic.LaterHandler),
+            (r"/follow", handler.topic.FollowsHandler),
             (r"/c/(\d+)", handler.topic.ChannelHandler),
             (r"/u/(.*)", handler.topic.UserHandler),
             (r"/login", handler.user.LoginHandler),

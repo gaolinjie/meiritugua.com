@@ -240,6 +240,25 @@ class VideoHandler(BaseHandler):
         else:
             self.redirect("/video")
 
+class FollowsHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "all")
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            template_variables["active_tab"] = tab
+
+            if (tab=="all"):
+                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"])
+            else:
+                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"])
+        else:
+            self.redirect("/login")
+
+        self.render("follow.html", **template_variables)
+
 class MicroHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
