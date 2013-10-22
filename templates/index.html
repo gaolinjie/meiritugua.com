@@ -281,6 +281,7 @@ $(document).on('click', '.c-icon',  function() {
             });
  }); 
     </script>
+
 {% endblock %}
 
 {% block main %}
@@ -304,8 +305,8 @@ $(document).on('click', '.c-icon',  function() {
       <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">分享视频</a>
     </div>
 
-<div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 219.5px;">
-  <div class="modal-dialog-title modal-dialog-title-draggable" id=":21"><span class="modal-dialog-title-text">分享视频</span><span class="modal-dialog-title-close"></span></div><div class="modal-dialog-content"><div id="zh-add-question-wrap" class="zh-add-question-form">
+<div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
+  <div class="modal-dialog-title modal-dialog-title-draggable" id=":21"><span class="modal-dialog-title-text">分享视频</span><span class="modal-dialog-title-close" data-dismiss="modal" aria-hidden="true"></span></div><div class="modal-dialog-content"><div id="zh-add-question-wrap" class="zh-add-question-form">
 
 <form class="js-add-question-form" action="/" method="post">
 <div class="zg-section-big clearfix">
@@ -322,19 +323,19 @@ $(document).on('click', '.c-icon',  function() {
 <div class="add-question-section-title">
 
 
-<span class="zg-gray zg-right">妙语连珠式的视频介绍，更能激发别人观看视频的兴趣</span>
+
 视频介绍：
 <span id="zh-question-form-detail-err"></span>
 </div>
 <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
-<div class="zm-editable-editor-wrap no-toolbar" style=""><div class="zm-editable-editor-outer"><div class="zm-editable-editor-field-wrap"><textarea name="intro" placeholder="输入视频介绍" id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea></div></div></div>
+<div class="zm-editable-editor-wrap no-toolbar" style=""><div class="zm-editable-editor-outer"><div class="zm-editable-editor-field-wrap"><textarea name="intro" placeholder="写下你精妙的推荐介绍吧" id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea></div></div></div>
 </div>
 </div>
 <div class="zm-add-question-form-topic-wrap">
 <div class="add-question-section-title">
 
 
-
+<span class="zg-gray zg-right">指定频道，让更多感兴趣的人观看到你分享的视频</span>
 选择频道：
 <span id="zh-question-form-tag-err"></span>
 </div>
@@ -350,7 +351,7 @@ $(document).on('click', '.c-icon',  function() {
 </div>
 <div class="zm-command">
 <label class="zm-question-form-hide-in-about-question-el zg-left">
-<input type="checkbox" value="1" class="zg-addq-isanon">公共频道
+<a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">+新建频道</a>
 </label>
 
 <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
