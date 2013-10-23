@@ -47,9 +47,9 @@
   <div class="content-header">
     <div class="header-inner">
 
-      <h2 id="content-main-heading">推荐频道</h2>
+      <h2 id="content-main-heading">我的关注</h2>
 
-      <p class="subheader">根据你关注的信息推荐给你的短片频道。</p>
+      <p class="subheader">聚集了你所关注的频道和人以及创建的频道。</p>
       <div class="create-channel">
       <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">创建频道</a>
     </div>
@@ -121,21 +121,19 @@
   </form>
 </div>
 
-    <form class="js-search-form content-searchbar" action="/who_to_follow/suggestions/search" method="GET">
-      <table class="flex-table">
-        <tbody>
-          <tr>
-            <td class="flex-table-primary">
-              <div class="flex-table-form">
-                <input class="flex-table-input search-query" type="text" name="q" placeholder="搜索你感兴趣的频道"></div>
-            </td>
-            <td class="flex-table-secondary">
-              <button class="btn btn-primary follow-toggle flex-table-btn js-submit" type="submit">搜索</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+  {% set tab_bar = [
+      ('/', 'all', '关注的频道'),
+      ('/?tab=video', 'video', '关注的人'),
+      ('/?tab=micro', 'micro', '我的频道'),                          
+  ] -%}
+  {% set active_tab = active_tab|default('index') -%}
+  <div class="tabbar">
+    {% for href, id, caption in tab_bar %}
+    <div class="tab {% if id == active_tab %}m-active{% endif %}" >
+      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
+      <span class="tab-highlight"></span>
+    </div>
+    {% endfor %}
   </div>
 
   <div id="timeline">

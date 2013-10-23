@@ -311,7 +311,7 @@ $(document).on('click', '.c-icon',  function() {
 {% block main %}
 <div class="feeds">
   <div class="module profile-card component profile-header profile-page-header" data-component-term="profile_follow_card">
-    <div class="profile-header-inner flex-module clearfix" style="background-image: url(/static/cover/channel/m_{{ channel.cover or 'default.jpg' }}?t={{ gen_random() }})">
+    <div class="profile-header-inner flex-module clearfix" style="background-image: url(/static/cover/channel/m_{{ channel.cover or 'default.png' }}?t={{ gen_random() }})">
       <div class="profile-header-inner-overlay"></div>
 
       <a href="/c/{{ channel.id }}" class="profile-picture media-thumbnail">
