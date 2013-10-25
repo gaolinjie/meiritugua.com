@@ -83,6 +83,25 @@
               </div>
             </div>
 
+            <div class="zm-add-question-form-topic-wrap">
+              <div class="add-question-section-title">
+                <span class="zg-gray zg-right">指定频道类别，能更好的区分你所分享的视频</span>
+                频道类别：
+                <span id="zh-question-form-tag-err"></span>
+              </div>
+              <div style="" id="zh-question-suggest-topic-container" class="zm-tag-editor zg-section">
+                <div id="zh-question-suggest-autocomplete-container">
+                  <div class="v-channel">
+                    <select name="subnav">
+                      {% for subnav in subnavs %}
+                      <option>{{ subnav.title }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="zm-command">
 
               <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>

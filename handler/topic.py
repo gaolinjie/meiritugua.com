@@ -229,31 +229,20 @@ class VideoHandler(BaseHandler):
 
         # continue while validate succeed
 
-        if (form.subnav_name.data != "all"):
-            subnav_id = self.subnav_model.get_subnav_by_subnav_name(form.subnav_name.data).id
-            channel_info = {
-                "name": form.name.data,
-                "intro": form.intro.data,
-                "nav_id": 1,
-                "subnav_id": 1,
-                "plus": 0,
-                "followers": 0,
-                "posts": 0,
-                "author_id": self.current_user["uid"],
-                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
-            }
-        else:
-            channel_info = {
-                "name": form.name.data,
-                "intro": form.intro.data,
-                "nav_id": 1,
-                "plus": 0,
-                "followers": 0,
-                "posts": 0,
-                "author_id": self.current_user["uid"],
-                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
-            }
 
+        subnav_id = self.subnav_model.get_subnav_by_subnav_title(form.subnav.data).id
+        channel_info = {
+            "name": form.name.data,
+            "intro": form.intro.data,
+            "nav_id": 1,
+            "subnav_id": subnav_id,
+            "plus": 0,
+            "followers": 0,
+            "posts": 0,
+            "author_id": self.current_user["uid"],
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+ 
         self.channel_model.add_new_channel(channel_info)
 
         channel = self.channel_model.get_channel_by_name(channel_name = channel_info["name"])
@@ -265,11 +254,7 @@ class VideoHandler(BaseHandler):
         }
 
         self.follow_model.add_new_follow(follow_info)
-
-        if (form.subnav_name.data != "all"):
-            self.redirect("/video?tab="+form.subnav_name.data)
-        else:
-            self.redirect("/video")
+        self.redirect("/video")
 
 class FollowsHandler(BaseHandler):
     def get(self, template_variables = {}):

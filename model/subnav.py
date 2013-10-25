@@ -27,6 +27,10 @@ class SubnavModel(Query):
         where = "name = '%s'" % subnav_name
         return self.where(where).find()
 
+    def get_subnav_by_subnav_title(self, subnav_title):
+        where = "title = '%s'" % subnav_title
+        return self.where(where).find()
+
     def get_subnavs_by_nav_id(self, nav_id):
         where = "subnav.nav_id = '%s'" % nav_id
         return self.where(where).select()

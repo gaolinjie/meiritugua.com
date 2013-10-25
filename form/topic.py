@@ -52,6 +52,10 @@ class ChannelForm(Form):
         validators.Required(message = "请填写频道名称"),
     ])
 
+    subnav = TextField('Subnav', [
+        validators.Required(message = "请选择频道类别"),
+    ])
+
 class ChannelForm2(Form):
     intro = TextField('Intro', [
         validators.Required(message = "请填写频道介绍"),
