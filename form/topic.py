@@ -18,8 +18,8 @@ class ReplyForm(Form):
 class PostForm(Form):
     intro = TextField('Intro', [
         validators.Required(message = "请填写视频介绍"),
-        validators.Length(min = 3, message = "介绍长度过短（3-56个字符）"),
-        validators.Length(max = 156, message = "介绍长度过长（3-56个字符）"),
+        validators.Length(min = 6, message = "介绍长度过短（3-140个字符）"),
+        validators.Length(max = 280, message = "介绍长度过长（3-140个字符）"),
     ])
 
     link = TextField('Link', [
@@ -27,7 +27,7 @@ class PostForm(Form):
     ])
 
     channel = TextField('Channel', [
-        validators.Required(message = "请填写视频频道"),
+        validators.Required(message = "请选择视频频道"),
     ])
 
 class PostForm2(Form):
@@ -52,8 +52,21 @@ class ChannelForm(Form):
         validators.Required(message = "请填写频道名称"),
     ])
 
-    subnav_name = TextField('Subnav_name', [
+class ChannelForm2(Form):
+    intro = TextField('Intro', [
+        validators.Required(message = "请填写频道介绍"),
+        validators.Length(min = 3, message = "介绍长度过短（3-56个字符）"),
+        validators.Length(max = 156, message = "介绍长度过长（3-56个字符）"),
     ])
+
+    name = TextField('Name', [
+        validators.Required(message = "请填写频道名称"),
+    ])
+
+    nav = TextField('Nav', [
+        validators.Required(message = "请选择频道类别"),
+    ])
+
 
 class ReplyEditForm(Form):
     content = TextField('Content', [

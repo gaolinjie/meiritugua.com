@@ -103,6 +103,7 @@ class Application(tornado.web.Application):
         self.channel_model = self.loader.use("channel.model")
         self.plus_model = self.loader.use("plus.model")
         self.comment_model = self.loader.use("comment.model")
+        self.nav_model = self.loader.use("nav.model")
         self.subnav_model = self.loader.use("subnav.model")
         self.video_model = self.loader.use("video.model")
         self.favorite_model = self.loader.use("favorite.model")

@@ -18,6 +18,9 @@ class ChannelModel(Query):
     def get_all_channels_count(self):
         return self.count()
 
+    def get_user_all_channels_count(self, uid):
+        where = "author_id = %s" % uid
+        return self.where(where).count()
 
     def get_channel_by_channel_id(self, channel_id):
         where = "id = '%s'" % channel_id

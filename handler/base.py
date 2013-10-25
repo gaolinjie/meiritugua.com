@@ -64,6 +64,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.post_model
 
     @property
+    def nav_model(self):
+        return self.application.nav_model
+
+    @property
     def subnav_model(self):
         return self.application.subnav_model
 

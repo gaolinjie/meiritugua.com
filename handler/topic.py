@@ -35,6 +35,7 @@ class IndexHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
+            template_variables["navs"] = self.nav_model.get_all_navs()
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             template_variables["maylike_channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"])
             
@@ -59,52 +60,82 @@ class IndexHandler(BaseHandler):
 
     @tornado.web.authenticated
     def post(self, template_variables = {}):
+        tab = self.get_argument('tab', "post")
         template_variables = {}
 
-        # validate the fields
-        form = PostForm(self)
+        if (tab=="post"):
+            # validate the fields
+            form = PostForm(self)
 
-        if not form.validate():
-            self.get({"errors": form.errors})
-            return
+            if not form.validate():
+                self.get({"errors": form.errors})
+                return
 
-        # continue while validate succeed
+            # continue while validate succeed
 
-        video_link = form.link.data
-        video_id = find_video_id_from_url(video_link)
-        json_link = "http://v.youku.com/player/getPlayList/VideoIDS/"+video_id+"/timezone/+08/version/5/source/out?password=&ran=2513&n=3"
-        video_json = json.load(urllib2.urlopen(json_link))
-        video_logo = video_json[u'data'][0][u'logo']
-        video_title = video_json[u'data'][0][u'title']
-        video_flash = "http://player.youku.com/player.php/sid/"+video_id+"/v.swf"
-        print video_title
+            video_link = form.link.data
+            video_id = find_video_id_from_url(video_link)
+            json_link = "http://v.youku.com/player/getPlayList/VideoIDS/"+video_id+"/timezone/+08/version/5/source/out?password=&ran=2513&n=3"
+            video_json = json.load(urllib2.urlopen(json_link))
+            video_logo = video_json[u'data'][0][u'logo']
+            video_title = video_json[u'data'][0][u'title']
+            video_flash = "http://player.youku.com/player.php/sid/"+video_id+"/v.swf"
+            print video_title
 
-        video_info = {
-            "source": "youku",
-            "flash": video_flash,
-            "link": video_link,
-            "title": video_title,
-            "thumb": video_logo,
-        }
-        vid = self.video_model.add_new_video(video_info)
-        print vid
+            video_info = {
+                "source": "youku",
+                "flash": video_flash,
+                "link": video_link,
+                "title": video_title,
+                "thumb": video_logo,
+            }
+            vid = self.video_model.add_new_video(video_info)
+            print vid
 
-        channel_name = form.channel.data
-        channel = self.channel_model.get_channel_by_name(channel_name = channel_name)
+            channel_name = form.channel.data
+            channel = self.channel_model.get_channel_by_name(channel_name = channel_name)
         
-        post_info = {
-            "author_id": self.current_user["uid"],
-            "channel_id": channel["id"],
-            "nav_id": channel["nav_id"],
-            "video_id": vid,
-            "intro": form.intro.data,
-            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
-        }
+            post_info = {
+                "author_id": self.current_user["uid"],
+                "channel_id": channel["id"],
+                "nav_id": channel["nav_id"],
+                "video_id": vid,
+                "intro": form.intro.data,
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
 
-        self.post_model.add_new_post(post_info)
+            self.post_model.add_new_post(post_info)
+            self.redirect("/")
+        else:
+            form = ChannelForm2(self)
 
+            if not form.validate():
+                self.get({"errors": form.errors})
+                return
 
-        self.redirect("/")
+            nav = self.nav_model.get_nav_by_nav_title(form.nav.data)
+            channel_info = {
+                "name": form.name.data,
+                "intro": form.intro.data,
+                "nav_id": nav["id"],
+                "plus": 0,
+                "followers": 0,
+                "posts": 0,
+                "author_id": self.current_user["uid"],
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+            self.channel_model.add_new_channel(channel_info)
+
+            channel = self.channel_model.get_channel_by_name(channel_name = channel_info["name"])
+
+            follow_info = {
+                "user_id": self.current_user["uid"],
+                "channel_id": channel["id"],
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+            self.follow_model.add_new_follow(follow_info)
+
+            self.redirect("/c/"+str(channel["id"]))
 
 class FavoriteHandler(BaseHandler):
     def get(self, template_variables = {}):
