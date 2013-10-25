@@ -341,7 +341,7 @@ class ChannelHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
-            template_variables["maylike_channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
+            template_variables["user_other_channels"] = self.channel_model.get_user_other_channels(user_info["uid"], channel_id)
             follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             if(follow):
