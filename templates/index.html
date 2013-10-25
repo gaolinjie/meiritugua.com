@@ -396,9 +396,8 @@ $(document).on('click', '.c-icon',  function() {
 
             <div class="zm-add-question-form-topic-wrap">
               <div class="add-question-section-title">
-
                 <span class="zg-gray zg-right">指定频道类别，能更好的区分你所分享的视频</span>
-                选择类别：
+                频道类别：
                 <span id="zh-question-form-tag-err"></span>
               </div>
               <div style="" id="zh-question-suggest-topic-container" class="zm-tag-editor zg-section">
@@ -415,10 +414,9 @@ $(document).on('click', '.c-icon',  function() {
             </div>
 
             <div class="zm-command">
-
               <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
-              <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
-              <input type="hidden" name="subnav_name" value="{{ active_tab }}">{{ xsrf_form_html() }}</div>
+              <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>{{ xsrf_form_html() }}
+            </div>
           </form>
         </div>
       </div>
