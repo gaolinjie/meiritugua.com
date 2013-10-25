@@ -1342,7 +1342,7 @@ color: #838484;
 padding: 0 10px;
 }
 
-.tabbar {
+.feeds .tabbar {
   width: 520px;
   height: 45px;
   background: #fff;
@@ -2504,6 +2504,7 @@ border-radius: 6px;
 border-bottom-width: 0;
 }
 .content-header, .content-no-header {
+  border: 1px solid #eee;
 border-radius: 6px 6px 0 0;
 background-clip: padding-box;
 }
@@ -3547,7 +3548,6 @@ background-position: -60px -53px;
 
 
 .channels .tabbar {
-width: 520px;
 height: 45px;
 background: #fff;
 margin-bottom: 0px;
