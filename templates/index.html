@@ -301,6 +301,7 @@ $(document).on('click', '.c-icon',  function() {
     <div class="post-btn">
       <a href="{% if channels %}#myModal{% else %}#myModal2{% endif %}" role="button" class="btn btn-primary" data-toggle="modal">分享视频</a>
     </div>
+ 
 
     <div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
       <div class="modal-dialog-title modal-dialog-title-draggable" id=":21">
@@ -372,50 +373,33 @@ $(document).on('click', '.c-icon',  function() {
       <div class="modal-dialog-content">
         <div id="zh-add-question-wrap" class="zh-add-question-form">
 
-          <form class="js-add-question-form" action="/?tab=channel" method="post">
-            <div class="zg-section-big clearfix">
+          <form class="js-add-question-form add-channel-form" action="/?tab=channel" method="post">
 
-                <textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入频道名称" id="zh-question-suggest-title-content" aria-label="输入频道名称" placeholder="输入频道名称" name="name" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text"></textarea>
+            <div class="zm-add-question-form-topic-wrap add-channel-notice">
+              <div class="add-question-section-title">
 
-              <div id="zh-question-suggest-ac-wrap" class="question-suggest-ac-wrap"></div>
+                <span class="zg-gray "></span>
+                <span id="zh-question-form-tag-err">你还没有任何频道，请先选择下列视频板块去创建频道吧：</span>
+              </div>
             </div>
             <div class="zg-section-big">
+              {% set tab_bar2 = [
+      ('/video', 'video', '短片'),
+      ('/micro', 'micro', '微电影'),           
+      ('/movie', 'movie', '电影'),     
+      ('/star', 'star', '明星'),               
+  ] -%}
+              <div class="tabbar">
+    {% for href, id, caption in tab_bar2 %}
+    <div {% if id == active_tab %} class="tab m-active"{% else %} class="tab" {% endif %}>
+      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
+      <span class="tab-highlight"></span>
+    </div>
+    {% endfor %}
+  </div>
 
-              <div class="add-question-section-title">
-                频道介绍：
-                <span id="zh-question-form-detail-err"></span>
-              </div>
-              <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
-                <div class="zm-editable-editor-wrap no-toolbar" style="">
-                  <div class="zm-editable-editor-outer">
-                      <textarea name="intro" placeholder="写点频道介绍吧..." id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="zm-add-question-form-topic-wrap">
-              <div class="add-question-section-title">
-                <span class="zg-gray zg-right">指定频道类别，能更好的区分你所分享的视频</span>
-                频道类别：
-                <span id="zh-question-form-tag-err"></span>
-              </div>
-              <div style="" id="zh-question-suggest-topic-container" class="zm-tag-editor zg-section">
-                <div id="zh-question-suggest-autocomplete-container">
-                  <div class="v-channel">
-                    <select name="nav">
-                      {% for nav in navs %}
-                      <option>{{ nav.title }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="zm-command">
-              <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
-              <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>{{ xsrf_form_html() }}
+              
             </div>
           </form>
         </div>
