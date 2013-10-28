@@ -482,7 +482,9 @@ $(document).on('click', '.c-icon',  function() {
       </div>
     </form>
   </div>
+  {% set pre_post_id = 0 %}
   {% for post in posts.list %}
+  {% if post.id != pre_post_id %}
   <div class="card">
     <div class="header">
       <div class="avatar">
@@ -595,6 +597,8 @@ $(document).on('click', '.c-icon',  function() {
     </div>
 
   </div>
+  {% endif %}
+  {% set pre_post_id = post.id %}
   {% endfor %}
   <div id="navigation" align="center">
     <a href="/?page={{posts.page.next}}"></a>

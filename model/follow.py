@@ -29,7 +29,7 @@ class FollowModel(Query):
 
     def get_user_all_follow_posts(self, user_id, num = 3, current_page = 1):
         where = "follow.user_id = %s" % user_id
-        join = "RIGHT JOIN post ON follow.channel_id = post.channel_id \
+        join = "RIGHT JOIN post ON follow.channel_id = post.channel_id OR follow.post_id = post.id\
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
                 LEFT JOIN channel ON post.channel_id = channel.id \
                 LEFT JOIN video ON post.video_id = video.id \

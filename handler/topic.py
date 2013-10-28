@@ -104,7 +104,28 @@ class IndexHandler(BaseHandler):
                 "created": time.strftime('%Y-%m-%d %H:%M:%S'),
             }
 
-            self.post_model.add_new_post(post_info)
+            post_id = self.post_model.add_new_post(post_info)
+
+            # create @username follow
+            for username in set(find_mentions(form.intro.data)):
+                print username
+                mentioned_user = self.user_model.get_user_by_username(username)
+
+                if not mentioned_user:
+                    continue
+
+                if mentioned_user["uid"] == self.current_user["uid"]:
+                    continue
+
+                if mentioned_user["uid"] == post_info["author_id"]:
+                    continue
+
+                self.follow_model.add_new_follow({
+                    "user_id": mentioned_user.uid,
+                    "post_id": post_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                })
+
             self.redirect("/")
         else:
             form = ChannelForm2(self)
