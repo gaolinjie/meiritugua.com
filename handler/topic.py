@@ -296,6 +296,25 @@ class FollowsHandler(BaseHandler):
 
         self.render("follow.html", **template_variables)
 
+class NotificationHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "all")
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            template_variables["active_tab"] = tab
+
+            if (tab=="all"):
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"])
+            else:
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"])
+        else:
+            self.redirect("/login")
+
+        self.render("notification.html", **template_variables)
+
 class MicroHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
@@ -529,6 +548,44 @@ class CommentHandler(BaseHandler):
                     "success": 1,
                     "message": "successed",
             }))
+
+            # create reply notification
+            if not self.current_user["uid"] == post.author_id:
+                self.notification_model.add_new_notification({
+                    "trigger_user_id": self.current_user["uid"],
+                    "involved_type": 1, # 0: mention, 1: reply
+                    "involved_user_id": post.author_id,
+                    "involved_post_id": post.id,
+                    "involved_comment_id": comment_id,
+                    "content": comment_content,
+                    "status": 0,
+                    "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+                })
+
+            # create @username notification
+            for username in set(find_mentions(comment_content)):
+                print username
+                mentioned_user = self.user_model.get_user_by_username(username)
+
+                if not mentioned_user:
+                    continue
+
+                if mentioned_user["uid"] == self.current_user["uid"]:
+                    continue
+
+                if mentioned_user["uid"] == post.author_id:
+                    continue
+
+                self.notification_model.add_new_notification({
+                    "trigger_user_id": self.current_user["uid"],
+                    "involved_type": 0, # 0: mention, 1: reply
+                    "involved_user_id": mentioned_user["uid"],
+                    "involved_post_id": post.id,
+                    "involved_comment_id": comment_id,
+                    "content": comment_content,
+                    "status": 0,
+                    "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+                })
         else:
             self.write(lib.jsonp.print_JSON({
                     "success": 0,

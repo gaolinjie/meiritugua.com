@@ -56,6 +56,7 @@ class Application(tornado.web.Application):
             (r"/favorite", handler.topic.FavoriteHandler),
             (r"/later", handler.topic.LaterHandler),
             (r"/follow", handler.topic.FollowsHandler),
+            (r"/notification", handler.topic.NotificationHandler),
             (r"/c/(\d+)", handler.topic.ChannelHandler),
             (r"/u/(.*)", handler.topic.UserHandler),
             (r"/login", handler.user.LoginHandler),
@@ -109,6 +110,7 @@ class Application(tornado.web.Application):
         self.favorite_model = self.loader.use("favorite.model")
         self.later_model = self.loader.use("later.model")
         self.rate_model = self.loader.use("rate.model")
+        self.notification_model = self.loader.use("notification.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)

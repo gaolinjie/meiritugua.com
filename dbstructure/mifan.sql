@@ -206,3 +206,21 @@ CREATE TABLE `rate` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+--  Table structure for `notification`
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `status` int(11) DEFAULT NULL,
+  `involved_type` int(11) DEFAULT NULL,
+  `involved_user_id` int(11) DEFAULT NULL,
+  `involved_post_id` int(11) DEFAULT NULL,
+  `involved_comment_id` int(11) DEFAULT NULL,
+  `trigger_user_id` int(11) DEFAULT NULL,
+  `occurrence_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

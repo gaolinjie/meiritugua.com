@@ -22,17 +22,16 @@ class NotificationModel(Query):
     def get_user_all_notifications(self, uid, num = 16, current_page = 1):
         where = "involved_user_id = %s" % uid
         join = "LEFT JOIN user AS trigger_user ON notification.trigger_user_id = trigger_user.uid \
-                LEFT JOIN topic AS involved_topic ON notification.involved_topic_id = involved_topic.id \
+                LEFT JOIN post AS involved_post ON notification.involved_post_id = involved_post.id \
+                LEFT JOIN video AS involved_post_video ON involved_post.video_id = involved_post_video.id \
                 LEFT JOIN user AS involved_user ON notification.involved_user_id = involved_user.uid"
         order = "id DESC"
         field = "notification.*, \
                 trigger_user.username as trigger_username, \
-                trigger_user.nickname as trigger_nickname, \
                 trigger_user.avatar as trigger_avatar, \
                 trigger_user.uid as trigger_uid, \
-                involved_topic.title as involved_topic_title, \
+                involved_post_video.title as involved_post_video_title, \
                 involved_user.username as involved_username, \
-                involved_user.nickname as involved_nickname, \
                 involved_user.avatar as involved_avatar"
         return self.where(where).join(join).field(field).order(order).pages(current_page = current_page, list_rows = num)
 

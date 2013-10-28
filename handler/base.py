@@ -75,6 +75,10 @@ class BaseHandler(tornado.web.RequestHandler):
     def video_model(self):
         return self.application.video_model
 
+    @property
+    def notification_model(self):
+        return self.application.notification_model
+
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
         self.write(html)
