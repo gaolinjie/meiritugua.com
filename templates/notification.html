@@ -51,90 +51,93 @@
 
       <p class="subheader">所有和我相关的消息。</p>
       <div class="create-channel">
-      <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">创建频道</a>
-    </div>
+        <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">创建频道</a>
+      </div>
     </div>
 
     <div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
-  <div class="modal-dialog-title modal-dialog-title-draggable" id=":21"><span class="modal-dialog-title-text">创建短片频道</span><span class="modal-dialog-title-close" data-dismiss="modal" aria-hidden="true"></span></div><div class="modal-dialog-content"><div id="zh-add-question-wrap" class="zh-add-question-form">
+      <div class="modal-dialog-title modal-dialog-title-draggable" id=":21">
+        <span class="modal-dialog-title-text">创建短片频道</span>
+        <span class="modal-dialog-title-close" data-dismiss="modal" aria-hidden="true"></span>
+      </div>
+      <div class="modal-dialog-content">
+        <div id="zh-add-question-wrap" class="zh-add-question-form">
 
-<form class="js-add-question-form" action="/video" method="post">
-<div class="zg-section-big clearfix">
+          <form class="js-add-question-form" action="/video" method="post">
+            <div class="zg-section-big clearfix">
 
+              <div class="zg-form-text-input add-question-title-form" style="position: relative;">
+                <textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入频道名称" id="zh-question-suggest-title-content" aria-label="输入频道名称" placeholder="输入频道名称" name="name" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text"></textarea>
+              </div>
 
-<div class="zg-form-text-input add-question-title-form" style="position: relative;">
-<textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入频道名称" id="zh-question-suggest-title-content" aria-label="输入频道名称" placeholder="输入频道名称" name="name" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text"></textarea>
-</div>
+              <div id="zh-question-suggest-ac-wrap" class="question-suggest-ac-wrap"></div>
+            </div>
+            <div class="zg-section-big">
 
-<div id="zh-question-suggest-ac-wrap" class="question-suggest-ac-wrap"></div>
-</div>
-<div class="zg-section-big">
+              <div class="add-question-section-title">
+                频道介绍：
+                <span id="zh-question-form-detail-err"></span>
+              </div>
+              <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
+                <div class="zm-editable-editor-wrap no-toolbar" style="">
+                  <div class="zm-editable-editor-outer">
+                    <div class="zm-editable-editor-field-wrap">
+                      <textarea name="intro" placeholder="写点频道介绍吧..." id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-<div class="add-question-section-title">
+            <div class="zm-command">
 
-
-
-频道介绍：
-<span id="zh-question-form-detail-err"></span>
-</div>
-<div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
-<div class="zm-editable-editor-wrap no-toolbar" style=""><div class="zm-editable-editor-outer"><div class="zm-editable-editor-field-wrap"><textarea name="intro" placeholder="写点频道介绍吧..." id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea></div></div></div>
-</div>
-</div>
-
-<div class="zm-command">
-
-<a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
-<button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
-<input type="hidden" name="subnav_name" value="{{ active_tab }}">
-          {{ xsrf_form_html() }}
-
-</div>
-</form>
-</div></div></div>
+              <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
+              <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
+              <input type="hidden" name="subnav_name" value="{{ active_tab }}">{{ xsrf_form_html() }}</div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <form class="mt10" action="/video" method="post">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel">创建短片频道</h5>
-  </div>
-  <div class="modal-body">
-      <div class="row1">
-        <div class="t-link">频道名称:</div>
-        <div class="v-link">
-          <input type="text" placeholder="输入频道名称" name="name"></div>
-      </div>
-      <div class="row2">
-        <div class="t-link">频道介绍:</div>
-        <div class="v-description">
-          <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点频道介绍吧..." name="intro"></textarea>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h5 id="myModalLabel">创建短片频道</h5>
         </div>
-      </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-    <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
-    <input type="hidden" name="subnav_name" value="{{ active_tab }}">
-          {{ xsrf_form_html() }}
-  </div>
-  </form>
-</div>
-
-  {% set tab_bar = [
+        <div class="modal-body">
+          <div class="row1">
+            <div class="t-link">频道名称:</div>
+            <div class="v-link">
+              <input type="text" placeholder="输入频道名称" name="name"></div>
+          </div>
+          <div class="row2">
+            <div class="t-link">频道介绍:</div>
+            <div class="v-description">
+              <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点频道介绍吧..." name="intro"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+          <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
+          <input type="hidden" name="subnav_name" value="{{ active_tab }}">{{ xsrf_form_html() }}</div>
+      </form>
+    </div>
+    {% set tab_bar = [
       ('/', 'all', '所有'),
       ('/?tab=comment', 'comment', '回复我的'),
       ('/?tab=mention', 'mention', '提到我的'),                       
   ] -%}
   {% set active_tab = active_tab|default('index') -%}
-  <div class="tabbar">
-    {% for href, id, caption in tab_bar %}
-    <div class="tab {% if id == active_tab %}m-active{% endif %}" >
-      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
-      <span class="tab-highlight"></span>
+    <div class="tabbar">
+      {% for href, id, caption in tab_bar %}
+      <div class="tab {% if id == active_tab %}m-active{% endif %}" >
+        <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
+        <span class="tab-highlight"></span>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
   </div>
 
   <div id="timeline">
@@ -147,33 +150,28 @@
             <div class="account   js-actionable-user js-profile-popup-actionable " data-screen-name="isaac" data-user-id="56833" data-feedback-token="133">
               <div class="user-actions btn-group not-following  " data-user-id="7948282" data-screen-name="zhengyun" data-name="zhengyun" data-protected="false">
                 {% if notification.status == 0 %}
-  
-                <div role="button" id="btn-{{ notification.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow followed" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-                  <input type="hidden" name="channel_id" value="{{ notification.id }}">
+                <a href="/p/{{ notification.involved_post_id }}" role="button" id="btn-{{ notification.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow followed" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
                   <span class="follow-text" dir="ltr">查看</span>
-                </div>
-
-            {% else %}
-                <div role="button" id="btn-{{ notification.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-                  <input type="hidden" name="channel_id" value="{{ notification.id }}">
+                </a>
+                {% else %}
+                <a href="/p/{{ notification.involved_post_id }}" role="button" id="btn-{{ notification.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
                   <span class="follow-text" dir="ltr">已读</span>
-                </div>
+                </a>
                 {% endif %}
               </div>
 
               <div class="content">
                 <div class="stream-item-header">
-                  <a class="account-group js-user-profile-link" href="/c/{{ notification.id }}">
-                    <img class="avatar js-action-profile-avatar " src="/static/avatar/user/b_{{ notification.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ notification.involved_post_video_title }}"> <span class="username js-action-profile-name">{{ notification.trigger_username }}</span><span>‏回复了你的分享</span><strong class="fullname js-action-profile-name">{{ notification.involved_post_video_title }}</strong>
-                    
-                    
-                  </a>
-                </div>
-                <p class="bio ">{{ notification.content|content_process  }}</p>
+                  <div class="account-group js-user-profile-link" href="/c/{{ notification.id }}">
+                    <img class="avatar js-action-profile-avatar " src="/static/avatar/user/m_{{ notification.involved_avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ notification.involved_post_video_title }}">
+                    <a href="/u/{{ notification.trigger_username }}" class="username js-action-profile-name">{{ notification.trigger_username }}</a>
+                    <span>‏ 在 </span> <a href="/p/{{ notification.involved_post_id }}" class="js-action-profile-name">{{ notification.involved_post_video_title }}</a><span>‏ 里回复了你</span>
 
-                <p class="metadata">
-                  {{ notification.occurrence_time|pretty_date }}
-                </p>
+                  </div>
+                </div>
+                <p class="bio notification-content">{{ notification.content|content_process }}</p>
+
+                <p class="metadata">{{ notification.occurrence_time|pretty_date }}</p>
 
               </div>
             </div>
