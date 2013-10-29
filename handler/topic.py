@@ -308,8 +308,13 @@ class NotificationsHandler(BaseHandler):
 
             if (tab=="all"):
                 template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"])
-            else:
-                template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"])
+            elif (tab=="comment"):
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications_by_involved_type(user_info["uid"], 1)
+            elif (tab=="mention"):
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications_by_involved_type(user_info["uid"], 0)
+            elif (tab=="allread"):
+                self.notification_model.mark_user_unread_notification_as_read(user_info["uid"])
+                self.redirect("/notification")
         else:
             self.redirect("/login")
 
