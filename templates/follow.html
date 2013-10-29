@@ -122,9 +122,9 @@
 </div>
 
   {% set tab_bar = [
-      ('/', 'all', '关注的频道'),
-      ('/?tab=video', 'video', '关注的人'),
-      ('/?tab=micro', 'micro', '我的频道'),                          
+      ('/follow', 'all', '关注的频道'),
+      ('/follow?tab=users', 'users', '关注的人'),
+      ('/follow?tab=mychannels', 'mychannels', '我的频道'),                          
   ] -%}
   {% set active_tab = active_tab|default('index') -%}
   <div class="tabbar">

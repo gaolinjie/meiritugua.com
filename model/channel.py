@@ -33,14 +33,14 @@ class ChannelModel(Query):
         where = "name = '%s'" % channel_name
         return self.where(where).find()
 
-    def get_user_all_channels(self, user_id):
+    def get_user_all_channels(self, user_id, num = 3, current_page = 1):
         where = "author_id = '%s'" % user_id
-        return self.where(where).select()
+        return self.where(where).pages(current_page = current_page, list_rows = num)
 
     def add_new_channel(self, channel_info):
         return self.data(channel_info).add()
 
-    def get_channels_by_nav_id(self, nav_id, user_id, num = 16, current_page = 1):
+    def get_channels_by_nav_id(self, nav_id, user_id, num = 6, current_page = 1):
         where = "channel.nav_id = %s" % nav_id
         join = "LEFT JOIN user AS author_user ON channel.author_id = author_user.uid \
                 LEFT JOIN follow ON channel.id = follow.channel_id AND '%s' = follow.user_id" % user_id
@@ -50,7 +50,7 @@ class ChannelModel(Query):
                 follow.user_id as follow_user_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
     
-    def get_channels_by_nav_id_and_subnav_id(self, nav_id, user_id, subnav_id, num = 16, current_page = 1):
+    def get_channels_by_nav_id_and_subnav_id(self, nav_id, user_id, subnav_id, num = 6, current_page = 1):
         where = "channel.nav_id = %s AND channel.subnav_id = %s" % (nav_id, subnav_id)
         join = "LEFT JOIN follow ON channel.id = follow.channel_id AND '%s' = follow.user_id" % user_id
         order = "channel.created DESC, channel.id DESC"

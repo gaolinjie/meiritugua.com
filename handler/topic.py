@@ -43,6 +43,7 @@ class IndexHandler(BaseHandler):
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)
             else:
+                nav_id=1
                 if (tab=="video"):
                     nav_id=1
                 if (tab=="micro"):
@@ -225,13 +226,15 @@ class VideoHandler(BaseHandler):
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "video"
         if(user_info):
+            notice_text = "暂时还没有短片频道"
+            template_variables["notice_text"] = notice_text
             template_variables["active_tab"] = tab
             template_variables["subnavs"] = self.subnav_model.get_subnavs_by_nav_id(1)
             if (tab=="all"):
-                template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"])
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"], current_page = page)
             else:
                 subnav_id = self.subnav_model.get_subnav_by_subnav_name(tab).id
-                template_variables["channels"] = self.channel_model.get_channels_by_nav_id_and_subnav_id(1, user_info["uid"], subnav_id)
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id_and_subnav_id(1, user_info["uid"], subnav_id, current_page = page)
         else:
             self.redirect("/login")
 
@@ -289,8 +292,8 @@ class FollowsHandler(BaseHandler):
 
             if (tab=="all"):
                 template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
-            else:
-                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
+            elif (tab=="mychannels"):
+                template_variables["channels"] = self.channel_model.get_user_all_channels(user_info["uid"], current_page = page)
             notice_text = "你还未关注任何频道"
             if (tab == "user"):
                 notice_text = "你还未关注任何人"
