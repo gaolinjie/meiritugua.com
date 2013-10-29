@@ -2648,7 +2648,7 @@ border-bottom: 1px solid #eee;
 border-radius: 0 0 2px 2px;
 }
 .stream-end-inner {
-padding: 30px 50px;
+padding: 10px 50px;
 background-color: #fff;
 border-radius: 0 0 2px 2px;
 }
@@ -3559,4 +3559,8 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6
 
 .notification-content {
   margin: 3px 0;
+}
+
+.pagination {
+  margin: 0;
 }

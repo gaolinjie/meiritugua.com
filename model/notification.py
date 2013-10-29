@@ -19,7 +19,7 @@ class NotificationModel(Query):
         where = "status = 0 AND involved_user_id = %s" % uid
         return self.where(where).count()
 
-    def get_user_all_notifications(self, uid, num = 16, current_page = 1):
+    def get_user_all_notifications(self, uid, num = 2, current_page = 1):
         where = "involved_user_id = %s" % uid
         join = "LEFT JOIN user AS trigger_user ON notification.trigger_user_id = trigger_user.uid \
                 LEFT JOIN post AS involved_post ON notification.involved_post_id = involved_post.id \
@@ -35,7 +35,7 @@ class NotificationModel(Query):
                 involved_user.avatar as involved_avatar"
         return self.where(where).join(join).field(field).order(order).pages(current_page = current_page, list_rows = num)
 
-    def get_user_all_notifications_by_involved_type(self, uid, involved_type, num = 16, current_page = 1):
+    def get_user_all_notifications_by_involved_type(self, uid, involved_type, num = 2, current_page = 1):
         where = "involved_user_id = %s AND involved_type = %s" % (uid, involved_type)
         join = "LEFT JOIN user AS trigger_user ON notification.trigger_user_id = trigger_user.uid \
                 LEFT JOIN post AS involved_post ON notification.involved_post_id = involved_post.id \

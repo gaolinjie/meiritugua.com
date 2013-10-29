@@ -187,26 +187,29 @@
           </li>
           {% endfor %}
         </ol>
+
         <div class="stream-footer ">
           <div class="timeline-end has-items has-more-items">
-            <div class="stream-end">
-              <div class="stream-end-inner "> <i class="bird-etched"></i>
-
-                <p class="empty-text">抱歉，我们暂时已经没有值得推荐的账号了。我们正在寻找更多的推荐，请稍后再来看看吧!</p>
-
-                <p>
-                  <button type="button" class="btn-link back-to-top hidden" style="display: inline-block;">回到顶部 ↑</button>
-                </p>
-              </div>
-            </div>
+            
             <div class="stream-loading">
               <div class="stream-end-inner">
-                <span class="spinner" title="正在载入..."></span>
+                <div class="pagination">{{ channels.page|pagination(request.uri) }}</div>
+
+    {% if channels.page.total == 0 %}
+
+        <div class="pl10 pr10">
+
+            <div class="alert mt20">{{ notice_text }}</div>
+
+        </div>
+
+    {% endif %}
               </div>
             </div>
           </div>
         </div>
-        <ol class="hidden-replies-container"></ol>
+
+
       </div>
     </div>
   </div>

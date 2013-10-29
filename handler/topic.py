@@ -162,7 +162,7 @@ class FavoriteHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "index")
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
@@ -191,7 +191,7 @@ class LaterHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "index")
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
@@ -220,7 +220,7 @@ class VideoHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "all")
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "video"
@@ -281,16 +281,22 @@ class FollowsHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "all")
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
             template_variables["active_tab"] = tab
 
             if (tab=="all"):
-                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"])
+                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
             else:
-                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"])
+                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
+            notice_text = "你还未关注任何频道"
+            if (tab == "user"):
+                notice_text = "你还未关注任何人"
+            if (tab == "mention"):
+                notice_text = "你还未创建任何频道"
+            template_variables["notice_text"] = notice_text
         else:
             self.redirect("/login")
 
@@ -300,21 +306,27 @@ class NotificationsHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "all")
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
+
         if(user_info):
             template_variables["active_tab"] = tab
-
             if (tab=="all"):
-                template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"])
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"], current_page = page)
             elif (tab=="comment"):
-                template_variables["notifications"] = self.notification_model.get_user_all_notifications_by_involved_type(user_info["uid"], 1)
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications_by_involved_type(user_info["uid"], 1, current_page = page)
             elif (tab=="mention"):
-                template_variables["notifications"] = self.notification_model.get_user_all_notifications_by_involved_type(user_info["uid"], 0)
+                template_variables["notifications"] = self.notification_model.get_user_all_notifications_by_involved_type(user_info["uid"], 0, current_page = page)
             elif (tab=="allread"):
                 self.notification_model.mark_user_unread_notification_as_read(user_info["uid"])
                 self.redirect("/notification")
+            notice_text = "暂时还没有消息"
+            if (tab == "comment"):
+                notice_text = "暂时还没有回复"
+            if (tab == "mention"):
+                notice_text = "暂时还没有人提到你"
+            template_variables["notice_text"] = notice_text
         else:
             self.redirect("/login")
 
@@ -323,7 +335,7 @@ class NotificationsHandler(BaseHandler):
 class MicroHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "micro"        
@@ -333,7 +345,7 @@ class MicroHandler(BaseHandler):
 class MovieHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "movie"        
@@ -343,7 +355,7 @@ class MovieHandler(BaseHandler):
 class TVHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "tv"        
@@ -353,7 +365,7 @@ class TVHandler(BaseHandler):
 class StarHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "star"        
@@ -365,7 +377,7 @@ class StarHandler(BaseHandler):
 class NotificationHandler(BaseHandler):
     def get(self, notification_id, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
@@ -378,7 +390,7 @@ class NotificationHandler(BaseHandler):
 class ChannelHandler(BaseHandler):
     def get(self, channel_id, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
@@ -453,7 +465,7 @@ class UserHandler(BaseHandler):
     def get(self, user, template_variables = {}):
         current_user_info = self.current_user
         template_variables["current_user_info"] = current_user_info      
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         
         if(current_user_info):
             if(re.match(r'^\d+$', user)):
