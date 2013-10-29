@@ -296,7 +296,7 @@ class FollowsHandler(BaseHandler):
 
         self.render("follow.html", **template_variables)
 
-class NotificationHandler(BaseHandler):
+class NotificationsHandler(BaseHandler):
     def get(self, template_variables = {}):
         tab = self.get_argument('tab', "all")
         user_info = self.current_user
@@ -357,7 +357,18 @@ class StarHandler(BaseHandler):
 
     
 
-
+class NotificationHandler(BaseHandler):
+    def get(self, notification_id, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("p", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            notification = self.notification_model.get_notification_by_notification_id(notification_id = notification_id)
+            self.notification_model.mark_notification_as_read_by_notification_id(notification_id = notification_id)
+            self.redirect("/p/"+str(notification.involved_post_id))
+        else:
+            self.redirect("/login")
 
 class ChannelHandler(BaseHandler):
     def get(self, channel_id, template_variables = {}):

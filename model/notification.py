@@ -39,3 +39,11 @@ class NotificationModel(Query):
         where = "status = 0 AND involved_user_id = %s" % uid
         return self.where(where).data({"status": 1}).save()
 
+    def get_notification_by_notification_id(self, notification_id):
+        where = "id = '%s'" % notification_id
+        return self.where(where).find()
+
+    def mark_notification_as_read_by_notification_id(self, notification_id):
+        where = "id = '%s'" % notification_id
+        return self.where(where).data({"status": 1}).save()
+
