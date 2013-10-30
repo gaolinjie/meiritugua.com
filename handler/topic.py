@@ -24,6 +24,7 @@ from lib.variables import gen_random
 from lib.xss import XssCleaner
 from lib.utils import find_mentions
 from lib.reddit import hot
+from lib.utils import pretty_date
 
 from lib.utils import find_video_id_from_url
 
@@ -557,7 +558,8 @@ class CommentHandler(BaseHandler):
                 jobject = {
                     "content": comment.content,
                     "author_username": comment.author_username,
-                    "author_avatar": comment.author_avatar
+                    "author_avatar": comment.author_avatar,
+                    "created": pretty_date(comment.created)
                 }
                 jarray.append(jobject)
                 i=i+1
