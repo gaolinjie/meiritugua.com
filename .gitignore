@@ -49,6 +49,3 @@ static/avatar/
 !/static/avatar/channel/m_default.png
 !/static/avatar/channel/s_default.png
 
-# cover
-static/cover/
-!/static/cover/channel/m_default.png
