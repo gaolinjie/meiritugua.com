@@ -3564,3 +3564,14 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6
 .pagination {
   margin: 0;
 }
+
+
+.brand {
+  background: no-repeat url(/static/images/logo.png);
+  margin-top: 10px;
+margin-left: 20px;
+}
+
+.navbar .brand {
+margin-left: 20px;
+}
