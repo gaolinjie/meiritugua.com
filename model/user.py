@@ -61,6 +61,14 @@ class UserModel(Query):
             "avatar": avatar_name
         }).where(where).save()
 
+    def set_user_cover_by_uid(self, uid, cover_name):
+        where = "uid = %s" % uid
+        return self.data({
+            "cover": cover_name
+        }).where(where).save()
+
+    set_user_cover_by_uid
+
     def set_user_password_by_uid(self, uid, secure_password):
         where = "uid = %s" % uid
         return self.data({

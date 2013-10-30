@@ -35,7 +35,11 @@ class ChannelModel(Query):
 
     def get_user_all_channels(self, user_id, num = 3, current_page = 1):
         where = "author_id = '%s'" % user_id
-        return self.where(where).pages(current_page = current_page, list_rows = num)
+        join = "LEFT JOIN user AS author_user ON channel.author_id = author_user.uid"
+        order = "channel.followers DESC, channel.created DESC, channel.id DESC"
+        field = "channel.*, \
+                author_user.username as author_username"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_channels2(self, user_id):
         where = "author_id = '%s'" % user_id

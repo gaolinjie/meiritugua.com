@@ -1,6 +1,8 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
+
+
 <script src="/static/js/json_parse.js"></script>
 <script src="/static/js/json2.js"></script>
 
@@ -185,7 +187,7 @@ $(document).on('click', '.c-icon',  function() {
       });
     </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.plus-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
@@ -210,7 +212,7 @@ $(document).on('click', '.c-icon',  function() {
         });
     </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.share-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
@@ -231,8 +233,8 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
-<script src="/static/js/jquery.infinitescroll.js"></script>
-<script>
+    <script src="/static/js/jquery.infinitescroll.js"></script>
+ <script>
  $(document).ready(function (){
     $(".feeds").infinitescroll({
           navSelector: "#navigation",
@@ -282,162 +284,134 @@ $(document).on('click', '.c-icon',  function() {
  }); 
     </script>
 
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.follow-toggle').click(function() {
+                var user_id = {{ user_info.id }};             
+                if($(this).hasClass('followed')) {
+                        $.getJSON('/f/'+user_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_followed") {
+                                $('.follow-toggle').removeClass('followed');
+                                $('.follow-toggle').removeClass('btn-danger');
+                                $('.follow-toggle').text("关注");
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/f/'+user_id, function(data) {
+                        if(data.success!=0&&data.message=="success_followed") {
+                            $('.follow-toggle').addClass('followed');
+                            $('.follow-toggle').addClass('btn-danger');
+                            $('.follow-toggle').text("取消关注");
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
 <div class="feeds">
   <div class="module profile-card component profile-header profile-page-header" data-component-term="profile_follow_card">
-    <div class="profile-header-inner flex-module clearfix" style="background-image: url(/static/cover/user/m_{{ view_user_info.cover or 'default.png' }}?t={{ gen_random() }})">
-      <div class="profile-header-inner-overlay"></div>
+  <div class="profile-header-inner flex-module clearfix" data-background-image="url('/static/images/login.jpg')">
+    <div class="profile-header-inner-overlay"></div>
 
-      <a href="/u/{{ view_user_info.uid }}" class="profile-picture media-thumbnail">
 
-        <img src="/static/avatar/user/m_{{ view_user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ view_user_info.username }}" class="avatar size73"></a>
+      <a href="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" class="profile-picture media-thumbnail" data-resolved-url-large="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" data-url="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075.png" target="_blank">
 
-      <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
-        <h1 class="fullname editable-group">
-          <span class="profile-field">{{ view_user_info.username }}</span>
+        <img src="https://si0.twimg.com/profile_images/3374163967/96a6ee70f2df365b1d45ae619d174075_bigger.png" alt="Mod Pav" class="avatar size73">
+      </a>
 
-        </h1>
 
-        <h2 class="username">
-          <span class="screen-name">
-            <s>@</s>
-            {{ view_user_info.username }}
+    <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
+      <h1 class="fullname editable-group">
+          <span class="profile-field">{{ user_info.username }}</span>
+
+
+
+      </h1>
+
+      <h2 class="username">
+            <span class="screen-name"><s>@</s>{{ user_info.username }}</span>
+      </h2>
+      <div class="bio-container editable-group">
+        <p class="bio profile-field">{{ user_info.intro }}</p>
+      </div>
+      <p class="location-and-url">
+        <span class="location-container editable-group">
+          <span class="location profile-field">
+            
           </span>
-        </h2>
-        <div class="bio-container editable-group">
-          <p class="bio profile-field">{{ view_user_info.intro }}</p>
-        </div>
-      </div>
+        </span>
+        <span class="divider">·</span>
+        <span class="url editable-group">
+          <span class="profile-field">
+            <a target="_blank" rel="me nofollow" href="https://t.co/lSLJVkgTPK" title="https://w3.owind.com">
+  
+</a>
+
+
+          </span>
+        </span>
+      </p>
     </div>
-    <div class="flex-module profile-banner-footer clearfix">
-      <div class="default-footer">
-        <ul class="stats js-mini-profile-stats" data-user-id="5375972">
-          <li>
-            <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>{{ view_user_info.posts }}</strong>
-              视频
-            </a>
-          </li>
-          <li>
-            <a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"> <strong>324</strong>
-              正在关注
-            </a>
-          </li>
-          <li>
-            <a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers">
-              <strong>{{ view_user_info.followers }}</strong>
-              关注者
-            </a>
-          </li>
-
-        </ul>
-        {% if view_user_info.uid==user_info.uid %}
-        <div class="channel-post-btn follow-btn" title="关注">
-          <a href="#myModal" role="button"  class="btn btn-primary" data-toggle="modal">分享视频</a>
-        </div>
-        {% endif %}
-      </div>
-
-      <div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
-      <div class="modal-dialog-title modal-dialog-title-draggable" id=":21">
-        <span class="modal-dialog-title-text">分享视频</span>
-        <span class="modal-dialog-title-close" data-dismiss="modal" aria-hidden="true"></span>
-      </div>
-      <div class="modal-dialog-content">
-        <div id="zh-add-question-wrap" class="zh-add-question-form">
-
-          <form class="js-add-question-form" action="/?tab=post" method="post">
-            <div class="zg-section-big clearfix">
-
-                <textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入视频链接" id="zh-question-suggest-title-content" aria-label="输入视频链接" placeholder="输入视频链接" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text" name="link" ></textarea>
-
-
-              <div id="zh-question-suggest-ac-wrap" class="question-suggest-ac-wrap"></div>
-            </div>
-            <div class="zg-section-big">
-
-              <div class="add-question-section-title">
-                视频介绍：
-                <span id="zh-question-form-detail-err"></span>
-              </div>
-              <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing input-focus">
-                <div class="zm-editable-editor-wrap no-toolbar" style="">
-                  <div class="zm-editable-editor-outer">
-                      <textarea name="intro" placeholder="写下你精妙的推荐介绍吧" id="mock:22" class=" zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="zm-add-question-form-topic-wrap">
-              <div class="add-question-section-title">
-
-                <span class="zg-gray zg-right">指定频道，让更多感兴趣的人观看到你分享的视频</span>
-                选择频道：
-                <span id="zh-question-form-tag-err"></span>
-              </div>
-              <div style="" id="zh-question-suggest-topic-container" class="zm-tag-editor zg-section">
-                <div id="zh-question-suggest-autocomplete-container">
-                  <div class="v-channel">
-                    <select name="channel">
-                      {% for channel in channels %}
-                      <option>{{ channel.name }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="zm-command">
-              <label class="zm-question-form-hide-in-about-question-el zg-left">
-                <a href="#myModal2" role="button"  data-toggle="modal" name="newcancel" class="zm-command-cancel">+新建频道</a>
-              </label>
-
-              <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
-              <button class="btn btn-primary" type="submit" id="61.post" >分享视频</button>
-              <input type="hidden" name="subnav_name" value="{{ active_tab }}">{{ xsrf_form_html() }}</div>
-          </form>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="profile-social-proof">
-      <div class="follow-bar">
-        <div class="social-proof">
-          <div class="facepile">
-            <a class="pretty-link js-user-profile-link " href="/yegle" data-user-id="14157249" original-title="一阁" title="一阁">
-              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/3191173348/5df54abee5afeb38f02242caf16ecf27_normal.jpeg" alt="一阁" title="一阁"></a>
-            <a class="pretty-link js-user-profile-link " href="/cosbeta" data-user-id="14697308" original-title="东哥" title="东哥">
-              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/378800000379779080/4a40ca7a32675b9e312a2c046a23dfc8_normal.jpeg" alt="东哥" title="东哥"></a>
-            <a class="pretty-link js-user-profile-link " href="/HowardSu" data-user-id="16051594" original-title="HowardSu" title="HowardSu">
-              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/2770220064/779ae5dbc309a6a7625de6d5df6e8f21_normal.jpeg" alt="HowardSu" title="HowardSu"></a>
-
-          </div>
-          <div class="namepile">
-            <p>
-              被
-              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/yegle" title="一阁"> <b>一阁</b>
-              </a>
-              、
-              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14697308" href="/cosbeta" title="东哥"> <b>东哥</b>
-              </a>
-              、
-              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu">
-                <b>HowardSu</b>
-              </a>
-              及
-              <a href="/Paveo/followers_you_follow" class="pretty-link">
-                <b>另外23人关注</b>
-              </a>
-              。
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
   </div>
+  <div class="flex-module profile-banner-footer clearfix">
+    <div class="default-footer">
+        <ul class="stats js-mini-profile-stats" data-user-id="5375972">
+  <li><a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"><strong>85,270</strong> 推文</a></li>
+  <li><a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"><strong>324</strong> 正在关注</a></li>
+  <li><a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers"><strong>7,424</strong> 关注者</a></li>
+
+</ul>
+{% if current_user_info.uid==user_info.uid %}
+
+      <div class="channel-post-btn follow-btn" title="关注">
+        {% if followed == 1 %}
+        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
+        {% else %}
+        <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
+        {% endif %}   
+      </div>
+      {% else %}
+      <div class="channel-post-btn follow-btn" title="关注">
+      <a href="javascript:void(0)"  class="btn btn-primary btn-danger followed disabled">已关注</a>
+      </div>
+      {% endif %}
+
+        <div class="user-actions btn-group following including  " data-user-id="5375972" data-screen-name="Paveo" data-name="Mod Pav" data-protected="false">
+
+</div>
+
+
+    </div>
+  </div>
+      <div class="profile-social-proof">
+  <div class="follow-bar">
+      <div class="social-proof">
+              <div class="facepile">
+      <a class="pretty-link js-user-profile-link " href="/yegle" data-user-id="14157249" original-title="一阁" title="一阁">
+  <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/3191173348/5df54abee5afeb38f02242caf16ecf27_normal.jpeg" alt="一阁" title="一阁">
+</a>
+      <a class="pretty-link js-user-profile-link " href="/cosbeta" data-user-id="14697308" original-title="东哥" title="东哥">
+  <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/378800000379779080/4a40ca7a32675b9e312a2c046a23dfc8_normal.jpeg" alt="东哥" title="东哥">
+</a>
+      <a class="pretty-link js-user-profile-link " href="/HowardSu" data-user-id="16051594" original-title="HowardSu" title="HowardSu">
+  <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/2770220064/779ae5dbc309a6a7625de6d5df6e8f21_normal.jpeg" alt="HowardSu" title="HowardSu">
+</a>
+      
+    </div>
+  <div class="namepile">
+    <p>
+      被 <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/yegle" title="一阁"><b>一阁</b></a>、<a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14697308" href="/cosbeta" title="东哥"><b>东哥</b></a>、<a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu"><b>HowardSu</b></a> 及<a href="/Paveo/followers_you_follow" class="pretty-link"><b>另外23人关注</b></a>。
+    </p>
+  </div>
+
+      </div>
+  </div>
+</div>
+
+</div>
   {% for post in posts.list %}
   <div class="card">
     <div class="header">
@@ -474,22 +448,11 @@ $(document).on('click', '.c-icon',  function() {
         </div>
         <div class="rating" id="rating-{{ post.id }}"></div>
         <div class="score">{%if post.score!=0 %}{{ post.score }}{%endif%}</div>
-        <div class="votes">
-          {%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}
-        </div>
+        <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
       </div>
       <div class="thumb thumb-video" style="display: none;">
-        <p class="medis_func S_txt3">
-          <a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"> <em class="W_ico12 ico_retract"></em>
-            收起
-          </a> <i class="W_vline">|</i>
-          <a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"> <em class="W_ico12 ico_showbig"></em>
-            {{ post.video_title }}
-          </a>
-          <i class="W_vline">|</i>
-          <a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a>
-        </p>
-        <embed width="480" height="310" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></div>
+        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
+      </div>
       <div class="bottom">
         <div class="plus-btn {% if post.favorite_id %}favorited{% endif %}">
           <span class="btn-wrap">
@@ -507,7 +470,8 @@ $(document).on('click', '.c-icon',  function() {
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
-        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
+        <input type="hidden" name="post_id" value="{{ post.id }}">
+      </div>
       <div class="comment-editor"></div>
     </div>
 
@@ -552,74 +516,63 @@ $(document).on('click', '.c-icon',  function() {
 
   </div>
   {% endfor %}
-  <div id="navigation" align="center">
-    <a href="/?page={{posts.page.next}}"></a>
-  </div>
+   <div id="navigation" align="center">
+        <a href="/?page={{posts.page.next}}"></a>        
+    </div>
 </div>
 {% endblock %}
 
 {% block right %}
 <div class="right-bar">
-  <div class="module wtf-module js-wtf-module with-bottom-tab  has-content">
+  <div class="maylike">
+    <h4 class="header">
+      <span>你可能喜欢的频道</span>
+    </h4>
+    <div class="like-channels">
 
-    <div class="flex-module">
-
-      <div class="flex-module-header">
-        <h3>该用户的频道</h3>
-      </div>
-
-      <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">
-        {% for channel in user_all_channels.list %}
-        <div class="js-account-summary account-summary js-actionable-user " data-user-id="14309969" data-feedback-token="133">
-          <div class="dismiss js-action-dismiss">
-            <i class="close"></i>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-bf4rSxrZmR0/AAAAAAAAAAI/AAAAAAAAADA/ycDTEuOuL5A/s120-c/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">V for Vendetta</a>
           </div>
-          <div class="content">
-            <a class="account-group js-recommend-link js-user-profile-link user-thumb" href="/c/{{ channel.id }}" data-user-id="14309969">
-
-              <img class="avatar js-action-profile-avatar " src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}">
-              <span class="account-group-inner js-action-profile-name" data-user-id="14309969">
-                <b class="fullname">{{ channel.name }}</b>
-                <span>‏</span>
-
-                <span class="username">
-                  <s>@</s>
-                  <span class="js-username">{{ channel.author_username }}</span>
-                </span>
-              </span>
-            </a>
-
-            <small class="metadata social-context">
-              {{ channel.posts }} 个视频,
-                  {{ channel.followers}} 人关注.
-            </small>
-            <div role="button" id="btn-{{ channel.id }}" class="a-f-e c-b c-b-T y-qa-za-b-s y-qa-za-b follow" title="" style="visibility: visible; -webkit-user-select: none; max-width: 232px;">
-              <input type="hidden" name="channel_id" value="{{ channel.id }}">
-              <span class="follow-text" dir="ltr">关注</span>
-            </div>
-
+          <div class="like">
+            <a href="/">1211 人喜欢</a>
           </div>
         </div>
-        {% endfor %}
       </div>
-
-      <div class="flex-module-footer">
-        <a href="/who_to_follow/interests" class="js-interests-link" data-element-term="interests_link">热门频道</a>
-        ·
-        <a href="/who_to_follow/import" class="js-find-friends-link" data-element-term="import_link">查找频道</a>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh4.googleusercontent.com/-w5lqw_FT-JM/AAAAAAAAAAI/AAAAAAAAABw/oCXK48O0H7M/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">皮克斯短片集</a>
+          </div>
+          <div class="like">
+            <a href="/">219 人喜欢</a>
+          </div>
+        </div>
+      </div>
+      <div class="channel-item">
+        <div class="cover">
+          <a href="/">
+            <img src="https://lh3.googleusercontent.com/-F1ARRPUL8nY/AAAAAAAAAAI/AAAAAAAAAFs/3cuRu2ZBwkg/s46-c-k-no/photo.jpg" alt="" class="cover-img"></a>
+        </div>
+        <div class="info">
+          <div class="title">
+            <a href="/">America's Funniest</a>
+          </div>
+          <div class="like">
+            <a href="/">337 人喜欢</a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="view-all-button">
-      <ul>
-        <li>
-          <a href="/who_to_follow/suggestions" class="list-link follow-more-suggestions">
-            更多推荐频道
-            <i class="chev-right"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-
   </div>
 </div>
 {% endblock %}

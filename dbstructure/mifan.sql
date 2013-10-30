@@ -28,6 +28,7 @@ CREATE TABLE `user` (
   `username` text,
   `intro` text,
   `avatar` text,
+  `cover` text,
   `plus` int(11) DEFAULT NULL,
   `followers` int(11) DEFAULT NULL,
   `posts` int(11) DEFAULT NULL,

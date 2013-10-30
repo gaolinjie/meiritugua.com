@@ -70,6 +70,7 @@ class Application(tornado.web.Application):
             (r"/rate/(\d+)", handler.topic.RateHandler),
             (r"/setting", handler.user.SettingHandler),
             (r"/setting/avatar", handler.user.SettingAvatarHandler),
+            (r"/setting/cover", handler.user.SettingCoverHandler),
             (r"/setting/password", handler.user.SettingPasswordHandler),
             (r"/c/(\d+)/setting", handler.channel.ChannelSettingHandler),
             (r"/c/(\d+)/setting/avatar", handler.channel.ChannelSettingAvatarHandler),

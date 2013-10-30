@@ -124,6 +124,46 @@ class SettingAvatarHandler(BaseHandler):
         updated = self.user_model.set_user_base_info_by_uid(user_id, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
         self.redirect("/setting")
 
+class SettingCoverHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self, template_variables = {}):
+        user_info = self.get_current_user()
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(not user_info):
+            self.redirect("/login")
+
+        self.render("user/setting_cover.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        template_variables = {}
+
+        if(not "avatar" in self.request.files):
+            template_variables["errors"] = {}
+            template_variables["errors"]["invalid_cover"] = [u"请先选择要上传的封面"]
+            self.get(template_variables)
+            return
+
+        user_info = self.current_user
+
+        cover_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(user_info.uid))
+        cover_raw = self.request.files["avatar"][0]["body"]
+        cover_buffer = StringIO.StringIO(cover_raw)
+        cover = Image.open(cover_buffer)
+
+        cover_520x260 = cover.resize((520, 260), Image.ANTIALIAS)
+     
+        usr_home = os.path.expanduser('~')
+        cover_520x260.save(usr_home+"/www/mifan.tv/static/cover/user/m_%s.png" % cover_name, "PNG")
+        
+        result = self.user_model.set_user_cover_by_uid(user_info.uid, "%s.png" % cover_name)
+        template_variables["success_message"] = [u"频道头像更新成功"]
+        # update `updated`
+        updated = self.user_model.set_user_base_info_by_uid(user_info.uid, {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
+
+        self.redirect("/setting")
+
 class SettingPasswordHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, template_variables = {}):
