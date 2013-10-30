@@ -107,6 +107,8 @@ class IndexHandler(BaseHandler):
 
             post_id = self.post_model.add_new_post(post_info)
 
+            self.channel_model.update_channel_info_by_channel_id(channel.id, {"posts": channel.posts+1})
+
             # create @username follow
             for username in set(find_mentions(form.intro.data)):
                 print username
@@ -460,7 +462,7 @@ class ChannelHandler(BaseHandler):
         }
 
         self.post_model.add_new_post(post_info)
-
+        self.channel_model.update_channel_info_by_channel_id(channel.id, {"posts": channel.posts+1})
 
         self.redirect("/c/" + channel_id)
 
@@ -487,6 +489,7 @@ class FollowHandler(BaseHandler):
         user_info = self.current_user
 
         if(user_info):
+            channel = self.channel_model.get_channel_by_channel_id(channel_id)
             follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             if(follow):
                 self.follow_model.delete_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
@@ -494,6 +497,7 @@ class FollowHandler(BaseHandler):
                     "success": 1,
                     "message": "revert_followed",
                 }))
+                self.channel_model.update_channel_info_by_channel_id(channel_id, {"followers": channel.followers-1})
             else:
                 channel = self.channel_model.get_channel_by_channel_id(channel_id)
                 follow_info = {
@@ -506,6 +510,7 @@ class FollowHandler(BaseHandler):
                     "success": 1,
                     "message": "success_followed",
                 }))
+                self.channel_model.update_channel_info_by_channel_id(channel_id, {"followers": channel.followers+1})
 
 class PlusChannelHandler(BaseHandler):
     def get(self, channel_id, template_variables = {}):
