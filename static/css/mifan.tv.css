@@ -3579,3 +3579,15 @@ margin-left: 20px;
 #logo {
 width: 219px;
 }
+
+.channels.favorites {
+  margin-bottom: 10px;
+}
+
+.feeds.favorites {
+margin-top: 10px;
+}
+
+.channels.favorites .tabbar {
+  border-bottom: 0px;
+}

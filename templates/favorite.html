@@ -219,7 +219,20 @@ $(document).on('click', '.c-icon',  function() {
 {% endblock %}
 
 {% block main %}
-<div class="feeds">
+<div class="channels favorites">
+
+  <div class="content-header">
+    <div class="header-inner">
+
+      <h2 id="content-main-heading">我的收藏</h2>
+
+      <p class="subheader">所有收藏的视频。</p>
+      <div class="create-channel">
+      <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">创建频道</a>
+    </div>
+    </div>
+
+
   {% set tab_bar = [
       ('/favorite', 'all', '所有'),
       ('/favorite?tab=video', 'video', '短片'),
@@ -236,42 +249,11 @@ $(document).on('click', '.c-icon',  function() {
     </div>
     {% endfor %}
   </div>
-  <div class="post-box" style="display:none">
-    <form class="mt10" action="/" method="post">
-      <div class="row1">
-        <div class="t-avatar">
-          <a href="/u/{{ user_info.username }}">
-            <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}"></a>
-        </div>
-        <div class="v-description">
-          <textarea rows="3" class="content" placeholder="写点视频介绍吧..." name="intro"></textarea>
-        </div>
-      </div>
-      <div class="row2">
-        <div class="t-link">视频链接:</div>
-        <div class="v-link">
-          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-      </div>
-
-      <div class="row3">
-        <div class="t-channel">选择频道:</div>
-        <div class="v-channel">
-          <select name="channel">
-            {% for channel in channels %}
-            <option>{{ channel.name }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="row4">
-        <span class="post-btn-wrap">
-          <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">
-          {{ xsrf_form_html() }}
-          <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
-        </span>
-      </div>
-    </form>
   </div>
+
+</div>
+
+<div class="feeds favorites">
   {% for post in posts.list %}
   <div class="card">
     <div class="header">
