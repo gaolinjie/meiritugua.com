@@ -290,9 +290,9 @@ $(document).on('click', '.c-icon',  function() {
     <div class="profile-header-inner flex-module clearfix" style="background-image: url(/static/cover/user/m_{{ view_user_info.cover or 'default.png' }}?t={{ gen_random() }})">
       <div class="profile-header-inner-overlay"></div>
 
-      <a href="/u/{{ view_user_info.uid }}" class="profile-picture media-thumbnail">
+      <a href="/u/{{ view_user_info.uid }}" class="profile-picture-user media-thumbnail">
 
-        <img src="/static/avatar/user/m_{{ view_user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ view_user_info.username }}" class="avatar size73"></a>
+        <img src="/static/avatar/user/m_{{ view_user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ view_user_info.username }}" class="user-avatar size73"></a>
 
       <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
         <h1 class="fullname editable-group">

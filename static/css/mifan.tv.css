@@ -3591,3 +3591,18 @@ margin-top: 10px;
 .channels.favorites .tabbar {
   border-bottom: 0px;
 }
+
+.profile-card.profile-header .profile-picture-user {
+position: relative;
+z-index: 5;
+margin: 20px auto 6px;
+display: block;
+width: 73px;
+height: 73px;
+}
+
+.profile-card.profile-header .user-avatar {
+float: none;
+border-radius: 50%;
+border: 3px solid #fff;
+}
