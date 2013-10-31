@@ -60,7 +60,7 @@
 
 <script type="text/javascript">
       $(document).ready(function(){
-        $(document).on('click', '.retract',  function() {
+        $(document).on('click', '.retract, .show_big, .turn_right',  function() {
           $(this).parent().parent().hide();
           $(this).parent().parent().parent().find('.thumb-imgs').show();
         });
@@ -405,83 +405,8 @@ $(document).on('click', '.c-icon',  function() {
         </div>
       </div>
     </div>
-
-    <div id="myModal3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <form class="mt10" action="/" method="post">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h5 id="myModalLabel">分享视频</h5>
-        </div>
-        <div class="modal-body">
-
-          <div class="row1">
-            <div class="t-link">视频链接:</div>
-            <div class="v-link">
-              <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-
-          </div>
-          <div class="row2">
-            <div class="t-link">视频介绍:</div>
-            <div class="v-description">
-              <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
-            </div>
-          </div>
-
-          <div class="row3">
-            <div class="t-link">选择频道:</div>
-            <div class="v-channel">
-              <select name="channel">
-                {% for channel in channels %}
-                <option>{{ channel.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-          <button class="btn btn-primary" type="submit" id="61.post" >分享视频</button>
-          <input type="hidden" name="subnav_name" value="{{ active_tab }}">{{ xsrf_form_html() }}</div>
-      </form>
-    </div>
   </div>
-  <div class="post-box" style="display:none">
-    <form class="mt10" action="/" method="post">
-      <div class="row1">
-        <div class="t-avatar">
-          <a href="/u/{{ user_info.username }}">
-            <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}"></a>
-        </div>
-        <div class="v-description">
-          <textarea rows="3" class="content" placeholder="写点视频介绍吧..." name="intro"></textarea>
-        </div>
-      </div>
-      <div class="row2">
-        <div class="t-link">视频链接:</div>
-        <div class="v-link">
-          <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-      </div>
 
-      <div class="row3">
-        <div class="t-channel">选择频道:</div>
-        <div class="v-channel">
-          <select name="channel">
-            {% for channel in channels %}
-            <option>{{ channel.name }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="row4">
-        <span class="post-btn-wrap">
-          <input role="button"  type="submit" id="61.post" class="gbtn post" value="分享视频">
-          {{ xsrf_form_html() }}
-          <div role="button" id=":61.cancel" class="gbtn cancel cancel-post" style="-webkit-user-select: none;">取消</div>
-        </span>
-      </div>
-    </form>
-  </div>
   {% set pre_post_id = 0 %}
   {% for post in posts.list %}
   {% if post.id != pre_post_id %}
@@ -529,11 +454,11 @@ $(document).on('click', '.c-icon',  function() {
           <a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"> <em class="W_ico12 ico_retract"></em>
             收起
           </a> <i class="W_vline">|</i>
-          <a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"> <em class="W_ico12 ico_showbig"></em>
+          <a href="{{ post.video_link }}" title="{{ post.video_title }}" class="show_big" target="_blank"> <em class="W_ico12 ico_showbig"></em>
             {{ post.video_title }}
           </a>
           <i class="W_vline">|</i>
-          <a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a>
+          <a action-type="feed_list_media_toFloat" href="/p/{{ post.id }}" target="_blank" class="turn_right">弹出</a>
         </p>
         <embed width="480" height="310" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></div>
       <div class="bottom">

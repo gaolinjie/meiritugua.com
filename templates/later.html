@@ -47,7 +47,7 @@
 
 <script type="text/javascript">
       $(document).ready(function(){
-        $(document).on('click', '.retract',  function() {
+        $(document).on('click', '.retract, .show_big, .turn_right',  function() {
           $(this).parent().parent().hide();
           $(this).parent().parent().parent().find('.thumb-imgs').show();
         });
@@ -344,7 +344,7 @@ $(document).on('click', '.c-icon',  function() {
         <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
       </div>
       <div class="thumb thumb-video" style="display: none;">
-        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="'+video_link+'" title="'+video_title+'" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="javascript:void(0);" class="turn_right">弹出</a></p><embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
+        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="{{ post.video_link }}" title="{{ post.video_title }}" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="/p/{{ post.id }}" target="_blank" class="turn_right">弹出</a></p><embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
       </div>
       <div class="bottom">
         <div class="plus-btn {% if post.favorite_id %}favorited{% endif %}">
