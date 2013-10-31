@@ -1,8 +1,6 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
-
-
 <script src="/static/js/json_parse.js"></script>
 <script src="/static/js/json2.js"></script>
 
@@ -188,7 +186,7 @@ $(document).on('click', '.c-icon',  function() {
       });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.plus-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
@@ -213,7 +211,7 @@ $(document).on('click', '.c-icon',  function() {
         });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.share-btn',  function() {
                 var post_id = $(this).parent().find('input').val();
@@ -234,7 +232,7 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
-    <script src="/static/js/jquery.infinitescroll.js"></script>
+<script src="/static/js/jquery.infinitescroll.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -274,11 +272,20 @@ $(document).on('click', '.c-icon',  function() {
         </div>
         <div class="rating" id="rating-{{ post.id }}"></div>
         <div class="score">{%if post.score!=0 %}{{ post.score }}{%endif%}</div>
-        <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
+        <div class="votes">
+          {%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}
+        </div>
       </div>
       <div class="thumb thumb-video" >
-        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="{{ post.video_link }}" title="{{ post.video_title }}" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a></p><embed width="480" height="310" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
-      </div>
+        <p class="medis_func S_txt3">
+          <a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"> <em class="W_ico12 ico_retract"></em>
+            收起
+          </a> <i class="W_vline">|</i>
+          <a href="{{ post.video_link }}" title="{{ post.video_title }}" class="show_big" target="_blank"> <em class="W_ico12 ico_showbig"></em>
+            {{ post.video_title }}
+          </a>
+        </p>
+        <embed width="480" height="310" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></div>
       <div class="bottom">
         <div class="plus-btn {% if post.favorite_id %}favorited{% endif %}">
           <span class="btn-wrap">
@@ -292,8 +299,7 @@ $(document).on('click', '.c-icon',  function() {
           </span>
         </div>
 
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-      </div>
+        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
       <div class="comment-editor"></div>
     </div>
 
@@ -323,16 +329,23 @@ $(document).on('click', '.c-icon',  function() {
               </div>
             </li>
             {% endfor %}
-
           </ul>
 
         </div>
 
       </div>
       <div class="divider" style=""></div>
-      <div class="comment-input-wraper">
+      <div class="comment-input-wraper"></div>
+      <div class="comment-editor">
+        <div class="wrapper" style="margin-top: -20px;">
+          <a href="./u/{{ user_info.username }}" class="" aria-hidden="true">
+            <img src="/static/avatar/user/s_{{user_info.avatar or "default.png"}}"width="28px" height="28px" alt="" class="avatar"></a>
+          <textarea class="editor-box"></textarea>
+          <span class="button-wrap">
+            <div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div>
+          </span>
+        </div>
       </div>
-      <div class="comment-editor"><div class="wrapper" style="margin-top: -20px;"><a href="./u/{{ user_info.username }}" class="" aria-hidden="true"><img src="/static/avatar/user/s_{{user_info.avatar or "default.png"}}"width="28px" height="28px" alt="" class="avatar"></a><textarea class="editor-box"></textarea><span class="button-wrap"><div role="button" id=":61.post" class="gbtn post post-comment gbtn-unenable"  style="-webkit-user-select: none;">发布评论</div></span></div></div>
 
     </div>
 

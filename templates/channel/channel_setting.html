@@ -46,7 +46,7 @@
       });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         jQuery(document).ready(function() {
             $('.follow-toggle').click(function() {
                 var channel_id = {{ channel.id }};             
@@ -71,7 +71,7 @@
         });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         jQuery(document).ready(function() {
             $('.plus-toggle').click(function() {              
                 var channel_id = {{ channel.id }};
@@ -104,66 +104,64 @@
 
 {% block main %}
 <div class="feeds">
-<div class="c-setting-card">
-    <form class="form-horizontal" action='' method="POST">
-        <fieldset>
-            <div id="legend">
-                <legend class="setting-title">频道设置</legend>
-            </div>
-            {{ errors|dump_errors }}
-            <div class="control-group">
-                <!-- ChannelName -->
-                <label class="control-label" for="channelname">频道名</label>
-                <div class="controls">
-                    <input type="text" id="channelname" name="channelname" placeholder="" class="input-xlarge" value="{{ channel.name or '' }}" readonly>
+    <div class="c-setting-card">
+        <form class="form-horizontal" action='' method="POST">
+            <fieldset>
+                <div id="legend">
+                    <legend class="setting-title">频道设置</legend>
                 </div>
-            </div>
-            <div class="control-group">
-                <!-- Username -->
-                <label class="control-label" for="username">创建者</label>
-                <div class="controls">
-                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge" value="{{ channel.author_username or '' }}" readonly>
+                {{ errors|dump_errors }}
+                <div class="control-group">
+                    <!-- ChannelName -->
+                    <label class="control-label" for="channelname">频道名</label>
+                    <div class="controls">
+                        <input type="text" id="channelname" name="channelname" placeholder="" class="input-xlarge" value="{{ channel.name or '' }}" readonly></div>
                 </div>
-            </div>
-            <div class="control-group">
-                <!-- Avatar -->
-                <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
-                <div class="controls">
-                    <img src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/channel/s_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <a href="/c/{{channel.id}}/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
+                <div class="control-group">
+                    <!-- Username -->
+                    <label class="control-label" for="username">创建者</label>
+                    <div class="controls">
+                        <input type="text" id="username" name="username" placeholder="" class="input-xlarge" value="{{ channel.author_username or '' }}" readonly></div>
                 </div>
-            </div>
+                <div class="control-group">
+                    <!-- Avatar -->
+                    <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
+                    <div class="controls">
+                        <img src="/static/avatar/channel/b_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                        <img src="/static/avatar/channel/s_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                        <a href="/c/{{channel.id}}/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
+                    </div>
+                </div>
 
-            <div class="control-group">
-                <!-- Avatar -->
-                <label class="control-label" for="username">封&nbsp;&nbsp;&nbsp;&nbsp;面</label>
-                <div class="controls">
-                    <img src="/static/cover/channel/m_{{ channel.cover or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <a href="/c/{{channel.id}}/setting/cover" class="btn btn-primary mbtn avatar-btn">设置封面</a>
+                <div class="control-group">
+                    <!-- Avatar -->
+                    <label class="control-label" for="username">封&nbsp;&nbsp;&nbsp;&nbsp;面</label>
+                    <div class="controls">
+                        <img src="/static/cover/channel/m_{{ channel.cover or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
+                        <a href="/c/{{channel.id}}/setting/cover" class="btn btn-primary mbtn avatar-btn">设置封面</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="control-group">
-                <!-- E-mail -->
-                <label class="control-label" for="self_intro">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
-                <div class="controls">
-                    <textarea type="text" id="self_intro" name="self_intro" placeholder="" class="input-xlarge">{{ user_info.self_intro or '' }}</textarea>
-                    <p class="help-block">可以稍微详细的介绍一下频道。</p>
+                <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="self_intro">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
+                    <div class="controls">
+                        <textarea type="text" id="self_intro" name="self_intro" placeholder="" class="input-xlarge">{{ user_info.self_intro or '' }}</textarea>
+                        <p class="help-block">可以稍微详细的介绍一下频道。</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="control-group">
-                <!-- Button -->
-                <div class="controls">
-                    <button class="btn btn-primary">保存改动</button>
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button class="btn btn-primary">保存改动</button>
+                    </div>
                 </div>
-            </div>
-        </fieldset>
-        {{ xsrf_form_html() }}
-    </form>
-</div>
+            </fieldset>
+            {{ xsrf_form_html() }}
+        </form>
+    </div>
 </div>
 {% endblock %}
 

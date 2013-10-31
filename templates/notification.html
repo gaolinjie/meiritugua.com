@@ -11,12 +11,11 @@
 
       <h2 id="content-main-heading">我的消息</h2>
 
-      <p class="subheader">所有和我相关的消息。</p>
+      <p class="subheader">别人回复我的或提到我的的消息提醒。</p>
       <div class="create-channel">
         <a href="/notification?tab=allread" role="button" class="btn btn-primary" data-toggle="modal">全部已读</a>
       </div>
     </div>
-
     {% set tab_bar = [
       ('/notification', 'all', '所有'),
       ('/notification?tab=comment', 'comment', '回复我的'),
@@ -56,9 +55,14 @@
               <div class="content">
                 <div class="stream-item-header">
                   <div class="account-group js-user-profile-link" href="/c/{{ notification.id }}">
-                    
-                    <a href="/u/{{ notification.trigger_username }}" class="username js-action-profile-name"><img class="avatar js-action-profile-avatar " src="/static/avatar/user/m_{{ notification.trigger_avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ notification.involved_post_video_title }}">{{ notification.trigger_username }}</a>
-                    <span>‏ 在 </span> <a href="/n/{{ notification.id }}" class="js-action-profile-name">{{ notification.involved_post_video_title }}</a><span>‏ 里{% if notification.involved_type == 0 %}提到{% else %}回复{% endif %}了你</span>
+
+                    <a href="/u/{{ notification.trigger_username }}" class="username js-action-profile-name">
+                      <img class="avatar js-action-profile-avatar " src="/static/avatar/user/m_{{ notification.trigger_avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ notification.involved_post_video_title }}">{{ notification.trigger_username }}</a>
+                    <span>‏ 在</span>
+                    <a href="/n/{{ notification.id }}" class="js-action-profile-name">{{ notification.involved_post_video_title }}</a>
+                    <span>
+                      ‏ 里{% if notification.involved_type == 0 %}提到{% else %}回复{% endif %}了你
+                    </span>
 
                   </div>
                 </div>
@@ -71,24 +75,20 @@
 
           </li>
           {% endfor %}
-          
         </ol>
         <div class="stream-footer ">
           <div class="timeline-end has-items has-more-items">
-            
+
             <div class="stream-loading">
               <div class="stream-end-inner">
                 <div class="pagination">{{ notifications.page|pagination(request.uri) }}</div>
+                {% if notifications.page.total == 0 %}
+                <div class="pl10 pr10">
 
-    {% if notifications.page.total == 0 %}
+                  <div class="alert mt20">{{ notice_text }}</div>
 
-        <div class="pl10 pr10">
-
-            <div class="alert mt20">{{ notice_text }}</div>
-
-        </div>
-
-    {% endif %}
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>

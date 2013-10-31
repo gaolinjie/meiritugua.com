@@ -170,7 +170,7 @@ $(document).on('click', '.c-icon',  function() {
       });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $('.plus-btn').click(function() {
                 var post_id = $(this).parent().find('input').val();
@@ -195,7 +195,7 @@ $(document).on('click', '.c-icon',  function() {
         });
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $('.share-btn').click(function() {
                 var post_id = $(this).parent().find('input').val();
@@ -217,7 +217,7 @@ $(document).on('click', '.c-icon',  function() {
         });
     </script>
 
-    <script src="/static/js/jquery.infinitescroll.js"></script>
+<script src="/static/js/jquery.infinitescroll.js"></script>
 <script>
  $(document).ready(function (){
     $(".feeds").infinitescroll({
@@ -277,14 +277,12 @@ $(document).on('click', '.c-icon',  function() {
 
       <h2 id="content-main-heading">稍后观看</h2>
 
-      <p class="subheader">稍后观看的视频。</p>
+      <p class="subheader">这里列出了你暂存的视频，以便稍后观看。</p>
       <div class="create-channel">
-      <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">创建频道</a>
+        <a href="/later/clear" role="button" class="btn btn-primary" data-toggle="modal">清空队列</a>
+      </div>
     </div>
-    </div>
-
-
-  {% set tab_bar = [
+    {% set tab_bar = [
       ('/favorite', 'all', '所有'),
       ('/favorite?tab=video', 'video', '短片'),
       ('/favorite?tab=micro', 'micro', '微电影'),           
@@ -292,14 +290,14 @@ $(document).on('click', '.c-icon',  function() {
       ('/favorite?tab=star', 'star', '明星'),               
   ] -%}
   {% set active_tab = active_tab|default('index') -%}
-  <div class="tabbar">
-    {% for href, id, caption in tab_bar %}
-    <div {% if id == active_tab %} class="tab m-active"{% else %} class="tab" {% endif %}>
-      <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
-      <span class="tab-highlight"></span>
+    <div class="tabbar">
+      {% for href, id, caption in tab_bar %}
+      <div {% if id == active_tab %} class="tab m-active"{% else %} class="tab" {% endif %}>
+        <a href="{{ href|e }}" class="tab-link">{{ caption|e }}</a>
+        <span class="tab-highlight"></span>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
   </div>
 
 </div>
@@ -341,11 +339,22 @@ $(document).on('click', '.c-icon',  function() {
         </div>
         <div class="rating" id="rating-{{ post.id }}"></div>
         <div class="score">{%if post.score!=0 %}{{ post.score }}{%endif%}</div>
-        <div class="votes">{%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}</div>
+        <div class="votes">
+          {%if post.score==0 %}暂无评分{%else%}{{ post.votes }}人评价{%endif%}
+        </div>
       </div>
       <div class="thumb thumb-video" style="display: none;">
-        <p class="medis_func S_txt3"><a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"><em class="W_ico12 ico_retract"></em>收起</a><i class="W_vline">|</i><a href="{{ post.video_link }}" title="{{ post.video_title }}" class="show_big" target="_blank"><em class="W_ico12 ico_showbig"></em>{{ post.video_title }}</a><i class="W_vline">|</i><a action-type="feed_list_media_toFloat" href="/p/{{ post.id }}" target="_blank" class="turn_right">弹出</a></p><embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash">
-      </div>
+        <p class="medis_func S_txt3">
+          <a href="javascript:void(0);" action-type="feed_list_media_toSmall" class="retract"> <em class="W_ico12 ico_retract"></em>
+            收起
+          </a> <i class="W_vline">|</i>
+          <a href="{{ post.video_link }}" title="{{ post.video_title }}" class="show_big" target="_blank"> <em class="W_ico12 ico_showbig"></em>
+            {{ post.video_title }}
+          </a>
+          <i class="W_vline">|</i>
+          <a action-type="feed_list_media_toFloat" href="/p/{{ post.id }}" target="_blank" class="turn_right">弹出</a>
+        </p>
+        <embed width="440" height="340" src="{{ post.video_flash }}" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></div>
       <div class="bottom">
         <div class="plus-btn {% if post.favorite_id %}favorited{% endif %}">
           <span class="btn-wrap">
@@ -363,8 +372,7 @@ $(document).on('click', '.c-icon',  function() {
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-      </div>
+        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
       <div class="comment-editor"></div>
     </div>
 

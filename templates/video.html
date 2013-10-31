@@ -65,7 +65,7 @@
 
           <form class="js-add-question-form" action="/video" method="post">
             <div class="zg-section-big clearfix">
-                <textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入频道名称" id="zh-question-suggest-title-content" aria-label="输入频道名称" placeholder="输入频道名称" name="name" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text"></textarea>
+              <textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入频道名称" id="zh-question-suggest-title-content" aria-label="输入频道名称" placeholder="输入频道名称" name="name" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text"></textarea>
               <div id="zh-question-suggest-ac-wrap" class="question-suggest-ac-wrap"></div>
             </div>
             <div class="zg-section-big">
@@ -77,7 +77,7 @@
               <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
                 <div class="zm-editable-editor-wrap no-toolbar" style="">
                   <div class="zm-editable-editor-outer">
-                      <textarea name="intro" placeholder="写点频道介绍吧..." id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
+                    <textarea name="intro" placeholder="写点频道介绍吧..." id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
                   </div>
                 </div>
               </div>
@@ -106,7 +106,8 @@
 
               <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
               <button class="btn btn-primary" type="submit" id="61.post" >创建频道</button>
-              {{ xsrf_form_html() }}</div>
+              {{ xsrf_form_html() }}
+            </div>
           </form>
         </div>
       </div>
@@ -208,20 +209,17 @@
 
         <div class="stream-footer ">
           <div class="timeline-end has-items has-more-items">
-            
+
             <div class="stream-loading">
               <div class="stream-end-inner">
                 <div class="pagination">{{ channels.page|pagination(request.uri) }}</div>
+                {% if channels.page.total == 0 %}
+                <div class="pl10 pr10">
 
-    {% if channels.page.total == 0 %}
+                  <div class="alert mt20">{{ notice_text }}</div>
 
-        <div class="pl10 pr10">
-
-            <div class="alert mt20">{{ notice_text }}</div>
-
-        </div>
-
-    {% endif %}
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>

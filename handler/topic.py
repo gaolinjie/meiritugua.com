@@ -727,6 +727,15 @@ class LaterManagerHandler(BaseHandler):
                     "message": "success_latered",
                 }))
 
+class LaterClearHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            later = self.later_model.delete_user_all_laters(user_info["uid"])
+            self.redirect("/later")
+            
+
 class PostHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user

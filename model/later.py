@@ -19,6 +19,10 @@ class LaterModel(Query):
         where = "user_id = %s AND post_id = %s" % (user_id, post_id)
         return self.where(where).delete()
 
+    def delete_user_all_laters(self, user_id):
+        where = "user_id = %s" % user_id
+        return self.where(where).delete()
+
     def get_later_by_post_id_and_user_id(self, user_id, post_id):
         where = "post_id = %s AND user_id = %s" % (post_id, user_id)
         return self.where(where).find()
