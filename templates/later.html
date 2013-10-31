@@ -216,6 +216,57 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
+
+    <script src="/static/js/jquery.infinitescroll.js"></script>
+<script>
+ $(document).ready(function (){
+    $(".feeds").infinitescroll({
+          navSelector: "#navigation",
+          nextSelector: "#navigation a",
+          itemSelector: ".card",
+          maxPage: {{posts.page.pages}},   
+      }, function(newElems) {
+      $.fn.raty.defaults.path = '/static/js/raty/img';
+      $('.rating').raty({ 
+        half: true,
+        score: function() {
+          return $(this).parent().find('.score').text()/2;
+        },
+        click: function(score, evt) {
+          var post_id = $(this).parent().parent().parent().find('.bottom').find('input').val();
+          var scroe_text = $(this).parent().find('.score');
+          var rating = $(this);
+          $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/rate/"+post_id,
+              data: JSON.stringify({score: score}), 
+              success: function (msg) {
+                if (msg.success != 0) {
+                  if (msg.message == "rated") {
+                    rating.raty({ score: parseInt(scroe_text.text())/2 });
+                    alert("对不起，你已经评过分了！");
+                    return;
+                  }
+                  scroe_text.text(score*2);
+                }
+                else {
+                  alert("评分没有成功，请重试！");
+                }
+                
+
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+        },
+        hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
+      });
+            });
+ }); 
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -358,6 +409,9 @@ $(document).on('click', '.c-icon',  function() {
 
   </div>
   {% endfor %}
+  <div id="navigation" align="center">
+    <a href="/?page={{posts.page.next}}"></a>
+  </div>
 </div>
 {% endblock %}
 
