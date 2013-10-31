@@ -33,6 +33,17 @@
    });
 </script>
 
+<script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.J_search').submit(function(e) {
+                var _node = $(this);
+                var query = _node.find('input').val();
+                e.preventDefault();
+                window.open('http://www.google.com.hk/search?q=site:mifan.tv/t%20' + query, "_blank");
+            });
+        });
+    </script>
+
     {% block stylesheet %}{% endblock %}
     {% block javascript %}{% endblock %}
 </head>
@@ -51,7 +62,7 @@
                   </a>
                 </li>
                 <li>
-                  <form class="navbar-search pull-left">
+                  <form class="navbar-search pull-left J_search">
                     <input type="text" class="search-query" placeholder="搜索..."></form>
                 </li>
                 {% set web_page = [
