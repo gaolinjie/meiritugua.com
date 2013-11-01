@@ -31,12 +31,6 @@
    });
 </script>
 
-<script type="text/javascript">
-   $(document).ready(function(){
-      $('.container').width(screen.width);
-   });
-</script>
-
   <script type="text/javascript">
         jQuery(document).ready(function() {
             $('.J_search').submit(function(e) {
@@ -53,20 +47,20 @@
 <body>
 
   <div class="row demo-row">
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
-            <div class="nav-collapse collapse" id="nav-collapse-01">
-              <ul class="nav">
-                <li id="logo">
-                  <a href="/" class="brand"></a>
-                </li>
-                <li>
-                  <form class="navbar-search pull-left J_search">
-                    <input type="text" class="search-query" placeholder="搜索..."></form>
-                </li>
-                {% set web_page = [
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+          <div class="nav-collapse collapse" id="nav-collapse-01">
+            <ul class="nav">
+              <li id="logo">
+                <a href="/" class="brand"></a>
+              </li>
+              <li>
+                <form class="navbar-search pull-left J_search">
+                  <input type="text" class="search-query" placeholder="搜索..."></form>
+              </li>
+              {% set web_page = [
                   ('/video', 'video', '短片'),
                   ('/micro', 'micro', '微电影'),                   
                   ('/movie', 'movie', '电影'),
@@ -74,33 +68,33 @@
                 ] -%}
                 {% set active_page = active_page|default('index') -%}
                 {% for href, id, caption in web_page %}
-                <li {% if id == active_page %} class="active" {% endif %}>
-                  <a href="{{ href|e }}">{{ caption|e }}</a>
-                </li>
-                {% endfor %}
-              </ul>
-
-            </div>
-            <!--/.nav -->
-            <ul class="nav pull-right">
-              <li class="active">
-                <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.username}}">
-                  <img src="/static/avatar/user/s_{{ user_info.avatar or 'default.png'}}" width="30"></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/setting">设置</a>
-                  </li>
-                  <li>
-                    <a href="/logout">退出</a>
-                  </li>
-                </ul>
+              <li {% if id == active_page %} class="active" {% endif %}>
+                <a href="{{ href|e }}">{{ caption|e }}</a>
               </li>
+              {% endfor %}
             </ul>
 
           </div>
+          <!--/.nav -->
+          <ul class="nav pull-right">
+            <li class="active">
+              <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.username}}">
+                <img src="/static/avatar/user/s_{{ user_info.avatar or 'default.png'}}" width="30"></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/setting">设置</a>
+                </li>
+                <li>
+                  <a href="/logout">退出</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
 
         </div>
+
       </div>
+    </div>
 
   </div>
 
