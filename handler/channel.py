@@ -275,7 +275,7 @@ class SuggestionsHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
-            template_variables["channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"], current_page = page)
+            template_variables["channels"] = self.channel_model.get_hot_channels(user_info["uid"], current_page = page)
             notice_text = "对不起，暂时没有频道推荐给你"
             template_variables["notice_text"] = notice_text
         else:
@@ -314,6 +314,7 @@ class HotChannelsHandler(BaseHandler):
 
 class UserOtherChannelsHandler(BaseHandler):
     def get(self, user, template_variables = {}):
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
@@ -324,8 +325,26 @@ class UserOtherChannelsHandler(BaseHandler):
             else:
                 view_user_info = self.user_model.get_user_by_username(user)
             template_variables["view_user_info"] = view_user_info
-            template_variables["channels"] = self.channel_model.get_user_all_channels(view_user_info["uid"], current_page = page)
-            notice_text = "你还未关注任何频道"
+            template_variables["active_tab"] = tab
+            if(tab=="all"):
+                template_variables["channels"] = self.channel_model.get_user_all_channels(view_user_info["uid"], current_page = page)
+                notice_text = "TA还没创建频道"
+            else:
+                nav_id=1
+                if (tab=="video"):
+                    nav_id=1
+                    notice_text = "TA还没创建短片频道"
+                if (tab=="micro"):
+                    nav_id=2
+                    notice_text = "TA还没创建微电影频道"
+                if (tab=="movie"):
+                    nav_id=3
+                    notice_text = "TA还没创建电影频道"
+                if (tab=="star"):
+                    nav_id=4
+                    notice_text = "TA还没创建明星频道"
+                template_variables["channels"] = self.channel_model.get_user_all_channels_by_nav_id(view_user_info["uid"], nav_id, current_page = page)
+            
             template_variables["notice_text"] = notice_text
         else:
             self.redirect("/login")

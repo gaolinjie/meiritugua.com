@@ -280,7 +280,7 @@ class UserHandler(BaseHandler):
         
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels2(user_id = user_info["uid"])
-            template_variables["user_all_channels"] = self.channel_model.get_user_all_channels(user_info["uid"], current_page = page)
+            template_variables["user_all_channels"] = self.channel_model.get_user_all_channels(user_info["uid"], num=3, current_page = page)
             if(re.match(r'^\d+$', user)):
                 view_user_info = self.user_model.get_user_by_uid(user)
             else:

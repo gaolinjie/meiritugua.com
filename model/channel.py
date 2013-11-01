@@ -33,12 +33,24 @@ class ChannelModel(Query):
         where = "name = '%s'" % channel_name
         return self.where(where).find()
 
-    def get_user_all_channels(self, user_id, num = 3, current_page = 1):
+    def get_user_all_channels(self, user_id, num = 10, current_page = 1):
         where = "author_id = '%s'" % user_id
-        join = "LEFT JOIN user AS author_user ON channel.author_id = author_user.uid"
+        join = "LEFT JOIN user AS author_user ON channel.author_id = author_user.uid \
+                LEFT JOIN follow ON channel.id = follow.channel_id AND '%s' = follow.user_id" % user_id
         order = "channel.followers DESC, channel.created DESC, channel.id DESC"
         field = "channel.*, \
-                author_user.username as author_username"
+                author_user.username as author_username, \
+                follow.user_id as follow_user_id"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_user_all_channels_by_nav_id(self, user_id, nav_id, num = 10, current_page = 1):
+        where = "author_id = '%s' AND nav_id = '%s'" % (user_id, nav_id)
+        join = "LEFT JOIN user AS author_user ON channel.author_id = author_user.uid \
+                LEFT JOIN follow ON channel.id = follow.channel_id AND '%s' = follow.user_id" % user_id
+        order = "channel.followers DESC, channel.created DESC, channel.id DESC"
+        field = "channel.*, \
+                author_user.username as author_username, \
+                follow.user_id as follow_user_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_channels2(self, user_id):
