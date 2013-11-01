@@ -285,14 +285,28 @@ class SuggestionsHandler(BaseHandler):
 
 class HotChannelsHandler(BaseHandler):
     def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
-            template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
-            notice_text = "你还未关注任何频道"
+            notice_text = "还没有热门频道"
             template_variables["notice_text"] = notice_text
+            template_variables["active_tab"] = tab
+            if(tab=="all"):
+                template_variables["channels"] = self.channel_model.get_hot_channels(current_page = page)
+            else:
+                nav_id=1
+                if (tab=="video"):
+                    nav_id=1
+                if (tab=="micro"):
+                    nav_id=2
+                if (tab=="movie"):
+                    nav_id=3
+                if (tab=="star"):
+                    nav_id=4
+                template_variables["channels"] = self.channel_model.get_hot_channels_by_nav_id(nav_id, current_page = page)            
         else:
             self.redirect("/login")
 

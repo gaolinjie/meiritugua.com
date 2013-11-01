@@ -55,11 +55,11 @@
 
 
     {% set tab_bar = [
-      ('/favorite', 'all', '所有'),
-      ('/favorite?tab=video', 'video', '短片'),
-      ('/favorite?tab=micro', 'micro', '微电影'),           
-      ('/favorite?tab=movie', 'movie', '电影'),     
-      ('/favorite?tab=star', 'star', '明星'),               
+      ('/hot', 'all', '所有'),
+      ('/hot?tab=video', 'video', '短片'),
+      ('/hot?tab=micro', 'micro', '微电影'),           
+      ('/hot?tab=movie', 'movie', '电影'),     
+      ('/hot?tab=star', 'star', '明星'),               
   ] -%}
   {% set active_tab = active_tab|default('index') -%}
     <div class="tabbar">
