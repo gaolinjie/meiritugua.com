@@ -275,8 +275,8 @@ class SuggestionsHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
-            template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
-            notice_text = "你还未关注任何频道"
+            template_variables["channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"], current_page = page)
+            notice_text = "对不起，暂时没有频道推荐给你"
             template_variables["notice_text"] = notice_text
         else:
             self.redirect("/login")
@@ -295,7 +295,7 @@ class HotChannelsHandler(BaseHandler):
             template_variables["notice_text"] = notice_text
             template_variables["active_tab"] = tab
             if(tab=="all"):
-                template_variables["channels"] = self.channel_model.get_hot_channels(current_page = page)
+                template_variables["channels"] = self.channel_model.get_hot_channels(user_info["uid"], current_page = page)
             else:
                 nav_id=1
                 if (tab=="video"):
@@ -306,7 +306,7 @@ class HotChannelsHandler(BaseHandler):
                     nav_id=3
                 if (tab=="star"):
                     nav_id=4
-                template_variables["channels"] = self.channel_model.get_hot_channels_by_nav_id(nav_id, current_page = page)            
+                template_variables["channels"] = self.channel_model.get_hot_channels_by_nav_id(user_info["uid"], nav_id, current_page = page)            
         else:
             self.redirect("/login")
 

@@ -91,7 +91,7 @@ class FollowModel(Query):
                 later.id as later_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
-    def get_user_all_unfollow_channels(self, user_id, num = 3, current_page = 1):
+    def get_user_all_unfollow_channels(self, user_id, num = 10, current_page = 1):
         where = "follow.user_id <> %s" % user_id
         join = "RIGHT JOIN channel ON follow.channel_id = channel.id \
                 LEFT JOIN user AS author_user ON channel.author_id = author_user.uid"

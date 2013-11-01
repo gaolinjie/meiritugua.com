@@ -38,7 +38,7 @@ class IndexHandler(BaseHandler):
         if(user_info):
             template_variables["navs"] = self.nav_model.get_all_navs()
             template_variables["channels"] = self.channel_model.get_user_all_channels2(user_id = user_info["uid"])
-            template_variables["maylike_channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"])
+            template_variables["maylike_channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"], num =3)
             
             if(tab=="index"):
                 template_variables["active_tab"] = "all"
