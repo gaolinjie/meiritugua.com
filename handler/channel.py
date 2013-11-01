@@ -177,3 +177,297 @@ class ChannelSettingCoverHandler(BaseHandler):
         template_variables["success_message"] = [u"频道头像更新成功"]
 
         self.redirect("/c/"+channel_id)
+
+
+class VideoHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "all")
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "video"
+        if(user_info):
+            notice_text = "暂时还没有短片频道"
+            template_variables["notice_text"] = notice_text
+            template_variables["active_tab"] = tab
+            template_variables["subnavs"] = self.subnav_model.get_subnavs_by_nav_id(1)
+            if (tab=="all"):
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id(1, user_info["uid"], current_page = page)
+            else:
+                subnav_id = self.subnav_model.get_subnav_by_subnav_name(tab).id
+                template_variables["channels"] = self.channel_model.get_channels_by_nav_id_and_subnav_id(1, user_info["uid"], subnav_id, current_page = page)
+        else:
+            self.redirect("/login")
+
+        self.render("video.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+        form = ChannelForm(self)
+
+        if not form.validate():
+            self.get({"errors": form.errors})
+            return
+
+        # continue while validate succeed
+
+
+        subnav_id = self.subnav_model.get_subnav_by_subnav_title(form.subnav.data).id
+        channel_info = {
+            "name": form.name.data,
+            "intro": form.intro.data,
+            "nav_id": 1,
+            "subnav_id": subnav_id,
+            "plus": 0,
+            "followers": 0,
+            "posts": 0,
+            "author_id": self.current_user["uid"],
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+ 
+        self.channel_model.add_new_channel(channel_info)
+
+        channel = self.channel_model.get_channel_by_name(channel_name = channel_info["name"])
+
+        follow_info = {
+            "user_id": self.current_user["uid"],
+            "channel_id": channel["id"],
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        self.follow_model.add_new_follow(follow_info)
+        self.redirect("/video")
+
+class FollowsHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "all")
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            template_variables["active_tab"] = tab
+
+            if (tab=="all"):
+                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
+            elif (tab=="mychannels"):
+                template_variables["channels"] = self.channel_model.get_user_all_channels(user_info["uid"], current_page = page)
+            notice_text = "你还未关注任何频道"
+            if (tab == "user"):
+                notice_text = "你还未关注任何人"
+            if (tab == "mention"):
+                notice_text = "你还未创建任何频道"
+            template_variables["notice_text"] = notice_text
+        else:
+            self.redirect("/login")
+
+        self.render("follow.html", **template_variables)
+
+class SuggestionsHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
+            notice_text = "你还未关注任何频道"
+            template_variables["notice_text"] = notice_text
+        else:
+            self.redirect("/login")
+
+        self.render("channel/suggestions.html", **template_variables)
+
+class HotChannelsHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
+            notice_text = "你还未关注任何频道"
+            template_variables["notice_text"] = notice_text
+        else:
+            self.redirect("/login")
+
+        self.render("channel/hot_channels.html", **template_variables)
+
+class UserOtherChannelsHandler(BaseHandler):
+    def get(self, user, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            if(re.match(r'^\d+$', user)):
+                view_user_info = self.user_model.get_user_by_uid(user)
+            else:
+                view_user_info = self.user_model.get_user_by_username(user)
+            template_variables["view_user_info"] = view_user_info
+            template_variables["channels"] = self.channel_model.get_user_all_channels(view_user_info["uid"], current_page = page)
+            notice_text = "你还未关注任何频道"
+            template_variables["notice_text"] = notice_text
+        else:
+            self.redirect("/login")
+
+        self.render("channel/user_other_channels.html", **template_variables)
+
+class SearchChannelHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            page = int(self.get_argument("page", "1"))
+        else:
+            self.redirect("/login")
+
+        self.render("channel/search_channel.html", **template_variables)
+
+class MicroHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "micro"        
+
+        self.render("micro.html", **template_variables)
+
+class MovieHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "movie"        
+
+        self.render("movie.html", **template_variables)
+
+class TVHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "tv"        
+
+        self.render("tv.html", **template_variables)
+
+class StarHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        template_variables["active_page"] = "star"        
+
+        self.render("star.html", **template_variables)
+
+class ChannelHandler(BaseHandler):
+    def get(self, channel_id, template_variables = {}):
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
+        if(user_info):
+            template_variables["user_other_channels"] = self.channel_model.get_user_other_channels(user_info["uid"], channel_id)
+            follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            if(follow):
+                template_variables["followed"]=1;
+            else:
+                template_variables["followed"]=0;
+            if(plus):
+                print "has plused"
+                template_variables["plused"]=1;
+            else:
+                print "no plused"
+                template_variables["plused"]=0;
+            template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
+            template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, user_id = user_info["uid"], channel_id = channel_id)
+        else:
+            self.redirect("/login")
+
+        self.render("channel/channel.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, channel_id, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+        form = PostForm2(self)
+
+        if not form.validate():
+            self.get(channel_id, {"errors": form.errors})
+            return
+
+        # continue while validate succeed
+        video_link = form.link.data
+        video_id = find_video_id_from_url(video_link)
+        json_link = "http://v.youku.com/player/getPlayList/VideoIDS/"+video_id+"/timezone/+08/version/5/source/out?password=&ran=2513&n=3"
+        video_json = json.load(urllib2.urlopen(json_link))
+        video_logo = video_json[u'data'][0][u'logo']
+        video_title = video_json[u'data'][0][u'title']
+        video_flash = "http://player.youku.com/player.php/sid/"+video_id+"/v.swf"
+        print video_title
+
+        video_info = {
+            "source": "youku",
+            "flash": video_flash,
+            "link": video_link,
+            "title": video_title,
+            "thumb": video_logo,
+        }
+        vid = self.video_model.add_new_video(video_info)
+        print vid
+
+        channel = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
+        
+        post_info = {
+            "author_id": self.current_user["uid"],
+            "channel_id": channel_id,
+            "nav_id": channel["nav_id"],
+            "video_id": vid,
+            "intro": form.intro.data,
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        self.post_model.add_new_post(post_info)
+        self.channel_model.update_channel_info_by_channel_id(channel.id, {"posts": channel.posts+1})
+
+        self.redirect("/c/" + channel_id)
+
+class FollowHandler(BaseHandler):
+    def get(self, channel_id, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            channel = self.channel_model.get_channel_by_channel_id(channel_id)
+            follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+            if(follow):
+                self.follow_model.delete_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "revert_followed",
+                }))
+                self.channel_model.update_channel_info_by_channel_id(channel_id, {"followers": channel.followers-1})
+            else:
+                channel = self.channel_model.get_channel_by_channel_id(channel_id)
+                follow_info = {
+                    "user_id": user_info["uid"],
+                    "channel_id": channel_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.follow_model.add_new_follow(follow_info)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_followed",
+                }))
+                self.channel_model.update_channel_info_by_channel_id(channel_id, {"followers": channel.followers+1})

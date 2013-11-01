@@ -281,57 +281,32 @@ $(document).on('click', '.c-icon',  function() {
             });
  }); 
     </script>
-
-<script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('.follow-toggle').click(function() {
-                var channel_id = {{ channel.id }};             
-                if($(this).hasClass('followed')) {
-                        $.getJSON('/f/'+channel_id, function(data) {
-                            if(data.success!=0&&data.message=="revert_followed") {
-                                $('.follow-toggle').removeClass('followed');
-                                $('.follow-toggle').removeClass('btn-danger');
-                                $('.follow-toggle').text("关注");
-                            }
-                        });                        
-                } else {
-                    $.getJSON('/f/'+channel_id, function(data) {
-                        if(data.success!=0&&data.message=="success_followed") {
-                            $('.follow-toggle').addClass('followed');
-                            $('.follow-toggle').addClass('btn-danger');
-                            $('.follow-toggle').text("取消关注");
-                        }
-                    }); 
-                }
-            });        
-        });
-    </script>
 {% endblock %}
 
 {% block main %}
 <div class="feeds">
   <div class="module profile-card component profile-header profile-page-header" data-component-term="profile_follow_card">
-    <div class="profile-header-inner flex-module clearfix" style="background-image: url(/static/cover/channel/m_{{ channel.cover or 'default.png' }}?t={{ gen_random() }})">
+    <div class="profile-header-inner flex-module clearfix" style="background-image: url(/static/cover/user/m_{{ view_user_info.cover or 'default.png' }}?t={{ gen_random() }})">
       <div class="profile-header-inner-overlay"></div>
 
-      <a href="/c/{{ channel.id }}" class="profile-picture media-thumbnail">
+      <a href="/u/{{ view_user_info.uid }}" class="profile-picture-user media-thumbnail">
 
-        <img src="/static/avatar/channel/m_{{ channel.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ channel.name }}" class="avatar size73"></a>
+        <img src="/static/avatar/user/m_{{ view_user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ view_user_info.username }}" class="user-avatar size73"></a>
 
       <div class="profile-card-inner" data-screen-name="Paveo" data-user-id="5375972">
         <h1 class="fullname editable-group">
-          <span class="profile-field">{{ channel.name }}</span>
+          <span class="profile-field">{{ view_user_info.username }}</span>
 
         </h1>
 
         <h2 class="username">
           <span class="screen-name">
             <s>@</s>
-            {{ channel.author_username }}
+            {{ view_user_info.username }}
           </span>
         </h2>
         <div class="bio-container editable-group">
-          <p class="bio profile-field">{{ channel.intro }}</p>
+          <p class="bio profile-field">{{ view_user_info.intro }}</p>
         </div>
       </div>
     </div>
@@ -339,7 +314,7 @@ $(document).on('click', '.c-icon',  function() {
       <div class="default-footer">
         <ul class="stats js-mini-profile-stats" data-user-id="5375972">
           <li>
-            <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>{{ channel.posts }}</strong>
+            <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>{{ view_user_info.posts }}</strong>
               视频
             </a>
           </li>
@@ -350,26 +325,15 @@ $(document).on('click', '.c-icon',  function() {
           </li>
           <li>
             <a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers">
-              <strong>{{ channel.followers }}</strong>
+              <strong>{{ view_user_info.followers }}</strong>
               关注者
             </a>
           </li>
 
         </ul>
-        {% if channel.author_id!=user_info.uid %}
-        <div class="channel-post-btn follow-btn" title="关注">
-          {% if followed == 1 %}
-          <a href="javascript:void(0)"  class="btn btn-primary follow-toggle btn-danger followed">取消关注</a>
-          {% else %}
-          <a href="javascript:void(0)"  class="btn btn-primary follow-toggle">关注</a>
-          {% endif %}
-        </div>
-        {% else %}
+        {% if view_user_info.uid==user_info.uid %}
         <div class="channel-post-btn follow-btn" title="关注">
           <a href="#myModal" role="button"  class="btn btn-primary" data-toggle="modal">分享视频</a>
-        </div>
-        <div class="channel-post-btn follow-btn">
-          <a href="/c/{{channel.id}}/setting"  class="btn setting-btn">设置</a>
         </div>
         {% endif %}
       </div>
@@ -382,8 +346,9 @@ $(document).on('click', '.c-icon',  function() {
         <div class="modal-dialog-content">
           <div id="zh-add-question-wrap" class="zh-add-question-form">
 
-            <form class="js-add-question-form" action="/c/{{ channel.id }}" method="post">
+            <form class="js-add-question-form" action="/?tab=post" method="post">
               <div class="zg-section-big clearfix">
+
                 <textarea class="zg-editor-input zu-seamless-input-origin-element" title="输入视频链接" id="zh-question-suggest-title-content" aria-label="输入视频链接" placeholder="输入视频链接" aria-haspopup="false" autocomplete="off" style="white-space: pre; height: 22px; min-height: 22px;" role="combobox" aria-autocomplete="list" aria-activedescendant="" type="text" name="link" ></textarea>
 
                 <div id="zh-question-suggest-ac-wrap" class="question-suggest-ac-wrap"></div>
@@ -394,16 +359,37 @@ $(document).on('click', '.c-icon',  function() {
                   视频介绍：
                   <span id="zh-question-form-detail-err"></span>
                 </div>
-                <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing">
+                <div id="zh-question-suggest-detail-container" class="zm-editable-status-editing input-focus">
                   <div class="zm-editable-editor-wrap no-toolbar" style="">
                     <div class="zm-editable-editor-outer">
-                      <textarea name="intro" placeholder="写下你精妙的推荐介绍吧" id="mock:22" class="zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
+                      <textarea name="intro" placeholder="写下你精妙的推荐介绍吧" id="mock:22" class=" zm-editable-editor-field-element editable" g_editable="true" contenteditable="true" style=""></textarea>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="zm-add-question-form-topic-wrap">
+                <div class="add-question-section-title">
 
+                  <span class="zg-gray zg-right">指定频道，让更多感兴趣的人观看到你分享的视频</span>
+                  选择频道：
+                  <span id="zh-question-form-tag-err"></span>
+                </div>
+                <div style="" id="zh-question-suggest-topic-container" class="zm-tag-editor zg-section">
+                  <div id="zh-question-suggest-autocomplete-container">
+                    <div class="v-channel">
+                      <select name="channel">
+                        {% for channel in channels %}
+                        <option>{{ channel.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="zm-command">
+                <label class="zm-question-form-hide-in-about-question-el zg-left">
+                  <a href="#myModal2" role="button"  data-toggle="modal" name="newcancel" class="zm-command-cancel">+新建频道</a>
+                </label>
 
                 <a href="javascript:;" name="cancel" class="zm-command-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
                 <button class="btn btn-primary" type="submit" id="61.post" >分享视频</button>
@@ -411,34 +397,6 @@ $(document).on('click', '.c-icon',  function() {
             </form>
           </div>
         </div>
-      </div>
-
-      <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <form class="mt10" action="/c/{{ channel.id }}" method="post">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h5 id="myModalLabel">分享视频</h5>
-          </div>
-          <div class="modal-body">
-
-            <div class="row1">
-              <div class="t-link">视频链接:</div>
-              <div class="v-link">
-                <input type="text" placeholder="输入或粘贴链接" name="link"></div>
-
-            </div>
-            <div class="row2">
-              <div class="t-link">视频介绍:</div>
-              <div class="v-description">
-                <textarea rows="3" class="content mt5 smart-code-support J_replyContent" placeholder="写点视频介绍吧..." name="intro"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-            <button class="btn btn-primary" type="submit" id="61.post" >分享视频</button>
-            <input type="hidden" name="subnav_name" value="{{ active_tab }}">{{ xsrf_form_html() }}</div>
-        </form>
       </div>
     </div>
     <div class="profile-social-proof">
@@ -609,7 +567,7 @@ $(document).on('click', '.c-icon',  function() {
       </div>
 
       <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">
-        {% for channel in user_other_channels.list %}
+        {% for channel in user_all_channels.list %}
         <div class="js-account-summary account-summary js-actionable-user " data-user-id="14309969" data-feedback-token="133">
           <div class="dismiss js-action-dismiss">
             <i class="close"></i>
@@ -644,15 +602,15 @@ $(document).on('click', '.c-icon',  function() {
       </div>
 
       <div class="flex-module-footer">
-        <a href="/who_to_follow/interests" class="js-interests-link" data-element-term="interests_link">热门频道</a>
+        <a href="/hot" class="js-interests-link" data-element-term="interests_link">热门频道</a>
         ·
-        <a href="/who_to_follow/import" class="js-find-friends-link" data-element-term="import_link">查找频道</a>
+        <a href="/searchchannel" class="js-find-friends-link" data-element-term="import_link">查找频道</a>
       </div>
     </div>
     <div class="view-all-button">
       <ul>
         <li>
-          <a href="/who_to_follow/suggestions" class="list-link follow-more-suggestions">
+          <a href="/channels/u/{{view_user_info.username}}" class="list-link follow-more-suggestions">
             更多该用户的频道
             <i class="chev-right"></i>
           </a>
