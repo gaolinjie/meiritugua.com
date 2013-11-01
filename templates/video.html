@@ -246,8 +246,8 @@
       <div class="js-recommended-followers dashboard-user-recommendations flex-module-inner" data-section-id="wtf" style="opacity: 1;">
         <ul class="tag-ranking-list">
           {% for subnav in subnavs %}
-          <li>
-            <a href="/video?tab={{ subnav.name }}" class="tag" data-tid="1040000000089498">{{ subnav.title }}</a>
+          <li >
+            <a href="/video?tab={{ subnav.name }}" class="tag {%if active_tab==subnav.name%} subnav-active {%endif%}" data-tid="1040000000089498">{{ subnav.title }}</a>
           </li>
           {% endfor %}
         </ul>

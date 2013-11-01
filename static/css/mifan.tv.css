@@ -3606,3 +3606,8 @@ float: none;
 border-radius: 50%;
 border: 3px solid #fff;
 }
+
+.right-bar a.subnav-active {
+  background-color: #48c9b0;
+  color: #fff;
+}

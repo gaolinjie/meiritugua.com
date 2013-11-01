@@ -187,6 +187,7 @@ class VideoHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["active_page"] = "video"
+        template_variables["active_tab"] = tab
         if(user_info):
             notice_text = "暂时还没有短片频道"
             template_variables["notice_text"] = notice_text
