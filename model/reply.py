@@ -14,14 +14,11 @@ class ReplyModel(Query):
 
     def get_all_replies_by_topic_id(self, topic_id, uid, num = 16, current_page = 1):
         where = "topic_id = %s" % topic_id
-        join = "LEFT JOIN user ON reply.author_id = user.uid \
-                LEFT JOIN vote ON (reply.id = vote.involved_reply_id) AND (%s = vote.trigger_user_id)" % uid
+        join = "LEFT JOIN user ON reply.author_id = user.uid"
         order = "id ASC"
         field = "reply.*, \
                 user.username as author_username, \
-                user.nickname as author_nickname, \
-                user.avatar as author_avatar, \
-                vote.status as vote_status"
+                user.avatar as author_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def add_new_reply(self, reply_info):
@@ -42,7 +39,6 @@ class ReplyModel(Query):
         field = "reply.*, \
                 topic.title as topic_title, \
                 topic_author_user.username as topic_author_username, \
-                topic_author_user.nickname as topic_author_nickname, \
                 topic_author_user.avatar as topic_author_avatar"
         group = "reply.topic_id"
         return self.where(where).field(field).join(join).group(group).order(order).pages(current_page = current_page, list_rows = num)
@@ -54,8 +50,7 @@ class ReplyModel(Query):
     def get_reply_by_reply_id(self, reply_id):
         where = "id = %s" % reply_id
         join = "LEFT JOIN user AS author_user ON reply.author_id = author_user.uid"
-        field = "reply.*, \
-                author_user.reputation as author_reputation"
+        field = "reply.*"
         return self.where(where).join(join).field(field).find()
 
     def update_reply_by_reply_id(self, reply_id, reply_info):

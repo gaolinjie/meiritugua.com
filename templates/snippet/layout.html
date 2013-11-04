@@ -64,8 +64,9 @@
                   ('/video', 'video', '短片'),
                   ('/micro', 'micro', '微电影'),                   
                   ('/movie', 'movie', '电影'),
-                  ('/star', 'star', '明星'),               
-                ] -%}
+                  ('/star', 'star', '明星'),
+                  ('/forum', 'forum', '社区'),              
+                ] %}
                 {% set active_page = active_page|default('index') -%}
                 {% for href, id, caption in web_page %}
               <li {% if id == active_page %} class="active" {% endif %}>

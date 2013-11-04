@@ -87,6 +87,12 @@ class Application(tornado.web.Application):
             (r"/hot", handler.channel.HotChannelsHandler),
             (r"/searchchannel", handler.channel.SearchChannelHandler),
 
+            (r"/forum", handler.topic.ForumHandler),
+            (r"/t/create", handler.topic.CreateTopicHandler),
+            (r"/t/(\d+)", handler.topic.ViewHandler),
+            (r"/t/edit/(.*)", handler.topic.EditHandler),
+            (r"/reply/edit/(.*)", handler.topic.ReplyEditHandler),
+
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(bdsitemap\.txt)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -118,6 +124,9 @@ class Application(tornado.web.Application):
         self.later_model = self.loader.use("later.model")
         self.rate_model = self.loader.use("rate.model")
         self.notification_model = self.loader.use("notification.model")
+
+        self.topic_model = self.loader.use("topic.model")
+        self.reply_model = self.loader.use("reply.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)

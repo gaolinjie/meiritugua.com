@@ -79,6 +79,15 @@ class BaseHandler(tornado.web.RequestHandler):
     def notification_model(self):
         return self.application.notification_model
 
+
+    @property
+    def topic_model(self):
+        return self.application.topic_model
+ 
+    @property
+    def reply_model(self):
+        return self.application.reply_model
+
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
         self.write(html)

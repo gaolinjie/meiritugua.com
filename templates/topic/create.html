@@ -1,0 +1,83 @@
+{% extends 'snippet/layout.html' %}
+
+{% block javascript %}
+<script type="text/javascript">
+      $(document).ready(function(){
+
+        $(document).on('click', '.create-channel',  function() {
+          $(".channel-box").show();
+        });
+
+        $(document).on('click', '.cancel-post',  function() {
+          $(".channel-box").hide();
+          $(".create-channel").show();
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.follow').click(function() {
+                var channel_id = $(this).find('input').val();    
+                if($(this).hasClass('followed')) {
+                        $.getJSON('/f/'+channel_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_followed") {
+                                $('#btn-'+channel_id).removeClass('followed');
+                                $('#btn-'+channel_id).find('span').text("关注");
+
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/f/'+channel_id, function(data) {
+                        if(data.success!=0&&data.message=="success_followed") {
+                            $('#btn-'+channel_id).addClass('followed');
+                            $('#btn-'+channel_id).find('span').text("取消关注");
+
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+<div class="channels">
+
+  <div class="content-header">
+    <div class="header-inner">
+
+      <h2 id="content-main-heading">新建话题</h2>
+
+      <p class="subheader">我关注的频道以及自己创建的频道。</p>
+      <div class="create-channel">
+        <a href="/t/create" role="button" class="btn btn-primary" data-toggle="modal">创建</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="timeline">
+    <div class="stream-container " data-cursor="1381275393829:20">
+      <div class="stream discover-stream">
+        
+
+      <form class="mt10" action="/t/create" method="post">
+            {{ errors|dump_errors }}
+            <div class="input-prepend mt10">
+                <span class="add-on">#</span>
+                <input class="span11" id="prependedInput" type="text" placeholder="话题" name="title"></div>
+            <textarea rows="3" class="content mt5 smart-code-support" placeholder="请先在下方选择学校和小组，再编辑内容。" name="content"></textarea>
+            <input type="submit" id="checkall" class="btn btn-small" value="立即创建">{{ xsrf_form_html() }}
+            <div class="fr"><a href="http://weibotuchuang.sinaapp.com/bookmark.html">图片上传工具</a></div>
+        </form>       
+
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}
