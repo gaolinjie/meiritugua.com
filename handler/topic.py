@@ -537,7 +537,9 @@ class PostHandler(BaseHandler):
 class ForumHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("p", "1"))
+        tab = self.get_argument('tab', "all")
+        page = int(self.get_argument("page", "1"))
+        template_variables["active_page"] = "forum"
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["topics"] = self.topic_model.get_all_topics(current_page = page)           
@@ -660,9 +662,9 @@ class ViewHandler(BaseHandler):
         if not self.current_user["uid"] == topic_info["author_id"]:
             self.notification_model.add_new_notification({
                 "trigger_user_id": self.current_user["uid"],
-                "involved_type": 1, # 0: mention, 1: reply
+                "involved_type": 3, # 0: mention, 1: comment, 2: topic mention, 3: topic reply
                 "involved_user_id": topic_info["author_id"],
-                "involved_topic_id": form.tid.data,
+                "involved_post_id": form.tid.data,
                 "content": form.content.data,
                 "status": 0,
                 "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),

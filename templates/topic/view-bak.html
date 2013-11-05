@@ -1,50 +1,86 @@
 {% extends 'snippet/layout.html' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/css/codehilite.css" />
+{% endblock %}
+
 {% block javascript %}
-<script type="text/javascript">
-      $(document).ready(function(){
-
-        $(document).on('click', '.create-channel',  function() {
-          $(".channel-box").show();
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
         });
-
-        $(document).on('click', '.cancel-post',  function() {
-          $(".channel-box").hide();
-          $(".create-channel").show();
-        });
-      });
     </script>
-
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="/static/js/widget/emmet.min.js"></script>
+<script type="text/javascript" src="/static/js/widget/jquery.textarea.min.js"></script>
 <script type="text/javascript">
         jQuery(document).ready(function() {
-            $('.follow').click(function() {
-                var channel_id = $(this).find('input').val();    
-                if($(this).hasClass('followed')) {
-                        $.getJSON('/f/'+channel_id, function(data) {
-                            if(data.success!=0&&data.message=="revert_followed") {
-                                $('#btn-'+channel_id).removeClass('followed');
-                                $('#btn-'+channel_id).find('span').text("关注");
+            $('textarea.smart-code-support').tabby();
+            emmet.require('textarea').setup({
+                pretty_break: false, // enable formatted line breaks (when inserting // between opening and closing tag)
+                use_tab: false       // expand abbreviations by Tab key
+            });
+        });
+    </script>
+<script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.J_topicVote').click(function(e) {
+                var _node = $(this);
+                var _errorMap = {
+                    topic_not_exist: '话题不存在',
+                    can_not_vote_your_topic: '不能喜欢自己的话题',
+                    already_voted: '感谢已经表示过',
+                };
+                e.preventDefault();
+                $.getJSON(_node.attr('href'), function(data) {
+                    if(data.success) {
+                        _node.html('<span class="f11 gray" style="text-shadow: 0px 1px 0px #fff;">感谢已表示</span>');
+                    } else {
+                        _node.html('<span>' + _errorMap[data.message] + '</span>');
+                    }
+                });
+            });
 
-                            }
-                        });                        
+            $('.J_topicFavorite').click(function(e) {
+                var _node = $(this);
+                var _errorMap = {
+                    topic_not_exist: '话题不存在',
+                    can_not_favorite_your_topic: '不能收藏自己的话题',
+                    already_favorited: '之前已经收藏过了',
+                };
+                e.preventDefault();
+                $.getJSON(_node.attr('href'), function(data) {
+                    if(data.success) {
+                        _node.html('<span class="f11 gray" style="text-shadow: 0px 1px 0px #fff;">收藏成功</span>');
+                    } else {
+                        _node.html('<span>' + _errorMap[data.message] + '</span>');
+                    }
+                });
+            });
+
+            $('.J_replyTo').click(function(e) {
+                username = $(this).attr('data-username');
+                replyContent = $('.J_replyContent');
+                oldContent = replyContent.val();
+                prefix = "@" + username + " ";
+                newContent = '';
+                if(oldContent.length > 0){
+                    if (oldContent != prefix) {
+                        newContent = oldContent + "\n" + prefix;
+                    }
                 } else {
-                    $.getJSON('/f/'+channel_id, function(data) {
-                        if(data.success!=0&&data.message=="success_followed") {
-                            $('#btn-'+channel_id).addClass('followed');
-                            $('#btn-'+channel_id).find('span').text("取消关注");
-
-                        }
-                    }); 
+                    newContent = prefix;
                 }
-            });        
+                replyContent.focus();
+                replyContent.val(newContent);
+            });
         });
     </script>
 {% endblock %}
 
 {% block main %}
-<div class="channels">
-
-  <div class="topic-detail container-box">
+<div class="forum">
+<div class="topic-detail container-box">
     <div class="ui-header">
         <a href="/u/{{ topic.author_username or topic.author_uid }}">
             <img src="/static/avatar/user/m_{{ topic.author_avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
@@ -52,6 +88,10 @@
         <div class="main">
             <h3 class="title">{{ topic.title }}</h3>
             <div class="meta">
+                <span class="node">
+                    <a href="/node/{{ topic.node_slug }}">{{ topic.node_name }}</a>
+                </span>
+                •
                 <span class="username">
                     <a href="/u/{{ topic.author_username or topic.author_uid }}">{{ topic.author_username }}</a>
                 </span>
@@ -74,7 +114,12 @@
     </div>
     <div class="ui-content">{{ topic.content|markdown|content_process }}</div>
     <div class="ui-footer">
+        <a href="/favorite?topic_id={{ topic.id }}" class="J_topicFavorite">加入收藏</a>
+        {#
+        <a href="#" onclick="window.open('https://twitter.com/intent/tweet?hashtags={{ topic.node_slug }}&text={{ topic.title }}&url=http://{{ request.host }}{{ request.uri }}');">Tweet</a>
+        #}
         <a href="#" onclick="window.open('http://service.weibo.com/share/share.php?url=http://{{ request.host }}{{ request.uri }}&title={叁年壹班}%20-%20{{ topic.title }}', '_blank', 'width=550, height=370');">新浪微博</a>
+        <a href="/vote?topic_id={{ topic.id }}" class="J_topicVote">喜欢</a>
         {% if current_user and current_user.uid == topic.author_id %}
         <a href="/t/edit/{{ topic.id }}" class="fr">编辑话题</a>
         {% endif %}
@@ -142,10 +187,9 @@
     </div>
     {% endif %}
 </div>
-
 </div>
+
 {% endblock %}
 
 {% block right %}
-
 {% endblock %}

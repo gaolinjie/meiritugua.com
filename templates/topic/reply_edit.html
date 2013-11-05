@@ -1,29 +1,50 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
-<script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-        });
-    </script>
-<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/javascript" src="/static/js/widget/emmet.min.js"></script>
-<script type="text/javascript" src="/static/js/widget/jquery.textarea.min.js"></script>
 <script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('textarea.smart-code-support').tabby();
-            emmet.require('textarea').setup({
-                pretty_break: false, // enable formatted line breaks (when inserting // between opening and closing tag)
-                use_tab: false       // expand abbreviations by Tab key
-            });
+      $(document).ready(function(){
+
+        $(document).on('click', '.create-channel',  function() {
+          $(".channel-box").show();
         });
+
+        $(document).on('click', '.cancel-post',  function() {
+          $(".channel-box").hide();
+          $(".create-channel").show();
+        });
+      });
     </script>
 
+<script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.follow').click(function() {
+                var channel_id = $(this).find('input').val();    
+                if($(this).hasClass('followed')) {
+                        $.getJSON('/f/'+channel_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_followed") {
+                                $('#btn-'+channel_id).removeClass('followed');
+                                $('#btn-'+channel_id).find('span').text("关注");
+
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/f/'+channel_id, function(data) {
+                        if(data.success!=0&&data.message=="success_followed") {
+                            $('#btn-'+channel_id).addClass('followed');
+                            $('#btn-'+channel_id).find('span').text("取消关注");
+
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
-<div class="forum">
-<div class="topic-create container-box">
+<div class="channels">
+
+ <div class="topic-create container-box">
     <div class="ui-header">
         <span class="title">编辑回复</span>
     </div>
@@ -36,9 +57,10 @@
             <input type="submit" id="checkall" class="btn btn-small" value="立即修改">{{ xsrf_form_html() }}</form>
     </div>
 </div>
-</div>
 
+</div>
 {% endblock %}
 
 {% block right %}
+
 {% endblock %}
