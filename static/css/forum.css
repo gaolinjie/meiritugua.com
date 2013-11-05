@@ -28,7 +28,7 @@ a.btn-small {
   display: block;
   border-bottom: 1px solid #eee;
   padding: 3px 0;
-  margin: 0 0 -1px 0;
+  margin: 0 0 10px 0;
 }
   .container-box a {
   color: #999;
@@ -587,10 +587,10 @@ a.btn-small {
 }
 
 .topic-create form .span11 {
-  width: 460px;
+  width: 485px;
 }
 .topic-create form textarea {
-  width: 487px;
+  width: 485px;
   height: 300px;
 }
 
@@ -748,4 +748,17 @@ form .controls .avatar {
 
 .container-box {
   margin-bottom: 10px;
+}
+
+.container-box .meta {
+font-size: 13px;
+color: #a5a5a5;
+}
+
+.container-box .ui-footer {
+font-size: 12px;
+}
+
+.container-box  .ui-header  {
+font-size: 13px;
 }
