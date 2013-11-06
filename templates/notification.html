@@ -59,9 +59,13 @@
                     <a href="/u/{{ notification.trigger_username }}" class="username js-action-profile-name">
                       <img class="avatar js-action-profile-avatar " src="/static/avatar/user/m_{{ notification.trigger_avatar or 'default.png' }}?t={{ gen_random() }}" alt="{{ notification.involved_post_video_title }}">{{ notification.trigger_username }}</a>
                     <span>‏ 在</span>
+                    {% if notification.involved_type < 2 %}
                     <a href="/n/{{ notification.id }}" class="js-action-profile-name">{{ notification.involved_post_video_title }}</a>
+                    {% else %}
+                    <a href="/n/{{ notification.id }}" class="js-action-profile-name">{{ notification.involved_topic_title }}</a>
+                    {% endif %}
                     <span>
-                      ‏ 里{% if notification.involved_type == 0 %}提到{% else %}回复{% endif %}了你
+                      ‏ 里{% if notification.involved_type == 0 or notification.involved_type == 2%}提到{% else %}回复{% endif %}了你
                     </span>
 
                   </div>

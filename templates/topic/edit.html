@@ -1,44 +1,7 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
-<script type="text/javascript">
-      $(document).ready(function(){
 
-        $(document).on('click', '.create-channel',  function() {
-          $(".channel-box").show();
-        });
-
-        $(document).on('click', '.cancel-post',  function() {
-          $(".channel-box").hide();
-          $(".create-channel").show();
-        });
-      });
-    </script>
-
-<script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('.follow').click(function() {
-                var channel_id = $(this).find('input').val();    
-                if($(this).hasClass('followed')) {
-                        $.getJSON('/f/'+channel_id, function(data) {
-                            if(data.success!=0&&data.message=="revert_followed") {
-                                $('#btn-'+channel_id).removeClass('followed');
-                                $('#btn-'+channel_id).find('span').text("关注");
-
-                            }
-                        });                        
-                } else {
-                    $.getJSON('/f/'+channel_id, function(data) {
-                        if(data.success!=0&&data.message=="success_followed") {
-                            $('#btn-'+channel_id).addClass('followed');
-                            $('#btn-'+channel_id).find('span').text("取消关注");
-
-                        }
-                    }); 
-                }
-            });        
-        });
-    </script>
 {% endblock %}
 
 {% block main %}

@@ -253,9 +253,6 @@ class NotificationsHandler(BaseHandler):
         self.render("notification.html", **template_variables)
 
 
-
-    
-
 class NotificationHandler(BaseHandler):
     def get(self, notification_id, template_variables = {}):
         user_info = self.current_user
@@ -265,7 +262,10 @@ class NotificationHandler(BaseHandler):
         if(user_info):
             notification = self.notification_model.get_notification_by_notification_id(notification_id = notification_id)
             self.notification_model.mark_notification_as_read_by_notification_id(notification_id = notification_id)
-            self.redirect("/p/"+str(notification.involved_post_id))
+            if notification.involved_type < 2:
+                self.redirect("/p/"+str(notification.involved_post_id))
+            else:
+                self.redirect("/t/"+str(notification.involved_post_id))
         else:
             self.redirect("/login")
 
@@ -583,7 +583,31 @@ class CreateTopicHandler(BaseHandler):
             "last_touched": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
-        reply_id = self.topic_model.add_new_topic(topic_info)
+        topic_id = self.topic_model.add_new_topic(topic_info)
+
+        # create @username notification
+
+        for username in set(find_mentions(form.content.data)):
+            mentioned_user = self.user_model.get_user_by_username(username)
+
+            if not mentioned_user:
+                continue
+
+            if mentioned_user["uid"] == self.current_user["uid"]:
+                continue
+
+            if mentioned_user["uid"] == topic_info["author_id"]:
+                continue
+
+            self.notification_model.add_new_notification({
+                "trigger_user_id": self.current_user["uid"],
+                "involved_type": 2, # 0: mention, 1: comment, 2: topic mention, 3: topic reply
+                "involved_user_id": mentioned_user["uid"],
+                "involved_post_id": topic_id,
+                "content": form.content.data,
+                "status": 0,
+                "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+            })
 
         self.redirect("/forum")
 
@@ -591,7 +615,7 @@ class ViewHandler(BaseHandler):
     def get(self, topic_id, template_variables = {}):
         user_info = self.current_user
         template_variables["active_page"] = "forum"
-        page = int(self.get_argument("p", "1"))
+        page = int(self.get_argument("page", "1"))
         user_info = self.get_current_user()
         template_variables["user_info"] = user_info
 
@@ -602,7 +626,7 @@ class ViewHandler(BaseHandler):
         reply_num = 16
         reply_count = template_variables["topic"]["reply_count"]
         reply_last_page = (reply_count / reply_num + (reply_count % reply_num and 1)) or 1
-        page = int(self.get_argument("p", reply_last_page))
+        page = int(self.get_argument("page", reply_last_page))
         template_variables["reply_num"] = reply_num
         template_variables["current_page"] = page
 
@@ -688,9 +712,9 @@ class ViewHandler(BaseHandler):
 
             self.notification_model.add_new_notification({
                 "trigger_user_id": self.current_user["uid"],
-                "involved_type": 0, # 0: mention, 1: reply
+                "involved_type": 2, # 0: mention, 1: comment, 2: topic mention, 3: topic reply
                 "involved_user_id": mentioned_user["uid"],
-                "involved_topic_id": form.tid.data,
+                "involved_post_id": form.tid.data,
                 "content": form.content.data,
                 "status": 0,
                 "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -739,7 +763,31 @@ class EditHandler(BaseHandler):
             "last_touched": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
-        reply_id = self.topic_model.update_topic_by_topic_id(topic_id, update_topic_info)
+        self.topic_model.update_topic_by_topic_id(topic_id, update_topic_info)
+
+        # create @username notification
+
+        for username in set(find_mentions(form.content.data)):
+            mentioned_user = self.user_model.get_user_by_username(username)
+
+            if not mentioned_user:
+                continue
+
+            if mentioned_user["uid"] == self.current_user["uid"]:
+                continue
+
+            if mentioned_user["uid"] == topic_info["author_id"]:
+                continue
+
+            self.notification_model.add_new_notification({
+                "trigger_user_id": self.current_user["uid"],
+                "involved_type": 2, # 0: mention, 1: comment, 2: topic mention, 3: topic reply
+                "involved_user_id": mentioned_user["uid"],
+                "involved_post_id": topic_id,
+                "content": form.content.data,
+                "status": 0,
+                "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+            })
 
         self.redirect("/t/%s" % topic_id)
 
@@ -783,5 +831,29 @@ class ReplyEditHandler(BaseHandler):
         }
 
         reply_id = self.reply_model.update_reply_by_reply_id(reply_id, update_reply_info)
+
+        # create @username notification
+
+        for username in set(find_mentions(form.content.data)):
+            mentioned_user = self.user_model.get_user_by_username(username)
+
+            if not mentioned_user:
+                continue
+
+            if mentioned_user["uid"] == self.current_user["uid"]:
+                continue
+
+            if mentioned_user["uid"] == reply_info["author_id"]:
+                continue
+
+            self.notification_model.add_new_notification({
+                "trigger_user_id": self.current_user["uid"],
+                "involved_type": 2, # 0: mention, 1: comment, 2: topic mention, 3: topic reply
+                "involved_user_id": mentioned_user["uid"],
+                "involved_post_id": reply_info["topic_id"],
+                "content": form.content.data,
+                "status": 0,
+                "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+            })
 
         self.redirect("/t/%s" % reply_info["topic_id"])

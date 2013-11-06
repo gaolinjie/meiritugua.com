@@ -1,42 +1,25 @@
 {% extends 'snippet/layout.html' %}
 
 {% block javascript %}
-<script type="text/javascript">
-      $(document).ready(function(){
-
-        $(document).on('click', '.create-channel',  function() {
-          $(".channel-box").show();
-        });
-
-        $(document).on('click', '.cancel-post',  function() {
-          $(".channel-box").hide();
-          $(".create-channel").show();
-        });
-      });
-    </script>
 
 <script type="text/javascript">
         jQuery(document).ready(function() {
-            $('.follow').click(function() {
-                var channel_id = $(this).find('input').val();    
-                if($(this).hasClass('followed')) {
-                        $.getJSON('/f/'+channel_id, function(data) {
-                            if(data.success!=0&&data.message=="revert_followed") {
-                                $('#btn-'+channel_id).removeClass('followed');
-                                $('#btn-'+channel_id).find('span').text("关注");
-
-                            }
-                        });                        
+            $(document).on('click', '.J_replyTo',  function() {
+                username = $(this).attr('data-username');
+                replyContent = $('.J_replyContent');
+                oldContent = replyContent.val();
+                prefix = "@" + username + " ";
+                newContent = '';
+                if(oldContent.length > 0){
+                    if (oldContent != prefix) {
+                        newContent = oldContent + "\n" + prefix;
+                    }
                 } else {
-                    $.getJSON('/f/'+channel_id, function(data) {
-                        if(data.success!=0&&data.message=="success_followed") {
-                            $('#btn-'+channel_id).addClass('followed');
-                            $('#btn-'+channel_id).find('span').text("取消关注");
-
-                        }
-                    }); 
+                    newContent = prefix;
                 }
-            });        
+                replyContent.focus();
+                replyContent.val(newContent);
+            });
         });
     </script>
 {% endblock %}
