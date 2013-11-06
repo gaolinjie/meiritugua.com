@@ -306,6 +306,31 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.follow').click(function() {
+                var channel_id = $(this).find('input').val();    
+                if($(this).hasClass('followed')) {
+                        $.getJSON('/f/'+channel_id, function(data) {
+                            if(data.success!=0&&data.message=="revert_followed") {
+                                $('#btn-'+channel_id).removeClass('followed');
+                                $('#btn-'+channel_id).find('span').text("关注");
+
+                            }
+                        });                        
+                } else {
+                    $.getJSON('/f/'+channel_id, function(data) {
+                        if(data.success!=0&&data.message=="success_followed") {
+                            $('#btn-'+channel_id).addClass('followed');
+                            $('#btn-'+channel_id).find('span').text("取消关注");
+
+                        }
+                    }); 
+                }
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}

@@ -14,9 +14,9 @@ a.btn-small {
 }
 
 .container-box {
-  -webkit-border-radius: first-value-of(5px) first-value-of(5px);
-  -moz-border-radius: 5px / 5px;
-  border-radius: 5px / 5px;
+  -webkit-border-radius: first-value-of(3px) first-value-of(3px);
+  -moz-border-radius: 3px / 3px;
+  border-radius: 3px / 3px;
   background: #fff;
   list-style-position: inside;
   padding: 10px;
