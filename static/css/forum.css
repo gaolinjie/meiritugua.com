@@ -75,6 +75,7 @@ a.btn-small {
 }
 
 .topics {
+  background: #fff;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;
@@ -219,7 +220,7 @@ a.btn-small {
   .topics .pagination {
   margin: 15px 20px;
 }
-    .topics .pagination a {
+.pagination a {
   color: #999;
 }
   .topics .ui-header {
@@ -761,4 +762,8 @@ font-size: 12px;
 
 .container-box  .ui-header  {
 font-size: 13px;
+}
+
+h3.title {
+  font-weight: normal;
 }

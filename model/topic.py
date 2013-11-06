@@ -12,7 +12,7 @@ class TopicModel(Query):
         self.table_name = "topic"
         super(TopicModel, self).__init__()
 
-    def get_all_topics(self, num = 32, current_page = 1):
+    def get_all_topics(self, num = 2, current_page = 1):
         join = "LEFT JOIN user AS author_user ON topic.author_id = author_user.uid \
                 LEFT JOIN user AS last_replied_user ON topic.last_replied_by = last_replied_user.uid"
         order = "last_touched DESC, created DESC, last_replied_time DESC, id DESC"

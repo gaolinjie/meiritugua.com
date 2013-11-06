@@ -537,7 +537,6 @@ class PostHandler(BaseHandler):
 class ForumHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        tab = self.get_argument('tab', "all")
         page = int(self.get_argument("page", "1"))
         template_variables["active_page"] = "forum"
         template_variables["user_info"] = user_info
@@ -555,6 +554,7 @@ class CreateTopicHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, node = None, template_variables = {}):
         user_info = self.current_user
+        template_variables["active_page"] = "forum"
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         self.render("topic/create.html", **template_variables)
@@ -590,6 +590,7 @@ class CreateTopicHandler(BaseHandler):
 class ViewHandler(BaseHandler):
     def get(self, topic_id, template_variables = {}):
         user_info = self.current_user
+        template_variables["active_page"] = "forum"
         page = int(self.get_argument("p", "1"))
         user_info = self.get_current_user()
         template_variables["user_info"] = user_info
@@ -695,13 +696,6 @@ class ViewHandler(BaseHandler):
                 "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
             })
 
-        # update reputation of topic author
-        if not self.current_user["uid"] == topic_info["author_id"] and not replied_info:
-            topic_time_diff = datetime.datetime.now() - topic_info["created"]
-            reputation = topic_info["author_reputation"] or 0
-            reputation = reputation + 2 * math.log(self.current_user["reputation"] or 0 + topic_time_diff.days + 10, 10)
-            self.user_model.set_user_base_info_by_uid(topic_info["author_id"], {"reputation": reputation})
-
         # self.get(form.tid.data)
         self.redirect("/t/%s#reply%s" % (form.tid.data, topic_info["reply_count"] + 1))
 
@@ -709,6 +703,7 @@ class EditHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, topic_id, template_variables = {}):
         user_info = self.current_user
+        template_variables["active_page"] = "forum"
         template_variables["user_info"] = user_info
         template_variables["topic"] = self.topic_model.get_topic_by_topic_id(topic_id)
         template_variables["gen_random"] = gen_random
@@ -753,6 +748,7 @@ class ReplyEditHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, reply_id, template_variables = {}):
         user_info = self.current_user
+        template_variables["active_page"] = "forum"
         template_variables["user_info"] = user_info
         template_variables["reply"] = self.reply_model.get_reply_by_reply_id(reply_id)
         template_variables["gen_random"] = gen_random
