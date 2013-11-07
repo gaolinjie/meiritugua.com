@@ -37,7 +37,7 @@ class FavoriteModel(Query):
                 LEFT JOIN comment ON post.last_comment = comment.id \
                 LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
                 LEFT JOIN later ON '%s' = later.user_id AND post.id = later.post_id" % user_id
-        order = "post.created DESC, post.id DESC"
+        order = "favorite.created DESC, favorite.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
@@ -67,7 +67,7 @@ class FavoriteModel(Query):
                 LEFT JOIN comment ON post.last_comment = comment.id \
                 LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
                 LEFT JOIN later ON '%s' = later.user_id AND post.id = later.post_id" % user_id
-        order = "post.created DESC, post.id DESC"
+        order = "favorite.created DESC, favorite.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \

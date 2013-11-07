@@ -41,7 +41,7 @@ class WatchModel(Query):
                 LEFT JOIN comment ON post.last_comment = comment.id \
                 LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
                 LEFT JOIN favorite ON '%s' = favorite.user_id AND post.id = favorite.post_id" % user_id
-        order = "post.created DESC, post.id DESC"
+        order = "watch.created DESC, watch.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
@@ -71,7 +71,7 @@ class WatchModel(Query):
                 LEFT JOIN comment ON post.last_comment = comment.id \
                 LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid \
                 LEFT JOIN favorite ON '%s' = favorite.user_id AND post.id = favorite.post_id" % user_id
-        order = "post.created DESC, post.id DESC"
+        order = "watch.created DESC, watch.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
