@@ -135,7 +135,7 @@ class Filters():
         # render all pictures
         content = re.sub(r'(http(s)?:\/\/\w+.*\/.*?\.(jpg|gif|png))', r'<img src="\1" />', content)
         # render all links
-        content = re.sub(r'([a-zA-z]+://[^\s]*)', r'<a href="\1">\1</a>', content)
+        content = re.sub(r'([a-zA-z]+://[^\s]*)', r'<a href="\1" target="_blank">\1</a>', content)
         # render @ mention links
         content = re.sub(ur'@(?!_)(?!.*?_$)(?!\d+)([a-zA-Z0-9_\u4e00-\u9fa5]+)(\s|)', r'<a href="/u/\1">@\1</a> ', content)
         # render youku videos
@@ -147,6 +147,8 @@ class Filters():
         content = re.sub(r'http(s)?:\/\/gist.github.com\/(\d+)(.js)?', r'<script src="http://gist.github.com/\2.js"></script>', content)
         # render all pictures
         content = re.sub(r'(http(s)?:\/\/\w+.*\/.*?\.(jpg|gif|png))', r'<img src="\1" />', content)
+        # render all links
+        content = re.sub(r'([a-zA-z]+://[^\s]*)', r'<a href="\1" target="_blank">\1</a>', content)
         # render @ mention links
         content = re.sub(ur'@(?!_)(?!.*?_$)(?!\d+)([a-zA-Z0-9_\u4e00-\u9fa5]+)(\s|)', r'<a href="/u/\1">@\1</a> ', content)
         # render youku videos
