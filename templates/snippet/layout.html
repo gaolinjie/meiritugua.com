@@ -109,12 +109,12 @@
           首页
         </a>
       </li>
-      <li>
+      <li class="nav-item {% if active_nav == "notification" %} actived {% endif %}">
         <a href="/notification"> <i class="icon-message"></i>
           消息
         </a>
       </li>
-      <li>
+      <li class="nav-item {% if active_nav == "favorite" %} actived {% endif %}">
         <a href="/favorite">
           <i class="icon-fav"></i>
           收藏
@@ -122,20 +122,20 @@
       </li>
       <li class="nav-header">我使用的</li>
 
-      <li>
+      <li class="nav-item {% if active_nav == "later" %} actived {% endif %}">
         <a href="/later">
           <i class="icon-latter"></i>
           稍后观看
         </a>
       </li>
-      <li>
+      <li class="nav-item {% if active_nav == "follow" %} actived {% endif %}">
         <a href="/follow">
           <i class="icon-follow"></i>
           关注
         </a>
       </li>
       <li class="divider"></li>
-      <li>
+      <li class="nav-item {% if active_nav == "watch" %} actived {% endif %}">
         <a href="/watch">
           <i class="icon-history"></i>
           观看记录

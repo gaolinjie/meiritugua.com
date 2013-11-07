@@ -747,7 +747,7 @@ margin-top: -3px;
 margin-right: 6px;
 vertical-align: text-top;
 background-position: 0px 0px;
-background-size:25px;
+background-size:22.5px;
 background-repeat: no-repeat;
 display: inline-block;
 }
@@ -3625,4 +3625,9 @@ border: 3px solid #fff;
 .right-bar a.subnav-active {
   background-color: #48c9b0;
   color: #fff;
+}
+
+.nav-list > .actived > a{
+text-decoration: none;
+background-color: #eeeeee;
 }

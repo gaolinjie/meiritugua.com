@@ -172,6 +172,7 @@ class FavoriteHandler(BaseHandler):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
             if(tab=="index"):
+                template_variables["active_nav"] = "favorite"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.favorite_model.get_user_all_favorites(user_id = user_info["uid"], current_page = page)           
             else:
@@ -201,6 +202,7 @@ class LaterHandler(BaseHandler):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
             if(tab=="index"):
+                template_variables["active_nav"] = "later"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.later_model.get_user_all_laters(user_id = user_info["uid"], current_page = page)           
             else:
@@ -231,6 +233,7 @@ class WatchHandler(BaseHandler):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
             if(tab=="index"):
+                template_variables["active_nav"] = "watch"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.watch_model.get_user_all_watchs(user_id = user_info["uid"], current_page = page)           
             else:
@@ -260,6 +263,7 @@ class NotificationsHandler(BaseHandler):
         template_variables["gen_random"] = gen_random
 
         if(user_info):
+            template_variables["active_nav"] = "notification"
             template_variables["active_tab"] = tab
             if (tab=="all"):
                 template_variables["notifications"] = self.notification_model.get_user_all_notifications(user_info["uid"], current_page = page)

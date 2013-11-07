@@ -252,6 +252,7 @@ class FollowsHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
+            template_variables["active_nav"] = "follow"
             template_variables["active_tab"] = tab
 
             if (tab=="all"):
