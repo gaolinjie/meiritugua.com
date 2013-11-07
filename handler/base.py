@@ -44,6 +44,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.later_model
 
     @property
+    def watch_model(self):
+        return self.application.watch_model
+
+    @property
     def rate_model(self):
         return self.application.rate_model
 

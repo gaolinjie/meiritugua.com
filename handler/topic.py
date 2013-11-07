@@ -221,6 +221,35 @@ class LaterHandler(BaseHandler):
         self.render("later.html", **template_variables)
 
 
+class WatchHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        tab = self.get_argument('tab', "index")
+        user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        if(user_info):
+            template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
+            
+            if(tab=="index"):
+                template_variables["active_tab"] = "all"
+                template_variables["posts"] = self.watch_model.get_user_all_watchs(user_id = user_info["uid"], current_page = page)           
+            else:
+                print tab
+                if (tab=="video"):
+                    nav_id=1
+                if (tab=="micro"):
+                    nav_id=2
+                if (tab=="movie"):
+                    nav_id=3
+                if (tab=="star"):
+                    nav_id=4
+                template_variables["active_tab"] = tab
+                template_variables["posts"] = self.watch_model.get_user_all_watch_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+        else:
+            self.redirect("/login")
+
+        self.render("watch.html", **template_variables)
+
 
 class NotificationsHandler(BaseHandler):
     def get(self, template_variables = {}):
@@ -504,6 +533,26 @@ class LaterManagerHandler(BaseHandler):
                     "message": "success_latered",
                 }))
 
+class WatchManagerHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            watch = self.watch_model.get_watch_by_post_id_and_user_id(user_info["uid"], post_id)
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
+            if(not watch):
+                watch_info = {
+                    "user_id": user_info["uid"],
+                    "post_id": post_id,
+                    "nav_id": post.nav_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.watch_model.add_new_watch(watch_info)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "success_watched",
+                }))
+
 class LaterClearHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
@@ -511,6 +560,14 @@ class LaterClearHandler(BaseHandler):
         if(user_info):
             later = self.later_model.delete_user_all_laters(user_info["uid"])
             self.redirect("/later")
+
+class WatchClearHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            later = self.watch_model.delete_user_all_watchs(user_info["uid"])
+            self.redirect("/watch")
             
 
 class PostHandler(BaseHandler):
@@ -519,9 +576,21 @@ class PostHandler(BaseHandler):
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        if(user_info):           
-            template_variables["post"] = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
+        if(user_info):  
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)        
+            template_variables["post"] = post
             template_variables["comments"] = self.comment_model.get_all_comments_by_post_id(post_id)
+
+            watch = self.watch_model.get_watch_by_post_id_and_user_id(user_info["uid"], post_id) 
+            if(not watch):
+                print "fasfasdfsad"
+                watch_info = {
+                    "user_id": user_info["uid"],
+                    "post_id": post_id,
+                    "nav_id": post.nav_id,
+                    "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+                }
+                self.watch_model.add_new_watch(watch_info)
         else:
             self.redirect("/login")
 

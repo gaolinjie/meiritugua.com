@@ -197,6 +197,19 @@ CREATE TABLE `later` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+--  Table structure for `watch`
+-- ----------------------------
+DROP TABLE IF EXISTS `watch`;
+CREATE TABLE `watch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `nav_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 --  Table structure for `later`
 -- ----------------------------
 DROP TABLE IF EXISTS `rate`;

@@ -56,6 +56,8 @@ class Application(tornado.web.Application):
             (r"/favorite", handler.topic.FavoriteHandler),
             (r"/later", handler.topic.LaterHandler),
             (r"/later/clear", handler.topic.LaterClearHandler),
+            (r"/watch", handler.topic.WatchHandler),
+            (r"/watch/clear", handler.topic.WatchClearHandler),
             (r"/follow", handler.channel.FollowsHandler),
             (r"/notification", handler.topic.NotificationsHandler),
             (r"/n/(\d+)", handler.topic.NotificationHandler),
@@ -83,6 +85,7 @@ class Application(tornado.web.Application):
             (r"/star", handler.channel.StarHandler),
             (r"/favorite/(\d+)", handler.topic.FavoriteManagerHandler),
             (r"/later/(\d+)", handler.topic.LaterManagerHandler),
+            (r"/watch/(\d+)", handler.topic.WatchManagerHandler),
             (r"/suggestions", handler.channel.SuggestionsHandler),
             (r"/hot", handler.channel.HotChannelsHandler),
             (r"/searchchannel", handler.channel.SearchChannelHandler),
@@ -122,6 +125,7 @@ class Application(tornado.web.Application):
         self.video_model = self.loader.use("video.model")
         self.favorite_model = self.loader.use("favorite.model")
         self.later_model = self.loader.use("later.model")
+        self.watch_model = self.loader.use("watch.model")
         self.rate_model = self.loader.use("rate.model")
         self.notification_model = self.loader.use("notification.model")
 

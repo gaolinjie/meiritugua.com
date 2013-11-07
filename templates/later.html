@@ -267,6 +267,18 @@ $(document).on('click', '.c-icon',  function() {
             });
  }); 
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.card .thumb-img, .card .play, .card .title',  function() {
+                var post_id = $(this).parent().parent().find('.post-id').val();
+                $.getJSON('/watch/'+post_id, function(data) {
+                        if(data.success!=0&&data.message=="success_watched") {
+                        }
+                });      
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -283,11 +295,11 @@ $(document).on('click', '.c-icon',  function() {
       </div>
     </div>
     {% set tab_bar = [
-      ('/favorite', 'all', '所有'),
-      ('/favorite?tab=video', 'video', '短片'),
-      ('/favorite?tab=micro', 'micro', '微电影'),           
-      ('/favorite?tab=movie', 'movie', '电影'),     
-      ('/favorite?tab=star', 'star', '明星'),               
+      ('/later', 'all', '所有'),
+      ('/later?tab=video', 'video', '短片'),
+      ('/later?tab=micro', 'micro', '微电影'),           
+      ('/later?tab=movie', 'movie', '电影'),     
+      ('/later?tab=star', 'star', '明星'),               
   ] -%}
   {% set active_tab = active_tab|default('index') -%}
     <div class="tabbar">
@@ -372,7 +384,7 @@ $(document).on('click', '.c-icon',  function() {
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
-        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
+        <input class="post-id" type="hidden" name="post_id" value="{{ post.id }}"></div>
       <div class="comment-editor"></div>
     </div>
 

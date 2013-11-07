@@ -267,6 +267,18 @@ $(document).on('click', '.c-icon',  function() {
             });
  }); 
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.card .thumb-img, .card .play, .card .title',  function() {
+                var post_id = $(this).parent().parent().find('.post-id').val();
+                $.getJSON('/watch/'+post_id, function(data) {
+                        if(data.success!=0&&data.message=="success_watched") {
+                        }
+                });      
+            });        
+        });
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -369,7 +381,7 @@ $(document).on('click', '.c-icon',  function() {
           <div class="comment-box" tabindex="0" role="button">发表评论...</div>
         </div>
         {% endif %}
-        <input type="hidden" name="post_id" value="{{ post.id }}"></div>
+        <input class="post-id" type="hidden" name="post_id" value="{{ post.id }}"></div>
       <div class="comment-editor"></div>
     </div>
 
