@@ -315,6 +315,13 @@ $(document).on('click', '.c-icon',  function() {
 </div>
 
 <div class="feeds favorites">
+  {% if posts.page.total == 0 %}
+                <div class="pl10 pr10">
+
+                  <div class="alert mt20">{{ notice_text }}</div>
+
+                </div>
+                {% endif %}
   {% for post in posts.list %}
   <div class="card">
     <div class="header">

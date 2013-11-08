@@ -440,6 +440,13 @@ $(document).on('click', '.c-icon',  function() {
       </div>
     </div>
   </div>
+  {% if posts.page.total == 0 %}
+                <div class="pl10 pr10">
+
+                  <div class="alert mt20">{{ notice_text }}</div>
+
+                </div>
+                {% endif %}
   {% set pre_post_id = 0 %}
   {% for post in posts.list %}
   {% if post.id != pre_post_id %}

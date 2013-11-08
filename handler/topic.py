@@ -30,7 +30,7 @@ from lib.utils import find_video_id_from_url
 
 class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
-        tab = self.get_argument('tab', "index")
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
@@ -39,22 +39,28 @@ class IndexHandler(BaseHandler):
             template_variables["navs"] = self.nav_model.get_all_navs()
             template_variables["channels"] = self.channel_model.get_user_all_channels2(user_id = user_info["uid"])
             template_variables["maylike_channels"] = self.follow_model.get_user_all_unfollow_channels(user_info["uid"], num =3)
-            
-            if(tab=="index"):
+               
+            if(tab=="all"):
+                notice_text = "你还未关注任何频道呢，先去各视频板块关注你感兴趣的频道吧~~"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.follow_model.get_user_all_follow_posts(user_id = user_info["uid"], current_page = page)
             else:
                 nav_id=1
                 if (tab=="video"):
                     nav_id=1
+                    notice_text = "你还未关注任何短片频道呢，先去各短片板块关注你感兴趣的频道吧~~"
                 if (tab=="micro"):
                     nav_id=2
+                    notice_text = "你还未关注任何微电影频道呢，先去微电影板块关注你感兴趣的频道吧~~"
                 if (tab=="movie"):
                     nav_id=3
+                    notice_text = "你还未关注任何电影频道呢，先去电影板块关注你感兴趣的频道吧~~"
                 if (tab=="star"):
                     nav_id=4
-                template_variables["active_tab"] = tab
+                    notice_text = "你还未关注任何明星频道呢，先去明星板块关注你感兴趣的频道吧~~"
+                template_variables["active_tab"] = tab           
                 template_variables["posts"] = self.follow_model.get_user_all_follow_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+            template_variables["notice_text"] = notice_text
         else:
             self.redirect("/login")
 
@@ -164,29 +170,35 @@ class IndexHandler(BaseHandler):
 
 class FavoriteHandler(BaseHandler):
     def get(self, template_variables = {}):
-        tab = self.get_argument('tab', "index")
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
-            if(tab=="index"):
+            if(tab=="all"):
+                notice_text = "你还没收藏任何视频"
                 template_variables["active_nav"] = "favorite"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.favorite_model.get_user_all_favorites(user_id = user_info["uid"], current_page = page)           
             else:
                 print tab
                 if (tab=="video"):
+                    notice_text = "你还没收藏任何短片"
                     nav_id=1
                 if (tab=="micro"):
+                    notice_text = "你还没收藏任何微电影"
                     nav_id=2
                 if (tab=="movie"):
+                    notice_text = "你还没收藏任何电影"
                     nav_id=3
                 if (tab=="star"):
+                    notice_text = "你还没收藏任何明星视频"
                     nav_id=4
                 template_variables["active_tab"] = tab
                 template_variables["posts"] = self.favorite_model.get_user_all_favorite_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+            template_variables["notice_text"] = notice_text        
         else:
             self.redirect("/login")
 
@@ -194,29 +206,34 @@ class FavoriteHandler(BaseHandler):
 
 class LaterHandler(BaseHandler):
     def get(self, template_variables = {}):
-        tab = self.get_argument('tab', "index")
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
-            if(tab=="index"):
+            if(tab=="all"):
+                notice_text = "还没有视频被你加入稍后观看队列"
                 template_variables["active_nav"] = "later"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.later_model.get_user_all_laters(user_id = user_info["uid"], current_page = page)           
             else:
-                print tab
                 if (tab=="video"):
+                    notice_text = "还没有短片被你加入稍后观看队列"
                     nav_id=1
                 if (tab=="micro"):
+                    notice_text = "还没有微电影被你加入稍后观看队列"
                     nav_id=2
                 if (tab=="movie"):
+                    notice_text = "还没有电影被你加入稍后观看队列"
                     nav_id=3
                 if (tab=="star"):
+                    notice_text = "还没有明星视频被你加入稍后观看队列"
                     nav_id=4
                 template_variables["active_tab"] = tab
                 template_variables["posts"] = self.later_model.get_user_all_later_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+            template_variables["notice_text"] = notice_text  
         else:
             self.redirect("/login")
 
@@ -225,29 +242,34 @@ class LaterHandler(BaseHandler):
 
 class WatchHandler(BaseHandler):
     def get(self, template_variables = {}):
-        tab = self.get_argument('tab', "index")
+        tab = self.get_argument('tab', "all")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         if(user_info):
             template_variables["channels"] = self.channel_model.get_user_all_channels(user_id = user_info["uid"])
             
-            if(tab=="index"):
+            if(tab=="all"):
+                notice_text = "你还没看过任何视频"
                 template_variables["active_nav"] = "watch"
                 template_variables["active_tab"] = "all"
                 template_variables["posts"] = self.watch_model.get_user_all_watchs(user_id = user_info["uid"], current_page = page)           
             else:
-                print tab
                 if (tab=="video"):
+                    notice_text = "你还没看过任何短片"
                     nav_id=1
                 if (tab=="micro"):
+                    notice_text = "你还没看过任何微电影"
                     nav_id=2
                 if (tab=="movie"):
+                    notice_text = "你还没看过任何电影"
                     nav_id=3
                 if (tab=="star"):
+                    notice_text = "你还没看过任何明星视频"
                     nav_id=4
                 template_variables["active_tab"] = tab
                 template_variables["posts"] = self.watch_model.get_user_all_watch_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
+            template_variables["notice_text"] = notice_text  
         else:
             self.redirect("/login")
 
