@@ -45,13 +45,7 @@ input {
 }
 
 #login h2 {
-	background-color: #f95252;
-	-webkit-border-radius: 20px 20px 0 0;
-	-moz-border-radius: 20px 20px 0 0;
-	border-radius: 20px 20px 0 0;
-	color: #fff;
-	font-size: 28px;
-	padding: 20px 26px;
+float: left;
 }
 
 #login h2 span[class*="fontawesome-"] {
@@ -99,4 +93,25 @@ input {
 
 #login fieldset input[type="submit"]:hover {
 	background-color: #28ad63;
+}
+
+.login-header {
+background-color: #f95252;
+-webkit-border-radius: 20px 20px 0 0;
+-moz-border-radius: 20px 20px 0 0;
+border-radius: 20px 20px 0 0;
+color: #fff;
+font-size: 28px;
+padding: 22px 26px 42px 26px;
+}
+
+.login-header a {
+	float: left;
+}
+
+.login-logo {
+	background: no-repeat url(/static/images/logo.png);
+	width: 100px;
+	height: 30px;
+	display: block;
 }

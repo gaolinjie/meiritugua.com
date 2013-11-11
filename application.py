@@ -66,7 +66,7 @@ class Application(tornado.web.Application):
             (r"/channels/u/(.*)", handler.channel.UserOtherChannelsHandler),
             (r"/login", handler.user.LoginHandler),
             (r"/logout", handler.user.LogoutHandler),
-            (r"/register", handler.user.RegisterHandler),
+            (r"/signup", handler.user.RegisterHandler),
             (r"/forgot", handler.user.ForgotPasswordHandler),
             (r"/f/(\d+)", handler.channel.FollowHandler),
             (r"/p/(\d+)", handler.topic.PostHandler),

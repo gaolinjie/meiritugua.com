@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 
-	<title>Signup</title>
+	<title>注册米饭</title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
 	<link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -20,39 +20,39 @@
 <body>
 
 	<div id="login">
+		<div class="login-header">
 
-		<h2>
-			<span class="fontawesome-lock"></span>
-			Sign Up
-		</h2>
+		<a class="login-logo"></a>
+	</div>
+
 
 		<form action="" method="POST">
 
 			<fieldset>
 				{{ errors|dump_errors }}
 				<p>
-					<label for="username">Username</label>
+					<label for="username">用户名</label>
 				</p>
 				<p>
 					<input type="text" id="username" name="username" value="username" onBlur="if(this.value=='')this.value='username'" onFocus="if(this.value=='username')this.value=''"></p>
 				<!-- JS because of IE support; better: placeholder="username" -->
 
 				<p>
-					<label for="email">E-mail address</label>
+					<label for="email">邮箱</label>
 				</p>
 				<p>
 					<input type="email" id="email" name="email" value="mail@address.com" onBlur="if(this.value=='')this.value='mail@address.com'" onFocus="if(this.value=='mail@address.com')this.value=''"></p>
 				<!-- JS because of IE support; better: placeholder="mail@address.com" -->
 
 				<p>
-					<label for="password">Password</label>
+					<label for="password">密码</label>
 				</p>
 				<p>
 					<input type="password" id="password" name="password" value="password" onBlur="if(this.value=='')this.value='password'" onFocus="if(this.value=='password')this.value=''"></p>
 				<!-- JS because of IE support; better: placeholder="password" -->
 
 				<p>
-					<input type="submit" value="Sign Up"></p>
+					<input type="submit" value="注册"></p>
 
 			</fieldset>
 			{{ xsrf_form_html() }}
