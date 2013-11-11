@@ -1,5 +1,5 @@
 INSERT INTO `nav` VALUES (1, 'video', '短片');
-INSERT INTO `nav` VALUES (4, 'micro', '微电影');
+INSERT INTO `nav` VALUES (2, 'micro', '微电影');
 INSERT INTO `nav` VALUES (3, 'movie', '电影');
 INSERT INTO `nav` VALUES (4, 'star', '明星');
 
