@@ -111,7 +111,7 @@ class FollowModel(Query):
 
     def get_user_all_only_follow_channels(self, user_id, num = 3, current_page = 1):
         where = "follow.user_id = %s AND follow.post_id IS NULL" % user_id
-        join = "LEFT JOIN channel ON follow.channel_id = channel.id AND follow.user_id != channel.author_id \
+        join = "RIGHT JOIN channel ON follow.channel_id = channel.id AND follow.user_id != channel.author_id \
                 LEFT JOIN user AS author_user ON channel.author_id = author_user.uid"
         order = "channel.followers, channel.created DESC, channel.id DESC"
         field = "channel.*, \
