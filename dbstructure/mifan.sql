@@ -239,6 +239,22 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+--- ----------------------------
+---  Table structure for `reply`
+--- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `topic_id` int(11) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `content` text,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
+  `last_touched` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --- ----------------------------
 ---  Table structure for `topic`
 --- ----------------------------
@@ -266,21 +282,3 @@ CREATE TRIGGER `topic_delete_trigger` BEFORE DELETE ON `topic` FOR EACH ROW BEGI
     END;
  ;;
 delimiter ;
-
-
---- ----------------------------
----  Table structure for `reply`
---- ----------------------------
-DROP TABLE IF EXISTS `reply`;
-CREATE TABLE `reply` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `topic_id` int(11) DEFAULT NULL,
-  `author_id` int(11) DEFAULT NULL,
-  `content` text,
-  `created` datetime DEFAULT NULL,
-  `updated` datetime DEFAULT NULL,
-  `last_touched` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
