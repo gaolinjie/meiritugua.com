@@ -629,20 +629,17 @@ class ChannelHandler(BaseHandler):
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         if(user_info):
-            template_variables["user_other_channels"] = self.channel_model.get_user_other_channels(user_info["uid"], channel_id)
+            channel = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
+            author_info = self.user_model.get_user_by_uid(channel.author_id)
+            template_variables["author_info"] = author_info
+            template_variables["user_other_channels"] = self.channel_model.get_user_other_channels(author_info["uid"], channel_id)
             follow = self.follow_model.get_follow_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
-            plus = self.plus_model.get_plus_info_by_user_id_and_channel_id(user_info["uid"], channel_id)
             if(follow):
                 template_variables["followed"]=1;
             else:
                 template_variables["followed"]=0;
-            if(plus):
-                print "has plused"
-                template_variables["plused"]=1;
-            else:
-                print "no plused"
-                template_variables["plused"]=0;
-            template_variables["channel"] = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
+
+            template_variables["channel"] = channel
             template_variables["posts"] = self.post_model.get_all_posts_by_channel_id(current_page = page, user_id = user_info["uid"], channel_id = channel_id)
         else:
             self.redirect("/login")
