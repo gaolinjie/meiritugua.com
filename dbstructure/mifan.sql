@@ -240,9 +240,6 @@ CREATE TABLE `notification` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
---- ----------------------------
----  Table structure for `reply`
---- ----------------------------
 DROP TABLE IF EXISTS `reply`;
 CREATE TABLE `reply` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -255,9 +252,7 @@ CREATE TABLE `reply` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
---- ----------------------------
----  Table structure for `topic`
---- ----------------------------
+
 DROP TABLE IF EXISTS `topic`;
 CREATE TABLE `topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
