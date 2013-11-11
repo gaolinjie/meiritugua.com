@@ -246,7 +246,7 @@ class VideoHandler(BaseHandler):
 
 class FollowsHandler(BaseHandler):
     def get(self, template_variables = {}):
-        tab = self.get_argument('tab', "all")
+        tab = self.get_argument('tab', "followed")
         user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
@@ -254,16 +254,15 @@ class FollowsHandler(BaseHandler):
         if(user_info):
             template_variables["active_nav"] = "follow"
             template_variables["active_tab"] = tab
-
-            if (tab=="all"):
-                template_variables["channels"] = self.follow_model.get_user_all_follow_channels(user_info["uid"], current_page = page)
-            elif (tab=="mychannels"):
-                template_variables["channels"] = self.channel_model.get_user_all_channels(user_info["uid"], current_page = page)
             notice_text = "你还未关注任何频道"
-            if (tab == "user"):
-                notice_text = "你还未关注任何人"
-            if (tab == "mention"):
+
+            if (tab=="followed"):
+                notice_text = "你还未关注任何频道"
+                template_variables["channels"] = self.follow_model.get_user_all_only_follow_channels(user_info["uid"], current_page = page)
+            elif (tab=="created"):
                 notice_text = "你还未创建任何频道"
+                template_variables["channels"] = self.channel_model.get_user_all_channels(user_info["uid"], current_page = page)
+
             template_variables["notice_text"] = notice_text
         else:
             self.redirect("/login")

@@ -123,8 +123,8 @@
       </form>
     </div>
     {% set tab_bar = [
-      ('/follow', 'all', '关注的频道'),
-      ('/follow?tab=mychannels', 'mychannels', '创建的频道'),                          
+      ('/follow?tab=followed', 'followed', '关注的频道'),
+      ('/follow?tab=created', 'created', '创建的频道'),                          
   ] -%}
   {% set active_tab = active_tab|default('index') -%}
     <div class="tabbar">
