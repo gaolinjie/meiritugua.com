@@ -482,30 +482,16 @@ $(document).on('click', '.c-icon',  function() {
       <div class="follow-bar">
         <div class="social-proof">
           <div class="facepile">
-            <a class="pretty-link js-user-profile-link " href="/yegle" data-user-id="14157249" original-title="一阁" title="一阁">
-              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/3191173348/5df54abee5afeb38f02242caf16ecf27_normal.jpeg" alt="一阁" title="一阁"></a>
-            <a class="pretty-link js-user-profile-link " href="/cosbeta" data-user-id="14697308" original-title="东哥" title="东哥">
-              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/378800000379779080/4a40ca7a32675b9e312a2c046a23dfc8_normal.jpeg" alt="东哥" title="东哥"></a>
-            <a class="pretty-link js-user-profile-link " href="/HowardSu" data-user-id="16051594" original-title="HowardSu" title="HowardSu">
-              <img class="avatar size32 js-user-profile-link js-tooltip" src="https://si0.twimg.com/profile_images/2770220064/779ae5dbc309a6a7625de6d5df6e8f21_normal.jpeg" alt="HowardSu" title="HowardSu"></a>
-
+            <a class="pretty-link js-user-profile-link " href="/u/{{ author_info.username }}" data-user-id="14157249" original-title="{{ author_info.username }}" title="{{ author_info.username }}">
+              <img class="avatar size32 js-user-profile-link js-tooltip" src="/static/avatar/user/m_{{ author_info.avatar or 'default.png' }}" alt="{{ author_info.username }}" title="{{ author_info.username }}"></a>
           </div>
           <div class="namepile">
             <p>
-              被
-              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/yegle" title="一阁"> <b>一阁</b>
+              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14157249" href="/u/{{ author_info.username }}" title="{{ author_info.username }}"> <b>{{ author_info.username }}</b>
               </a>
-              、
-              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="14697308" href="/cosbeta" title="东哥"> <b>东哥</b>
-              </a>
-              、
-              <a class="pretty-link user-profile-link js-user-profile-link" data-user-id="16051594" href="/HowardSu" title="HowardSu">
-                <b>HowardSu</b>
-              </a>
-              及
-              <a href="/Paveo/followers_you_follow" class="pretty-link">
-                <b>另外23人关注</b>
-              </a>
+              
+              创建了这个频道
+  
               。
             </p>
           </div>
