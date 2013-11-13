@@ -376,21 +376,27 @@ $(document).on('click', '.c-icon',  function() {
       <div class="default-footer">
         <ul class="stats js-mini-profile-stats" data-user-id="5375972">
           <li>
+            <a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"> <strong>190324</strong>
+              米粒
+            </a>
+          </li>
+
+          <li>
             <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>{{ channel.posts }}</strong>
               视频
             </a>
           </li>
-          <li>
-            <a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"> <strong>324</strong>
-              正在关注
-            </a>
-          </li>
+          
           <li>
             <a class="js-nav" href="/Paveo/followers" data-element-term="follower_stats" data-nav="followers">
               <strong>{{ channel.followers }}</strong>
               关注者
             </a>
           </li>
+
+          
+
+
 
         </ul>
         {% if channel.author_id!=user_info.uid %}
