@@ -689,7 +689,7 @@ class ChannelHandler(BaseHandler):
         }
 
         self.post_model.add_new_post(post_info)
-        self.channel_model.update_channel_info_by_channel_id(channel.id, {"posts": channel.posts+1})
+        self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+3, "posts": channel.posts+1})
 
         self.redirect("/c/" + channel_id)
 

@@ -98,7 +98,6 @@ class IndexHandler(BaseHandler):
                 "thumb": video_logo,
             }
             vid = self.video_model.add_new_video(video_info)
-            print vid
 
             channel_name = form.channel.data
             channel = self.channel_model.get_channel_by_name(channel_name = channel_name)
@@ -114,7 +113,7 @@ class IndexHandler(BaseHandler):
 
             post_id = self.post_model.add_new_post(post_info)
 
-            self.channel_model.update_channel_info_by_channel_id(channel.id, {"posts": channel.posts+1})
+            self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+3, "posts": channel.posts+1})
 
             # create @username follow
             for username in set(find_mentions(form.intro.data)):
@@ -461,6 +460,9 @@ class CommentHandler(BaseHandler):
                     "status": 0,
                     "occurrence_time": time.strftime('%Y-%m-%d %H:%M:%S'),
                 })
+
+            channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
+            self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+1})
         else:
             self.write(lib.jsonp.print_JSON({
                     "success": 0,
@@ -501,6 +503,9 @@ class RateHandler(BaseHandler):
                     "success": 1,
                     "message": "successed",
                 }))
+
+                channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
+                self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+data["score"]-3})
         else:
             self.write(lib.jsonp.print_JSON({
                     "success": 0,
@@ -521,6 +526,8 @@ class FavoriteManagerHandler(BaseHandler):
                     "success": 1,
                     "message": "revert_favorited",
                 }))
+                channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
+                self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus-2})
             else:
                 favorite_info = {
                     "user_id": user_info["uid"],
@@ -534,6 +541,8 @@ class FavoriteManagerHandler(BaseHandler):
                     "success": 1,
                     "message": "success_favorited",
                 }))
+                channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
+                self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+2})
 
 class LaterManagerHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
