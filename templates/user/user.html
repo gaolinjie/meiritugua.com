@@ -356,7 +356,6 @@ $(document).on('click', '.c-icon',  function() {
               米粒
             </a>
           </li>
-
           <li>
             <a class="js-nav" href="/Paveo" data-element-term="tweet_stats" data-nav="profile"> <strong>{{ view_user_info.posts }}</strong>
               视频
@@ -366,10 +365,7 @@ $(document).on('click', '.c-icon',  function() {
             <a class="js-nav" href="/Paveo/following" data-element-term="following_stats" data-nav="following"> <strong>{{ view_user_info.followers }}</strong>
               正在关注
             </a>
-          </li>
-
-
-          
+          </li>         
         </ul>
         {% if view_user_info.uid==user_info.uid %}
         <div class="channel-post-btn follow-btn" title="关注">

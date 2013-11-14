@@ -309,14 +309,14 @@ $(document).on('click', '.c-icon',  function() {
       <div class="c-num">
         <a class="c-link">{{ post.comment_count }} 条评论</a>
       </div>
-      <div class="comment-list">
+      <div class="comment-list-p">
         <div class="ftRt " >
           <ul class="jspScrollable" >
             {% for comment in comments %}
             <li>
               <div class="pic">
                 <a href="/u/{{ comment.author_username }}" target="_blank">
-                  <img src="/static/avatar/user/m_{{ post.author_avatar or 'default.png' }}"></a>
+                  <img src="/static/avatar/user/m_{{ comment.author_avatar or 'default.png' }}"></a>
               </div>
               <div class="doSth">
                 <p>
