@@ -289,6 +289,19 @@ $(document).on('click', '.c-icon',  function() {
         },
         hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
       });
+            
+            $(".card").on({
+    mouseenter: function () {
+        //stuff to do on mouse enter
+        $(this).find('.config-btn').show();
+    },
+    mouseleave: function () {
+        //stuff to do on mouse leave
+        $(this).find('.config-btn').hide();
+    }
+});
+            
+
             });
  }); 
     </script>
