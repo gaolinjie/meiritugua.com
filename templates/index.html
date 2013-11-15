@@ -346,6 +346,22 @@ $(document).on('click', '.c-icon',  function() {
 </script>
 
 
+<script type="text/javascript">
+        $(document).ready(function(){
+          $(".card").on({
+    mouseenter: function () {
+        //stuff to do on mouse enter
+        $(this).find('.config-btn').show();
+    },
+    mouseleave: function () {
+        //stuff to do on mouse leave
+        $(this).find('.config-btn').hide();
+    }
+});
+
+        });
+</script>
+
 
 {% endblock %}
 
@@ -514,7 +530,7 @@ $(document).on('click', '.c-icon',  function() {
 
 
                 <div class="dropdown">
-  <a class="config-btn dropdown-toggle" data-toggle="dropdown" href="#"></a>
+  <a class="config-btn dropdown-toggle" data-toggle="dropdown" href="#" style="display: none"></a>
   <ul class="config-dropdown dropdown-menu" role="menu" aria-labelledby="dLabel">
     {% if post.author_id == user_info.uid %}
                   <li><a class="del-post" data-toggle="modal" href="#delPostModal">删除此条信息</a></li>
