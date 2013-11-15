@@ -433,8 +433,10 @@ $(document).on('click', '.c-icon',  function() {
 
     <div id="delPostModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
       <div class="G-q NSc" tabindex="0" role="dialog" aria-labelledby=":a6" style=""><div class="G-q-O G-q-O-Ip" id=":a6"><span class="G-q-O-E"></span><span class="G-q-O-ab" style="display: none;"></span></div><div class="G-q-B">要永久删除此信息吗？</div><div class="G-q-ea"><button name="yes" class="d-Cb-Ba d-Cb-U del" data-dismiss="modal">删除</button><button name="cancel" data-dismiss="modal">取消</button><input class="post-id" type="hidden" name="post_id" value=""></div></div>
+    </div>
 
-
+    <div id="spamPostModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
+      <div class="G-q NSc" tabindex="0" role="dialog" aria-labelledby=":a6" style=""><div class="G-q-O G-q-O-Ip" id=":a6"><span class="G-q-O-E"></span><span class="G-q-O-ab" style="display: none;"></span></div><div class="G-q-B">要举报此条信息吗？</div><div class="G-q-ea"><button name="yes" class="d-Cb-Ba d-Cb-U spam" data-dismiss="modal">举报</button><button name="cancel" data-dismiss="modal">取消</button><input class="post-id" type="hidden" name="post_id" value=""></div></div>
     </div>
 
 
@@ -514,9 +516,11 @@ $(document).on('click', '.c-icon',  function() {
                 <div class="dropdown">
   <a class="config-btn dropdown-toggle" data-toggle="dropdown" href="#"></a>
   <ul class="config-dropdown dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <li><a class="del-post" data-toggle="modal" href="#delPostModal">删除此条分享</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">举报垃圾信息</a></li>
+    {% if post.author_id == user_info.uid %}
+                  <li><a class="del-post" data-toggle="modal" href="#delPostModal">删除此条信息</a></li>
+                  {% else %}              
+                  <li><a class="spam-post" data-toggle="modal" href="#spamPostModal">举报垃圾信息</a></li>
+                  {% endif %}
   </ul>
 </div>
       

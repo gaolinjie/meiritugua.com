@@ -591,10 +591,14 @@ class DeletePostHandle(BaseHandler):
             post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
             if(post):
                 self.post_model.delete_post_by_post_id(post_id)
+                self.favorite_model.delete_favorite_by_post_id(post_id)
+                self.later_model.delete_later_by_post_id(post_id)
+                self.watch_model.delete_watch_by_post_id(post_id)
                 self.write(lib.jsonp.print_JSON({
                     "success": 1,
                     "message": "post_deleted",
                 }))
+
             else:
                 self.write(lib.jsonp.print_JSON({
                     "success": 0,

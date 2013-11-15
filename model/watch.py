@@ -19,6 +19,10 @@ class WatchModel(Query):
         where = "user_id = %s AND post_id = %s" % (user_id, post_id)
         return self.where(where).delete()
 
+    def delete_watch_by_post_id(self, post_id):
+        where = "post_id = %s" % post_id
+        return self.where(where).delete()
+
     def delete_user_all_watchs(self, user_id):
         where = "user_id = %s" % user_id
         return self.where(where).delete()
