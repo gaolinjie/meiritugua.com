@@ -110,3 +110,7 @@ class PostModel(Query):
         where = "post.id = %s" % post_id
         return self.where(where).data(post_info).save()
 
+    def delete_post_by_post_id(self, post_id):
+        where = "post.id = %s" % post_id
+        return self.where(where).delete()
+

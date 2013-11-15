@@ -583,6 +583,24 @@ class LaterManagerHandler(BaseHandler):
                     "message": "success_latered",
                 }))
 
+class DeletePostHandle(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
+            if(post):
+                self.post_model.delete_post_by_post_id(post_id)
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "post_deleted",
+                }))
+            else:
+                self.write(lib.jsonp.print_JSON({
+                    "success": 0,
+                    "message": "post_unfound",
+                }))
+
 class WatchManagerHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user
