@@ -92,3 +92,7 @@ class UserModel(Query):
     def get_users_by_last_login(self, num = 16):
         order = "last_login DESC"
         return self.order(order).limit(num).pages(list_rows = num)
+
+    def update_user_info_by_user_id(self, uid, user_info):
+        where = "user.uid = %s" % uid
+        return self.where(where).data(user_info).save()

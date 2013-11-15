@@ -649,6 +649,7 @@ class ChannelHandler(BaseHandler):
     @tornado.web.authenticated
     def post(self, channel_id, template_variables = {}):
         template_variables = {}
+        user_info = self.current_user
 
         # validate the fields
         form = PostForm2(self)
@@ -675,7 +676,6 @@ class ChannelHandler(BaseHandler):
             "thumb": video_logo,
         }
         vid = self.video_model.add_new_video(video_info)
-        print vid
 
         channel = self.channel_model.get_channel_by_channel_id(channel_id = channel_id)
         
@@ -690,6 +690,7 @@ class ChannelHandler(BaseHandler):
 
         self.post_model.add_new_post(post_info)
         self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+3, "posts": channel.posts+1})
+        self.user_model.update_user_info_by_user_id(user_info["uid"], {"plus":user_info["plus"]+3})
 
         self.redirect("/c/" + channel_id)
 

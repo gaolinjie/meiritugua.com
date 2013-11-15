@@ -60,7 +60,7 @@ CREATE TABLE `post` (
   `last_comment` int(11) DEFAULT NULL,
   `comment_count` int(11) DEFAULT 0,
   `intro` text,  
-  `score` float(2,1) DEFAULT 0,
+  `score` float(3,1) DEFAULT 0,
   `votes` int(11) DEFAULT 0,
   `favorite` int(11) DEFAULT 0,  
   `created` datetime DEFAULT NULL,

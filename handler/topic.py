@@ -70,6 +70,7 @@ class IndexHandler(BaseHandler):
     def post(self, template_variables = {}):
         tab = self.get_argument('tab', "post")
         template_variables = {}
+        user_info = self.current_user
 
         if (tab=="post"):
             # validate the fields
@@ -114,6 +115,7 @@ class IndexHandler(BaseHandler):
             post_id = self.post_model.add_new_post(post_info)
 
             self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+3, "posts": channel.posts+1})
+            self.user_model.update_user_info_by_user_id(user_info["uid"], {"plus":user_info["plus"]+3})
 
             # create @username follow
             for username in set(find_mentions(form.intro.data)):
@@ -463,6 +465,8 @@ class CommentHandler(BaseHandler):
 
             channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
             self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+1})
+            user = self.user_model.get_user_by_uid(post.author_id)
+            self.user_model.update_user_info_by_user_id(user.uid, {"plus":user.plus+1})
         else:
             self.write(lib.jsonp.print_JSON({
                     "success": 0,
@@ -473,9 +477,11 @@ class RateHandler(BaseHandler):
 
     @tornado.web.authenticated
     def post(self, post_id, template_variables = {}):
+        print "fdasfas"
         user_info = self.current_user
 
         data = json.loads(self.request.body)
+        print data["score"]
         score = data["score"]*2
 
         if(user_info):
@@ -488,8 +494,9 @@ class RateHandler(BaseHandler):
                 }))
             else:
                 total_score = post.score * post.votes + score
+                final_score = total_score / (post.votes+1)
                 post_info = {
-                    "score": total_score / (post.votes+1),
+                    "score": final_score,
                     "votes": post.votes+1,
                 }
                 self.post_model.update_post_by_post_id(post_id, post_info)
@@ -506,6 +513,8 @@ class RateHandler(BaseHandler):
 
                 channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
                 self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+data["score"]-3})
+                user = self.user_model.get_user_by_uid(post.author_id)
+                self.user_model.update_user_info_by_user_id(user.uid, {"plus":user.plus+data["score"]-3})
         else:
             self.write(lib.jsonp.print_JSON({
                     "success": 0,
@@ -528,6 +537,8 @@ class FavoriteManagerHandler(BaseHandler):
                 }))
                 channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
                 self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus-2})
+                user = self.user_model.get_user_by_uid(post.author_id)
+                self.user_model.update_user_info_by_user_id(user.uid, {"plus":user.plus-2})
             else:
                 favorite_info = {
                     "user_id": user_info["uid"],
@@ -543,6 +554,8 @@ class FavoriteManagerHandler(BaseHandler):
                 }))
                 channel = self.channel_model.get_channel_by_channel_id(channel_id = post.channel_id)
                 self.channel_model.update_channel_info_by_channel_id(channel.id, {"plus":channel.plus+2})
+                user = self.user_model.get_user_by_uid(post.author_id)
+                self.user_model.update_user_info_by_user_id(user.uid, {"plus":user.plus+2})
 
 class LaterManagerHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
