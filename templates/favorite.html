@@ -402,7 +402,7 @@ $(document).on('click', '.c-icon',  function() {
                 {% endif %}
 
   {% for post in posts.list %}
-  <div class="card">
+  <div class="card" id="post-{{ post.id }}">
     <div class="header">
       <div class="avatar">
         <a href="/u/{{ post.author_username }}">
