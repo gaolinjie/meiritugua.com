@@ -264,6 +264,17 @@ $(document).on('click', '.c-icon',  function() {
         },
         hints: ['很差，浪费生命', '不喜欢', '一般，不妨一看', '喜欢，值得推荐', '非常喜欢，不容错过'],    
       });
+
+       $(".card").on({
+    mouseenter: function () {
+        //stuff to do on mouse enter
+        $(this).find('.config-btn').show();
+    },
+    mouseleave: function () {
+        //stuff to do on mouse leave
+        $(this).find('.config-btn').hide();
+    }
+});
             });
  }); 
     </script>
@@ -279,6 +290,75 @@ $(document).on('click', '.c-icon',  function() {
             });        
         });
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.del-post',  function() {
+              var post_id = $(this).parent().parent().parent().parent().parent().find('.post-id').val();
+              $("#delPostModal .post-id").val(post_id);
+            });        
+        });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.del',  function() {
+              var post_id = $(this).parent().find('.post-id').val();
+              var post_del = "#post-"+post_id;
+              $.getJSON('/d/'+post_id, function(data) {
+                            if(data.success!=0&&data.message=="post_deleted") {
+                                $(post_del).fadeOut();
+                            }
+                            else {
+                              alert("没有删除成功！")
+                            }
+                        });
+              
+            });        
+        });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.spam-post',  function() {
+              var post_id = $(this).parent().parent().parent().parent().parent().find('.post-id').val();
+              $("#spamPostModal .post-id").val(post_id);
+            });        
+        });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.spam',  function() {
+              var post_id = $(this).parent().find('.post-id').val();
+              var post_spam= "#post-"+post_id;
+              $.getJSON('/s/'+post_id, function(data) {
+                            if(data.success!=0&&data.message=="post_spamed") {
+                            }
+                            else {
+                              alert("没有举报成功！")
+                            }
+                        });
+              
+            });        
+        });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+          $(".card").on({
+    mouseenter: function () {
+        //stuff to do on mouse enter
+        $(this).find('.config-btn').show();
+    },
+    mouseleave: function () {
+        //stuff to do on mouse leave
+        $(this).find('.config-btn').hide();
+    }
+});
+
+        });
+</script>
 {% endblock %}
 
 {% block main %}
@@ -342,6 +422,16 @@ $(document).on('click', '.c-icon',  function() {
           </span>
         </span>
       </div>
+      <div class="dropdown">
+  <a class="config-btn dropdown-toggle" data-toggle="dropdown" href="#" style="display: none"></a>
+  <ul class="config-dropdown dropdown-menu" role="menu" aria-labelledby="dLabel">
+    {% if post.author_id == user_info.uid %}
+                  <li><a class="del-post" data-toggle="modal" href="#delPostModal">删除此条信息</a></li>
+                  {% else %}              
+                  <li><a class="spam-post" data-toggle="modal" href="#spamPostModal">举报垃圾信息</a></li>
+                  {% endif %}
+  </ul>
+</div>
       <div class="channel-tag">
         <div class="tag-wapper" data-topicindex="1">
           <a href="/c/{{ post.channel_id }}" target="_top" class="tag" aria-label="#{{ post.channel_name }}">#{{ post.channel_name }}</a>
@@ -434,11 +524,21 @@ $(document).on('click', '.c-icon',  function() {
     </div>
 
   </div>
+
+
   {% endfor %}
   <div id="navigation" align="center">
     <a href="/?page={{posts.page.next}}"></a>
   </div>
 </div>
+
+  <div id="delPostModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
+      <div class="G-q NSc" tabindex="0" role="dialog" aria-labelledby=":a6" style=""><div class="G-q-O G-q-O-Ip" id=":a6"><span class="G-q-O-E"></span><span class="G-q-O-ab" style="display: none;"></span></div><div class="G-q-B">要永久删除此信息吗？</div><div class="G-q-ea"><button name="yes" class="d-Cb-Ba d-Cb-U del" data-dismiss="modal">删除</button><button name="cancel" data-dismiss="modal">取消</button><input class="post-id" type="hidden" name="post_id" value=""></div></div>
+    </div>
+
+    <div id="spamPostModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
+      <div class="G-q NSc" tabindex="0" role="dialog" aria-labelledby=":a6" style=""><div class="G-q-O G-q-O-Ip" id=":a6"><span class="G-q-O-E"></span><span class="G-q-O-ab" style="display: none;"></span></div><div class="G-q-B">要举报此条信息吗？</div><div class="G-q-ea"><button name="yes" class="d-Cb-Ba d-Cb-U spam" data-dismiss="modal">举报</button><button name="cancel" data-dismiss="modal">取消</button><input class="post-id" type="hidden" name="post_id" value=""></div></div>
+    </div>
 {% endblock %}
 
 {% block right %}

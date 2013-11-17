@@ -605,6 +605,26 @@ class DeletePostHandle(BaseHandler):
                     "message": "post_unfound",
                 }))
 
+class SpamPostHandle(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+
+        if(user_info):
+            post = self.post_model.get_post_by_post_id(user_info["uid"], post_id)
+            if(post):
+                self.post_model.update_post_by_post_id(post_id, {"spam": post.spam+1})
+
+                self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                    "message": "post_spamed",
+                }))
+
+            else:
+                self.write(lib.jsonp.print_JSON({
+                    "success": 0,
+                    "message": "post_unfound",
+                }))
+
 class WatchManagerHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user

@@ -63,6 +63,7 @@ CREATE TABLE `post` (
   `score` float(3,1) DEFAULT 0,
   `votes` int(11) DEFAULT 0,
   `favorite` int(11) DEFAULT 0,  
+  `spam` int(11) DEFAULT 0, 
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

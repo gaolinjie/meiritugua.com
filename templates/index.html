@@ -358,6 +358,31 @@ $(document).on('click', '.c-icon',  function() {
         });
 </script>
 
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.spam-post',  function() {
+              var post_id = $(this).parent().parent().parent().parent().parent().find('.post-id').val();
+              $("#spamPostModal .post-id").val(post_id);
+            });        
+        });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.spam',  function() {
+              var post_id = $(this).parent().find('.post-id').val();
+              var post_spam= "#post-"+post_id;
+              $.getJSON('/s/'+post_id, function(data) {
+                            if(data.success!=0&&data.message=="post_spamed") {
+                            }
+                            else {
+                              alert("没有举报成功！")
+                            }
+                        });
+              
+            });        
+        });
+</script>
 
 <script type="text/javascript">
         $(document).ready(function(){
