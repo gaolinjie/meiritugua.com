@@ -3777,3 +3777,11 @@ color: #333;
   color: #333;
   white-space: nowrap;
   }
+
+  .navbar .nav > li > .dropdown-menu:before {
+    content: none;
+  }
+
+   .navbar .nav > li > .dropdown-menu:after {
+    content: none;
+  }
