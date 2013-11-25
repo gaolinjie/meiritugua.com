@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 50527
  Source Host           : localhost
- Source Database       : tuila
+ Source Database       : mifan
 
  Target Server Type    : MySQL
  Target Server Version : 50527

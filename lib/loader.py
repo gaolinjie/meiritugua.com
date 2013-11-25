@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 tuila.me
+# Copyright 2013 mifan.tv
 
 class Loader(object):
     def __init__(self, db):

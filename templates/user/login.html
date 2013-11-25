@@ -22,7 +22,7 @@
 	<div id="login">
 		<div class="login-header">
 
-		<a class="login-logo"></a>
+		<a class="login-logo" href="/"></a>
 	</div>
 
 		<form action="" method="POST">
@@ -37,7 +37,8 @@
 				<!-- JS because of IE support; better: placeholder="mail@address.com" -->
 
 				<p>
-					<label for="password">密码</label>
+					<label class="pwd_label" for="password">密码</label>
+					<a class="forgot" href="/forgot">忘记密码?</a>
 				</p>
 				<p>
 					<input type="password" id="password" name="password" value="password" onBlur="if(this.value=='')this.value='password'" onFocus="if(this.value=='password')this.value=''"></p>
@@ -46,12 +47,15 @@
 				<p>
 					<input type="submit" value="登入"></p>
 
+
 			</fieldset>
 			{{ xsrf_form_html() }}
 		</form>
+		<a class="signup" href="/signup">立即注册新帐户</a>
 
 	</div>
 	<!-- end login -->
+	
 
 </body>
 </html>

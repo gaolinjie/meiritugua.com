@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 tuila.me
+# Copyright 2013 mifan.tv
 
 import uuid
 import hashlib
@@ -240,7 +240,7 @@ class ForgotPasswordHandler(BaseHandler):
 
         # send password reset link to user
 
-        mail_title = u"tuila（tuila.me）找回密码"
+        mail_title = u"mifan.tv 找回密码"
         template_variables = {"email": form.email.data, "new_password": new_password};
         template_variables["success_message"] = [u"新密码已发送至您的注册邮箱"]
         mail_content = self.render_string("user/forgot_password_mail.html", **template_variables)
@@ -355,7 +355,7 @@ class RegisterHandler(BaseHandler):
 
             # send register success mail to user
 
-            mail_title = u"tuila.me 注册成功通知"
+            mail_title = u"mifan.tv 注册成功通知"
             mail_content = self.render_string("user/register_mail.html")
             send(mail_title, mail_content, form.email.data)
 

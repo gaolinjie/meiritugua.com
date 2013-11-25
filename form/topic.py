@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 tuila.me
+# Copyright 2013 mifan.tv
 
 from wtforms import TextField, HiddenField, validators
 from lib.forms import Form
