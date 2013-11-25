@@ -17,7 +17,7 @@
             {{ errors|dump_errors }}
             <div class="input mt10">
                 <input class="span11" id="prependedInput" type="text" placeholder="话题" name="title"></div>
-            <textarea rows="3" class="content mt5 smart-code-support" placeholder="请先在下方选择学校和小组，再编辑内容。" name="content"></textarea>
+            <textarea rows="3" class="content mt5 smart-code-support" placeholder="内容" name="content"></textarea>
 
             <input type="submit" id="checkall" class="btn btn-small" value="立即创建">{{ xsrf_form_html() }}
         </form>             

@@ -3003,6 +3003,7 @@ border-top: 1px solid #e8e8e8;
 position: relative;
 display: block;
 padding: 8px 12px;
+font-size: 13px;
 }
 .module .list-link {
 background-color: #ffffff;
