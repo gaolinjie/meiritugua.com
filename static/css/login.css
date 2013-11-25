@@ -122,17 +122,28 @@ padding: 22px 26px 42px 26px;
 	float: right;
 	margin-left: 10px;
 	font-size: 12px;
-	color: #1abc9c;
 }
 
 .signup {
-	margin-left: 159px;
+	margin-left: 160px;
 	font-size: 12px;
-	color: #1abc9c;
 }
 
 .login {
-	margin-left: 159px;
+	margin-left: 160px;
 	font-size: 12px;
-	color: #1abc9c;
+}
+
+a {
+  color: #16a085;
+  text-decoration: none;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+}
+
+a:hover {
+  color: #1abc9c;
+  text-decoration: none;
 }

@@ -426,7 +426,7 @@ select,
   font-size: 14px;
 }
 a {
-  color: #1abc9c;
+  color: #16a085;
   text-decoration: underline;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -434,7 +434,7 @@ a {
   transition: 0.25s;
 }
 a:hover {
-  color: #16a085;
+  color: #1abc9c;
   text-decoration: none;
 }
 h1 {
