@@ -1,5 +1,7 @@
 body {
   background: #ebebeb;
+  font: Helvetica, arial, freesans, clean, sans-serif;
+font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 
 a {
@@ -3786,3 +3788,4 @@ color: #333;
    .navbar .nav > li > .dropdown-menu:after {
     content: none;
   }
+

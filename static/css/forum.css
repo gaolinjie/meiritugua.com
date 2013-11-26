@@ -463,10 +463,9 @@ a.btn-small {
   padding: 0;
 }
   .topic-detail .ui-content {
-  padding: 15px 15px 15px 15px;
-  font-size: 13px;
+  padding: 15px 10px 10px 10px;
+  font-size: 14px;
   line-height: 25px;
-  font-family: Monaco, "Microsoft YaHei", "Hiragino Sans GB W3", Tahoma, Arial;
 }
     .topic-detail .ui-content .gist .gist-file {
   -webkit-border-radius: first-value-of(3px) first-value-of(3px);
@@ -766,4 +765,8 @@ font-size: 13px;
 
 h3.title {
   font-weight: normal;
+}
+
+.topic-detail .ui-content p {
+margin: 0 0 10px 0 !important;
 }
