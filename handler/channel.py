@@ -23,6 +23,8 @@ from lib.variables import gen_random
 from lib.gravatar import Gravatar
 from form.user import *
 
+from lib.utils import find_video_id_from_url
+
 class ChannelSettingHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self, channel_id, template_variables = {}):
