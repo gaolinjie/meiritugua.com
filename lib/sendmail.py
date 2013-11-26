@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 charset = 'utf-8'
 
 send_mail_user = 'mifan.tv@gmail.com'
-send_mail_pswd = 'Glj@2013'
+send_mail_pswd = 'Glj@2014'
 get_mail_user = 'mifan.tv@gmail.com'
 
 def send(sub, content, reciver = get_mail_user):
