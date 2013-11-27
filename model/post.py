@@ -12,6 +12,32 @@ class PostModel(Query):
         self.table_name = "post"
         super(PostModel, self).__init__()
 
+    def get_all_posts(self, num = 32, current_page = 1):
+        join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
+                LEFT JOIN channel ON post.channel_id = channel.id \
+                LEFT JOIN video ON post.video_id = video.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id \
+                LEFT JOIN comment ON post.last_comment = comment.id \
+                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid"
+        order = "created DESC, id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar, \
+                channel.id as channel_id, \
+                channel.name as channel_name, \
+                nav.name as nav_name, \
+                nav.title as nav_title, \
+                video.source as video_source, \
+                video.flash as video_flash, \
+                video.title as video_title, \
+                video.thumb as video_thumb, \
+                video.link as video_link, \
+                comment.content as comment_content, \
+                comment.created as comment_created, \
+                comment_user.username as comment_user_name, \
+                comment_user.avatar as comment_user_avatar"
+        return self.order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
     def get_all_posts_by_channel_id(self, num = 32, current_page = 1, user_id = None, channel_id = None):
         where = "channel.id = '%s'" % channel_id
         join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
@@ -41,6 +67,33 @@ class PostModel(Query):
                 comment_user.avatar as comment_user_avatar, \
                 favorite.id as favorite_id, \
                 later.id as later_id"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_all_posts_by_nav_id(self, num = 32, current_page = 1, nav_id = None):
+        where = "nav.id = '%s'" % nav_id
+        join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
+                LEFT JOIN channel ON post.channel_id = channel.id \
+                LEFT JOIN video ON post.video_id = video.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id \
+                LEFT JOIN comment ON post.last_comment = comment.id \
+                LEFT JOIN user AS comment_user ON comment.author_id = comment_user.uid"
+        order = "created DESC, id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar, \
+                channel.id as channel_id, \
+                channel.name as channel_name, \
+                nav.name as nav_name, \
+                nav.title as nav_title, \
+                video.source as video_source, \
+                video.flash as video_flash, \
+                video.title as video_title, \
+                video.thumb as video_thumb, \
+                video.link as video_link, \
+                comment.content as comment_content, \
+                comment.created as comment_created, \
+                comment_user.username as comment_user_name, \
+                comment_user.avatar as comment_user_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
     def get_user_all_posts(self, num = 32, current_page = 1, user_id = None):

@@ -420,9 +420,11 @@ $(document).on('click', '.c-icon',  function() {
       <span class="tab-highlight"></span>
     </div>
     {% endfor %}
+    {% if user_info %}
     <div class="post-btn">
       <a href="{% if channels %}#myModal{% else %}#myModal2{% endif %}" role="button" class="btn btn-primary" data-toggle="modal">分享视频</a>
     </div>
+    {% endif %}
 
     <div id="myModal"  class="modal hide modal-dialog absolute-position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 550px; top: 119.5px;">
       <div class="modal-dialog-title modal-dialog-title-draggable" id=":21">
@@ -681,6 +683,7 @@ $(document).on('click', '.c-icon',  function() {
 {% endblock %}
 
 {% block right %}
+{% if user_info %}
 <div class="right-bar">
   <div class="module wtf-module js-wtf-module with-bottom-tab  has-content">
 
@@ -751,4 +754,5 @@ $(document).on('click', '.c-icon',  function() {
 
   </div>
 </div>
+{% endif %}
 {% endblock %}

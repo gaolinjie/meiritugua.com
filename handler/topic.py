@@ -35,8 +35,8 @@ class IndexHandler(BaseHandler):
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        if(user_info):
-            template_variables["navs"] = self.nav_model.get_all_navs()
+        template_variables["navs"] = self.nav_model.get_all_navs()
+        if(user_info):           
             template_variables["channels"] = self.channel_model.get_user_all_channels2(user_id = user_info["uid"])
             template_variables["maylike_channels"] = self.channel_model.get_hot_channels(user_info["uid"], num=20)
                
@@ -62,7 +62,30 @@ class IndexHandler(BaseHandler):
                 template_variables["posts"] = self.follow_model.get_user_all_follow_posts_by_nav_id(user_id = user_info["uid"], nav_id = nav_id, current_page = page)           
             template_variables["notice_text"] = notice_text
         else:
-            self.redirect("/login")
+            template_variables["channels"] = self.channel_model.get_all_channels()
+            template_variables["maylike_channels"] = self.channel_model.get_hot_channels(0, num=20)
+               
+            if(tab=="all"):
+                notice_text = "你还未关注任何频道呢，先去各视频板块关注你感兴趣的频道吧~~"
+                template_variables["active_tab"] = "all"
+                template_variables["posts"] = self.post_model.get_all_posts(current_page = page)
+            else:
+                nav_id=1
+                if (tab=="video"):
+                    nav_id=1
+                    notice_text = "你还未关注任何短片频道呢，先去各短片板块关注你感兴趣的频道吧~~"
+                if (tab=="micro"):
+                    nav_id=2
+                    notice_text = "你还未关注任何微电影频道呢，先去微电影板块关注你感兴趣的频道吧~~"
+                if (tab=="movie"):
+                    nav_id=3
+                    notice_text = "你还未关注任何电影频道呢，先去电影板块关注你感兴趣的频道吧~~"
+                if (tab=="star"):
+                    nav_id=4
+                    notice_text = "你还未关注任何明星频道呢，先去明星板块关注你感兴趣的频道吧~~"
+                template_variables["active_tab"] = tab           
+                template_variables["posts"] = self.post_model.get_all_posts_by_nav_id(nav_id = nav_id, current_page = page)           
+            template_variables["notice_text"] = notice_text
 
         self.render("index.html", **template_variables)
 
@@ -704,7 +727,7 @@ class ForumHandler(BaseHandler):
         if(user_info):
             template_variables["topics"] = self.topic_model.get_all_topics(current_page = page)           
         else:
-            self.redirect("/register")        
+            self.redirect("/login")        
         template_variables["gen_random"] = gen_random    
         notice_text = "暂时还没有话题，发出您的讨论吧。"
         template_variables["notice_text"] = notice_text
