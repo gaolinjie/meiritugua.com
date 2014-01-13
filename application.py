@@ -53,6 +53,7 @@ class Application(tornado.web.Application):
             (r"/", handler.index.IndexHandler),
             (r"/community", handler.community.CommunityHandler),
             (r"/p/(\d+)", handler.post.PostHandler),
+            (r"/create", handler.post.CreatePostHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),

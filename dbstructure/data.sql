@@ -1,19 +1,9 @@
+INSERT INTO `user` VALUES (1, 'gaolinjie@gmail.com', '003491', 'gaolinjie', '', '', '', 4,  '2013-12-13', '2013-12-13' ,'2013-12-13');
+
 INSERT INTO `post` VALUES (1, '碧昂丝惊喜的世界了新专辑', 'http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr03/13/1/enhanced-buzz-31704-1386914520-2.jpg', '', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (2, '这对情侣气象，坠入爱河，开始约会，并得到了参与，所有在Instagram的', 'http://s3-ak.buzzfed.com/static/2013-10/campaign_images/webdr06/31/12/this-couple-met-fell-in-love-started-dating-and-g-1-11094-1383237710-0_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (3, '2013年热门趋势音乐视频在YouTube上在不同的国家', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/11/13/the-2013-top-trending-music-videos-on-youtube-in--1-30363-1386788075-2.jpg', '因为世界上大多数国家不关心PSY，麦莉和凯蒂·佩里。', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (4, '26愤怒的反应作为澳大利亚高等法院抛出了同性婚姻', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr03/11/23/26-angry-reactions-as-australias-high-court-throw-1-21288-1386823135-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-
-
-INSERT INTO `head1` VALUES (1, 1, '2013-12-13');
-INSERT INTO `head2` VALUES (1, 2, '2013-12-13');
-INSERT INTO `std` VALUES (1, 3, '2013-12-13');
-INSERT INTO `hot` VALUES (1, 4, '2013-12-13');
-
-INSERT INTO `user` VALUES (1, 'gaolinjie@gmail.com', '003491', 'gaolinjie', '', '', '', 4,  '2013-12-13', '2013-12-13' ,'2013-12-13');
-
-
-
-
 INSERT INTO `post` VALUES (5, '8件事你不知道关于“霍比特人”', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/18/8-facts-you-didnt-know-about-the-hobbit-movies-1-9809-1386891322-10.jpg', '矮人是犹太人？马泽尔TOV！', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (6, '这些照片的一名年轻蒂娜·菲在大学玩是惊人的', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/12/19/these-photos-of-a-young-tina-fey-in-a-college-pla-1-22910-1386894837-12.jpg', '蒂娜·菲和她的大学室友卡迪在稍低于美艳的角色。（通过紫外线杂志）。', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (7, '“的我们最后的”配建积木', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/16/the-last-of-us-built-with-legos-1-7582-1386883357-28.jpg', '这个规则', '', 1, 1, 0, '2013-12-13');
@@ -24,6 +14,23 @@ INSERT INTO `post` VALUES (11, '34澳大利亚的原因是最美丽的地方在�
 INSERT INTO `post` VALUES (12, '10个最伟大的棋类游戏你没有玩过这一年', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/17/the-10-greatest-board-games-you-havent-played-thi-1-14800-1386887655-29.jpg', '在你遇到问题打专卖或平凡的追求与您的家人在节日期间确保你看看这些游戏之一！', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (13, '13畏缩值得“指环王”提货线，让你在花样“的史矛革的苍凉”首映', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr03/12/17/13-cringe-worthy-lotr-pick-up-lines-to-get-you-in-1-4792-1386886664-11.jpg', '你的戒指吗？因为我已经得到了我的眼睛在你身上', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (14, '17温暖和舒适的面包要烤当外面很冷', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/16/17-warm-and-cozy-breads-to-bake-when-its-cold-out-1-14824-1386884821-3.jpg', '和OMG想像在您的厨房的气味。', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (15, '卖闪亮金色比特币 - 溢价', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr03/12/22/selling-shiny-gold-bitcoins-at-a-premium-1-23128-1386905801-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (16, '看哪！令人心碎的，惊心动魄的故事的怪胎秀明星朱莉娅帕斯特拉纳，墨西哥的猴女', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr03/12/23/behold-the-heartbreaking-hair-raising-tale-of-fre-1-10249-1386909792-1_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (17, '14电影和电视连续剧，你应该添加到您的列表要寻找更聪明', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr06/12/11/14-films-and-series-you-should-add-to-your-list-t-1-3492-1386864464-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (18, '金正云只是执行他的叔叔，朝鲜称', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/12/18/flex-1-14420-1386890135-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (19, '如何通讯的科技巨人丢失了控制', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr02/12/17/how-tech-giants-lost-control-of-messaging-1-4482-1386887870-28_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (20, '约翰尼·威尔的经理否认有任何参与俄罗斯领事馆，政府', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/19/johnny-weirs-manager-denies-any-involvement-with--1-2335-1386895277-5_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (21, '自由叙利亚军的终结？', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/16/the-end-of-the-free-syrian-army-1-23174-1386882779-11_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (22, '在“梦想家”谁辞去工作在国会争取她的母亲驱逐出境成功', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/16/the-dreamer-who-quit-her-job-in-congress-to-fight-1-23134-1386882350-28_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (23, '这张照片贾斯汀·比伯和威尔·史密斯是最喜欢的照片Instagram的2013年', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr06/13/8/this-photo-of-justin-bieber-and-will-smith-was-th-1-26817-1386941438-7.jpg', '不要停止beliebing。', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (24, '5最Cringeworthy说唱歌曲从迪斯尼的“米奇Unrapped”', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/21/the-5-most-cringeworthy-rap-songs-from-disneys-mi-1-6097-1386900717-0.jpg', '在90年代早期的米老鼠推出的说唱生涯......这是不漂亮。', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (25, '白宫鸣叫奥巴马举行签署启发优秀Photoshops', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr02/12/17/white-house-tweet-of-obama-holding-sign-inspires--1-4992-1386888876-11.jpg', '互联网在其最好的。', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (26, '碧昂丝令世人瞩目随着新专辑在iTunes中', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/13/9/beyonce-surprised-the-world-with-a-new-album-on-i-1-7541-1386944111-8.jpg', '早期的圣诞礼物QUEEN B！', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (27, '8杂志礼品指南，假设你是一个亿万富翁带领商报链接', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/17/8-magazine-gift-guides-that-assume-youre-a-billio-1-14696-1386887629-40.jpg', '加10迪士尼主题双关语，以帮助你学习的总决赛，为兄弟的5个最好的校内工作，和8件事你学习的圣诞老人学校。', '', 1, 1, 0, '2013-12-13');
+
+INSERT INTO `head1` VALUES (1, 1, '2013-12-13');
+INSERT INTO `head2` VALUES (1, 2, '2013-12-13');
+INSERT INTO `std` VALUES (1, 3, '2013-12-13');
 INSERT INTO `std` VALUES (2, 5, '2013-12-13');
 INSERT INTO `std` VALUES (3, 6, '2013-12-13');
 INSERT INTO `std` VALUES (4, 7, '2013-12-13');
@@ -34,15 +41,12 @@ INSERT INTO `std` VALUES (8, 11, '2013-12-13');
 INSERT INTO `std` VALUES (9, 12, '2013-12-13');
 INSERT INTO `std` VALUES (10, 13, '2013-12-13');
 INSERT INTO `std` VALUES (11, 14, '2013-12-13');
-
-INSERT INTO `post` VALUES (15, '卖闪亮金色比特币 - 溢价', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr03/12/22/selling-shiny-gold-bitcoins-at-a-premium-1-23128-1386905801-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (16, '看哪！令人心碎的，惊心动魄的故事的怪胎秀明星朱莉娅帕斯特拉纳，墨西哥的猴女', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr03/12/23/behold-the-heartbreaking-hair-raising-tale-of-fre-1-10249-1386909792-1_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (17, '14电影和电视连续剧，你应该添加到您的列表要寻找更聪明', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr06/12/11/14-films-and-series-you-should-add-to-your-list-t-1-3492-1386864464-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (18, '金正云只是执行他的叔叔，朝鲜称', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/12/18/flex-1-14420-1386890135-12_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (19, '如何通讯的科技巨人丢失了控制', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr02/12/17/how-tech-giants-lost-control-of-messaging-1-4482-1386887870-28_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (20, '约翰尼·威尔的经理否认有任何参与俄罗斯领事馆，政府', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/19/johnny-weirs-manager-denies-any-involvement-with--1-2335-1386895277-5_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (21, '自由叙利亚军的终结？', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/16/the-end-of-the-free-syrian-army-1-23174-1386882779-11_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (22, '在“梦想家”谁辞去工作在国会争取她的母亲驱逐出境成功', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/16/the-dreamer-who-quit-her-job-in-congress-to-fight-1-23134-1386882350-28_wide.jpg', '', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `std` VALUES (12, 23, '2013-12-13');
+INSERT INTO `std` VALUES (13, 24, '2013-12-13');
+INSERT INTO `std` VALUES (14, 25, '2013-12-13');
+INSERT INTO `std` VALUES (15, 26, '2013-12-13');
+INSERT INTO `std` VALUES (16, 27, '2013-12-13');
+INSERT INTO `hot` VALUES (1, 4, '2013-12-13');
 INSERT INTO `hot` VALUES (2, 15, '2013-12-13');
 INSERT INTO `hot` VALUES (3, 16, '2013-12-13');
 INSERT INTO `hot` VALUES (4, 17, '2013-12-13');
@@ -51,15 +55,3 @@ INSERT INTO `hot` VALUES (6, 19, '2013-12-13');
 INSERT INTO `hot` VALUES (7, 20, '2013-12-13');
 INSERT INTO `hot` VALUES (8, 21, '2013-12-13');
 INSERT INTO `hot` VALUES (9, 22, '2013-12-13');
-
-
-INSERT INTO `post` VALUES (23, '这张照片贾斯汀·比伯和威尔·史密斯是最喜欢的照片Instagram的2013年', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr06/13/8/this-photo-of-justin-bieber-and-will-smith-was-th-1-26817-1386941438-7.jpg', '不要停止beliebing。', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (24, '5最Cringeworthy说唱歌曲从迪斯尼的“米奇Unrapped”', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr01/12/21/the-5-most-cringeworthy-rap-songs-from-disneys-mi-1-6097-1386900717-0.jpg', '在90年代早期的米老鼠推出的说唱生涯......这是不漂亮。', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (25, '白宫鸣叫奥巴马举行签署启发优秀Photoshops', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr02/12/17/white-house-tweet-of-obama-holding-sign-inspires--1-4992-1386888876-11.jpg', '互联网在其最好的。', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (26, '碧昂丝令世人瞩目随着新专辑在iTunes中', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/13/9/beyonce-surprised-the-world-with-a-new-album-on-i-1-7541-1386944111-8.jpg', '早期的圣诞礼物QUEEN B！', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `post` VALUES (27, '8杂志礼品指南，假设你是一个亿万富翁带领商报链接', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/17/8-magazine-gift-guides-that-assume-youre-a-billio-1-14696-1386887629-40.jpg', '加10迪士尼主题双关语，以帮助你学习的总决赛，为兄弟的5个最好的校内工作，和8件事你学习的圣诞老人学校。', '', 1, 1, 0, '2013-12-13');
-INSERT INTO `std` VALUES (12, 23, '2013-12-13');
-INSERT INTO `std` VALUES (13, 24, '2013-12-13');
-INSERT INTO `std` VALUES (14, 25, '2013-12-13');
-INSERT INTO `std` VALUES (15, 26, '2013-12-13');
-INSERT INTO `std` VALUES (16, 27, '2013-12-13');

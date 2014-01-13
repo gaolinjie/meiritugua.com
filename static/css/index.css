@@ -914,7 +914,7 @@ margin: 0;
 }
 
 .entry-name {
-font-size: 18px;
+font-size: 20px;
 line-height: 20px;
 display: block;
 font-weight: 700;
@@ -933,13 +933,13 @@ color: #333;
 position: relative;
 margin-top: 5px;
 font-size: 12px;
-padding: 7px 0 13px;
+padding: 7px 0 5px;
 }
 .entry-meta a {
 color: #666;
 }
 .entry-content {
-font-size: 14px;
+font-size: 15px;
 line-height: 1.8em;
 margin: 0;
 clear: both;
@@ -1109,3 +1109,197 @@ margin-right: 10px;
 font-size: 12px;
 }
 /* post end */
+
+
+/* create start */
+#edit-quickpost-form #qp_superlist {
+width: 990px;
+}
+#qp_superlist {
+position: relative;
+margin: 0 0 12px 0;
+padding: 16px 14px;
+font-family: ProximaNovaRegular;
+}
+#qp_superlist #suplist_left_post_controls {
+float: left;
+width: 615px;
+left: 30px;
+position: relative;
+}
+#suplist_heading {
+margin: 0 0 20px 0;
+padding: 0 0 4px 0;
+border-bottom: 1px solid #c6c6c6;
+}
+.c {
+clear: both;
+float: none;
+}
+#qp_superlist .qp_create {
+display: block;
+}
+#suplist_heading h1 {
+font-size: 24px;
+padding: 7px 0 15px 0;
+}
+#qp_superlist .qp_std_promo {
+width: 625px;
+}
+#qp_superlist #suplist_promo fieldset {
+padding-bottom: 10px;
+}
+#qp_superlist fieldset, #qp_superlist #suplist_upload_fields {
+margin: 0;
+border: none;
+padding: 0;
+}
+#qp_superlist fieldset .qp_input.has_autocap {
+position: relative;
+}
+
+
+
+
+
+#qp_superlist #suplist_promo textarea.qp {
+height: 64px;
+}
+#qp_superlist #suplist_promo input.qp_text, #qp_superlist #suplist_promo textarea.qp {
+width: 615px;
+}
+#qp_superlist fieldset .qp_text, #qp_superlist fieldset textarea.qp, #metadata_area input, #metadata_area textarea {
+clear: both;
+float: none;
+display: inline-block;
+margin: 0;
+padding: 8px 4px 6px 4px;
+border: 1px solid #cccccc;
+font-size: 16px;
+line-height: 18px;
+color: #000;
+font-family: ProximaNovaRegular;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+#qp_superlist fieldset textarea {
+resize: none;
+}
+
+#qp_superlist fieldset input.qp_text {
+line-height: 1.0em;
+}
+
+
+.suplist_options_top_row {
+margin: 0;
+padding: 10px 0 30px 5px;
+margin: 0 0 10px 0;
+background-color: #F2F2F2;
+}
+
+.suplist_options_top_row h5, .suplist_options_top_row h5 label {
+color: #424242;
+font-size: 13px;
+}
+
+.suplist_options_top_row label {
+position: relative;
+}
+.suplist_options_top_row label {
+font-family: Arial, Helvetica, sans-serif!important;
+}
+
+#qp_superlist #suplist_upload_fields {
+margin: 0;
+border: none;
+padding: 0;
+}
+#qp_superlist .suplist_thumb_container {
+display: inline-block;
+position: relative;
+margin: 0 0 10px 0;
+}
+.suplist-thumb-reg {
+width: 108px;
+vertical-align: top;
+}
+.suplist_image_box {
+display: inline-block;
+position: relative;
+background: #e6e6e6;
+height: 72px;
+border: 5px solid #fff;
+-webkit-box-shadow: 0 2px 3px rgba(0,0,0,.18);
+-moz-box-shadow: 0 2px 3px rgba(0,0,0,.18);
+box-shadow: 0 2px 3px rgba(0,0,0,.18);
+}
+.suplist_image_box .image_loading {
+position: absolute;
+top: 29px;
+left: 46px;
+background: #e6e6e6;
+}
+.suplist-thumb-img {
+height: 72px;
+}
+#qp_superlist .suplist_thumb_container {
+display: inline-block;
+position: relative;
+margin: 0 0 10px 0;
+}
+.suplist-thumb-wide {
+width: 204px;
+vertical-align: top;
+}
+.suplist_module_image_uploader_wrapper {
+float: left;
+}
+.suplist_module_image_uploader .bf_button.bf_button_left {
+width: 200px;
+}
+.bf_dropdown .bf_button.bf_button_left {
+
+float: left;
+
+text-align: center;
+
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+
+}
+.bf_button, .qq-upload-button, .bf_button.disabled:hover {
+margin: 0;
+padding: 2px 8px 3px;
+color: #222;
+font: 13px "Lucida Grande",Tahama,Verdana,sans-serif;
+line-height: 1.2;
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+background-image: -ms-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6');
+background: #F6F6F6 -webkit-gradient(linear,left top,left bottom,from(#ffffff),to(#e6e6e6));
+background-image: -moz-linear-gradient(top,#ffffff 33%,#e6e6e6 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6');
+border: 1px solid #ccc;
+}
+.bf_dropdown .bf_button.bf_button_left span {
+padding: 0 5px 0 0;
+position: relative;
+top: 2px;
+}
+input.file_mask {
+
+width: 100% !important;
+height: 100% !important;
+}
+
+#qp_superlist #suplist_promo textarea.ca {
+height: 200px;
+}
+
+
+/* create end */
