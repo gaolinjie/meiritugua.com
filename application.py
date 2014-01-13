@@ -22,6 +22,7 @@ import tornado.web
 import handler.index
 import handler.post
 import handler.community
+import handler.user
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -54,6 +55,10 @@ class Application(tornado.web.Application):
             (r"/community", handler.community.CommunityHandler),
             (r"/p/(\d+)", handler.post.PostHandler),
             (r"/create", handler.post.CreatePostHandler),
+            (r"/login", handler.user.LoginHandler),
+            (r"/logout", handler.user.LogoutHandler),
+            (r"/signup", handler.user.RegisterHandler),
+            (r"/forgot", handler.user.ForgotPasswordHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),

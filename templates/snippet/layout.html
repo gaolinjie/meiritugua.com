@@ -52,7 +52,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="../about">登入</a>
+            <div class="ds-login"></div>
           </li>
         </ul>
       </nav>
@@ -165,6 +165,21 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script src="/static/js/share_roll.js"></script>
-  {% block javascript %}{% endblock %}
+  {% block javascript %}
+  <!-- Duoshuo Comment BEGIN -->
+          <div class="ds-thread"></div>
+          <script type="text/javascript">
+var duoshuoQuery = {short_name:"mifantv"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+          <!-- Duoshuo Comment END -->
+  {% endblock %}
 </body>
 </html>

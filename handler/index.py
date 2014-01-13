@@ -28,7 +28,10 @@ from lib.utils import pretty_date
 
 class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
-    	page = int(self.get_argument("page", "1"))
+    	user_info = self.current_user
+        page = int(self.get_argument("page", "1"))
+        template_variables["user_info"] = user_info
+        template_variables["gen_random"] = gen_random
     	template_variables["head1"] = self.head1_model.get_head1_post()
     	template_variables["head2"] = self.head2_model.get_head2_post()
     	template_variables["stds"] = self.std_model.get_std_posts(current_page = page)
