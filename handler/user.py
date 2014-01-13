@@ -251,7 +251,12 @@ class ForgotPasswordHandler(BaseHandler):
 class LoginHandler(BaseHandler):
     def get(self, template_variables = {}):
         do_logout(self)
-        self.render("user/login.html", **template_variables)
+        #self.render("user/login.html", **template_variables)
+        duoshuo_code = self.get_argument('code','')
+        url = 'http://api.duoshuo.com/oauth2/access_token' 
+        response = urllib2.urlopen(url, 'code='+duoshuo_code)
+        result = json.load(response)
+        print result["user_id"]
 
     def post(self, template_variables = {}):
         template_variables = {}
