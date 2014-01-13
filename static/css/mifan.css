@@ -1,0 +1,72 @@
+a, abbr, acronym, address, applet, area, article, aside, audio, b, base, basefont, bdo, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, command, datalist, dd, del, details, dfn, dir, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, frame, frameset, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, ins, keygen, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, noframes, noscript, object, ol, optgroup, option, output, p, param, pre, progress, q, rp, rt, ruby, s, samp, script, section, small, source, span, strike, strong, style, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, title, tr, tt, u, ul, var, video, wbr, xmp {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+background: transparent;
+}
+
+article, section, header, aside, nav, footer {
+display: block;
+}
+
+
+:focus, :active {
+outline: 0;
+}
+a {
+color: #07e;
+text-decoration: none;
+}
+
+a {
+	margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+background: transparent;
+}
+
+a:hover {
+text-decoration: none;
+}
+
+.row {
+margin-right: 0;
+margin-left: 0;
+}
+
+.md-8, .col-xs-12, .col-md-4, .col-xs-6 {
+padding-left: 0;
+}
+
+.navbar-nav.navbar-right:last-child {
+margin-right: -27px;
+}
+
+img {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+background: transparent;
+vertical-align: baseline;
+}
+
+.container {
+width: 970px;
+padding-right: 0px;
+padding-left: 0px;
+}
+
+.navbar {
+border-radius: 0px;
+}
+
+body {
+font: 14px Arial,Helvetica,sans-serif;
+color: #333;
+}

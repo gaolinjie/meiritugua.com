@@ -1,0 +1,44 @@
+
+
+.mf-nav {
+	text-shadow: 0 -1px 0 rgba(0,0,0,.15);
+background-color: #fe4e5b;
+border-color: #ee4a55;
+box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+
+
+.mf-nav .navbar-toggle {
+border-color: #ee4a55;
+}
+
+.mf-nav .navbar-brand {
+color: #fff;
+}
+
+.mf-nav .navbar-collapse {
+border-color: #ee4a55;
+}
+
+.mf-nav .navbar-nav > li > a {
+color: #fff;
+}
+
+.mf-nav .navbar-nav > .active > a, .mf-nav .navbar-nav > .active > a:hover {
+color: #fff;
+background-color: #ee4a55;
+}
+
+.navbar-brand {
+background: no-repeat url(/static/images/logo.png);
+margin: 10px 0px 10px 0px;
+width: 93px;
+}
+
+.container>.navbar-header {
+	margin-left: 15px;
+	margin-right: 5px;
+}
+
+.navbar {
+	margin-bottom: 0;

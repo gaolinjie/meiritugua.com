@@ -27,71 +27,6 @@ class BaseHandler(tornado.web.RequestHandler):
     def mc(self):
         return self.application.mc
 
-    @property
-    def user_model(self):
-        return self.application.user_model
-
-    @property
-    def follow_model(self):
-        return self.application.follow_model
-
-    @property
-    def favorite_model(self):
-        return self.application.favorite_model
-
-    @property
-    def later_model(self):
-        return self.application.later_model
-
-    @property
-    def watch_model(self):
-        return self.application.watch_model
-
-    @property
-    def rate_model(self):
-        return self.application.rate_model
-
-    @property
-    def channel_model(self):
-        return self.application.channel_model
-
-    @property
-    def plus_model(self):
-        return self.application.plus_model
-
-    @property
-    def comment_model(self):
-        return self.application.comment_model
-
-    @property
-    def post_model(self):
-        return self.application.post_model
-
-    @property
-    def nav_model(self):
-        return self.application.nav_model
-
-    @property
-    def subnav_model(self):
-        return self.application.subnav_model
-
-    @property
-    def video_model(self):
-        return self.application.video_model
-
-    @property
-    def notification_model(self):
-        return self.application.notification_model
-
-
-    @property
-    def topic_model(self):
-        return self.application.topic_model
- 
-    @property
-    def reply_model(self):
-        return self.application.reply_model
-
     def render(self, template_name, **template_vars):
         html = self.render_string(template_name, **template_vars)
         self.write(html)
@@ -108,7 +43,30 @@ class BaseHandler(tornado.web.RequestHandler):
         template = self.jinja2.from_string(template_string)
         return template.render(**template_vars)
 
-    def get_current_user(self):
-        user_id = self.get_secure_cookie("user")
-        if not user_id: return None
-        return self.user_model.get_user_by_uid(int(user_id))
+    @property
+    def user_model(self):
+        return self.application.user_model
+
+    @property
+    def post_model(self):
+        return self.application.post_model
+
+    @property
+    def head1_model(self):
+        return self.application.head1_model
+
+    @property
+    def head2_model(self):
+        return self.application.head2_model
+
+    @property
+    def std_model(self):
+        return self.application.std_model
+
+    @property
+    def hot_model(self):
+        return self.application.hot_model
+
+    @property
+    def comment_model(self):
+        return self.application.comment_model

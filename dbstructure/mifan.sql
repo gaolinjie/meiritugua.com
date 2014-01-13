@@ -29,8 +29,6 @@ CREATE TABLE `user` (
   `intro` text,
   `avatar` text,
   `cover` text,
-  `plus` int(11) DEFAULT NULL,
-  `followers` int(11) DEFAULT NULL,
   `posts` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
@@ -53,17 +51,13 @@ delimiter ;
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text,
+  `cover` text,
+  `intro` text,
+  `content` text,
   `author_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
-  `nav_id` int(11) DEFAULT NULL,
-  `video_id` int(11) DEFAULT NULL,
-  `last_comment` int(11) DEFAULT NULL,
-  `comment_count` int(11) DEFAULT 0,
-  `intro` text,  
-  `score` float(3,1) DEFAULT 0,
-  `votes` int(11) DEFAULT 0,
-  `favorite` int(11) DEFAULT 0,  
-  `spam` int(11) DEFAULT 0, 
+  `comment_count` int(11) DEFAULT 0,   
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -75,7 +69,51 @@ CREATE TRIGGER `post_delete_trigger` BEFORE DELETE ON `post` FOR EACH ROW BEGIN
 delimiter ;
 
 -- ----------------------------
---  Table structure for `post`
+--  Table structure for `head1`
+-- ----------------------------
+DROP TABLE IF EXISTS `head1`;
+CREATE TABLE `head1` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `head2`
+-- ----------------------------
+DROP TABLE IF EXISTS `head2`;
+CREATE TABLE `head2` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `std`
+-- ----------------------------
+DROP TABLE IF EXISTS `std`;
+CREATE TABLE `std` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `hot`
+-- ----------------------------
+DROP TABLE IF EXISTS `hot`;
+CREATE TABLE `hot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -86,6 +124,12 @@ CREATE TABLE `comment` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+
+
+
 
 -- ----------------------------
 --  Table structure for `video`

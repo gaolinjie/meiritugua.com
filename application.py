@@ -19,10 +19,9 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 
-
-import handler.topic
-import handler.user
-import handler.channel
+import handler.index
+import handler.post
+import handler.community
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -31,9 +30,9 @@ from jinja2 import Environment, FileSystemLoader
 
 define("port", default = 80, help = "run on the given port", type = int)
 define("mysql_host", default = "localhost", help = "community database host")
-define("mysql_database", default = "mifan", help = "community database name")
-define("mysql_user", default = "mifan", help = "community database user")
-define("mysql_password", default = "mifan", help = "community database password")
+define("mysql_database", default = "mifan2", help = "community database name")
+define("mysql_user", default = "mifan2", help = "community database user")
+define("mysql_password", default = "mifan2", help = "community database password")
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -51,52 +50,9 @@ class Application(tornado.web.Application):
         )
 
         handlers = [
-            (r"/", handler.topic.IndexHandler),
-            (r"/video", handler.channel.VideoHandler),
-            (r"/favorite", handler.topic.FavoriteHandler),
-            (r"/later", handler.topic.LaterHandler),
-            (r"/later/clear", handler.topic.LaterClearHandler),
-            (r"/watch", handler.topic.WatchHandler),
-            (r"/watch/clear", handler.topic.WatchClearHandler),
-            (r"/follow", handler.channel.FollowsHandler),
-            (r"/notification", handler.topic.NotificationsHandler),
-            (r"/n/(\d+)", handler.topic.NotificationHandler),
-            (r"/c/(\d+)", handler.channel.ChannelHandler),
-            (r"/u/(.*)", handler.topic.UserHandler),
-            (r"/channels/u/(.*)", handler.channel.UserOtherChannelsHandler),
-            (r"/login", handler.user.LoginHandler),
-            (r"/logout", handler.user.LogoutHandler),
-            (r"/signup", handler.user.RegisterHandler),
-            (r"/forgot", handler.user.ForgotPasswordHandler),
-            (r"/f/(\d+)", handler.channel.FollowHandler),
-            (r"/p/(\d+)", handler.topic.PostHandler),
-            (r"/s/(\d+)", handler.topic.SpamPostHandle),
-            (r"/d/(\d+)", handler.topic.DeletePostHandle),
-            (r"/comment/(\d+)", handler.topic.CommentHandler),
-            (r"/rate/(\d+)", handler.topic.RateHandler),
-            (r"/setting", handler.user.SettingHandler),
-            (r"/setting/avatar", handler.user.SettingAvatarHandler),
-            (r"/setting/cover", handler.user.SettingCoverHandler),
-            (r"/setting/password", handler.user.SettingPasswordHandler),
-            (r"/c/(\d+)/setting", handler.channel.ChannelSettingHandler),
-            (r"/c/(\d+)/setting/avatar", handler.channel.ChannelSettingAvatarHandler),
-            (r"/c/(\d+)/setting/cover", handler.channel.ChannelSettingCoverHandler),
-            (r"/micro", handler.channel.MicroHandler),
-            (r"/movie", handler.channel.MovieHandler),
-            (r"/tv", handler.channel.TVHandler),
-            (r"/star", handler.channel.StarHandler),
-            (r"/favorite/(\d+)", handler.topic.FavoriteManagerHandler),
-            (r"/later/(\d+)", handler.topic.LaterManagerHandler),
-            (r"/watch/(\d+)", handler.topic.WatchManagerHandler),
-            (r"/suggestions", handler.channel.SuggestionsHandler),
-            (r"/hot", handler.channel.HotChannelsHandler),
-            (r"/searchchannel", handler.channel.SearchChannelHandler),
-
-            (r"/forum", handler.topic.ForumHandler),
-            (r"/t/create", handler.topic.CreateTopicHandler),
-            (r"/t/(\d+)", handler.topic.ViewHandler),
-            (r"/t/edit/(.*)", handler.topic.EditHandler),
-            (r"/reply/edit/(.*)", handler.topic.ReplyEditHandler),
+            (r"/", handler.index.IndexHandler),
+            (r"/community", handler.community.CommunityHandler),
+            (r"/p/(\d+)", handler.post.PostHandler),
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
@@ -117,22 +73,12 @@ class Application(tornado.web.Application):
 
         # Have one global model for db query
         self.user_model = self.loader.use("user.model")
-        self.follow_model = self.loader.use("follow.model")
         self.post_model = self.loader.use("post.model")
-        self.channel_model = self.loader.use("channel.model")
-        self.plus_model = self.loader.use("plus.model")
+        self.head1_model = self.loader.use("head1.model")
+        self.head2_model = self.loader.use("head2.model")
+        self.std_model = self.loader.use("std.model")
+        self.hot_model = self.loader.use("hot.model")
         self.comment_model = self.loader.use("comment.model")
-        self.nav_model = self.loader.use("nav.model")
-        self.subnav_model = self.loader.use("subnav.model")
-        self.video_model = self.loader.use("video.model")
-        self.favorite_model = self.loader.use("favorite.model")
-        self.later_model = self.loader.use("later.model")
-        self.watch_model = self.loader.use("watch.model")
-        self.rate_model = self.loader.use("rate.model")
-        self.notification_model = self.loader.use("notification.model")
-
-        self.topic_model = self.loader.use("topic.model")
-        self.reply_model = self.loader.use("reply.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)
