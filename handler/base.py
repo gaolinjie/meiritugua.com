@@ -70,3 +70,8 @@ class BaseHandler(tornado.web.RequestHandler):
     @property
     def comment_model(self):
         return self.application.comment_model
+
+    def get_current_user(self):
+        user_id = self.get_secure_cookie("user")
+        if not user_id: return None
+        return self.user_model.get_user_by_uid(int(user_id))

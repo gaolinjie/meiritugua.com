@@ -24,24 +24,101 @@ from form.user import *
 
 def do_login(self, user_id):
     user_info = self.user_model.get_user_by_uid(user_id)
-    user_id = user_info["uid"]
     self.session["uid"] = user_id
+    self.session["duoshuo_id"] = user_info["duoshuo_id"]
     self.session["username"] = user_info["username"]
-    self.session["email"] = user_info["email"]
-    self.session["password"] = user_info["password"]
     self.session.save()
     self.set_secure_cookie("user", str(user_id))
 
 def do_logout(self):
     # destroy sessions
     self.session["uid"] = None
+    self.session["duoshuo_id"] = None
     self.session["username"] = None
-    self.session["email"] = None
-    self.session["password"] = None
     self.session.save()
 
     # destroy cookies
     self.clear_cookie("user")
+
+class LoginHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        do_logout(self)
+        #self.render("user/login.html", **template_variables)
+        duoshuo_code = self.get_argument('code','')
+        url = 'http://api.duoshuo.com/oauth2/access_token' 
+        response = urllib2.urlopen(url, 'code='+duoshuo_code)
+        result = json.load(response)
+
+        url2 = 'http://api.duoshuo.com/users/profile.json?user_id=' +result["user_id"]
+        response2 = urllib2.urlopen(url2)
+        result2 = json.load(response2)
+        print result2["response"]["name"]
+
+        duplicated_user = self.user_model.get_user_by_duoshuo_id(result2["response"]["user_id"])
+
+        if(duplicated_user):          
+            do_login(self, duplicated_user["uid"])
+            # update `last_login`
+            updated = self.user_model.set_user_base_info_by_uid(duplicated_user["uid"], {"last_login": time.strftime('%Y-%m-%d %H:%M:%S')})
+        else:
+            user_info = {
+                "duoshuo_id": int(result2["response"]["user_id"]),
+                "username": result2["response"]["name"],
+                "avatar": result2["response"]["avatar_url"],
+                "intro": "",
+                "posts": 0,
+                "created": time.strftime('%Y-%m-%d %H:%M:%S')
+            }
+
+            if(self.current_user):
+                return
+        
+            user_id = self.user_model.add_new_user(user_info)
+        
+            if(user_id):
+                do_login(self, user_id)
+                # update `last_login`
+            updated = self.user_model.set_user_base_info_by_uid(user_id, {"last_login": time.strftime('%Y-%m-%d %H:%M:%S')})
+
+        self.redirect("/")
+
+
+    def post(self, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+
+        form = LoginForm(self)
+
+        if not form.validate():
+            self.get({"errors": form.errors})
+            return
+
+        # continue while validate succeed
+        
+        secure_password = hashlib.sha1(form.password.data).hexdigest()
+        secure_password_md5 = hashlib.md5(form.password.data).hexdigest()
+        user_info = self.user_model.get_user_by_email_and_password(form.email.data, secure_password)
+        user_info = user_info or self.user_model.get_user_by_email_and_password(form.email.data, secure_password_md5)
+        
+        if(user_info):
+            do_login(self, user_info["uid"])
+            # update `last_login`
+            updated = self.user_model.set_user_base_info_by_uid(user_info["uid"], {"last_login": time.strftime('%Y-%m-%d %H:%M:%S')})
+            redirect_path = self.get_argument("next", "/")
+            print redirect_path
+            self.redirect(redirect_path)
+            return
+
+        template_variables["errors"] = {"invalid_email_or_password": [u"邮箱或者密码不正确"]}
+        self.get(template_variables)
+
+class LogoutHandler(BaseHandler):
+    def get(self):
+        print "Looooooogout"
+        do_logout(self)
+        # redirect
+        self.redirect("/")
 
 class HomeHandler(BaseHandler):
     @tornado.web.authenticated
@@ -247,52 +324,6 @@ class ForgotPasswordHandler(BaseHandler):
         send(mail_title, mail_content, form.email.data)
 
         self.get(template_variables)
-
-class LoginHandler(BaseHandler):
-    def get(self, template_variables = {}):
-        do_logout(self)
-        #self.render("user/login.html", **template_variables)
-        duoshuo_code = self.get_argument('code','')
-        url = 'http://api.duoshuo.com/oauth2/access_token' 
-        response = urllib2.urlopen(url, 'code='+duoshuo_code)
-        result = json.load(response)
-        print result["user_id"]
-
-    def post(self, template_variables = {}):
-        template_variables = {}
-
-        # validate the fields
-
-        form = LoginForm(self)
-
-        if not form.validate():
-            self.get({"errors": form.errors})
-            return
-
-        # continue while validate succeed
-        
-        secure_password = hashlib.sha1(form.password.data).hexdigest()
-        secure_password_md5 = hashlib.md5(form.password.data).hexdigest()
-        user_info = self.user_model.get_user_by_email_and_password(form.email.data, secure_password)
-        user_info = user_info or self.user_model.get_user_by_email_and_password(form.email.data, secure_password_md5)
-        
-        if(user_info):
-            do_login(self, user_info["uid"])
-            # update `last_login`
-            updated = self.user_model.set_user_base_info_by_uid(user_info["uid"], {"last_login": time.strftime('%Y-%m-%d %H:%M:%S')})
-            redirect_path = self.get_argument("next", "/")
-            print redirect_path
-            self.redirect(redirect_path)
-            return
-
-        template_variables["errors"] = {"invalid_email_or_password": [u"邮箱或者密码不正确"]}
-        self.get(template_variables)
-
-class LogoutHandler(BaseHandler):
-    def get(self):
-        do_logout(self)
-        # redirect
-        self.redirect(self.get_argument("next", "/"))
 
 class RegisterHandler(BaseHandler):
     def get(self, template_variables = {}):

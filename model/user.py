@@ -15,6 +15,10 @@ class UserModel(Query):
         where = "uid = %s" % uid
         return self.where(where).find()
 
+    def get_user_by_duoshuo_id(self, duoshuo_id):
+        where = "duoshuo_id = %s" % duoshuo_id
+        return self.where(where).find()
+
     def get_user_by_email(self, email):
         where = "email = '%s'" % email
         return self.where(where).find()

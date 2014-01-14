@@ -19,6 +19,25 @@
   <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
   <![endif]-->
   {% block stylesheet %}{% endblock %}
+
+  <!-- Duoshuo Comment BEGIN -->
+          <script type="text/javascript">
+var duoshuoQuery = {
+   short_name: "mifantv", 
+   sso: { 
+       login: "/login",
+       logout: "/logout"
+   }};
+
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+  </script>
+          <!-- Duoshuo Comment END -->
 </head>
 <body>
   <header class="navbar navbar-inverse mf-nav" role="banner">
@@ -51,9 +70,15 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {% if user_info %}
+          <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.uid }}">
+                <img src="{{ user_info.avatar }}" width="30"></a>
+          {% else %}
+          
           <li>
             <div class="ds-login"></div>
           </li>
+          {% endif %}
         </ul>
       </nav>
     </div>
@@ -166,25 +191,7 @@
   <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script src="/static/js/share_roll.js"></script>
   {% block javascript %}
-  <!-- Duoshuo Comment BEGIN -->
-          <script type="text/javascript">
-var duoshuoQuery = {
-  short_name:"mifantv",
-  sso: { 
-       login: "/login",
-       logout: "/logout"
-   }
-};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-          <!-- Duoshuo Comment END -->
+  
   {% endblock %}
 </body>
 </html>

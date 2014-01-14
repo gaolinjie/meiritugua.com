@@ -28,6 +28,8 @@ from lib.utils import pretty_date
 
 class PostHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
+    	user_info = self.current_user
+        template_variables["user_info"] = user_info
     	page = int(self.get_argument("page", "1"))
     	template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
         self.render("post.html", **template_variables)

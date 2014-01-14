@@ -31,6 +31,7 @@ class IndexHandler(BaseHandler):
     	user_info = self.current_user
         page = int(self.get_argument("page", "1"))
         template_variables["user_info"] = user_info
+        #print user_info["username"]
         template_variables["gen_random"] = gen_random
     	template_variables["head1"] = self.head1_model.get_head1_post()
     	template_variables["head2"] = self.head2_model.get_head2_post()
