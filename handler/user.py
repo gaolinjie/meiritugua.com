@@ -41,7 +41,11 @@ def do_logout(self):
     self.clear_cookie("user")
 
 class LoginHandler(BaseHandler):
+    def initialize(self, *args, **kwargs):
+        self.referer = self.request.headers.get('Referer', '/')
+
     def get(self, template_variables = {}):
+        print self.referer
         do_logout(self)
         #self.render("user/login.html", **template_variables)
         duoshuo_code = self.get_argument('code','')
@@ -80,45 +84,17 @@ class LoginHandler(BaseHandler):
                 # update `last_login`
             updated = self.user_model.set_user_base_info_by_uid(user_id, {"last_login": time.strftime('%Y-%m-%d %H:%M:%S')})
 
-        self.redirect("/")
-
-
-    def post(self, template_variables = {}):
-        template_variables = {}
-
-        # validate the fields
-
-        form = LoginForm(self)
-
-        if not form.validate():
-            self.get({"errors": form.errors})
-            return
-
-        # continue while validate succeed
-        
-        secure_password = hashlib.sha1(form.password.data).hexdigest()
-        secure_password_md5 = hashlib.md5(form.password.data).hexdigest()
-        user_info = self.user_model.get_user_by_email_and_password(form.email.data, secure_password)
-        user_info = user_info or self.user_model.get_user_by_email_and_password(form.email.data, secure_password_md5)
-        
-        if(user_info):
-            do_login(self, user_info["uid"])
-            # update `last_login`
-            updated = self.user_model.set_user_base_info_by_uid(user_info["uid"], {"last_login": time.strftime('%Y-%m-%d %H:%M:%S')})
-            redirect_path = self.get_argument("next", "/")
-            print redirect_path
-            self.redirect(redirect_path)
-            return
-
-        template_variables["errors"] = {"invalid_email_or_password": [u"邮箱或者密码不正确"]}
-        self.get(template_variables)
+        self.redirect(self.referer)
 
 class LogoutHandler(BaseHandler):
+    def initialize(self, *args, **kwargs):
+        self.referer = self.request.headers.get('Referer', '/')
+        
     def get(self):
         print "Looooooogout"
         do_logout(self)
         # redirect
-        self.redirect("/")
+        self.redirect(self.referer)
 
 class HomeHandler(BaseHandler):
     @tornado.web.authenticated

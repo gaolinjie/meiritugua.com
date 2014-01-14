@@ -21,23 +21,25 @@
   {% block stylesheet %}{% endblock %}
 
   <!-- Duoshuo Comment BEGIN -->
-          <script type="text/javascript">
+
+  <script type="text/javascript">
 var duoshuoQuery = {
    short_name: "mifantv", 
    sso: { 
        login: "/login",
-       logout: "/logout"
+       logout: "http://localhost:9001/logout" /* need change when deploy */
    }};
-
-(function() {
+  (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
     ds.src = 'http://static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
   </script>
           <!-- Duoshuo Comment END -->
+  <link rel="stylesheet" href="/static/css/duoshuo.css">
 </head>
 <body>
   <header class="navbar navbar-inverse mf-nav" role="banner">
@@ -76,7 +78,8 @@ var duoshuoQuery = {
           {% else %}
           
           <li>
-            <div class="ds-login"></div>
+            <span class="right"><a id="snsRenren" class="rndBtn rr" href="http://mifantv.duoshuo.com/login/renren/?sso=1&redirect_uri=%2Flogin"></a><a id="snsSina" class="rndBtn wb" href="http://mifantv.duoshuo.com/login/weibo/?sso=1&redirect_uri=%2Flogin
+"></a><a id="snsDouban" class="rndBtn db" href="http://mifantv.duoshuo.com/login/douban/?sso=1&redirect_uri=%2Flogin"></a><a id="snsQQ" class="rndBtn qq" href="http://mifantv.duoshuo.com/login/qq/?sso=1&redirect_uri=%2Flogin"></a></span>
           </li>
           {% endif %}
         </ul>
