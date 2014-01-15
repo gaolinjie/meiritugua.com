@@ -10,9 +10,14 @@
 
           <div id="suplist_left_post_controls" style="min-height: 473px;">
 
+            <form class="mt10" action="/create" method="post">
+            {{ errors|dump_errors }}
+
             <div id="suplist_heading" class="c">
 
               <h1 class="qp_create">新建文章</h1>
+
+              <input type="submit" id="checkall" class="btn btn-small" value="立即创建">{{ xsrf_form_html() }}
 
             </div>
 
@@ -23,12 +28,12 @@
                 <fieldset>
 
                   <div class="qp_input has_autocap">
-                    <input data-placeholder="Headline" type="text" id="quickpost-title" tabindex="1" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="标题" title="" alt=""></div>
+                    <input type="text" id="quickpost-title" name="title" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="标题" title="" alt=""></div>
                 </fieldset>
 
                 <fieldset>
                   <div class="qp_input">
-                    <textarea data-placeholder="Description" class="qp bf_dom" tabindex="2" id="quickpost-description" placeholder="简介" title=""></textarea>
+                    <textarea class="qp bf_dom" id="quickpost-intro" name="intro" placeholder="简介" title=""></textarea>
                   </div>
 
                 </fieldset>
@@ -43,7 +48,7 @@
                 <fieldset>
                   <div class="qp_input">
                     <form method="post" action="somepage">
-                    <textarea data-placeholder="content" class="qp ca bf_dom" tabindex="2" id="quickpost-content" placeholder="内容" title=""></textarea>
+                    <textarea class="qp ca bf_dom" id="quickpost-content" name="content" placeholder="内容" title=""></textarea>
                   </form>
                   </div>
 
@@ -51,6 +56,7 @@
               </div>
 
             </div>
+          </form>
 
           </div>
 
