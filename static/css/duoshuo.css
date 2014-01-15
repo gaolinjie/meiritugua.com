@@ -88,3 +88,8 @@ display: none !important;
 	margin-top: 9px;
 	margin-right: 10px;
 }
+
+#ds-login .ds-icons-32 a {
+border-radius: 50%;
+opacity: 0.9;
+}

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/static/css/navbar.css">
   <link rel="stylesheet" href="/static/css/index.css">
   <link rel="stylesheet" href="/static/css/share.css">
+  <script src="http://cdn.bootcss.com/bootstrap-hover-dropdown/2.0.1/twitter-bootstrap-hover-dropdown.min.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,10 +74,18 @@ var duoshuoQuery = {
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user_info %}
-          <div class="user_avatar">
-          <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.uid }}">
+          <li class="active dropdown">
+              <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.uid }}">
                 <img src="{{ user_info.avatar }}" width="30"></a>
-          </div>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/setting">设置</a>
+                </li>
+                <li>
+                  <a href="/logout">退出</a>
+                </li>
+              </ul>
+            </li>
           {% else %}         
           <li>
             <div class="ds-login"></div>
