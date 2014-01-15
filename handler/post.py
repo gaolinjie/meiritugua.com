@@ -36,4 +36,6 @@ class PostHandler(BaseHandler):
 
 class CreatePostHandler(BaseHandler):
     def get(self, template_variables = {}):
+    	user_info = self.current_user
+        template_variables["user_info"] = user_info
         self.render("create.html", **template_variables)
