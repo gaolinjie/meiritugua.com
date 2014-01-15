@@ -32,6 +32,9 @@ class PostHandler(BaseHandler):
         template_variables["user_info"] = user_info
     	page = int(self.get_argument("page", "1"))
     	template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
+
+    	template_variables["post"] = self.post_model.get_post_by_post_id(post_id)
+	
         self.render("post.html", **template_variables)
 
 class CreatePostHandler(BaseHandler):

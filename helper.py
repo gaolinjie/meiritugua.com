@@ -129,15 +129,15 @@ class Filters():
 
     def content_process(self, content):
         # render content included gist
-        content = re.sub(r'http(s)?:\/\/gist.github.com\/(\d+)(.js)?', r'<script src="http://gist.github.com/\2.js"></script>', content)
+        #content = re.sub(r'http(s)?:\/\/gist.github.com\/(\d+)(.js)?', r'<script src="http://gist.github.com/\2.js"></script>', content)
         # render sinaimg pictures
         # content = re.sub(r'(http:\/\/\w+.sinaimg.cn\/.*?\.(jpg|gif|png))', r'<img src="\1" />', content)
         # render all pictures
-        content = re.sub(r'(http(s)?:\/\/\w+.*\/.*?\.(jpg|gif|png))', r'<img src="\1" />', content)
+        #content = re.sub(r'(http(s)?:\/\/\w+.*\/.*?\.(jpg|gif|png))', r'<img src="\1" />', content)
         # render all links
-        content = re.sub(r'([a-zA-z]+://[^\s]*)', r'<a href="\1" target="_blank">\1</a>', content)
+        #content = re.sub(r'([a-zA-z]+://[^\s]*)', r'<a href="\1" target="_blank">\1</a>', content)
         # render @ mention links
-        content = re.sub(ur'@(?!_)(?!.*?_$)(?!\d+)([a-zA-Z0-9_\u4e00-\u9fa5]+)(\s|)', r'<a href="/u/\1">@\1</a> ', content)
+        #content = re.sub(ur'@(?!_)(?!.*?_$)(?!\d+)([a-zA-Z0-9_\u4e00-\u9fa5]+)(\s|)', r'<a href="/u/\1">@\1</a> ', content)
         # render youku videos
         # content = re.sub(r'http://v.youku.com/v_show/id_(\w+).html', r'<embed src="http://player.youku.com/player.php/sid/\1/v.swf" quality="high" width="646" height="404" align="middle" allowScriptAccess="sameDomain" allowFullscreen="true" type="application/x-shockwave-flash"></embed>', content)
         return content

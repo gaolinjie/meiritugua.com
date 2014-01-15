@@ -1312,3 +1312,8 @@ height: 150px;
 .user_avatar a img {
 	border-radius: 50%;
 }
+
+
+.entry-content img {
+	max-width: 570px !important;
+}
