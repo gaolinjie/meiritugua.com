@@ -1,6 +1,7 @@
 /* duoshuo css start */
 .rndBtn.rr {
-background-position: -250px 0px;
+
+background-position: -250px -50px;
 }
 a:link {
 -webkit-tap-highlight-color: transparent;
@@ -12,13 +13,15 @@ width: 30px;
 height: 30px;
 float: left;
 margin: 10px 10px 10px 0;
+opacity: 0.5;
 }
 
 .rndBtn.wb:hover, .rndBtn.wb.selected {
-background-position: -300px -50px;
+background-position: -300px 0px;
 }
 .rndBtn.wb {
-background-position: -300px 0px;
+
+background-position: -300px -50px;
 }
 a:link {
 -webkit-tap-highlight-color: transparent;
@@ -33,7 +36,8 @@ margin: 10px 10px 10px 0;
 }
 
 .rndBtn.db {
-background-position: -400px 0px;
+
+background-position: -400px -50px;
 }
 a:link {
 -webkit-tap-highlight-color: transparent;
@@ -49,7 +53,8 @@ margin: 10px 10px 10px 0;
 
 
 .rndBtn.qq {
-background-position: -350px 0px;
+
+background-position: -350px -50px;
 }
 a:link {
 -webkit-tap-highlight-color: transparent;
@@ -63,12 +68,23 @@ float: left;
 margin: 10px 10px 10px 0;
 }
 .rndBtn.qq:hover {
-background-position: -350px -50px;
+background-position: -350px 0px;
 }
 .rndBtn.db:hover {
-background-position: -400px -50px;
+background-position: -400px 0px;
 }
 
 .rndBtn.rr:hover {
-background-position: -250px -50px;
+background-position: -250px 0px;
+}
+
+
+
+.ds-kaixin, .ds-netease, .ds-sohu {
+display: none !important;
+}
+
+.ds-login {
+	margin-top: 9px;
+	margin-right: 10px;
 }

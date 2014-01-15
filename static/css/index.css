@@ -1304,3 +1304,12 @@ height: 150px;
 
 /* create end */
 
+
+.user_avatar {
+	margin-top: 9px;
+	margin-right: 12px;
+}
+
+.user_avatar a img {
+	border-radius: 50%;
+}

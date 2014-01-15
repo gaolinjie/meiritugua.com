@@ -73,13 +73,13 @@ var duoshuoQuery = {
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user_info %}
+          <div class="user_avatar">
           <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.uid }}">
                 <img src="{{ user_info.avatar }}" width="30"></a>
-          {% else %}
-          
+          </div>
+          {% else %}         
           <li>
-            <span class="right"><a id="snsRenren" class="rndBtn rr" href="http://mifantv.duoshuo.com/login/renren/?sso=1&redirect_uri=%2Flogin"></a><a id="snsSina" class="rndBtn wb" href="http://mifantv.duoshuo.com/login/weibo/?sso=1&redirect_uri=%2Flogin
-"></a><a id="snsDouban" class="rndBtn db" href="http://mifantv.duoshuo.com/login/douban/?sso=1&redirect_uri=%2Flogin"></a><a id="snsQQ" class="rndBtn qq" href="http://mifantv.duoshuo.com/login/qq/?sso=1&redirect_uri=%2Flogin"></a></span>
+            <div class="ds-login"></div>
           </li>
           {% endif %}
         </ul>
