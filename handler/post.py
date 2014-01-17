@@ -16,6 +16,7 @@ import lib.jsonp
 import pprint
 import math
 import datetime 
+import os.path
 
 from base import *
 from lib.variables import *
@@ -44,7 +45,7 @@ class CreatePostHandler(BaseHandler):
         self.render("create.html", **template_variables)
 
     @tornado.web.authenticated
-    def post(self, node = None, template_variables = {}):
+    def post(self, template_variables = {}):
         print "CreateHandler:post"
         template_variables = {}
 
@@ -61,7 +62,6 @@ class CreatePostHandler(BaseHandler):
             "title": form.title.data,
             "intro": form.title.data,
             "content": form.content.data,
-            "cover": "http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/13/9/beyonce-surprised-the-world-with-a-new-album-on-i-1-7541-1386944111-8.jpg",
             "channel_id": 0,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
@@ -70,4 +70,27 @@ class CreatePostHandler(BaseHandler):
 
         std_id = self.std_model.add_new_std({"post_id": post_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
 
+
+
+        # process post thumb
+
+        thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))
+        thumb_raw = self.request.files["thumb"][0]["body"]
+        thumb_buffer = StringIO.StringIO(thumb_raw)
+        thumb = Image.open(thumb_buffer)
+
+        # crop avatar if it's not square
+        thumb_x = int(form.x1.data)
+        thumb_y = int(form.y1.data)
+        thumb_w = float(form.x2.data) - float(form.x1.data)
+        thumb_h = float(form.y2.data) - float(form.y1.data)
+        thumb_crop_region = (thumb_x, thumb_y, int(thumb_w), int(thumb_h))
+        thumb = thumb.crop(thumb_crop_region)
+
+        thumb_125x83 = thumb.resize((125, 83), Image.ANTIALIAS)
+        usr_home = os.path.expanduser('~')
+        print usr_home
+        thumb_125x83.save(usr_home+"/www/mifan.tv/static/thumb/n_%s.png" % thumb_name, "PNG")
+        result = self.post_model.set_post_thumb_by_post_id(post_id, "%s.png" % thumb_name)
+        
         self.redirect("/")

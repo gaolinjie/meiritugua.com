@@ -103,3 +103,21 @@ class CreateForm(Form):
      content = TextField('Content', [
          validators.Required(message = "请填写帖子内容"),
      ])
+
+
+
+     x1 = TextField('X1', [
+         validators.Required(message = "x1"),
+     ])
+
+     y1 = TextField('Y1', [
+         validators.Required(message = "y1"),
+     ])
+
+     x2 = TextField('X2', [
+         validators.Required(message = "x2"),
+     ])
+
+     y2 = TextField('Y2', [
+         validators.Required(message = "y2"),
+     ])

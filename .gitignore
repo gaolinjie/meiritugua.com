@@ -53,3 +53,7 @@ static/avatar/
 static/cover/
 !/static/cover/channel/m_default.png
 !/static/cover/user/m_default.png
+
+
+# thumb
+static/thumb/

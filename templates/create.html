@@ -1,5 +1,9 @@
 {% extends 'snippet/layout.html' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
+{% endblock %}
+
 {% block main %}
 <div class="col-xs-12 col-md-8">
   <div class="Column1 section bf_dom">
@@ -10,7 +14,7 @@
 
           <div id="suplist_left_post_controls" style="min-height: 473px;">
 
-            <form class="mt10" action="/create" method="post">
+            <form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
             {{ errors|dump_errors }}
 
             <div id="suplist_heading" class="c">
@@ -67,11 +71,13 @@
 
                         <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
                           <span>上传图片</span>
-                          <input id="upImg" type="file" name="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
-
+                          <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                          <input type="hidden" id="x1" name="x1" />
+                          <input type="hidden" id="y1" name="y1" />
+                          <input type="hidden" id="x2" name="x2" />
+                          <input type="hidden" id="y2" name="y2" />
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -142,23 +148,74 @@ tinymce.init({
 
 <script type="text/javascript">
 $(document).ready(function(){
-  function readURL(input) {
 
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+  // update info by cropping (onChange and onSelect events handler)
+function updateInfo(e) {
+    $('#x1').val(e.x);
+    $('#y1').val(e.y);
+    $('#x2').val(e.x2);
+    $('#y2').val(e.y2);
+};
 
-        reader.onload = function (e) {
-            $('#img-preview').attr('src', e.target.result);
-        }
+  function readURL() {
+// get selected file
+    var oFile = $('#thumb')[0].files[0];
 
-        reader.readAsDataURL(input.files[0]);
+    // check for image type (jpg and png are allowed)
+    var rFilter = /^(image\/jpeg|image\/png)$/i;
+    if (! rFilter.test(oFile.type)) {
+      alert("type error!!!")
+        return;
     }
-}
 
-        $(document).on('change', '#upImg',  function() {  
-           readURL(this);
+    // check for file size
+    if (oFile.size < 125 * 83) {
+        alert("image too small!!!")
+        return;
+    }
+
+    // preview element
+    var oImage = document.getElementById('img-preview');
+
+    // prepare HTML5 FileReader
+    var oReader = new FileReader();
+        oReader.onload = function(e) {
+
+        // e.target.result contains the DataURL which we can use as a source of the image
+        oImage.src = e.target.result;
+        oImage.onload = function () { // onload event handler
+
+            
+                // initialize Jcrop
+                $('#img-preview').Jcrop({
+                    keySupport: false,
+                    minSize: [125, 83], // min crop size
+                    aspectRatio : 1.5, // keep aspect ratio 1:1
+                    bgFade: true, // use fade effect
+                    bgOpacity: .3, // fade opacity
+                    onChange: updateInfo,
+                    onSelect: updateInfo,
+
+                }, function(){
+
+                });
+            
+
+        };
+    };
+
+    // read selected file as DataURL
+    oReader.readAsDataURL(oFile);
+  }
+
+        $(document).on('change', '#thumb',  function() {
+           readURL();
            $('#myModal').modal('show')
         });
       });
 </script>
+
+<script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
+
+
 {% endblock %}
