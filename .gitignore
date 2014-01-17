@@ -55,4 +55,5 @@ static/cover/
 !/static/cover/user/m_default.png
 
 
-
+# thumb
+static/thumb/
