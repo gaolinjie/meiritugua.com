@@ -15,90 +15,91 @@
           <div id="suplist_left_post_controls" style="min-height: 473px;">
 
             <form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
-            {{ errors|dump_errors }}
+              {{ errors|dump_errors }}
+              <div id="suplist_heading" class="c">
 
-            <div id="suplist_heading" class="c">
+                <h1 class="qp_create">新建文章</h1>
 
-              <h1 class="qp_create">新建文章</h1>
+                <input type="submit" id="checkall" class="btn btn-small" value="立即创建">{{ xsrf_form_html() }}</div>
 
-              <input type="submit" id="checkall" class="btn btn-small" value="立即创建">{{ xsrf_form_html() }}
+              <div class="c qp_std_promo" id="suplist_promo">
 
-            </div>
+                <div class="qp_std_promo_fields">
 
-            <div class="c qp_std_promo" id="suplist_promo">
+                  <fieldset>
 
-              <div class="qp_std_promo_fields">
+                    <div class="qp_input has_autocap">
+                      <input type="text" id="quickpost-title" name="title" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="标题" title="" alt=""></div>
+                  </fieldset>
 
-                <fieldset>
+                  <fieldset>
+                    <div class="qp_input">
+                      <textarea class="qp bf_dom" id="quickpost-intro" name="intro" placeholder="简介" title=""></textarea>
+                    </div>
 
-                  <div class="qp_input has_autocap">
-                    <input type="text" id="quickpost-title" name="title" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="标题" title="" alt=""></div>
-                </fieldset>
+                  </fieldset>
+                </div>
 
-                <fieldset>
-                  <div class="qp_input">
-                    <textarea class="qp bf_dom" id="quickpost-intro" name="intro" placeholder="简介" title=""></textarea>
-                  </div>
-
-                </fieldset>
               </div>
 
-            </div>
+              <div class="thumbnail-chooser suplist_options_top_row">
+                <h5>
+                  <label>文章缩略图</label>
+                </h5>
 
-            <div class="thumbnail-chooser suplist_options_top_row">
-              <h5>
-                <label>文章缩略图</label>
-              </h5>
+                <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+                  <div class="suplist_thumb_container">
+                    <div class="suplist-thumb-reg suplist_image_box bf_dom">
+                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" id="user-loading" class="bf_dom image_loading" style="display: none;">
+                      <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+                  </div>
 
-              <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
-                <div class="suplist_thumb_container">
-                  <div class="suplist-thumb-reg suplist_image_box bf_dom">
-                    <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" id="user-loading" class="bf_dom image_loading" style="display: none;">
-                    <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-                </div>
+                  <div class="suplist_thumb_container">
+                    <div class="suplist-thumb-wide suplist_image_box bf_dom">
+                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" class="bf_dom image_loading" style="display: none;">
+                      <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+                  </div>
 
-                <div class="suplist_thumb_container">
-                  <div class="suplist-thumb-wide suplist_image_box bf_dom">
-                    <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" class="bf_dom image_loading" style="display: none;">
-                    <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-                </div>
+                  <div class="suplist_image_buttons">
 
-                <div class="suplist_image_buttons">
+                    <div>
+                      <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                        <div class="suplist_module_image_uploader" style="height: 20px;">
 
-                  <div>
-                    <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
-                      <div class="suplist_module_image_uploader" style="height: 20px;">
-
-                        <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
-                          <span>上传图片</span>
-                          <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                          <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                            <span>上传图片</span>
+                            <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
                           <input type="hidden" id="x1" name="x1" />
                           <input type="hidden" id="y1" name="y1" />
                           <input type="hidden" id="x2" name="x2" />
                           <input type="hidden" id="y2" name="y2" />
+                          <input type="hidden" id="x3" name="x3" />
+                          <input type="hidden" id="y3" name="y3" />
+                          <input type="hidden" id="x4" name="x4" />
+                          <input type="hidden" id="y4" name="y4" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="c qp_std_promo" id="suplist_promo">
+              <div class="c qp_std_promo" id="suplist_promo">
 
-              <div class="qp_std_promo_fields">
+                <div class="qp_std_promo_fields">
 
-                <fieldset>
-                  <div class="qp_input">
-                    <form method="post" action="somepage">
-                    <textarea class="qp ca bf_dom" id="quickpost-content" name="content" placeholder="内容" title=""></textarea>
-                  </form>
-                  </div>
+                  <fieldset>
+                    <div class="qp_input">
+                      <form method="post" action="somepage">
+                        <textarea class="qp ca bf_dom" id="quickpost-content" name="content" placeholder="内容" title=""></textarea>
+                      </form>
+                    </div>
 
-                </fieldset>
+                  </fieldset>
+                </div>
+
               </div>
-
-            </div>
-          </form>
+            </form>
 
           </div>
 
@@ -114,18 +115,25 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">设置窄版缩略图</h4>
       </div>
       <div class="modal-body" style=" OVERFLOW: auto;WIDTH: 590px; HEIGHT: 400px" align=center>
+        <div id="img-wrapper">
         <img id="img-preview" src=""/>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div id="img-wrapper2" style="display: none">
+        <img id="img-preview2" src="" />
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-next">下一步</button>
+        <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 {% endblock %}
 
 {% block javascript %}
@@ -157,6 +165,13 @@ function updateInfo(e) {
     $('#y2').val(e.y2);
 };
 
+function updateInfo2(e) {
+    $('#x3').val(e.x);
+    $('#y3').val(e.y);
+    $('#x4').val(e.x2);
+    $('#y4').val(e.y2);
+};
+
   function readURL() {
 // get selected file
     var oFile = $('#thumb')[0].files[0];
@@ -176,6 +191,7 @@ function updateInfo(e) {
 
     // preview element
     var oImage = document.getElementById('img-preview');
+    var oImage2 = document.getElementById('img-preview2');
 
     // prepare HTML5 FileReader
     var oReader = new FileReader();
@@ -183,9 +199,8 @@ function updateInfo(e) {
 
         // e.target.result contains the DataURL which we can use as a source of the image
         oImage.src = e.target.result;
-        oImage.onload = function () { // onload event handler
-
-            
+        oImage2.src = e.target.result;
+        oImage.onload = function () { // onload event handler           
                 // initialize Jcrop
                 $('#img-preview').Jcrop({
                     keySupport: false,
@@ -199,8 +214,21 @@ function updateInfo(e) {
                 }, function(){
 
                 });
-            
+        };
 
+        oImage2.onload = function () { // onload event handler
+                $('#img-preview2').Jcrop({
+                    keySupport: false,
+                    minSize: [355, 125], // min crop size
+                    aspectRatio : 2.84, // keep aspect ratio 1:1
+                    bgFade: true, // use fade effect
+                    bgOpacity: .3, // fade opacity
+                    onChange: updateInfo2,
+                    onSelect: updateInfo2,
+
+                }, function(){
+
+                });
         };
     };
 
@@ -210,12 +238,21 @@ function updateInfo(e) {
 
         $(document).on('change', '#thumb',  function() {
            readURL();
-           $('#myModal').modal('show')
+           $('#myModal').modal('show');
         });
+
+        $(document).on('click', '#btn-next',  function() {
+           $(this).hide();
+           $('#btn-ok').show();
+           $('#myModalLabel').text("设置宽版缩略图");
+           $('#img-wrapper').hide();
+           $('#img-wrapper2').show();
+
+        });
+
+
       });
 </script>
 
 <script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
-
-
 {% endblock %}

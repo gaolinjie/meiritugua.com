@@ -90,14 +90,14 @@ class CreateMessageForm(Form):
 class CreateForm(Form):
      title = TextField('Title', [
          validators.Required(message = "请填写帖子标题"),
-         validators.Length(min = 3, message = "帖子标题长度过短（3-56个字符）"),
-         validators.Length(max = 56, message = "帖子标题长度过长（3-56个字符）"),
+         validators.Length(min = 3, message = "帖子标题长度过短（3-100个字符）"),
+         validators.Length(max = 100, message = "帖子标题长度过长（3-100个字符）"),
      ])
 
      intro = TextField('Intro', [
          validators.Required(message = "请填写帖子简介"),
-         validators.Length(min = 3, message = "帖子标题长度过短（3-256个字符）"),
-         validators.Length(max = 256, message = "帖子标题长度过长（3-256个字符）"),
+         validators.Length(min = 3, message = "帖子标题长度过短（3-400个字符）"),
+         validators.Length(max = 400, message = "帖子标题长度过长（3-400个字符）"),
      ])
  
      content = TextField('Content', [
@@ -120,4 +120,20 @@ class CreateForm(Form):
 
      y2 = TextField('Y2', [
          validators.Required(message = "y2"),
+     ])
+
+     x3 = TextField('X3', [
+         validators.Required(message = "x3"),
+     ])
+
+     y3 = TextField('Y3', [
+         validators.Required(message = "y3"),
+     ])
+
+     x4 = TextField('X4', [
+         validators.Required(message = "x4"),
+     ])
+
+     y4 = TextField('Y4', [
+         validators.Required(message = "y4"),
      ])
