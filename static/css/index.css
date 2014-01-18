@@ -1317,3 +1317,32 @@ height: 150px;
 .entry-content img {
 	max-width: 570px !important;
 }
+
+
+#suplist_module_thumb_uploader {
+	position: absolute;
+	left: 694px;
+	top: 100px;
+	width: 204px;
+	z-index: 100;
+}
+
+.suplist_thumb_container {
+	margin-bottom: 5px;
+}
+
+.image-upload-fields {
+	margin-bottom: 10px;
+}
+
+.thumbnail-chooser {
+	padding: 10px;
+height: 220px;
+}
+
+#checkall {
+position: absolute;
+left: 545px;
+top: 5px;
+}
+}

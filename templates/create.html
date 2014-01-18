@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-<div class="col-xs-12 col-md-8">
+<div class="col-xs-12 col-md-9">
   <div class="Column1 section bf_dom">
     <div class="section">
       <div class="content">
@@ -20,7 +20,19 @@
 
                 <h1 class="qp_create">新建文章</h1>
 
-                <input type="submit" id="checkall" class="btn btn-small" value="立即创建">{{ xsrf_form_html() }}</div>
+                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="立即创建">{{ xsrf_form_html() }}</div>
+
+                <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                            <span>上传图片</span>
+                            <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                          <input type="hidden" id="x1" name="x1" />
+                          <input type="hidden" id="y1" name="y1" />
+                          <input type="hidden" id="x2" name="x2" />
+                          <input type="hidden" id="y2" name="y2" />
+                          <input type="hidden" id="x3" name="x3" />
+                          <input type="hidden" id="y3" name="y3" />
+                          <input type="hidden" id="x4" name="x4" />
+                          <input type="hidden" id="y4" name="y4" />
 
               <div class="c qp_std_promo" id="suplist_promo">
 
@@ -42,47 +54,7 @@
 
               </div>
 
-              <div class="thumbnail-chooser suplist_options_top_row">
-                <h5>
-                  <label>文章缩略图</label>
-                </h5>
-
-                <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
-                  <div class="suplist_thumb_container">
-                    <div class="suplist-thumb-reg suplist_image_box bf_dom">
-                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" id="user-loading" class="bf_dom image_loading" style="display: none;">
-                      <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-                  </div>
-
-                  <div class="suplist_thumb_container">
-                    <div class="suplist-thumb-wide suplist_image_box bf_dom">
-                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" class="bf_dom image_loading" style="display: none;">
-                      <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-                  </div>
-
-                  <div class="suplist_image_buttons">
-
-                    <div>
-                      <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
-                        <div class="suplist_module_image_uploader" style="height: 20px;">
-
-                          <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
-                            <span>上传图片</span>
-                            <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
-                          <input type="hidden" id="x1" name="x1" />
-                          <input type="hidden" id="y1" name="y1" />
-                          <input type="hidden" id="x2" name="x2" />
-                          <input type="hidden" id="y2" name="y2" />
-                          <input type="hidden" id="x3" name="x3" />
-                          <input type="hidden" id="y3" name="y3" />
-                          <input type="hidden" id="x4" name="x4" />
-                          <input type="hidden" id="y4" name="y4" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
 
               <div class="c qp_std_promo" id="suplist_promo">
 
@@ -109,6 +81,46 @@
     </div>
   </div>
 </div>
+
+<div class="col-xs-12 col-md-3">
+            <div class="section bf_dom ">
+              <div class="section sidebar_featured_unified">
+
+                <div class="thumbnail-chooser suplist_options_top_row">
+                <h5>
+                  <label>文章缩略图</label>
+                </h5>
+
+                <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+                  <div class="suplist_thumb_container">
+                    <div class="suplist-thumb-reg suplist_image_box bf_dom">
+                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" id="user-loading" class="bf_dom image_loading" style="display: none;">
+                      <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+                  </div>
+
+                  <div class="suplist_thumb_container">
+                    <div class="suplist-thumb-wide suplist_image_box bf_dom">
+                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" class="bf_dom image_loading" style="display: none;">
+                      <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+                  </div>
+
+                  <div class="suplist_image_buttons">
+
+                    <div>
+                      <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                        <div class="suplist_module_image_uploader" style="height: 20px;">
+
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                
+              </div>
+            </div>
+          </div>
 
 <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -144,19 +156,19 @@ tinymce.init({
         plugins: [
                 "advlist autolink autosave link image lists charmap preview hr",
                 "wordcount visualblocks visualchars fullscreen media nonbreaking",
-                "contextmenu directionality template textcolor paste fullpage textcolor"
+                "contextmenu directionality template textcolor paste fullpage textcolor autoresize"
         ],
 
         toolbar1: "bold italic | formatselect | bullist numlist | forecolor backcolor | blockquote hr | removeformat  | link image media | undo redo | preview fullscreen ",
 
         menubar: false,
         toolbar_items_size: 'small',
-        language:'zh_CN'
-});</script>
+        language:'zh_CN',
+});
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-
   // update info by cropping (onChange and onSelect events handler)
 function updateInfo(e) {
     $('#x1').val(e.x);
@@ -247,8 +259,13 @@ function updateInfo2(e) {
            $('#myModalLabel').text("设置宽版缩略图");
            $('#img-wrapper').hide();
            $('#img-wrapper2').show();
-
         });
+
+        $(document).on('click', '#btn-ok',  function() {
+           $(this).hide();
+           $('#myModal').modal('hide');
+        });
+        
 
 
       });
