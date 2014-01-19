@@ -85,6 +85,8 @@ class Application(tornado.web.Application):
         self.std_model = self.loader.use("std.model")
         self.hot_model = self.loader.use("hot.model")
         self.comment_model = self.loader.use("comment.model")
+        self.nav_model = self.loader.use("nav.model")
+        self.channel_model = self.loader.use("channel.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)

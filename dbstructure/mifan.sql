@@ -127,6 +127,37 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
+-- ----------------------------
+--  Table structure for `nav`
+-- ----------------------------
+DROP TABLE IF EXISTS `nav`;
+CREATE TABLE `nav` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `title` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `channel`
+-- ----------------------------
+DROP TABLE IF EXISTS `channel`;
+CREATE TABLE `channel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nav_id` int(11),
+  `name` text,
+  `title` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -180,16 +211,7 @@ CREATE TABLE `follow` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `nav`
--- ----------------------------
-DROP TABLE IF EXISTS `nav`;
-CREATE TABLE `nav` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text,
-  `title` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 --  Table structure for `subnav`
