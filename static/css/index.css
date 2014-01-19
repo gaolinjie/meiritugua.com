@@ -1346,3 +1346,18 @@ left: 545px;
 top: 5px;
 }
 }
+
+.banner { position: relative; overflow: auto; }
+    .banner li { list-style: none; }
+        .banner ul li { float: left; }
+
+        .banner img {
+        	width: 940px;
+        	height: 250px;
+        }
+
+.banner-wrapper {
+	background-color: #fff;
+	padding: 0  15px 15px 15px;
+}
+
