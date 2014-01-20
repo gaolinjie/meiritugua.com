@@ -72,24 +72,20 @@ delimiter ;
 -- ----------------------------
 --  Table structure for `head1`
 -- ----------------------------
-DROP TABLE IF EXISTS `head1`;
-CREATE TABLE `head1` (
+DROP TABLE IF EXISTS `head`;
+CREATE TABLE `head` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_id` int(11) DEFAULT NULL,
+  `splash` text,
+  `label` text,
+  `horizontal` text,
+  `vertical` text,
+  `style` text,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
--- ----------------------------
---  Table structure for `head2`
--- ----------------------------
-DROP TABLE IF EXISTS `head2`;
-CREATE TABLE `head2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `post_id` int(11) DEFAULT NULL,
-  `created` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 --  Table structure for `std`

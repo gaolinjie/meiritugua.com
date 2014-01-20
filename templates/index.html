@@ -1,23 +1,29 @@
 {% extends 'snippet/layout.html' %}
 
 {% block main %}
-<div class="col-xs-12 col-md-12">
-  <div class="banner-wrapper">
-  <div class="banner has-dots">
-    <ul>
-        <li><img src="http://s3-ec.buzzfed.com/static/2014-01/enhanced/webdr02/18/18/enhanced-buzz-4104-1390087592-2.jpg" /></li>
-  <li><img src="http://s3-ec.buzzfed.com/static/2014-01/enhanced/webdr07/18/18/enhanced-buzz-29243-1390086215-5.jpg" /></li>
-  <li><img src="http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr03/13/1/enhanced-buzz-31704-1386914520-2.jpg" /></li>
-    </ul>
-  </div>
-</div>
-
-  
-  </div>
           <div class="col-xs-12 col-md-8">
             <div class="Column1 section bf_dom">
               <div class="section">
                 <div class="content">
+<div class="banner-wrapper">
+  <div class="banner has-dots">
+    <ul>
+      {% for head in heads.list %}
+      <li>
+        <div>
+        <a id="splash-link" href="/p/{{ head.post_id }}">
+          <div id="splash-container" >
+            <img id="splash-image" src="{{ head.splash }}" alt="" >
+            <div id="overlay-text"></div>
+          <div class="{{ head.vertical }} {{ head.horizontal }} splash-overlay" id="splash-overlay"><div class="label"><font><font>{{ head.label }}</font></font></div><div class="title {{ head.style }}" style="font-size: 25px; line-height: 25px;"><div class="splash-desc"><font><font>{{ head.title }}</font></font></div></div></div></div>
+        </a>
+      </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
                   <ul class="std-posts" id="page_flow">
                     {% for std in stds.list %}
                     <li id="post-{{ std.id }}" class=" post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
@@ -26,7 +32,7 @@
                           <div class="thumb-unit bf_dom">
                             <a href="/p/{{ std.id }}">
                               <div style="position:relative;">
-                                <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.cover }}" width="125" height="83" alt=""></div>
+                                <img class="thumb bf_dom " style="" src="{{ std.cover }}" width="125" height="83" alt=""></div>
                             </a>
                           </div>
                           <hgroup>
@@ -59,16 +65,19 @@
           <div class="col-xs-12 col-md-4">
             <div class="Column2 section bf_dom ">
               <div class="section sidebar_featured_unified">
+                <!--
                 <div id="big_stories_header" class="header">
+
                   <h1> <font><font class="">热门新闻</font></font> 
                   </h1>
                 </div>
+                -->
                 <ul id="big_stories_container">
                   {% for hot in hots.list %}
                   <li class="small-posts pinned bf_dom">
                     <div class="bf_dom bf_cts-5-1 bf_cts">
                       <a href="/p/{{ hot.id }}">
-                        <img class="bf_dom pinned-image" src="/static/thumb/w_{{ hot.cover }}" alt="{{ hot.title }}"></a>
+                        <img class="bf_dom pinned-image" src="{{ hot.cover }}" alt="{{ hot.title }}"></a>
                       <h3>
                         <a href="/p/{{ hot.id }}">
                           <span>
