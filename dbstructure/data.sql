@@ -91,5 +91,7 @@ INSERT INTO `hot` VALUES (9, 22, '2013-12-13');
 
 INSERT INTO `post` VALUES (101, '15标志性的人，你根本不知道是同样的年纪', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr07/13/9/beyonce-surprised-the-world-with-a-new-album-on-i-1-7541-1386944111-8.jpg', '早期的圣诞礼物QUEEN B！', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `post` VALUES (102, '7大理由女人应该不会在乎Queefing', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/17/8-magazine-gift-guides-that-assume-youre-a-billio-1-14696-1386887629-40.jpg', '加10迪士尼主题双关语，以帮助你学习的总决赛，为兄弟的5个最好的校内工作，和8件事你学习的圣诞老人学校。', '', 1, 1, 0, '2013-12-13');
+INSERT INTO `post` VALUES (103, '如何罗德曼得到了朝鲜', 'http://s3-ak.buzzfeed.com/static/2013-12/campaign_images/webdr05/12/17/8-magazine-gift-guides-that-assume-youre-a-billio-1-14696-1386887629-40.jpg', '加10迪士尼主题双关语，以帮助你学习的总决赛，为兄弟的5个最好的校内工作，和8件事你学习的圣诞老人学校。', '', 1, 1, 0, '2013-12-13');
 INSERT INTO `head` VALUES (1, 101, 'http://s3-ec.buzzfed.com/static/2014-01/enhanced/webdr05/19/23/enhanced-buzz-32088-1390191969-1.jpg', 'twinsies', 'right', 'bottom', 'light-text-on-dark-image', '2013-12-13');
 INSERT INTO `head` VALUES (2, 102, 'http://s3-ec.buzzfed.com/static/2014-01/enhanced/webdr06/19/20/enhanced-buzz-10946-1390182273-9.jpg', '不与queef牛肉', 'left', 'top', 'dark-text-on-light-image', '2013-12-13');
+INSERT INTO `head` VALUES (3, 103, 'http://s3-ec.buzzfed.com/static/2014-01/enhanced/webdr03/17/8/enhanced-buzz-16046-1389966006-23.jpg', '一个不太可能的三重奏', 'left', 'bottom', 'light-text-on-dark-image', '2013-12-13');
