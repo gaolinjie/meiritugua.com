@@ -2,6 +2,7 @@
 
 {% block stylesheet %}
 <link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/static/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 {% endblock %}
 
 {% block main %}
@@ -77,6 +78,8 @@
 
         </div>
 
+        
+
       </div>
     </div>
   </div>
@@ -116,7 +119,15 @@
                     </div>
                   </div>
                 </div>
+                <div class="tagsinput-wrapper">
+                  <h5>
+                  <label>文章标签</label>
+                </h5>
+            <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
+          </div>
               </div>
+
+              
                 
               </div>
             </div>
@@ -272,4 +283,5 @@ function updateInfo2(e) {
 </script>
 
 <script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
+<script src="/static/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
 {% endblock %}

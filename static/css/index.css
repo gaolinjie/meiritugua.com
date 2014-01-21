@@ -1189,7 +1189,7 @@ height: 150px;
 
 .thumbnail-chooser {
 	padding: 10px;
-height: 220px;
+height: auto;
 }
 
 #checkall {
@@ -1486,4 +1486,11 @@ opacity: 0.7;
 
 .entry-meta  {
 font-size: 13px;
+}
+
+
+.bootstrap-tagsinput { width: 100%; }
+
+.tagsinput-wrapper {
+	margin-top: 80px;
 }
