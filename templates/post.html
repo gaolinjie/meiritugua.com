@@ -10,21 +10,33 @@
           <div class="entry-header">
 
             <h1 class="entry-name yahei">
-              <a href="http://www.ifanr.com/394774" rel="bookmark" title="Permalink to 让盲人看宇宙：3D 打印立体图像">相信你也多少会在电视和媒体上看过哈勃拍摄的宇宙和地球的照片</a>
+              {{ post.title }}
             </h1>
+
+
 
           </div>
 
           <div class="entry-meta">
-            2014-1-10, 11:16&nbsp;|&nbsp;
-            <a href="http://www.ifanr.com/author/cuiqiwen" title="Posts by 崔绮雯" rel="author">崔绮雯</a>
+
+          <span class="article-publisher"> <a href="/u/{{ post.author_username }}" title="由 {{ post.author_username }} 发布" rel="author">{{ post.author_username }}</a></span>
+          <span class="article-pubdate"><time datetime="{{ post.created }}" pubdate="pubdate">{{ post.created|pretty_date }}</time> 
+           
+      发布在
+              </span>
+          <span class="article-category">
+        <a href="/c/{{ post.channel_name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a> 
+          </span>
+
+            
+            
           </div>
 
           <div id="share_toolbar_wrapper" style="position: static; top: auto; z-index: 9999;">
   <div id="share_toolbar">
     <div class="stb_group" id="stb_article_view" title="本文围观次数">
       <span id="stb_article_view_icon"></span>
-      <span id="stb_view_count">201</span>
+      <span id="stb_view_count">22301</span>
     </div>
     <div class="stb_divide"></div>
     <div data="{'url':'<?php the_permalink()?>'}" class="bdshare_t bds_tools get-codes-bdshare stb_group stb_share_buttons" id="bdshare">
@@ -92,55 +104,14 @@
             <div class="author-profile weixin-qrcode clearfix">
 
               <div class="author-profile-face clearfix">
-                <img class="gravatar" src="http://cdn.ifanr.cn/wp-content/uploads/2013/08/114.jpg" width="50" height="50"></div>
+                <img class="gravatar" src="{{ post.author_avatar }}" width="50" height="50"></div>
 
               <div class="author-profile-text">
                 <h2 class="yahei">
-                  <a href="http://www.ifanr.com/author/hezongcheng">何宗丞</a>
+                  <a href="http://www.ifanr.com/author/hezongcheng">{{ post.author_username }}</a>
                 </h2>
                 <p>新媒介的拥趸，相信“ 媒介即讯息 ”，关注媒介技术的力量。</p>
               </div>
-
-              <div class="author-profile-qrcode JS_ShowDropdown">
-                <img src="http://cdn.ifanr.cn/wp-content/uploads/2013/02/jasonho.jpeg" width="50" style="max-width:50px;">
-                <div class="dropdown-area">
-                  <span class="arrow arrow-bottom submenu-arrow submenu-arrow-above"></span>
-                  <span class="arrow arrow-bottom submenu-arrow"></span>
-                  <span class="top-padding"></span>
-                  <dl>
-                    <dd class="t-c">
-                      <a href="#">扫描关注何宗丞</a>
-                    </dd>
-                    <dd>
-                      <a class="ab-item" tabindex="-1" href="#">
-                        <img alt="" src="http://cdn.ifanr.cn/wp-content/uploads/2013/02/jasonho.jpeg" class="avatar avatar-64 photo" width="120" style="max-width:120px;" data-pinit="registered"></a>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-
-              <div class="author-profile-list clearfix">
-                <dl class="clearfix">
-
-                  <dd>
-                    <a rel="external" href="mailto:hezongcheng1025@gmail.com" target="_blank">邮箱</a>
-                  </dd>
-
-                  <dd>
-                    <a rel="external" href="http://twitter.com/hezongcheng" target="_blank">Twitter</a>
-                  </dd>
-
-                  <dd>
-                    <a rel="external" href="http://weibo.com/hezongcheng" target="_blank">新浪微博</a>
-                  </dd>
-
-                  <dd>
-                    <a rel="external" href="https://plus.google.com/118051041556695317207" target="_blank">Google+</a>
-                  </dd>
-
-                </dl>
-              </div>
-
             </div>
 
           </div>

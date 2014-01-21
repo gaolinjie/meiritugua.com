@@ -1420,7 +1420,7 @@ opacity: 0.7;
   letter-spacing:1px;
   font-weight:200;
   position:relative;
-  left: 200px;
+  text-align: center;
 }
 .infscr-loading span{
   width:16px;
@@ -1478,4 +1478,12 @@ opacity: 0.7;
 }
 #returnTop:hover {
   background-position: -61px 0px;
+}
+
+.entry-intro {
+	margin-top: 10px;
+}
+
+.entry-meta  {
+font-size: 13px;
 }

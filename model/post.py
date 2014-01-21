@@ -128,7 +128,14 @@ class PostModel(Query):
 
     def get_post_by_post_id(self, post_id):
         where = "id = '%s'" % post_id
-        return self.where(where).find()
+        join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
+                LEFT JOIN channel ON post.channel_id = channel.id"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar, \
+                channel.name as channel_name, \
+                channel.title as channel_title"
+        return self.where(where).join(join).field(field).find()
 
     def add_new_post(self, post_info):
         return self.data(post_info).add()

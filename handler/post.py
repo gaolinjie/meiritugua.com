@@ -32,6 +32,8 @@ class PostHandler(BaseHandler):
     	user_info = self.current_user
         template_variables["user_info"] = user_info
     	page = int(self.get_argument("page", "1"))
+        template_variables["navs"] = self.nav_model.get_all_navs()
+        template_variables["channels"] = self.channel_model.get_all_channels()
     	template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
 
     	template_variables["post"] = self.post_model.get_post_by_post_id(post_id)
