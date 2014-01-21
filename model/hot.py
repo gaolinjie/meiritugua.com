@@ -15,7 +15,7 @@ class HotModel(Query):
     def add_new_hot(self, hot_info):
         return self.data(hot_info).add()
 
-    def get_hot_posts(self, num = 10, current_page = 1):
+    def get_hot_posts(self, num = 3, current_page = 1):
         join = "LEFT JOIN post ON hot.post_id = post.id\
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
         order = "post.created DESC, post.id DESC"

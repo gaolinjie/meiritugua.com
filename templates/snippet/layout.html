@@ -42,6 +42,7 @@ var duoshuoQuery = {
   <link rel="stylesheet" href="/static/css/duoshuo.css">
   <link rel="shortcut icon" href="/static/images/favicon.ico"></head>
 <body>
+
   <header class="navbar navbar-inverse mf-nav" role="banner">
     <div class="container">
       <div class="navbar-header">
@@ -246,8 +247,17 @@ var duoshuoQuery = {
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script src="/static/js/share_roll.js"></script>
-  {% block javascript %}
   
+  {% block javascript %}
+
   {% endblock %}
+  <script type="text/javascript" src="/static/js/returnTop.js"></script>
+  <script type="text/javascript">
+   $(document).ready(function(){
+      $("#returnTop").returntop();
+   });
+
+</script>
+<a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>
 </body>
 </html>

@@ -15,7 +15,7 @@ class StdModel(Query):
     def add_new_std(self, std_info):
         return self.data(std_info).add()
 
-    def get_std_posts(self, num = 20, current_page = 1):
+    def get_std_posts(self, num = 5, current_page = 1):
         join = "LEFT JOIN post ON std.post_id = post.id\
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
         order = "post.created DESC, post.id DESC"
