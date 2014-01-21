@@ -37,6 +37,7 @@ class PostHandler(BaseHandler):
     	template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
 
     	template_variables["post"] = self.post_model.get_post_by_post_id(post_id)
+        template_variables["tags"] = self.post_tag_model.get_post_all_tags(post_id)
 	
         self.render("post.html", **template_variables)
 

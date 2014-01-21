@@ -97,9 +97,9 @@
             <div class="clearfix"></div>
             <div class="entry-meta-tags">
               标签：
-              <a href="http://www.ifanr.com/tags/3d-%e6%89%93%e5%8d%b0" rel="tag">3D 打印</a>
-              <a href="http://www.ifanr.com/tags/%e5%ae%87%e5%ae%99" rel="tag">宇宙</a>
-              <a href="http://www.ifanr.com/tags/%e7%9b%b2%e4%ba%ba" rel="tag">盲人</a>
+              {% for tag in tags.list %}
+              <a href="/tag/{{ tag.tag_name }}" rel="tag">{{ tag.tag_name }}</a>
+              {% endfor %}
             </div>
             <div class="author-profile weixin-qrcode clearfix">
 

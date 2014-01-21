@@ -146,6 +146,29 @@ CREATE TABLE `channel` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+--  Table structure for `post_tag`
+-- ----------------------------
+DROP TABLE IF EXISTS `post_tag`;
+CREATE TABLE `post_tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11),
+  `tag_id` int(11),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+--  Table structure for `tag`
+-- ----------------------------
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE `tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `post_num` int(11),
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
