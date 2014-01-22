@@ -52,6 +52,8 @@ class CreatePostHandler(BaseHandler):
         print "CreateHandler:post"
         template_variables = {}
 
+
+
         # validate the fields
         form = CreateForm(self)
 
@@ -74,10 +76,7 @@ class CreatePostHandler(BaseHandler):
         std_id = self.std_model.add_new_std({"post_id": post_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
         std_id = self.hot_model.add_new_hot({"post_id": post_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
 
-
-
         # process post thumb
-
         thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))
         thumb_raw = self.request.files["thumb"][0]["body"]
         thumb_buffer = StringIO.StringIO(thumb_raw)
@@ -108,4 +107,18 @@ class CreatePostHandler(BaseHandler):
 
         result = self.post_model.set_post_thumb_by_post_id(post_id, "%s.png" % thumb_name)
         
+        # process tags
+        tagStr = form.tag.data
+        if tagStr:
+            print 'process tags'
+            tagNames = tagStr.split(',')  
+            for tagName in tagNames:  
+                tag = self.tag_model.get_tag_by_tag_name(tagName)
+                if tag:
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag.id})
+                    self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num+1})
+                else:
+                    tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
+
         self.redirect("/")

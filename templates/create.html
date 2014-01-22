@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block main %}
+
+<form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
+              {{ errors|dump_errors }}
 <div class="col-xs-12 col-md-9">
   <div class="Column1 section bf_dom">
     <div class="section">
@@ -15,8 +18,7 @@
 
           <div id="suplist_left_post_controls" style="min-height: 473px;">
 
-            <form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
-              {{ errors|dump_errors }}
+            
               <div id="suplist_heading" class="c">
 
                 <h1 class="qp_create">新建文章</h1>
@@ -63,16 +65,16 @@
 
                   <fieldset>
                     <div class="qp_input">
-                      <form method="post" action="somepage">
+
                         <textarea class="qp ca bf_dom" id="quickpost-content" name="content" placeholder="内容" title=""></textarea>
-                      </form>
+
                     </div>
 
                   </fieldset>
                 </div>
 
               </div>
-            </form>
+            
 
           </div>
 
@@ -119,19 +121,25 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="tagsinput-wrapper">
                   <h5>
                   <label>文章标签</label>
                 </h5>
-            <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
+            <input type="text" id="quickpost-tag" name="tag" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
           </div>
+
               </div>
+
+
 
               
                 
               </div>
             </div>
           </div>
+
+</form>
 
 <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

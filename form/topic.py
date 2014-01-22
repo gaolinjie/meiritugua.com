@@ -137,3 +137,7 @@ class CreateForm(Form):
      y4 = TextField('Y4', [
          validators.Required(message = "y4"),
      ])
+
+     tag = TextField('Tag', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
