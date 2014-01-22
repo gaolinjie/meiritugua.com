@@ -1074,10 +1074,11 @@ margin: 0 0 10px 0;
 }
 .suplist-thumb-reg {
 width: 108px;
-vertical-align: top;
 }
 .suplist_image_box {
-display: inline-block;
+display:table-cell;
+vertical-align: middle;
+text-align: center;
 position: relative;
 background: #e6e6e6;
 height: 72px;
@@ -1086,12 +1087,7 @@ border: 5px solid #fff;
 -moz-box-shadow: 0 2px 3px rgba(0,0,0,.18);
 box-shadow: 0 2px 3px rgba(0,0,0,.18);
 }
-.suplist_image_box .image_loading {
-position: absolute;
-top: 29px;
-left: 46px;
-background: #e6e6e6;
-}
+
 .suplist-thumb-img {
 height: 72px;
 }
@@ -1102,7 +1098,6 @@ margin: 0 0 10px 0;
 }
 .suplist-thumb-wide {
 width: 204px;
-vertical-align: top;
 }
 .suplist_module_image_uploader_wrapper {
 float: left;

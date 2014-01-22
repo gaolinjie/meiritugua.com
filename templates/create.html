@@ -99,13 +99,13 @@
                 <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
                   <div class="suplist_thumb_container">
                     <div class="suplist-thumb-reg suplist_image_box bf_dom">
-                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" id="user-loading" class="bf_dom image_loading" style="display: none;">
+                      <span class="glyphicon glyphicon-ok" style="display: none;"></span>
                       <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
                   </div>
 
                   <div class="suplist_thumb_container">
                     <div class="suplist-thumb-wide suplist_image_box bf_dom">
-                      <img width="16" height="16" src="http://s3-ak.buzzfed.com/static/images/public/spinners/small_on_e6e6e6.gif" class="bf_dom image_loading" style="display: none;">
+                      <span class="glyphicon glyphicon-ok" style="display: none;"></span>
                       <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
                   </div>
 
@@ -126,7 +126,7 @@
                   <h5>
                   <label>文章标签</label>
                 </h5>
-            <input type="text" id="quickpost-tag" name="tag" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
+            <input type="text" id="quickpost-tag" name="tag" value="" data-role="tagsinput" />
           </div>
 
               </div>
@@ -283,6 +283,7 @@ function updateInfo2(e) {
         $(document).on('click', '#btn-ok',  function() {
            $(this).hide();
            $('#myModal').modal('hide');
+           $('.glyphicon-ok').show();
         });
         
 
