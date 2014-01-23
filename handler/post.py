@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 mifan.tv
+# Copyright 2013 meiritugua.com
 
 import uuid
 import hashlib
@@ -92,7 +92,7 @@ class CreatePostHandler(BaseHandler):
 
         thumb_125x83 = thumb.resize((125, 83), Image.ANTIALIAS)
         usr_home = os.path.expanduser('~')
-        thumb_125x83.save(usr_home+"/www/mifan.tv/static/thumb/n_%s.png" % thumb_name, "PNG")
+        thumb_125x83.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name, "PNG")
 
 
         thumb2_x = int(form.x3.data)
@@ -103,7 +103,7 @@ class CreatePostHandler(BaseHandler):
         thumb2 = thumb_origin.crop(thumb2_crop_region)
 
         thumb_355x125 = thumb2.resize((355, 125), Image.ANTIALIAS)
-        thumb_355x125.save(usr_home+"/www/mifan.tv/static/thumb/w_%s.png" % thumb_name, "PNG")
+        thumb_355x125.save(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name, "PNG")
 
         result = self.post_model.set_post_thumb_by_post_id(post_id, "%s.png" % thumb_name)
         

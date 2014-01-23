@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-## Copyright 2013 mifan.tv
+## Copyright 2013 meiritugua.com
 
 import time
 from lib.query import Query
@@ -15,7 +15,7 @@ class HeadModel(Query):
     def add_new_head(self, head1_info):
         return self.data(head1_info).add()
 
-    def get_head_posts(self, num = 3, current_page = 1):
+    def get_head_posts(self, num = 4, current_page = 1):
         join = "LEFT JOIN post ON head.post_id = post.id\
                 LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
         order = "head.created DESC, head.id DESC"

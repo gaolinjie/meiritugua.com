@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 mifan.tv
+# Copyright 2013 meiritugua.com
 
 import smtplib
 import sys
@@ -10,9 +10,9 @@ from email.mime.text import MIMEText
 
 charset = 'utf-8'
 
-send_mail_user = 'mifan.tv@gmail.com'
+send_mail_user = 'meiritugua.com@gmail.com'
 send_mail_pswd = 'Glj@2014'
-get_mail_user = 'mifan.tv@gmail.com'
+get_mail_user = 'meiritugua.com@gmail.com'
 
 def send(sub, content, reciver = get_mail_user):
     msg = email.mime.text.MIMEText(content,'html',charset)

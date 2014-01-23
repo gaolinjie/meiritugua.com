@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 mifan.tv
+# Copyright 2013 meiritugua.com
 
 # cat /etc/mime.types
 # application/octet-stream    crx
@@ -31,14 +31,14 @@ from jinja2 import Environment, FileSystemLoader
 
 define("port", default = 80, help = "run on the given port", type = int)
 define("mysql_host", default = "localhost", help = "community database host")
-define("mysql_database", default = "mifan", help = "community database name")
-define("mysql_user", default = "mifan", help = "community database user")
-define("mysql_password", default = "mifan", help = "community database password")
+define("mysql_database", default = "meiritugua", help = "community database name")
+define("mysql_user", default = "meiritugua", help = "community database user")
+define("mysql_password", default = "meiritugua", help = "community database password")
 
 class Application(tornado.web.Application):
     def __init__(self):
         settings = dict(
-            blog_title = u"mifan.tv",
+            blog_title = u"meiritugua.com",
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
             static_path = os.path.join(os.path.dirname(__file__), "static"),
             xsrf_cookies = False,
@@ -80,8 +80,6 @@ class Application(tornado.web.Application):
         # Have one global model for db query
         self.user_model = self.loader.use("user.model")
         self.post_model = self.loader.use("post.model")
-        self.head1_model = self.loader.use("head1.model")
-        self.head2_model = self.loader.use("head2.model")
         self.std_model = self.loader.use("std.model")
         self.hot_model = self.loader.use("hot.model")
         self.comment_model = self.loader.use("comment.model")

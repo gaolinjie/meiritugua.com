@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 mifan.tv
+# Copyright 2013 meiritugua.com
 
 import uuid
 import hashlib
@@ -168,9 +168,9 @@ class SettingAvatarHandler(BaseHandler):
         avatar_32x32 = avatar.resize((32, 32), Image.ANTIALIAS)
         usr_home = os.path.expanduser('~')
         print usr_home
-        avatar_96x96.save(usr_home+"/www/mifan.tv/static/avatar/user/b_%s.png" % avatar_name, "PNG")
-        avatar_48x48.save(usr_home+"/www/mifan.tv/static/avatar/user/m_%s.png" % avatar_name, "PNG")
-        avatar_32x32.save(usr_home+"/www/mifan.tv/static/avatar/user/s_%s.png" % avatar_name, "PNG")
+        avatar_96x96.save(usr_home+"/www/meiritugua.com/static/avatar/user/b_%s.png" % avatar_name, "PNG")
+        avatar_48x48.save(usr_home+"/www/meiritugua.com/static/avatar/user/m_%s.png" % avatar_name, "PNG")
+        avatar_32x32.save(usr_home+"/www/meiritugua.com/static/avatar/user/s_%s.png" % avatar_name, "PNG")
         result = self.user_model.set_user_avatar_by_uid(user_id, "%s.png" % avatar_name)
         template_variables["success_message"] = [u"用户头像更新成功"]
         # update `updated`
@@ -208,7 +208,7 @@ class SettingCoverHandler(BaseHandler):
         cover_520x260 = cover.resize((520, 260), Image.ANTIALIAS)
      
         usr_home = os.path.expanduser('~')
-        cover_520x260.save(usr_home+"/www/mifan.tv/static/cover/user/m_%s.png" % cover_name, "PNG")
+        cover_520x260.save(usr_home+"/www/meiritugua.com/static/cover/user/m_%s.png" % cover_name, "PNG")
         
         result = self.user_model.set_user_cover_by_uid(user_info.uid, "%s.png" % cover_name)
         template_variables["success_message"] = [u"频道头像更新成功"]
@@ -293,7 +293,7 @@ class ForgotPasswordHandler(BaseHandler):
 
         # send password reset link to user
 
-        mail_title = u"mifan.tv 找回密码"
+        mail_title = u"meiritugua.com 找回密码"
         template_variables = {"email": form.email.data, "new_password": new_password};
         template_variables["success_message"] = [u"新密码已发送至您的注册邮箱"]
         mail_content = self.render_string("user/forgot_password_mail.html", **template_variables)
@@ -365,7 +365,7 @@ class RegisterHandler(BaseHandler):
 
             # send register success mail to user
 
-            mail_title = u"mifan.tv 注册成功通知"
+            mail_title = u"meiritugua.com 注册成功通知"
             mail_content = self.render_string("user/register_mail.html")
             send(mail_title, mail_content, form.email.data)
 

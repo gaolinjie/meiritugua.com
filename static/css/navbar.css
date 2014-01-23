@@ -119,7 +119,7 @@ text-decoration: none;
 	margin: 20px 0;
 }
 
-.nav>li:hover {
+.nav>.dropdown:hover {
 background-color: #ee4a55
 }
 

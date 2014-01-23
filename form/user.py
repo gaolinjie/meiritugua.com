@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 #
-# Copyright 2013 mifan.tv
+# Copyright 2013 meiritugua.com
 
 from wtforms import TextField, validators
 from lib.forms import Form
@@ -88,7 +88,7 @@ class SettingForm(Form):
     ])
     website = TextField('Website', [
         validators.Optional(),
-        validators.URL(message = "请填写合法的URL地址（如：http://mifan.tv）")
+        validators.URL(message = "请填写合法的URL地址（如：http://meiritugua.com）")
     ])
     company = TextField('Company', [
         validators.Optional(),

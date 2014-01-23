@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>米饭</title>
+  <title>每日图卦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
 
-  <!-- mifan css -->
-  <link rel="stylesheet" href="/static/css/mifan.css">
+  <!-- meiritugua css -->
+  <link rel="stylesheet" href="/static/css/meiritugua.css">
   <link rel="stylesheet" href="/static/css/navbar.css">
   <link rel="stylesheet" href="/static/css/index.css">
   <link rel="stylesheet" href="/static/css/share.css">
@@ -21,14 +21,14 @@
   <![endif]-->
   {% block stylesheet %}{% endblock %}
   <!-- Duoshuo Comment BEGIN -->
-
-  <script type="text/javascript">
+<script type="text/javascript">
 var duoshuoQuery = {
-   short_name: "mifantv", 
-   sso: { 
-       login: "/login",
-       logout: "http://localhost:9001/logout" /* need change when deploy */
-   }};
+  short_name:"meiritugua",
+  sso: {
+    login: "/login",
+    logout: "http://localhost:9001/logout" /* need change when deploy */
+  }
+};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
@@ -136,7 +136,7 @@ var duoshuoQuery = {
                 <a href="/setting">设置</a>
               </li>
               <li>
-                <a href="http://mifantv.duoshuo.com/logout/?sso=1&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2Flogout">退出</a>
+                <a href="http://meirituguatv.duoshuo.com/logout/?sso=1&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2Flogout">退出</a>
               </li>
             </ul>
           </li>

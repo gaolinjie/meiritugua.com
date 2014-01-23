@@ -18,19 +18,19 @@ HOWTO deploy on Linode
 	$ pip install supervisor 
 
 ###Config Git
-	$ ssh-keygen -t rsa -C "mifan.tv@gmail.com"
+	$ ssh-keygen -t rsa -C "meiritugua.com@gmail.com"
 	$ cat ~/.ssh/id_rsa.pub
 	# copy and paste the RSA key to the Deploy keys setting
-	$ git config --global user.name "mifan.tv"  
-	$ git config --global user.email mifan.tv@gmail.com  
+	$ git config --global user.name "meiritugua.com"  
+	$ git config --global user.email meiritugua.com@gmail.com  
 
 ###Make directories for your app
 	$ mkdir ~/www
 
 ###Pull in source code
 	$ cd ~/www/
-	$ git clone git@github.com:gaolinjie/mifan.tv.git
-	$ cd mifan.tv
+	$ git clone git@github.com:gaolinjie/meiritugua.com.git
+	$ cd meiritugua.com
 
 ###Install web app required modules
 	$ pip install -r requirements.txt
@@ -53,11 +53,11 @@ HOWTO deploy on Linode
 
 ###Create database and then execute sql file in dbstructure/
 	$ mysql -u root -p
-	mysql> CREATE DATABASE mifan;
-	mysql> GRANT ALL PRIVILEGES ON mifan.* TO 'mifan'@'localhost' IDENTIFIED BY 'mifan';
+	mysql> CREATE DATABASE meiritugua;
+	mysql> GRANT ALL PRIVILEGES ON meiritugua.* TO 'meiritugua'@'localhost' IDENTIFIED BY 'meiritugua';
 	mysql> exit
-	$ mysql -u mifan -p --database=mifan < dbstructure/mifan.sql
-	$ mysql -u mifan -p --database=mifan < dbstructure/data.sql
+	$ mysql -u meiritugua -p --database=meiritugua < dbstructure/meiritugua.sql
+	$ mysql -u meiritugua -p --database=meiritugua < dbstructure/data.sql
 
 ###Install Torndb
     $ pip install torndb
@@ -65,9 +65,9 @@ HOWTO deploy on Linode
 ###Create symbolic links to conf files
 	$ cd /etc/nginx 
 	$ rm nginx.conf
-	$ ln -s ~/www/mifan.tv/conf/nginx.conf nginx.conf 
+	$ ln -s ~/www/meiritugua.com/conf/nginx.conf nginx.conf 
 	$ cd
-	$ ln -s ~/www/mifan.tv/conf/supervisord.conf supervisord.conf  
+	$ ln -s ~/www/meiritugua.com/conf/supervisord.conf supervisord.conf  
 
 ###Create nginx user
 	$ adduser --system --no-create-home --disabled-login --disabled-password --group nginx 
@@ -82,6 +82,6 @@ HOWTO deploy on Linode
 ###Visit your public IP address and enjoy!
 
 ###Update your web app
-	$ cd ~/www/mifan.tv
+	$ cd ~/www/meiritugua.com
 	$ git pull
 
