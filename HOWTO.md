@@ -18,11 +18,11 @@ HOWTO deploy on Linode
 	$ pip install supervisor 
 
 ###Config Git
-	$ ssh-keygen -t rsa -C "meiritugua.com@gmail.com"
+	$ ssh-keygen -t rsa -C "meiritugua@gmail.com"
 	$ cat ~/.ssh/id_rsa.pub
 	# copy and paste the RSA key to the Deploy keys setting
 	$ git config --global user.name "meiritugua.com"  
-	$ git config --global user.email meiritugua.com@gmail.com  
+	$ git config --global user.email meiritugua@gmail.com  
 
 ###Make directories for your app
 	$ mkdir ~/www
@@ -48,8 +48,8 @@ HOWTO deploy on Linode
 	$ ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
 	$ ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
 	$ ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
-	$ pip install -U PIL
-	# pip install http://effbot.org/downloads/Imaging-1.1.7.tar.gz
+	$ pip install http://effbot.org/downloads/Imaging-1.1.7.tar.gz
+	# pip install -U PIL	
 
 ###Create database and then execute sql file in dbstructure/
 	$ mysql -u root -p
