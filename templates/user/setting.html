@@ -1,88 +1,64 @@
 {% extends 'snippet/layout.html' %}
 
-{% block main %}
-<div class="setting-card">
-    <form class="form-horizontal" action='' method="POST">
-        <fieldset>
-            <div id="legend">
-                <legend class="setting-title">用户设置</legend>
-            </div>
-            {{ errors|dump_errors }}
-            <div class="control-group">
-                <!-- Username -->
-                <label class="control-label" for="username">用户名</label>
-                <div class="controls">
-                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge" value="{{ user_info.username or '' }}" readonly>
-                    <p class="help-block">用户名由字母开头，只能含有字母、数字或者下划线</p>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <!-- E-mail -->
-                <label class="control-label" for="email">E-mail</label>
-                <div class="controls">
-                    <input type="text" id="email" name="email" placeholder="" class="input-xlarge" value="{{ user_info.email or '' }}" readonly>
-                    <p class="help-block">您的E-mail，便于登录和找回密码</p>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <!-- Avatar -->
-                <label class="control-label" for="username">头&nbsp;&nbsp;&nbsp;&nbsp;像</label>
-                <div class="controls">
-                    <img src="/static/avatar/user/b_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/user/m_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <img src="/static/avatar/user/s_{{ user_info.avatar or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <a href="/setting/avatar" class="btn btn-primary mbtn avatar-btn">设置头像</a>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <!-- Avatar -->
-                <label class="control-label" for="username">封&nbsp;&nbsp;&nbsp;&nbsp;面</label>
-                <div class="controls">
-                    <img src="/static/cover/user/m_{{ user_info.cover or 'default.png' }}?t={{ gen_random() }}" alt="" class="avatar" />
-                    <a href="/setting/cover" class="btn btn-primary mbtn avatar-btn">设置封面</a>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <!-- E-mail -->
-                <label class="control-label" for="self_intro">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
-                <div class="controls">
-                    <textarea type="text" id="self_intro" name="self_intro" placeholder="" class="input-xlarge">{{ user_info.self_intro or '' }}</textarea>
-                    <p class="help-block">可以稍微详细的介绍自己。</p>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <!-- Button -->
-                <div class="controls">
-                    <button class="btn btn-primary">保存改动</button>
-                    <a href="/setting/password" class="btn btn-default">设置密码</a>
-                </div>
-            </div>
-        </fieldset>
-        {{ xsrf_form_html() }}
-    </form>
-</div>
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/static/bootstrap-tagsinput/bootstrap-tagsinput.css">
 {% endblock %}
 
-{% block sidebar %}
-<div class="sidenav container-box">
-    <ul>
-        <li class="current">
-            <a href="/setting">用户中心</a>
-        </li>
-        <li>
-            <a href="/setting/avatar">设置头像</a>
-        </li>
-        <li>
-            <a href="/setting/password">设置密码</a>
-        </li>
-        <li>
-            <a href="/">返回首页</a>
-        </li>
-    </ul>
-</div>
+{% block main %}
+<form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
+    {{ errors|dump_errors }}
+    <div class="col-xs-12 col-md-9">
+        <div class="Column1 section bf_dom">
+            <div class="section">
+                <div class="content">
+
+                    <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
+
+                        <div id="suplist_left_post_controls" style="min-height: 473px;">
+
+                            <div id="suplist_heading" class="c">
+
+                                <h1 class="qp_create">用户设置</h1>
+
+                                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="保存设置">{{ xsrf_form_html() }}</div>
+
+                            <div class="c qp_std_promo" id="suplist_promo">
+
+                                <div class="qp_std_promo_fields">
+
+                                    <fieldset>
+
+                                        <div class="qp_input has_autocap">
+                                            <input type="text" id="setting-username" name="username" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="用户名" title="" alt=""></div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <div class="qp_input">
+                                            <textarea class="qp bf_dom" id="setting-intro" name="intro" placeholder="自我介绍" title=""></textarea>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-3">
+        <div class="section bf_dom ">
+            <div class="section sidebar_featured_unified"></div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+
+{% block javascript %}
 {% endblock %}

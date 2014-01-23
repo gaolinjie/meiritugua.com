@@ -6,36 +6,22 @@
 {% endblock %}
 
 {% block main %}
-
 <form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
-              {{ errors|dump_errors }}
-<div class="col-xs-12 col-md-9">
-  <div class="Column1 section bf_dom">
-    <div class="section">
-      <div class="content">
+  {{ errors|dump_errors }}
+  <div class="col-xs-12 col-md-9">
+    <div class="Column1 section bf_dom">
+      <div class="section">
+        <div class="content">
 
-        <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
+          <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
 
-          <div id="suplist_left_post_controls" style="min-height: 473px;">
+            <div id="suplist_left_post_controls" style="min-height: 473px;">
 
-            
               <div id="suplist_heading" class="c">
 
                 <h1 class="qp_create">新建文章</h1>
 
                 <input type="submit" id="checkall" class="btn btn-sm btn-success" value="立即创建">{{ xsrf_form_html() }}</div>
-
-                <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
-                            <span>上传图片</span>
-                            <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
-                          <input type="hidden" id="x1" name="x1" />
-                          <input type="hidden" id="y1" name="y1" />
-                          <input type="hidden" id="x2" name="x2" />
-                          <input type="hidden" id="y2" name="y2" />
-                          <input type="hidden" id="x3" name="x3" />
-                          <input type="hidden" id="y3" name="y3" />
-                          <input type="hidden" id="x4" name="x4" />
-                          <input type="hidden" id="y4" name="y4" />
 
               <div class="c qp_std_promo" id="suplist_promo">
 
@@ -57,8 +43,6 @@
 
               </div>
 
-              
-
               <div class="c qp_std_promo" id="suplist_promo">
 
                 <div class="qp_std_promo_fields">
@@ -66,7 +50,7 @@
                   <fieldset>
                     <div class="qp_input">
 
-                        <textarea class="qp ca bf_dom" id="quickpost-content" name="content" placeholder="内容" title=""></textarea>
+                      <textarea class="qp ca bf_dom" id="quickpost-content" name="content" placeholder="内容" title=""></textarea>
 
                     </div>
 
@@ -74,70 +58,73 @@
                 </div>
 
               </div>
-            
+
+            </div>
 
           </div>
 
         </div>
+      </div>
+    </div>
+  </div>
 
-        
+  <div class="col-xs-12 col-md-3">
+    <div class="section bf_dom ">
+      <div class="section sidebar_featured_unified">
+
+        <div class="thumbnail-chooser suplist_options_top_row">
+          <h5>
+            <label>文章缩略图</label>
+          </h5>
+
+          <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-reg suplist_image_box bf_dom">
+                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
+                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+            </div>
+
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-wide suplist_image_box bf_dom">
+                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
+                <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+            </div>
+
+            <div class="suplist_image_buttons">
+
+              <div>
+                <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                  <div class="suplist_module_image_uploader" style="height: 20px;">
+                    <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                      <span>上传图片</span>
+                      <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                    <input type="hidden" id="x1" name="x1" />
+                    <input type="hidden" id="y1" name="y1" />
+                    <input type="hidden" id="x2" name="x2" />
+                    <input type="hidden" id="y2" name="y2" />
+                    <input type="hidden" id="x3" name="x3" />
+                    <input type="hidden" id="y3" name="y3" />
+                    <input type="hidden" id="x4" name="x4" />
+                    <input type="hidden" id="y4" name="y4" />
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tagsinput-wrapper">
+            <h5>
+              <label>文章标签</label>
+            </h5>
+            <input type="text" id="quickpost-tag" name="tag" value="" data-role="tagsinput" />
+          </div>
+
+        </div>
 
       </div>
     </div>
   </div>
-</div>
-
-<div class="col-xs-12 col-md-3">
-            <div class="section bf_dom ">
-              <div class="section sidebar_featured_unified">
-
-                <div class="thumbnail-chooser suplist_options_top_row">
-                <h5>
-                  <label>文章缩略图</label>
-                </h5>
-
-                <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
-                  <div class="suplist_thumb_container">
-                    <div class="suplist-thumb-reg suplist_image_box bf_dom">
-                      <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                      <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-                  </div>
-
-                  <div class="suplist_thumb_container">
-                    <div class="suplist-thumb-wide suplist_image_box bf_dom">
-                      <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                      <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-                  </div>
-
-                  <div class="suplist_image_buttons">
-
-                    <div>
-                      <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
-                        <div class="suplist_module_image_uploader" style="height: 20px;">
-
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tagsinput-wrapper">
-                  <h5>
-                  <label>文章标签</label>
-                </h5>
-            <input type="text" id="quickpost-tag" name="tag" value="" data-role="tagsinput" />
-          </div>
-
-              </div>
-
-
-
-              
-                
-              </div>
-            </div>
-          </div>
 
 </form>
 
@@ -150,11 +137,11 @@
       </div>
       <div class="modal-body" style=" OVERFLOW: auto;WIDTH: 800px; HEIGHT: 600px" align=center>
         <div id="img-wrapper">
-        <img id="img-preview" src=""/>
-      </div>
-      <div id="img-wrapper2" style="display: none">
-        <img id="img-preview2" src="" />
-      </div>
+          <img id="img-preview" src=""/>
+        </div>
+        <div id="img-wrapper2" style="display: none">
+          <img id="img-preview2" src="" />
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btn-next">下一步</button>

@@ -9,70 +9,71 @@
 
           <div class="entry-header">
 
-            <h1 class="entry-name yahei">
-              {{ post.title }}
-            </h1>
-
-
+            <h1 class="entry-name yahei">{{ post.title }}</h1>
 
           </div>
 
           <div class="entry-meta">
 
-          <span class="article-publisher"> <a href="/u/{{ post.author_username }}" title="由 {{ post.author_username }} 发布" rel="author">{{ post.author_username }}</a></span>
-          <span class="article-pubdate"><time datetime="{{ post.created }}" pubdate="pubdate">{{ post.created|pretty_date }}</time> 
-           
-      发布在
-              </span>
-          <span class="article-category">
-        <a href="/n/{{ post.nav_name }}" title="查看 {{ post.nav_title }} 中的全部文章" rel="category tag">{{ post.nav_title }}</a>/<a href="/c/{{ post._name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a> 
-          </span>
+            <span class="article-publisher">
+              <a href="/u/{{ post.author_username }}" title="由 {{ post.author_username }} 发布" rel="author">{{ post.author_username }}</a>
+            </span>
+            <span class="article-pubdate">
+              <time datetime="{{ post.created }}" pubdate="pubdate">{{ post.created|pretty_date }}</time>
+              发布在
+            </span>
+            <span class="article-category">
+              <a href="/n/{{ post.nav_name }}" title="查看 {{ post.nav_title }} 中的全部文章" rel="category tag">{{ post.nav_title }}</a>
+              /
+              <a href="/c/{{ post._name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a>
+            </span>
 
-            
-            
           </div>
 
           <div id="share_toolbar_wrapper" style="position: static; top: auto; z-index: 9999;">
-  <div id="share_toolbar">
-    <div class="stb_group" id="stb_article_view" title="本文围观次数">
-      <span id="stb_article_view_icon"></span>
-      <span id="stb_view_count">22301</span>
-    </div>
-    <div class="stb_divide"></div>
-    <div data="{'url':'<?php the_permalink()?>'}" class="bdshare_t bds_tools get-codes-bdshare stb_group stb_share_buttons" id="bdshare">
-      <a href="javascript:void(0);" id="stb_btn_weibo" class="bds_tsina" title="分享到新浪微博"></a>
-      <a href="javascript:void(0);" id="stb_btn_tqq" class="bds_tqq" title="分享到腾讯微博"></a>
-      <a href="javascript:void(0);" id="stb_btn_qzone_small" class="bds_qzone" title="分享到QQ空间"></a>
-      <a href="javascript:void(0);" id="stb_btn_renren_small" class="bds_renren" title="分享到人人网"></a>
-      <span id="stb_btn_more" class="bds_more"><span id="stb_sbtn_more_icon"></span></span>
-      <a href="javascript:void(0);" class="shareCount"></a>
-    </div>
-    <!--修改下一行的百度分享ID-->
-    <script type="text/javascript" id="bdshare_js" data="type=button&uid=12345" ></script>
-    <script type="text/javascript" id="bdshell_js"></script>
-    <script type="text/javascript">
+            <div id="share_toolbar">
+              <div class="stb_group" id="stb_article_view" title="本文围观次数">
+                <span id="stb_article_view_icon"></span>
+                <span id="stb_view_count">22301</span>
+              </div>
+              <div class="stb_divide"></div>
+              <div data="{'url':'<?php the_permalink()?>
+                '}" class="bdshare_t bds_tools get-codes-bdshare stb_group stb_share_buttons" id="bdshare">
+                <a href="javascript:void(0);" id="stb_btn_weibo" class="bds_tsina" title="分享到新浪微博"></a>
+                <a href="javascript:void(0);" id="stb_btn_tqq" class="bds_tqq" title="分享到腾讯微博"></a>
+                <a href="javascript:void(0);" id="stb_btn_qzone_small" class="bds_qzone" title="分享到QQ空间"></a>
+                <a href="javascript:void(0);" id="stb_btn_renren_small" class="bds_renren" title="分享到人人网"></a>
+                <span id="stb_btn_more" class="bds_more">
+                  <span id="stb_sbtn_more_icon"></span>
+                </span>
+                <a href="javascript:void(0);" class="shareCount"></a>
+              </div>
+              <!--修改下一行的百度分享ID-->
+              <script type="text/javascript" id="bdshare_js" data="type=button&uid=12345" ></script>
+              <script type="text/javascript" id="bdshell_js"></script>
+              <script type="text/javascript">
       document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
     </script>
-    <div class="stb_divide"></div>
-    <div class="stb_share_buttons stb_group">
-      <!-- 前一篇 -->
+              <div class="stb_divide"></div>
+              <div class="stb_share_buttons stb_group">
+                <!-- 前一篇 -->
 
-        <a id="stb_btn_prev" href="" title=""></a>
+                <a id="stb_btn_prev" href="" title=""></a>
 
-      <!-- 下一篇 -->
+                <!-- 下一篇 -->
 
-        <a id="stb_btn_next" href="" title=""></a>
-    </div>
-    <div class="stb_group_right">
+                <a id="stb_btn_next" href="" title=""></a>
+              </div>
+              <div class="stb_group_right">
 
-      <div class="bdlikebutton stb_like_btn bdlikebutton-blue bdlikebutton-small bdlikebutton-small-blue">
-        <div class="bdlikebutton-inner">
-          <span class="bdlikebutton-add"></span>
-          <div class="bdlikebutton"></div>
-          <div class="bdlikebutton-count">
-            <!-- 处理百度like按钮点击和like数量 -->
-            <script id="bdlike_shell" type="text/javascript"></script>
-            <script type="text/javascript">
+                <div class="bdlikebutton stb_like_btn bdlikebutton-blue bdlikebutton-small bdlikebutton-small-blue">
+                  <div class="bdlikebutton-inner">
+                    <span class="bdlikebutton-add"></span>
+                    <div class="bdlikebutton"></div>
+                    <div class="bdlikebutton-count">
+                      <!-- 处理百度like按钮点击和like数量 -->
+                      <script id="bdlike_shell" type="text/javascript"></script>
+                      <script type="text/javascript">
             var bdShare_config = {
               "type":"small",
               "color":"blue",
@@ -82,16 +83,14 @@
             };
             document.getElementById("bdlike_shell").src="http://bdimg.share.baidu.com/static/js/like_shell.js?t=" + new Date().getHours();
             </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-          <div id="entry-content" class="entry-content">
-            {{ post.content|content_process }}
-          </div>
+          <div id="entry-content" class="entry-content">{{ post.content|content_process }}</div>
 
           <div id="ifr-article-component" class="m-t-10 clearfix">
             <div class="clearfix"></div>
@@ -110,7 +109,7 @@
                 <h2 class="yahei">
                   <a href="http://www.ifanr.com/author/hezongcheng">{{ post.author_username }}</a>
                 </h2>
-                <p>新媒介的拥趸，相信“ 媒介即讯息 ”，关注媒介技术的力量。</p>
+                <p>{{ post.author_intro }}</p>
               </div>
             </div>
 

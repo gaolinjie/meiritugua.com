@@ -134,6 +134,7 @@ class PostModel(Query):
         field = "post.*, \
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar, \
+                author_user.intro as author_intro, \
                 channel.name as channel_name, \
                 channel.title as channel_title, \
                 nav.name as nav_name, \

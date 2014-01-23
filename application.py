@@ -57,8 +57,8 @@ class Application(tornado.web.Application):
             (r"/create", handler.post.CreatePostHandler),
             (r"/login", handler.user.LoginHandler),
             (r"/logout", handler.user.LogoutHandler),
-            (r"/signup", handler.user.RegisterHandler),
-            (r"/forgot", handler.user.ForgotPasswordHandler),
+            (r"/setting", handler.user.SettingHandler),
+            
 
             (r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),

@@ -1167,11 +1167,8 @@ height: 150px;
 
 
 #suplist_module_thumb_uploader {
-	position: absolute;
-	left: 694px;
-	top: 100px;
 	width: 204px;
-	z-index: 100;
+	margin-top: 10px;
 }
 
 .suplist_thumb_container {
