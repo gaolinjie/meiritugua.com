@@ -27,9 +27,9 @@ INSERT INTO `channel` VALUES (12, 5, 'hot', '热门');
 INSERT INTO `channel` VALUES (13, 5, 'gif', 'gif墙');
 
 
-INSERT INTO `tag` VALUES (1, '3D 打印', 1, 2013-12-13);
-INSERT INTO `tag` VALUES (2, '宇宙', 1, 2013-12-13);
-INSERT INTO `tag` VALUES (3, '奥巴马', 1, 2013-12-13);
+INSERT INTO `tag` VALUES (1, '3D 打印', 1, '2013-12-13');
+INSERT INTO `tag` VALUES (2, '宇宙', 1, '2013-12-13');
+INSERT INTO `tag` VALUES (3, '奥巴马', 1, '2013-12-13');
 
 INSERT INTO `post_tag` VALUES (1, 10, 1);
 INSERT INTO `post_tag` VALUES (2, 10, 2);

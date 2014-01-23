@@ -1489,3 +1489,7 @@ font-size: 13px;
 .tagsinput-wrapper {
 	margin-top: 80px;
 }
+
+.modal-dialog {
+width: 840px;
+}
