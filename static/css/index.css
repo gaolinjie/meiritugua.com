@@ -1479,9 +1479,10 @@ line-height: 20px;
 display: block;
 font-weight: 700;
 padding-right: 35px;
+letter-spacing:8px;
 }
 
-.sidebar_featured_unified {
+.sidebar_config {
 	background-color: #F2F2F2;
 	padding: 10px;
 }
