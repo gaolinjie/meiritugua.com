@@ -1045,14 +1045,12 @@ line-height: 1.0em;
 
 .suplist_options_top_row {
 margin: 0;
-padding: 10px 0 30px 5px;
 margin: 0 0 10px 0;
-background-color: #F2F2F2;
+
 }
 
 .suplist_options_top_row h5, .suplist_options_top_row h5 label {
 color: #424242;
-font-size: 13px;
 }
 
 .suplist_options_top_row label {
@@ -1180,7 +1178,6 @@ height: 150px;
 }
 
 .thumbnail-chooser {
-	padding: 10px;
 height: auto;
 }
 
@@ -1444,8 +1441,17 @@ font-size: 13px;
 
 .bootstrap-tagsinput { width: 100%; }
 
+
+.channel-chooser {
+	margin-top: 60px;
+}
+
+.channel-chooser select {
+	width: 208px;
+}
+
 .tagsinput-wrapper {
-	margin-top: 80px;
+	margin-top: 20px;
 }
 
 .modal-dialog {
@@ -1454,4 +1460,28 @@ width: 840px;
 
 .infscr-loading {
 	text-align: center;
+}
+
+.content-header {
+width: 595px;
+background-color: #eee;
+padding: 30px 13px;
+font-size: 16px;
+font-weight: 700;
+}
+.content-header {
+margin-top: 0;
+}
+
+.channel-name {
+font-size: 25px;
+line-height: 20px;
+display: block;
+font-weight: 700;
+padding-right: 35px;
+}
+
+.sidebar_featured_unified {
+	background-color: #F2F2F2;
+	padding: 10px;
 }

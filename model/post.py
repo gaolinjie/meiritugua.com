@@ -12,6 +12,28 @@ class PostModel(Query):
         self.table_name = "post"
         super(PostModel, self).__init__()
 
+    def get_post_by_post_id(self, post_id):
+        where = "post.id = %s" % post_id
+        join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
+                LEFT JOIN channel ON post.channel_id = channel.id \
+                LEFT JOIN nav ON channel.nav_id = nav.id"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar, \
+                author_user.intro as author_intro, \
+                channel.name as channel_name, \
+                channel.title as channel_title, \
+                nav.name as nav_name, \
+                nav.title as nav_title"
+        return self.where(where).join(join).field(field).find()
+
+
+
+
+
+
+
+
     def get_all_posts(self, num = 32, current_page = 1):
         join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
                 LEFT JOIN channel ON post.channel_id = channel.id \
@@ -126,20 +148,7 @@ class PostModel(Query):
         where = "author_id = %s" % uid
         return self.where(where).count()
 
-    def get_post_by_post_id(self, post_id):
-        where = "post.id = %s" % post_id
-        join = "LEFT JOIN user AS author_user ON post.author_id = author_user.uid \
-                LEFT JOIN channel ON post.channel_id = channel.id \
-                LEFT JOIN nav ON channel.nav_id = nav.id"
-        field = "post.*, \
-                author_user.username as author_username, \
-                author_user.avatar as author_avatar, \
-                author_user.intro as author_intro, \
-                channel.name as channel_name, \
-                channel.title as channel_title, \
-                nav.name as nav_name, \
-                nav.title as nav_title"
-        return self.where(where).join(join).field(field).find()
+    
 
     def add_new_post(self, post_info):
         return self.data(post_info).add()

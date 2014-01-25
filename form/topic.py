@@ -104,6 +104,10 @@ class CreateForm(Form):
          validators.Required(message = "请填写帖子内容"),
      ])
 
+     channel = TextField('Channel', [
+         validators.Required(message = "请选择帖子频道"),
+     ])
+
 
 
      x1 = TextField('X1', [

@@ -45,14 +45,13 @@ class CreatePostHandler(BaseHandler):
     def get(self, template_variables = {}):
     	user_info = self.current_user
         template_variables["user_info"] = user_info
+        template_variables["channels"] = self.channel_model.get_all_channels()
         self.render("create.html", **template_variables)
 
     @tornado.web.authenticated
     def post(self, template_variables = {}):
         print "CreateHandler:post"
         template_variables = {}
-
-
 
         # validate the fields
         form = CreateForm(self)
@@ -61,20 +60,21 @@ class CreatePostHandler(BaseHandler):
             self.get({"errors": form.errors})
             return
 
-        # continue while validate succeed     
+        # continue while validate succeed
+        channel = self.channel_model.get_channel_by_channel_title(form.channel.data)
         post_info = {
             "author_id": self.current_user["uid"],           
             "title": form.title.data,
-            "intro": form.title.data,
+            "intro": form.intro.data,
             "content": form.content.data,
-            "channel_id": 0,
+            "channel_id": channel.id,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
         post_id = self.post_model.add_new_post(post_info)
 
-        std_id = self.std_model.add_new_std({"post_id": post_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
-        std_id = self.hot_model.add_new_hot({"post_id": post_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
+        std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+        hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
 
         # process post thumb
         thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))

@@ -29,8 +29,12 @@ class ChannelModel(Query):
                 author_user.username as author_username"
         return self.where(where).join(join).field(field).find()
 
-    def get_channel_by_name(self, channel_name):
+    def get_channel_by_channel_name(self, channel_name):
         where = "name = '%s'" % channel_name
+        return self.where(where).find()
+
+    def get_channel_by_channel_title(self, channel_title):
+        where = "title = '%s'" % channel_title
         return self.where(where).find()
 
     def get_user_all_channels(self, user_id, num = 10, current_page = 1):

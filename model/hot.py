@@ -23,3 +23,13 @@ class HotModel(Query):
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar"
         return self.order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_hot_posts_by_channel_id(self, channel_id, num = 5, current_page = 1):
+        where = "post.channel_id = '%s'" % channel_id
+        join = "LEFT JOIN post ON hot.post_id = post.id\
+                LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
+        order = "post.created DESC, post.id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)

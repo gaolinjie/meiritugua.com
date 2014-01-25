@@ -1,0 +1,151 @@
+{% extends 'snippet/layout.html' %}
+
+{% block main %}
+<div class="col-xs-12 col-md-8">
+  <div class="Column1 section bf_dom">
+    <div class="section">
+      <div class="content">
+        <div class="content-header">
+                          <h1 class="channel-name yahei">{{channel.title}}</h1>
+              </div>
+
+
+        <ul class="std-posts" id="page_flow">
+          {% for std in stds.list %}
+          <li id="post-{{ std.id }}" class=" std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
+            <article>
+              <header>
+                <div class="thumb-unit bf_dom">
+                  <a href="/p/{{ std.id }}">
+                    <div style="position:relative;">
+                      <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.cover }}" width="125" height="83" alt=""></div>
+                  </a>
+                </div>
+                <hgroup>
+                  <h2 class="" style="">
+                    <a href="/p/{{ std.id }}">{{ std.title }}</a>
+                  </h2>
+                </hgroup>
+              </header>
+              <p class="description " style=""> <b>{{ std.intro }}</b>
+              </p>
+              <p class="small-meta">
+                <span class="generic-image icon"></span>
+                <a class="username notranslate" href="#">{{ std.author_username }}</a>
+                <span class="time-image icon"></span>
+                <span class="time-ago">{{ std.created|pretty_date }}</span>
+                <a href="#" class="responses">
+                  <span class="response-image icon"></span>
+                  <span class="num">{{ std.comment_count }}</span>
+                  回应
+                </a>
+              </p>
+            </article>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 col-md-4">
+  <div class="Column2 section bf_dom ">
+    <div class="section sidebar_featured_unified">
+      <!--
+                <div id="big_stories_header" class="header">
+
+      <h1>
+        <font>
+          <font class="">热门新闻</font>
+        </font>
+      </h1>
+    </div>
+    -->
+    <ul id="big_stories_container" class="hot-posts">
+      {% for hot in hots.list %}
+      <li class="hot-post small-posts pinned bf_dom">
+        <div class="bf_dom bf_cts-5-1 bf_cts">
+          <a href="/p/{{ hot.id }}">
+            <img class="bf_dom pinned-image" src="/static/thumb/w_{{ hot.cover }}" alt="{{ hot.title }}"></a>
+          <h3>
+            <a href="/p/{{ hot.id }}">
+              <span>
+                <font>
+                  <font>{{ hot.title }}</font>
+                </font>
+              </span>
+            </a>
+          </h3>
+        </div>
+        <p class="small-meta">
+          <span class="generic-image icon"></span>
+          <a class="username notranslate" href="#">{{ hot.author_username }}</a>
+          <span class="time-image icon"></span>
+          <span class="time-ago">
+            <font>
+              <font>{{ hot.created|pretty_date }}</font>
+            </font>
+          </span>
+          <a href="#" class="responses">
+            <span class="response-image icon"></span>
+            <span class="num">
+              <font>
+                <font>{{ hot.comment_count }}</font>
+              </font>
+            </span>
+            <font>
+              <font>回应</font>
+            </font>
+          </a>
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+</div>
+
+<div id="navigation" align="center">
+<a href="/?page={{stds.page.next}}"></a>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="//unslider.com/unslider.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.banner').unslider({
+  speed: 500,               //  The speed to animate each slide (in milliseconds)
+  delay: 3000,              //  The delay between slide animations (in milliseconds)
+  complete: function() {},  //  A function that gets called after every slide animation
+  keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+  dots: true,               //  Display dot navigation
+  fluid: false              //  Support responsive design. May break non-responsive designs
+});
+});
+  </script>
+
+<script src="/static/js/jquery.infinitescroll.js"></script>
+<script>
+ $(document).ready(function (){
+    $(".std-posts").infinitescroll({
+          navSelector: "#navigation",
+          nextSelector: "#navigation a",
+          itemSelector: ".std-post",
+          maxPage: {{stds.page.pages}},   
+      }, function(newElems) {
+
+      });
+
+    $(".hot-posts").infinitescroll({
+          navSelector: "#navigation",
+          nextSelector: "#navigation a",
+          itemSelector: ".hot-post",
+          maxPage: {{hots.page.pages}},   
+      }, function(newElems) {
+
+      });
+ }); 
+    </script>
+{% endblock %}
