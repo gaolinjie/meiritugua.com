@@ -34,3 +34,13 @@ class StdModel(Query):
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_std_posts_by_user_id(self, user_id, num = 6, current_page = 1):
+        where = "post.author_id = %s" % user_id
+        join = "LEFT JOIN post ON std.post_id = post.id\
+                LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
+        order = "post.created DESC, post.id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)

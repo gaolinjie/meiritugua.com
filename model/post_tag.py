@@ -30,3 +30,13 @@ class Post_tagModel(Query):
         field = "post_tag.*, \
                 tag.name as tag_name"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_tag_all_posts(self, tag_id, num = 10, current_page = 1):
+        where = "post_tag.tag_id = %s" % tag_id
+        join = "LEFT JOIN post ON post_tag.post_id = post.id\
+                LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
+        order = "post.created DESC, post.id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)

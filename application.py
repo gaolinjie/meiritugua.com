@@ -24,6 +24,7 @@ import handler.post
 import handler.community
 import handler.user
 import handler.channel
+import handler.tag
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -64,6 +65,8 @@ class Application(tornado.web.Application):
             (r"/login", handler.user.LoginHandler),
             (r"/logout", handler.user.LogoutHandler),
             (r"/setting", handler.user.SettingHandler),
+            (r"/u/(.*)", handler.user.UserHandler),
+            (r"/tag/(.*)", handler.tag.TagHandler),
 
             (r"/(.*)", handler.channel.ChannelHandler),
             
