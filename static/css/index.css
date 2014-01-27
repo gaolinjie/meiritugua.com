@@ -1532,7 +1532,7 @@ padding: 0 0 8px 0;
 margin: 0;
 }
 
- .buzz_superlist_item {
+#buzz_sub_buzz .buzz_superlist_item {
 clear: both;
 position: relative;
 padding: 20px 0px 20px 0px;
