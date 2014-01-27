@@ -1549,3 +1549,7 @@ font: 12px/15px "ProximaNovaRegular", Helvetica, Arial, sans-serif;
 color: #999;
 font-style: italic;
 }
+
+.share-box {
+	display: none;
+}
