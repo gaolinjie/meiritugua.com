@@ -93,3 +93,7 @@ display: none !important;
 border-radius: 50%;
 opacity: 0.9;
 }
+
+.ds-meta {
+	display: none;
+}

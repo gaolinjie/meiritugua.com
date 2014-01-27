@@ -1591,3 +1591,142 @@ font-style: italic;
 .share-box {
 	display: none;
 }
+
+
+
+/* social-actions css */
+#social-actions {
+padding: 5px 0 0 0;
+border-top: 1px solid #eee;
+}
+.section {
+float: left;
+width: 100%;
+margin-bottom: 15px;
+}
+.SocialActions {
+position: relative;
+
+margin: 10px 0 10px;
+
+}
+.social-actions-hybrid .badge-voting {
+width: 630px;
+}
+.social-actions .badge-voting {
+margin-right: 10px;
+margin-top: 5px;
+}
+.social-buttons {
+float: left;
+padding: 0 4px 0 0;
+}
+.left {
+clear: none;
+
+}
+.social-actions .badge-voting #reactions-normal {
+width: auto;
+padding-right: 15px;
+padding-bottom: 5px;
+float: left;
+clear: both;
+margin: 10px 0;
+}
+.SocialActions .social-buttons h5 {
+text-transform: uppercase;
+font: bold 11px Arial,sans-serif;
+}
+h5 {
+font-weight: bold!important;
+font-family: Arial, Helvetica, sans-serif!important;
+margin-bottom: 5px!important;
+}
+.social-actions .badge-voting ul {
+display: inline;
+}
+#reactions-normal ul.reactions li {
+float: left;
+margin: 1px 1px 2px 0px;
+display: inline-block;
+}
+.social-actions .badge-voting li {
+
+padding: 0;
+line-height: 9px;
+}
+.social-buttons li {
+
+vertical-align: top;
+}
+
+.social-actions .badge-voting .reactions_one li a {
+display: inline-block;
+white-space: nowrap;
+border-bottom: 1px solid #b2b382;
+border-right: 1px solid #d9d9a0;
+
+font: 13px/22px 'ProximaNovaBold', Arial, Helvetica, sans-serif;
+color: #222;
+text-align: center;
+text-transform: uppercase;
+background: #FE0;
+border-radius: 3px;
+margin: 1px 5px 0 0;
+letter-spacing: 0px;
+}
+.social-actions-hybrid .badge-voting li a {
+
+width: auto!important;
+}
+.social-actions .reactions_one li a.vote-love_or_hate span.heart, .social-actions .reactions_two li a.vote-love_or_hate span.heart, .social-actions .reaction_control_heart li a.vote-love_or_hate span.heart {
+display: block;
+width: 19px;
+height: 16px;
+background: url(http://buzzfeed.com/static/images/public/social/lovehate-16_no_bg.png?v=201312161302);
+}
+.badge-vote-count {
+display: block;
+text-align: center;
+font: bold 12px arial,sans-serif;
+padding-top: 4px;
+color: #888;
+}
+.social-actions .badge-voting .reactions_one li a {
+display: inline-block;
+white-space: nowrap;
+border-bottom: 1px solid #b2b382;
+border-right: 1px solid #d9d9a0;
+padding: 2px 9px 1px !important;
+font: 13px/22px 'ProximaNovaBold', Arial, Helvetica, sans-serif;
+color: #222;
+text-align: center;
+text-transform: uppercase;
+background: #FE0;
+border-radius: 3px;
+margin: 1px 5px 0 0;
+letter-spacing: 0px;
+}
+.social-actions-hybrid .badge-voting li a {
+
+width: auto!important;
+}
+.social-actions .reactions_one li.hate a.vote-love_or_hate span.heart, .social-actions .reactions_two li.hate a.vote-love_or_hate span.heart, .social-actions .reaction_control_heart li.hate a.vote-love_or_hate span.heart {
+background-position: -19px 0px;
+}
+.social-actions .reactions_one li a.vote-love_or_hate span.heart, .social-actions .reactions_two li a.vote-love_or_hate span.heart, .social-actions .reaction_control_heart li a.vote-love_or_hate span.heart {
+display: block;
+width: 19px;
+height: 16px;
+background: url(http://buzzfeed.com/static/images/public/social/lovehate-16_no_bg.png?v=201312161302);
+}
+.social-actions .reactions_one li a.vote-love_or_hate {
+padding: 4px 8px 5px 8px !important;
+}
+.social-actions .badge-voting .reactions_one li a:hover {
+color: #ffffff;
+background: #07e;
+}
+.badge_heart li.love a:hover, .badge_heart li.hate a:hover {
+background: #07e !important;
+}
