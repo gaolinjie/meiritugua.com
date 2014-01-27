@@ -793,7 +793,7 @@ color: #666;
 font-size: 15px;
 line-height: 1.8em;
 margin: 0;
-margin-top: 10px;
+margin-top: 20px;
 clear: both;
 word-wrap: break-word;
 word-break: normal;
@@ -1524,6 +1524,15 @@ margin-top: 15px;
 
 
 /* page content css */
+
+.entry-content h1 {
+font: 20px/22px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
 .entry-content h2 {
 font: 18px/20px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
@@ -1532,11 +1541,40 @@ padding: 0 0 8px 0;
 margin: 0;
 }
 
-#buzz_sub_buzz .buzz_superlist_item {
-clear: both;
-position: relative;
-padding: 20px 0px 20px 0px;
+.entry-content h3 {
+font: 16px/18px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
 margin: 0;
+}
+
+.entry-content h4 {
+font: 14px/16px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.entry-content h5 {
+font: 12px/14px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.entry-content h6 {
+font: 10px/12px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.buzz_superlist_item {
+	margin-bottom: 30px;
 }
 
 .author-profile {
