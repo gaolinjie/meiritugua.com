@@ -793,6 +793,7 @@ color: #666;
 font-size: 15px;
 line-height: 1.8em;
 margin: 0;
+margin-top: 10px;
 clear: both;
 word-wrap: break-word;
 word-break: normal;
@@ -832,7 +833,7 @@ width: 70%;
 }
 
 .entry-meta-tags a:hover {
-background: #333;
+background: #fe4e5b;
 color: #fff;
 text-decoration: none;
 }
@@ -1519,4 +1520,32 @@ margin-bottom: 5px;
 margin-bottom: 5px;
 margin-top: 15px;
 
+}
+
+
+/* page content css */
+.entry-content h2 {
+font: 18px/20px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+ .buzz_superlist_item {
+clear: both;
+position: relative;
+padding: 20px 0px 20px 0px;
+margin: 0;
+}
+
+.author-profile {
+	margin-bottom: 10px;
+}
+
+
+.sub_buzz_source_via, .sub_buzz_source_via a {
+font: 12px/15px "ProximaNovaRegular", Helvetica, Arial, sans-serif;
+color: #999;
+font-style: italic;
 }
