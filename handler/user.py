@@ -122,11 +122,12 @@ class SettingHandler(BaseHandler):
 
         user_info = self.current_user
         update_result = self.user_model.set_user_base_info_by_uid(user_info["uid"], {
-            "intro": form.self_intro.data,
+            "username": form.username.data,
+            "intro": form.intro.data,
+            "updated": time.strftime('%Y-%m-%d %H:%M:%S')
         })
 
-        updated = self.user_model.set_user_base_info_by_uid(user_info["uid"], {"updated": time.strftime('%Y-%m-%d %H:%M:%S')})
-        self.redirect("/u/" + user_info["username"])
+        self.redirect("/u/" + form.username.data)
 
 
 class UserHandler(BaseHandler):

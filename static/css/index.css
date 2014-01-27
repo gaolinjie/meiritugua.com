@@ -1508,3 +1508,15 @@ display: block;
 font-weight: 700;
 padding-right: 35px;
 }
+
+.label-username {
+font-size: 16px;
+margin-bottom: 5px;
+}
+
+.label-intro {
+	font-size: 16px;
+margin-bottom: 5px;
+margin-top: 15px;
+
+}

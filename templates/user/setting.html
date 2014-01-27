@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block main %}
-<form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
+<form class="mt10" action='/setting' method="POST" enctype="multipart/form-data">
     {{ errors|dump_errors }}
     <div class="col-xs-12 col-md-9">
         <div class="Column1 section bf_dom">
@@ -30,12 +30,14 @@
                                     <fieldset>
 
                                         <div class="qp_input has_autocap">
-                                            <input type="text" id="setting-username" name="username" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="用户名" title="" alt=""></div>
+                                            <div for="setting-username" class="label-username">用户名:</div>
+                                            <input type="text" id="setting-username" name="username" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="用户名" value="{{user_info.username}}"></div>
                                     </fieldset>
 
                                     <fieldset>
                                         <div class="qp_input">
-                                            <textarea class="qp bf_dom" id="setting-intro" name="intro" placeholder="自我介绍" title=""></textarea>
+                                            <div for="setting-intro" class="label-intro">自我介绍:</div>
+                                            <textarea class="qp bf_dom" id="setting-intro" name="intro" placeholder="自我介绍">{{user_info.intro}}</textarea>
                                         </div>
 
                                     </fieldset>
