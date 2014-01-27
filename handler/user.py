@@ -69,7 +69,7 @@ class LoginHandler(BaseHandler):
                 "duoshuo_id": int(result2["response"]["user_id"]),
                 "username": result2["response"]["name"],
                 "avatar": result2["response"]["avatar_url"],
-                "intro": "简短的自我介绍。",
+                "intro": "请添加简短的自我介绍。",
                 "posts": 0,
                 "created": time.strftime('%Y-%m-%d %H:%M:%S')
             }

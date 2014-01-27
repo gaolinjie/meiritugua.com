@@ -37,14 +37,6 @@ CREATE TABLE `user` (
   PRIMARY KEY (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 delimiter ;;
-CREATE TRIGGER `user_delete_trigger` BEFORE DELETE ON `user` FOR EACH ROW BEGIN
-        DELETE FROM topic WHERE topic.author_id = OLD.uid;
-        DELETE FROM reply WHERE reply.author_id = OLD.uid;
-        DELETE FROM notification WHERE notification.trigger_user_id = OLD.uid;
-        DELETE FROM notification WHERE notification.involved_user_id = OLD.uid;
-    END;
- ;;
-delimiter ;
 
 -- ----------------------------
 --  Table structure for `post`
