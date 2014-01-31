@@ -57,7 +57,7 @@ var duoshuoQuery = {
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
           {% for nav in navs %}
-          <li class="dropdown nav-item">
+          <li class="dropdown nav-item" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
             <a href="/{{ nav.name }}">{{ nav.title }}</a>
             <ul class="dropdown-menu ">
               <div class="content-preview">
@@ -73,45 +73,7 @@ var duoshuoQuery = {
               <div class="content-right">
                 <ul class="nav_preview" style="">
 
-                  <li>
-                    <a rel:gt_act="post/thumb" rel:gt_label="entertainment" href="/jordanzakarin/bruce-springsteen-jimmy-fallon-mock-chris-christies-bridgega" class="thumb_warpper">
-
-                      <img src="http://s3-ak.buzzfeed.com/static/2014-01/campaign_images/webdr03/15/10/bruce-springsteen-and-jimmy-fallon-take-on-chris--1-1907-1389801090-8.jpg" class="image_square"></a>
-                    <a rel:gt_act="post/title" rel:gt_label="entertainment" href="/jordanzakarin/bruce-springsteen-jimmy-fallon-mock-chris-christies-bridgega">
-                      <span class="title_small">
-                        Bruce Springsteen And Jimmy Fallon Take On Chris Christie's Bridgegate With "Born To Run" Spoof
-                      </span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a rel:gt_act="post/thumb" rel:gt_label="entertainment" href="/mbvd/32-powerful-tweets-that-takedown-yellowface-on-how-i-met-you" class="thumb_warpper">
-
-                      <img src="http://s3-ak.buzzfeed.com/static/2014-01/campaign_images/webdr06/15/18/how-i-met-your-mother-puts-a-character-in-yellowf-1-3897-1389829852-6.jpg" class="image_square"></a>
-                    <a rel:gt_act="post/title" rel:gt_label="entertainment" href="/mbvd/32-powerful-tweets-that-takedown-yellowface-on-how-i-met-you">
-                      <span class="title_small">"How I Met Your Mother" Puts A Character In Yellowface</span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a rel:gt_act="post/thumb" rel:gt_label="entertainment" href="/lyapalater/the-27-best-moments-from-the-golden-globe-awards" class="thumb_warpper">
-
-                      <img src="http://s3-ak.buzzfeed.com/static/2014-01/campaign_images/webdr07/13/9/the-27-best-moments-from-the-golden-globe-awards-1-31282-1389621905-27.jpg" class="image_square"></a>
-                    <a rel:gt_act="post/title" rel:gt_label="entertainment" href="/lyapalater/the-27-best-moments-from-the-golden-globe-awards">
-                      <span class="title_small">The 27 Best Moments From The Golden Globe Awards</span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a rel:gt_act="post/thumb" rel:gt_label="entertainment" href="/jarettwieselman/game-of-thrones-season-four-full-trailer" class="thumb_warpper">
-
-                      <img src="http://s3-ak.buzzfeed.com/static/2014-01/campaign_images/webdr06/12/21/the-explosive-full-game-of-thrones-season-4-trail-1-5462-1389581597-9.jpg" class="image_square"></a>
-                    <a rel:gt_act="post/title" rel:gt_label="entertainment" href="/jarettwieselman/game-of-thrones-season-four-full-trailer">
-                      <span class="title_small">
-                        The Explosive Full "Game Of Thrones" Season 4 Trailer Has Arrived
-                      </span>
-                    </a>
-                  </li>
+                  <li><a href="" class="thumb_warpper"><img src="" class="image_square"></a><a href=""> <span class="title_small"></span></a></li>
 
                   <a rel:gt_act="vertical/more" rel:gt_label="entertainment" href="/entertainment" class="more_vertical">
                     <span class="pointer unicode">▶</span>
@@ -258,6 +220,25 @@ var duoshuoQuery = {
    });
 
 </script>
+
+  <script>
+$(document).ready(function() {
+   $ (".nav-item").hover(function(){
+    var preview_list = $(this).find(".nav_preview");
+      var nav_name = $(this).attr('data-name'); 
+          //alert(nav_name)
+          $.getJSON('/nav/'+nav_name, function(data) {
+            var preview_string='';
+            for(i=0;i<data.stds.length;i++){
+              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].cover+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
+            }
+            preview_list.html(preview_string);
+          });
+  },function(){
+ });
+});
+    </script>
+
 <a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>
 </body>
 </html>

@@ -36,7 +36,6 @@ CREATE TABLE `user` (
   `last_login` datetime DEFAULT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-delimiter ;;
 
 -- ----------------------------
 --  Table structure for `post`

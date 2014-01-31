@@ -122,3 +122,21 @@ class CreatePostHandler(BaseHandler):
                     self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
 
         self.redirect("/")
+
+
+class NavPreviewHandler(BaseHandler):
+    def get(self, nav_name, template_variables = {}):
+        stds = self.nav_model.get_nav_std_posts(nav_name)
+        jarray = []
+        i = 0
+        for std in stds["list"]:
+            jobject = {
+                "id": std.id,
+                "title": std.title,
+                "cover": std.cover,
+            }
+            jarray.append(jobject)
+            i=i+1
+
+        self.write(lib.jsonp.print_JSON({"stds": jarray}))
+           
