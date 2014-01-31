@@ -64,15 +64,21 @@ var duoshuoQuery = {
               <div class="content-left">
                 {% for channel in channels %}
               {% if channel.nav_id == nav.id %}
-                <li>
-                  <a href="/{{ channel.name }}">{{ channel.title }}</a>
+                <li class="channel-item" id="channel-{{ channel.name }}" data-name="{{ channel.name }}">
+                  <a href="/{{ channel.name }}" class="channel-title">{{ channel.title }}</a>
                 </li>
                 {% endif %}
               {% endfor %}
               </div>
               <div class="content-right">
-                <ul class="nav_preview" style="">
+                <ul class="nav_preview"  id="nav_preview_{{ nav.name }}" style="display: none">
                 </ul>
+                {% for channel in channels %}
+              {% if channel.nav_id == nav.id %}
+              <ul class="nav_preview" id="nav_preview_{{ channel.name }}" style="display: none">
+                </ul>
+                {% endif %}
+              {% endfor %}
 
               </div>
             </div>
@@ -216,8 +222,9 @@ var duoshuoQuery = {
   <script>
 $(document).ready(function() {
    $ (".nav-item").hover(function(){
-    var preview_list = $(this).find(".nav_preview");
+    
       var nav_name = $(this).attr('data-name'); 
+      var preview_list = $(this).find("#nav_preview_"+nav_name);
       var nav_title = $(this).find(".nav-title").text();
       
           //alert(nav_name)
@@ -228,10 +235,36 @@ $(document).ready(function() {
             }
             preview_string+='<a href="/'+nav_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+nav_title+'</a>';
             preview_list.html(preview_string);
+            preview_list.show();
           });
   },function(){
  });
+
+
+$ (".channel-item").hover(function(){
+    
+      var channel_name = $(this).attr('data-name'); 
+
+      var preview_list = $(this).parent().parent().find("#nav_preview_"+channel_name);
+      var channel_title = $(this).find(".channel-title").text();
+      
+          //alert(nav_name)
+          $.getJSON('/channel/'+channel_name, function(data) {
+            var preview_string='';
+            for(i=0;i<data.stds.length;i++){
+              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].cover+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
+            }
+            preview_string+='<a href="/'+channel_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+channel_title+'</a>';
+            preview_list.html(preview_string);
+            $ (".nav_preview").hide();
+            preview_list.show();
+          });
+  },function(){
+ });
+
 });
+
+
     </script>
 
 <a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>

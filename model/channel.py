@@ -130,3 +130,17 @@ class ChannelModel(Query):
                 author_user.username as author_username, \
                 follow.user_id as follow_user_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_channel_std_posts(self, channel_name, num = 4, current_page = 1):
+        where = "channel.name = '%s'" % channel_name
+        join = "RIGHT JOIN std ON channel.id = std.channel_id\
+                LEFT JOIN post ON std.post_id = post.id\
+                LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
+        order = "post.created DESC, post.id DESC"
+        field = "post.*, \
+                author_user.username as author_username, \
+                author_user.avatar as author_avatar"
+        return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+
+

@@ -139,4 +139,21 @@ class NavPreviewHandler(BaseHandler):
             i=i+1
 
         self.write(lib.jsonp.print_JSON({"stds": jarray}))
+
+
+class ChannelPreviewHandler(BaseHandler):
+    def get(self, channel_name, template_variables = {}):
+        stds = self.channel_model.get_channel_std_posts(channel_name)
+        jarray = []
+        i = 0
+        for std in stds["list"]:
+            jobject = {
+                "id": std.id,
+                "title": std.title,
+                "cover": std.cover,
+            }
+            jarray.append(jobject)
+            i=i+1
+
+        self.write(lib.jsonp.print_JSON({"stds": jarray}))
            

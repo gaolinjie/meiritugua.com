@@ -68,6 +68,7 @@ class Application(tornado.web.Application):
             (r"/u/(.*)", handler.user.UserHandler),
             (r"/tag/(.*)", handler.tag.TagHandler),
             (r"/nav/(.*)", handler.post.NavPreviewHandler),
+            (r"/channel/(.*)", handler.post.ChannelPreviewHandler),
 
             (r"/(.*)", handler.channel.ChannelHandler),
             
