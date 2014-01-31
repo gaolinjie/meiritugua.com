@@ -58,7 +58,7 @@ var duoshuoQuery = {
         <ul class="nav navbar-nav">
           {% for nav in navs %}
           <li class="dropdown nav-item" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
-            <a href="/{{ nav.name }}">{{ nav.title }}</a>
+            <a href="/{{ nav.name }}" class="nav-title">{{ nav.title }}</a>
             <ul class="dropdown-menu ">
               <div class="content-preview">
               <div class="content-left">
@@ -72,14 +72,6 @@ var duoshuoQuery = {
               </div>
               <div class="content-right">
                 <ul class="nav_preview" style="">
-
-                  <li><a href="" class="thumb_warpper"><img src="" class="image_square"></a><a href=""> <span class="title_small"></span></a></li>
-
-                  <a rel:gt_act="vertical/more" rel:gt_label="entertainment" href="/entertainment" class="more_vertical">
-                    <span class="pointer unicode">▶</span>
-                    MORE ENTERTAINMENT
-                  </a>
-
                 </ul>
 
               </div>
@@ -226,12 +218,15 @@ $(document).ready(function() {
    $ (".nav-item").hover(function(){
     var preview_list = $(this).find(".nav_preview");
       var nav_name = $(this).attr('data-name'); 
+      var nav_title = $(this).find(".nav-title").text();
+      
           //alert(nav_name)
           $.getJSON('/nav/'+nav_name, function(data) {
             var preview_string='';
             for(i=0;i<data.stds.length;i++){
               preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].cover+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
             }
+            preview_string+='<a href="/'+nav_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+nav_title+'</a>';
             preview_list.html(preview_string);
           });
   },function(){
