@@ -31,68 +31,37 @@
               <a href="/{{ post.channel_name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a>
             </span>
 
-<a href="/edit/{{post.id}}" title="编辑 {{ post.title }}">
-            <span class="label label-default">
-              编辑
-              </span>
-              </a>
+            <a href="/edit/{{post.id}}" title="编辑 {{ post.title }}">
+              <span class="label label-default">编辑</span>
+            </a>
 
           </div>
 
-          <div id="share_toolbar_wrapper" style="position: static; top: auto; z-index: 9999;">
+          <div id="share_toolbar_wrapper" style="position: static; top: 291px; z-index: 9999;">
             <div id="share_toolbar">
-              <div class="stb_group" id="stb_article_view" title="本文围观次数">
+              <div title="本文围观次数" id="stb_article_view" class="stb_group">
                 <span id="stb_article_view_icon"></span>
-                <span id="stb_view_count">22301</span>
+                <span id="stb_view_count">2,340</span>
               </div>
               <div class="stb_divide"></div>
-              <div data="{'url':'<?php the_permalink()?>
-                '}" class="bdshare_t bds_tools get-codes-bdshare stb_group stb_share_buttons" id="bdshare">
-                <a href="javascript:void(0);" id="stb_btn_weibo" class="bds_tsina" title="分享到新浪微博"></a>
-                <a href="javascript:void(0);" id="stb_btn_tqq" class="bds_tqq" title="分享到腾讯微博"></a>
-                <a href="javascript:void(0);" id="stb_btn_qzone_small" class="bds_qzone" title="分享到QQ空间"></a>
-                <a href="javascript:void(0);" id="stb_btn_renren_small" class="bds_renren" title="分享到人人网"></a>
-                <span id="stb_btn_more" class="bds_more">
-                  <span id="stb_sbtn_more_icon"></span>
-                </span>
-                <a href="javascript:void(0);" class="shareCount"></a>
+              <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="bd_share_toolbar" data-bd-bind="1391875707839" data="{'pic':'/static/thumb/w_{{ post.cover }}'}">
+                <a class="bds_tsina bds_has_name" data-cmd="tsina" title="分享到新浪微博">微博</a>
+                <a class="bds_qzone bds_has_name" data-cmd="qzone" title="分享到QQ空间">空间</a>
+                <a class="bds_weixin bds_has_name" data-cmd="weixin" title="分享到微信">微信</a>
+                <a class="bds_renren bds_has_name" data-cmd="renren" title="分享到人人网">人人</a>
+                <a class="bds_mshare" style="background-position:0 -2444px !important" data-cmd="mshare" title="分享到一键分享"></a>
+                <a class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                <a class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+                <a class="bds_baidu" data-cmd="baidu" title="分享到百度搜藏"></a>
+                <a class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+                <a class="bds_more" data-cmd="more"></a>
+                <a class="bds_count" data-cmd="count" title="累计分享12次">12</a>
               </div>
-              <!--修改下一行的百度分享ID-->
-              <script type="text/javascript" id="bdshare_js" data="type=button&uid=12345" ></script>
-              <script type="text/javascript" id="bdshell_js"></script>
-              <script type="text/javascript">
-      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
-    </script>
               <div class="stb_divide"></div>
-              <div class="stb_share_buttons stb_group">
-                <!-- 前一篇 -->
-
-                <a id="stb_btn_prev" href="" title=""></a>
-
-                <!-- 下一篇 -->
-
-                <a id="stb_btn_next" href="" title=""></a>
-              </div>
               <div class="stb_group_right">
-
-                <div class="bdlikebutton stb_like_btn bdlikebutton-blue bdlikebutton-small bdlikebutton-small-blue">
-                  <div class="bdlikebutton-inner">
-                    <span class="bdlikebutton-add"></span>
-                    <div class="bdlikebutton"></div>
-                    <div class="bdlikebutton-count">
-                      <!-- 处理百度like按钮点击和like数量 -->
-                      <script id="bdlike_shell" type="text/javascript"></script>
-                      <script type="text/javascript">
-            var bdShare_config = {
-              "type":"small",
-              "color":"blue",
-              "uid":"12345",//修改为你自己的百度分享id
-              "likeText":"喜欢",
-              "likedText":"已赞过"
-            };
-            document.getElementById("bdlike_shell").src="http://bdimg.share.baidu.com/static/js/like_shell.js?t=" + new Date().getHours();
-            </script>
-                    </div>
+                <div id="stb_like_gplus" class="stb_like_btn">
+                  <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;">
+                    <iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1391875707576" name="I0_1391875707576" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;bsv=o&amp;size=medium&amp;hl=zh-CN&amp;origin=http%3A%2F%2Fwww.ipc.me&amp;url=http%3A%2F%2Fwww.ipc.me%2Fvalentines-gift-for-boy-2014.html&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.zh_CN.-If14VVX9ho.O%2Fm%3D__features__%2Fam%3DIQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAItRSTMP6SWd7GFXfUriawp58qHOmnxb6A#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1391875707576&amp;parent=http%3A%2F%2Fwww.ipc.me&amp;pfname=&amp;rpctoken=38929070" data-gapiattached="true" title="+1"></iframe>
                   </div>
                 </div>
               </div>
@@ -111,8 +80,7 @@
 
                   <div id="reactions-normal">
 
-                    <h5>
-                      <font><font>这篇文章你觉得怎么样？</font></font> 
+                    <h5> <font><font>这篇文章你觉得怎么样？</font></font> 
                     </h5>
 
                     <ul class="reactions" data-post="{{ post.id }}">
@@ -122,9 +90,7 @@
                         </a>
 
                         <span class="badge-vote-count" id="love-reaction-count">
-                          <font>
-                            <font>{{vote.love}}</font>
-                          </font>
+                          <font><font>{{vote.love}}</font></font> 
                         </span>
                       </li>
 
@@ -230,7 +196,6 @@
 
                       </li>
 
-
                       <li id="hehe_button" class="hehe   us_reactions" data-vote="hehe">
 
                         <span class="reaction_normal">
@@ -298,7 +263,6 @@
                         </span>
 
                       </li>
-
 
                       <li id="hate_button" class="hate us_reactions" data-vote="hate">
                         <a href="javascript:;" class="vote-love_or_hate vote-badge">
@@ -369,7 +333,10 @@
               <img class="bf_dom pinned-image" src="/static/thumb/w_{{ hot.cover }}" alt="{{ hot.title }}"></a>
             <h3>
               <a href="/p/{{ hot.id }}">
-                <span> <font><font>{{ hot.title }}</font></font> 
+                <span>
+                  <font>
+                    <font>{{ hot.title }}</font>
+                  </font>
                 </span>
               </a>
             </h3>
@@ -379,7 +346,9 @@
             <a class="username notranslate" href="#">{{ hot.author_username }}</a>
             <span class="time-image icon"></span>
             <span class="time-ago">
-              <font><font>{{ hot.created|pretty_date }}</font></font> 
+              <font>
+                <font>{{ hot.created|pretty_date }}</font>
+              </font>
             </span>
             <a href="#" class="responses">
               <span class="response-image icon"></span>
@@ -402,6 +371,9 @@
 {% endblock %}
 
 {% block javascript %}
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
 <script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.us_reactions',  function() {
