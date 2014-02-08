@@ -145,3 +145,64 @@ class CreateForm(Form):
      tag = TextField('Tag', [
          validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
      ])
+
+class EditForm(Form):
+     title = TextField('Title', [
+         validators.Required(message = "请填写帖子标题"),
+         validators.Length(min = 3, message = "帖子标题长度过短（3-100个字符）"),
+         validators.Length(max = 100, message = "帖子标题长度过长（3-100个字符）"),
+     ])
+
+     intro = TextField('Intro', [
+         validators.Required(message = "请填写帖子简介"),
+         validators.Length(min = 3, message = "帖子标题长度过短（3-400个字符）"),
+         validators.Length(max = 400, message = "帖子标题长度过长（3-400个字符）"),
+     ])
+ 
+     content = TextField('Content', [
+         validators.Required(message = "请填写帖子内容"),
+     ])
+
+     channel = TextField('Channel', [
+         validators.Required(message = "请选择帖子频道"),
+     ])
+
+     thumb = TextField('Thumb', [
+         validators.Length(min = 0, message = "thumb"),
+     ])
+
+     x1 = TextField('X1', [
+         validators.Length(min = 0, message = "x1"),
+     ])
+
+     y1 = TextField('Y1', [
+         validators.Length(min = 0, message = "y1"),
+     ])
+
+     x2 = TextField('X2', [
+         validators.Length(min = 0, message = "x2"),
+     ])
+
+     y2 = TextField('Y2', [
+         validators.Length(min = 0, message = "y2"),
+     ])
+
+     x3 = TextField('X3', [
+         validators.Length(min = 0, message = "x3"),
+     ])
+
+     y3 = TextField('Y3', [
+         validators.Length(min = 0, message = "y3"),
+     ])
+
+     x4 = TextField('X4', [
+         validators.Length(min = 0, message = "x4"),
+     ])
+
+     y4 = TextField('Y4', [
+         validators.Length(min = 0, message = "y4"),
+     ])
+
+     tag = TextField('Tag', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])

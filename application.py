@@ -62,6 +62,7 @@ class Application(tornado.web.Application):
             (r"/community", handler.community.CommunityHandler),
             (r"/p/(\d+)", handler.post.PostHandler),
             (r"/create", handler.post.CreatePostHandler),
+            (r"/edit/(.*)", handler.post.EditPostHandler),
             (r"/login", handler.user.LoginHandler),
             (r"/logout", handler.user.LogoutHandler),
             (r"/setting", handler.user.SettingHandler),
