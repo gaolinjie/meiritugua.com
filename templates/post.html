@@ -109,20 +109,20 @@
                       <font><font>这篇文章你觉得怎么样？</font></font> 
                     </h5>
 
-                    <ul class="reactions">
-                      <li id="love_button" class="love">
-                        <a href="javascript:;" class="vote-love_or_hate">
+                    <ul class="reactions" data-post="{{ post.id }}">
+                      <li id="love_button" class="love us_reactions" data-vote="love">
+                        <a href="javascript:;" class="vote-love_or_hate vote-badge">
                           <span class="heart vote-love_or_hate"></span>
                         </a>
 
                         <span class="badge-vote-count" id="love-reaction-count">
                           <font>
-                            <font>65</font>
+                            <font>{{vote.love}}</font>
                           </font>
                         </span>
                       </li>
 
-                      <li id="omg_button" class="omg   us_reactions">
+                      <li id="omg_button" class="omg us_reactions" data-vote="omg">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -132,14 +132,14 @@
                           </a>
                           <span class="badge-vote-count" id="14-reaction-count">
                             <font>
-                              <font>2</font>
+                              <font>{{vote.omg}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="gds_button" class="gds   us_reactions">
+                      <li id="gds_button" class="gds us_reactions" data-vote="gds">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -149,14 +149,14 @@
                           </a>
                           <span class="badge-vote-count zero" id="19-reaction-count">
                             <font>
-                              <font>0</font>
+                              <font>{{vote.gds}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="geili_button" class="geili   us_reactions">
+                      <li id="geili_button" class="geili us_reactions" data-vote="geili">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -166,14 +166,14 @@
                           </a>
                           <span class="badge-vote-count zero" id="13-reaction-count">
                             <font>
-                              <font>0</font>
+                              <font>{{vote.geili}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="lol_button" class="lol   us_reactions">
+                      <li id="lol_button" class="lol us_reactions" data-vote="lol">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -183,14 +183,14 @@
                           </a>
                           <span class="badge-vote-count" id="12-reaction-count">
                             <font>
-                              <font>2</font>
+                              <font>{{vote.lol}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="cute_button" class="cute   us_reactions">
+                      <li id="cute_button" class="cute us_reactions" data-vote="cute">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -200,14 +200,14 @@
                           </a>
                           <span class="badge-vote-count" id="16-reaction-count">
                             <font>
-                              <font>15</font>
+                              <font>{{vote.cute}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="zzs_button" class="zzs   us_reactions">
+                      <li id="zzs_button" class="zzs   us_reactions" data-vote="zzs">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -217,7 +217,7 @@
                           </a>
                           <span class="badge-vote-count" id="27-reaction-count">
                             <font>
-                              <font>2</font>
+                              <font>{{vote.zzs}}</font>
                             </font>
                           </span>
                         </span>
@@ -225,7 +225,7 @@
                       </li>
 
 
-                      <li id="hehe_button" class="hehe   us_reactions">
+                      <li id="hehe_button" class="hehe   us_reactions" data-vote="hehe">
 
                         <span class="reaction_normal">
                           <a rhref="javascript:;" class="vote-badge ">
@@ -235,14 +235,14 @@
                           </a>
                           <span class="badge-vote-count" id="47-reaction-count">
                             <font>
-                              <font>9</font>
+                              <font>{{vote.hehe}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="jiong_button" class="jiong   us_reactions">
+                      <li id="jiong_button" class="jiong   us_reactions" data-vote="jiong">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -252,14 +252,14 @@
                           </a>
                           <span class="badge-vote-count" id="49-reaction-count">
                             <font>
-                              <font>2</font>
+                              <font>{{vote.jiong}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="kengdie_button" class="kengdie   us_reactions">
+                      <li id="kengdie_button" class="kengdie   us_reactions" data-vote="kengdie">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge  longer">
@@ -269,14 +269,14 @@
                           </a>
                           <span class="badge-vote-count zero" id="17-reaction-count">
                             <font>
-                              <font>0</font>
+                              <font>{{vote.kengdie}}</font>
                             </font>
                           </span>
                         </span>
 
                       </li>
 
-                      <li id="beiju_button" class="beiju   us_reactions">
+                      <li id="beiju_button" class="beiju   us_reactions" data-vote="beiju">
 
                         <span class="reaction_normal">
                           <a href="javascript:;" class="vote-badge ">
@@ -286,7 +286,7 @@
                           </a>
                           <span class="badge-vote-count" id="27-reaction-count">
                             <font>
-                              <font>2</font>
+                              <font>{{vote.beiju}}</font>
                             </font>
                           </span>
                         </span>
@@ -294,14 +294,14 @@
                       </li>
 
 
-                      <li id="hate_button" class="hate">
-                        <a href="javascript:;" class="vote-love_or_hate">
+                      <li id="hate_button" class="hate us_reactions" data-vote="hate">
+                        <a href="javascript:;" class="vote-love_or_hate vote-badge">
                           <span class="heart vote-love_or_hate"></span>
                         </a>
 
                         <span class="badge-vote-count zero" id="hate-reaction-count">
                           <font>
-                            <font>0</font>
+                            <font>{{vote.hate}}</font>
                           </font>
                         </span>
                       </li>
@@ -393,4 +393,29 @@
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.us_reactions',  function() {
+                var post_id = $('.reactions').attr('data-post');
+                var vote_type = $(this).attr('data-vote');
+                var vote_num = $(this).find('.badge-vote-count').find('font').find('font');
+                vote_badge = $(this).find('.vote-badge');
+
+                if(vote_badge.hasClass('voted')) {
+                  alert("谢谢，但是好像你已经评价过了^_^")
+                }
+                else {
+                  $.getJSON('/vote/'+post_id+'?vote='+vote_type, function(data) {
+                            if(data.success!=0) {
+                                vote_num.text(parseInt(vote_num.text())+1);
+                                vote_badge.addClass('voted');
+                            }
+                        }); 
+                }  
+            });        
+        });
+    </script>
 {% endblock %}

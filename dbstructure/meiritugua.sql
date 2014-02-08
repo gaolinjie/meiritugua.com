@@ -148,3 +148,26 @@ CREATE TABLE `tag` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+--  Table structure for `vote`
+-- ----------------------------
+DROP TABLE IF EXISTS `vote`;
+CREATE TABLE `vote` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `love` int(11) DEFAULT 0,
+  `omg` int(11) DEFAULT 0,
+  `gds` int(11) DEFAULT 0,
+  `geili` int(11) DEFAULT 0,
+  `lol` int(11) DEFAULT 0,
+  `cute` int(11) DEFAULT 0,
+  `zzs` int(11) DEFAULT 0,
+  `hehe` int(11) DEFAULT 0,
+  `jiong` int(11) DEFAULT 0,
+  `kengdie` int(11) DEFAULT 0,
+  `beiju` int(11) DEFAULT 0,
+  `hate` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

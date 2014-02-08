@@ -37,6 +37,7 @@ class PostHandler(BaseHandler):
     	template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
 
     	template_variables["post"] = self.post_model.get_post_by_post_id(post_id)
+        template_variables["vote"] = self.vote_model.get_vote_by_post_id(post_id)
         template_variables["tags"] = self.post_tag_model.get_post_all_tags(post_id)
 	
         self.render("post.html", **template_variables)
@@ -156,4 +157,41 @@ class ChannelPreviewHandler(BaseHandler):
             i=i+1
 
         self.write(lib.jsonp.print_JSON({"stds": jarray}))
-           
+
+
+class VoteHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        vote_type = self.get_argument('vote', "null")
+
+        if(user_info):
+            vote = self.vote_model.get_vote_by_post_id(post_id)
+            if vote_type=="love":
+                self.vote_model.update_vote_by_post_id(post_id, {"love": vote.love+1})
+            if vote_type=="omg":
+                self.vote_model.update_vote_by_post_id(post_id, {"omg": vote.omg+1})
+            if vote_type=="gds":
+                self.vote_model.update_vote_by_post_id(post_id, {"gds": vote.gds+1})
+            if vote_type=="geili":
+                self.vote_model.update_vote_by_post_id(post_id, {"geili": vote.geili+1})
+            if vote_type=="lol":
+                self.vote_model.update_vote_by_post_id(post_id, {"lol": vote.lol+1})
+            if vote_type=="cute":
+                self.vote_model.update_vote_by_post_id(post_id, {"cute": vote.cute+1})
+            if vote_type=="zzs":
+                self.vote_model.update_vote_by_post_id(post_id, {"zzs": vote.zzs+1})
+            if vote_type=="hehe":
+                self.vote_model.update_vote_by_post_id(post_id, {"hehe": vote.hehe+1})
+            if vote_type=="jiong":
+                self.vote_model.update_vote_by_post_id(post_id, {"jiong": vote.jiong+1})
+            if vote_type=="kengdie":
+                self.vote_model.update_vote_by_post_id(post_id, {"kengdie": vote.kengdie+1})
+            if vote_type=="beiju":
+                self.vote_model.update_vote_by_post_id(post_id, {"beiju": vote.beiju+1})
+            if vote_type=="hate":
+                self.vote_model.update_vote_by_post_id(post_id, {"hate": vote.hate+1})
+            
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                }))
+

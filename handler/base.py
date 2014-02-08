@@ -91,6 +91,10 @@ class BaseHandler(tornado.web.RequestHandler):
     def tag_model(self):
         return self.application.tag_model
 
+    @property
+    def vote_model(self):
+        return self.application.vote_model
+
     def get_current_user(self):
         user_id = self.get_secure_cookie("user")
         if not user_id: return None

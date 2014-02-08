@@ -1730,3 +1730,8 @@ background: #07e;
 .badge_heart li.love a:hover, .badge_heart li.hate a:hover {
 background: #07e !important;
 }
+
+.us_reactions .voted {
+	color: #ffffff !important;
+background: #07e !important;
+}
