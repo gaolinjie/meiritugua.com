@@ -122,6 +122,9 @@ class CreatePostHandler(BaseHandler):
                     tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
                     self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
 
+        # add vote
+        self.vote_model.add_new_vote({'post_id': post_id})
+
         self.redirect("/")
 
 
