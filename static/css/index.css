@@ -1758,3 +1758,10 @@ background: #07e !important;
 #cover-preview-wide {
 	height: 140px;
 	max-width: 204px;
+}
+
+.bd_weixin_popup {
+	left: 485px !important;
+	top: 180px !important;
+height: 295px !important;
+}
