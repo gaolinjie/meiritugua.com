@@ -43,3 +43,7 @@ class HotModel(Query):
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_hot_by_post_id(self, post_id):
+        where = "post_id = %s" % post_id
+        return self.where(where).find()
