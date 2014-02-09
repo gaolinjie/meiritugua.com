@@ -36,7 +36,10 @@ class PostHandler(BaseHandler):
         template_variables["channels"] = self.channel_model.get_all_channels()
     	template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
 
-    	template_variables["post"] = self.post_model.get_post_by_post_id(post_id)
+        post = self.post_model.get_post_by_post_id(post_id)
+        self.post_model.update_post_by_post_id(post_id, {"count": post.count+1})
+    	template_variables["post"] = post
+
         template_variables["vote"] = self.vote_model.get_vote_by_post_id(post_id)
         template_variables["tags"] = self.post_tag_model.get_post_all_tags(post_id)
 	
