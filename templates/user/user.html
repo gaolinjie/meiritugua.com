@@ -6,27 +6,21 @@
 {% block main %}
 <div class="author-profile user-profile clearfix">
 
-        <div class="author-profile-face user-profile-face clearfix">
-                            <img class="gravatar user-avatar" src="{{ view_user_info.avatar }}" width="50" height="50">
-                    </div>
+  <div class="author-profile-face user-profile-face clearfix">
+    <img class="gravatar user-avatar" src="{{ view_user_info.avatar }}" width="50" height="50"></div>
 
-        <div class="author-profile-text">
-            <h2 class="yahei"><a href="http://www.ifanr.com/author/cuiqiwen">{{ view_user_info.username }}</a></h2>
-            <p>{{ view_user_info.intro }}</p>
-        </div>
+  <div class="author-profile-text">
+    <h2 class="yahei">
+      <a href="http://www.ifanr.com/author/cuiqiwen">{{ view_user_info.username }}</a>
+    </h2>
+    <p>{{ view_user_info.intro }}</p>
+  </div>
 
-        
-        
-
-    </div>
+</div>
 <div class="col-xs-12 col-md-8">
   <div class="Column1 section bf_dom">
     <div class="section">
       <div class="content">
-
-        
-
-
 
         <ul class="std-posts" id="page_flow">
           {% for std in stds.list %}
@@ -52,11 +46,10 @@
                 <a class="username notranslate" href="#">{{ std.author_username }}</a>
                 <span class="time-image icon"></span>
                 <span class="time-ago">{{ std.created|pretty_date }}</span>
-                <a href="#" class="responses">
-                  <span class="response-image icon"></span>
-                  <span class="num">{{ std.comment_count }}</span>
-                  回应
-                </a>
+
+                <span class="response-image icon"></span>
+                <span class="num">{{ std.count }}</span> <font><font>&nbsp;人看过</font></font> 
+
               </p>
             </article>
           </li>
@@ -73,9 +66,7 @@
                 <div id="big_stories_header" class="header">
 
       <h1>
-        <font>
-          <font class="">热门新闻</font>
-        </font>
+        <font><font class="">热门新闻</font></font> 
       </h1>
     </div>
     -->
@@ -104,17 +95,17 @@
               <font>{{ hot.created|pretty_date }}</font>
             </font>
           </span>
-          <a href="#" class="responses">
-            <span class="response-image icon"></span>
-            <span class="num">
-              <font>
-                <font>{{ hot.comment_count }}</font>
-              </font>
-            </span>
+
+          <span class="response-image icon"></span>
+          <span class="num">
             <font>
-              <font>回应</font>
+              <font>{{ hot.count }}</font>
             </font>
-          </a>
+          </span>
+          <font>
+            <font>&nbsp;人看过</font>
+          </font>
+
         </p>
       </li>
       {% endfor %}

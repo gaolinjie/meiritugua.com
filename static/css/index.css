@@ -162,7 +162,7 @@ margin-bottom: 0px;
 }
 
 p.small-meta .icon {
-background: url(http://buzzfeed.com/static/images/public/icons/small_meta_icons.png?v=201312111436);
+background: url(/static/images/small_meta_icons.png);
 width: 12px !important;
 height: 12px;
 float: left;
@@ -189,7 +189,7 @@ background-position: 0px -12px;
 }
 
 p.small-meta .response-image {
-background-position: 0px -24px;
+background-position: 0px -60px;
 }
 
 .post h2 a:hover {
@@ -656,12 +656,7 @@ color: #999;
 font-size: 13px;
 margin-bottom: 20px;
 }
-.made-in-nyc {
-width: 46px;
-height: 46px;
-display: inline-block;
-background: url(http://buzzfeed.com/static/images/global/unified_sprite.png?v=201312111436) no-repeat -535px -497px;
-}
+
 .PageFooter ul li {
 float: none;
 line-height: 170%;
@@ -746,7 +741,7 @@ color: #666;
 }
 
 body {
-background: url(http://buzzfeed.com/static/images/public/verticals/noise.png?v=201312161302);
+background: url(/static/images/noise.png);
 }
 
 .main {
@@ -1683,7 +1678,7 @@ width: auto!important;
 display: block;
 width: 19px;
 height: 16px;
-background: url(http://buzzfeed.com/static/images/public/social/lovehate-16_no_bg.png?v=201312161302);
+background: url(/static/images/lovehate-16_no_bg.png);
 }
 .badge-vote-count {
 display: block;
@@ -1718,7 +1713,7 @@ background-position: -19px 0px;
 display: block;
 width: 19px;
 height: 16px;
-background: url(http://buzzfeed.com/static/images/public/social/lovehate-16_no_bg.png?v=201312161302);
+background: url(/static/images/lovehate-16_no_bg.png);
 }
 .social-actions .reactions_one li a.vote-love_or_hate {
 padding: 4px 8px 5px 8px !important;
