@@ -44,7 +44,7 @@
                 <span id="stb_view_count">2,340</span>
               </div>
               <div class="stb_divide"></div>
-              <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="bd_share_toolbar" data-bd-bind="1391875707839" data="{'pic':'/static/thumb/w_{{ post.cover }}'}">
+              <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="bd_share_toolbar" data-bd-bind="1391875707839">
                 <a class="bds_tsina bds_has_name" data-cmd="tsina" title="分享到新浪微博">微博</a>
                 <a class="bds_qzone bds_has_name" data-cmd="qzone" title="分享到QQ空间">空间</a>
                 <a class="bds_weixin bds_has_name" data-cmd="weixin" title="分享到微信">微信</a>
@@ -328,7 +328,7 @@
         <li class="small-posts pinned bf_dom">
           <div class="bf_dom bf_cts-5-1 bf_cts">
             <a href="/p/{{ hot.id }}">
-              <img class="bf_dom pinned-image" src="/static/thumb/w_{{ hot.cover }}" alt="{{ hot.title }}"></a>
+              <img class="bf_dom pinned-image" src="/static/thumb/w_{{ hot.thumb }}" alt="{{ hot.title }}"></a>
             <h3>
               <a href="/p/{{ hot.id }}">
                 <span>
@@ -370,7 +370,7 @@
 
 {% block javascript %}
 <script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"http://meiritugua.com/static/thumb/w_{{ post.cover }}","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"{{ post.cover }}","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 <script type="text/javascript">
   window.___gcfg = {lang: 'zh-CN'};

@@ -1168,6 +1168,7 @@ height: 150px;
 #suplist_module_thumb_uploader {
 	width: 204px;
 	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 .suplist_thumb_container {
@@ -1186,7 +1187,6 @@ height: auto;
 position: absolute;
 left: 545px;
 top: 5px;
-}
 }
 
 
@@ -1735,3 +1735,26 @@ background: #07e !important;
 	color: #ffffff !important;
 background: #07e !important;
 }
+
+.suplist-cover-wide {
+	height: 140px;
+}
+
+.modal-body {
+	 overflow: auto;
+	 width: : 800px; 
+	 height: : 600px
+}
+
+#myModal2 {
+	top: 300px;
+}
+
+#myModal2 .modal-dialog {
+	width: 353px;
+	height: 200px;
+}
+
+#cover-preview-wide {
+	height: 140px;
+	max-width: 204px;

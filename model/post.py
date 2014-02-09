@@ -167,6 +167,6 @@ class PostModel(Query):
     def set_post_thumb_by_post_id(self, post_id, thumb_name):
         where = "id = %s" % post_id
         return self.data({
-            "cover": thumb_name
+            "thumb": thumb_name
         }).where(where).save()
 

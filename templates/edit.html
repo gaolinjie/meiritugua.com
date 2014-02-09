@@ -84,13 +84,13 @@
             <div class="suplist_thumb_container">
               <div class="suplist-thumb-reg suplist_image_box bf_dom">
                 <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" src="/static/thumb/n_{{post.thumb}}"</div>
             </div>
 
             <div class="suplist_thumb_container">
               <div class="suplist-thumb-wide suplist_image_box bf_dom">
                 <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+                <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" src="/static/thumb/w_{{post.thumb}}"></div>
             </div>
 
             <div class="suplist_image_buttons">
@@ -115,11 +115,31 @@
               </div>
             </div>
           </div>
-
-          
-
         </div>
 
+        <div class="thumbnail-chooser suplist_options_top_row">
+          <h5>
+            <label>文章封面</label>
+          </h5>
+          <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-wide suplist-cover-wide suplist_image_box bf_dom">
+                <img id="cover-preview-wide" class="qp_std_promo_fields suplist-thumb-img" src="{{post.cover}}"></div>
+            </div>
+
+            <div class="suplist_image_buttons suplist_image_buttons_cover">
+              <div>
+                <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                  <div class="suplist_module_image_uploader" style="height: 20px;">
+                    <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                      <span>选择图片</span>
+                      <input id="cover" name="cover" class="file_mask" value="{{post.cover}}" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="channel-chooser">
             <h5>
@@ -165,10 +185,25 @@
         <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
       </div>
     </div>
-    <!-- /.modal-content --> </div>
-  <!-- /.modal-dialog -->
+  </div>
 </div>
-<!-- /.modal -->
+
+<div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">设置文章封面</h4>
+      </div>
+      <div class="modal-body" align=center>       
+      <input type="text" class="form-control" id="coverImage" name="cover" placeholder="请输入图片地址">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="cover-btn-ok" >确定</button>
+      </div>
+    </div>
+ </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
@@ -294,6 +329,22 @@ function updateInfo2(e) {
 
       });
 </script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.suplist_image_buttons_cover',  function() {
+              $('#myModal2').modal('show');
+            });
+
+            $(document).on('click', '#cover-btn-ok',  function() {
+           $('#myModal2').modal('hide');
+           var coverSrc = $('#coverImage').val();
+           $('#cover-preview-wide').attr("src", coverSrc);
+           $('#cover').val(coverSrc);
+           $('#coverImage').val('');
+        });        
+        });
+    </script>
 
 <script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
 <script src="/static/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>

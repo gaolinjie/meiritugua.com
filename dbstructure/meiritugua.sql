@@ -44,6 +44,7 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text,
+  `thumb` text,
   `cover` text,
   `intro` text,
   `content` text,

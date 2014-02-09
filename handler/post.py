@@ -67,6 +67,7 @@ class CreatePostHandler(BaseHandler):
             "author_id": self.current_user["uid"],           
             "title": form.title.data,
             "intro": form.intro.data,
+            "cover": form.cover.data,
             "content": form.content.data,
             "channel_id": channel.id,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -125,7 +126,7 @@ class CreatePostHandler(BaseHandler):
         # add vote
         self.vote_model.add_new_vote({'post_id': post_id})
 
-        self.redirect("/p/"+post_id)
+        self.redirect("/p/"+str(post_id))
 
 
 class EditPostHandler(BaseHandler):
@@ -158,6 +159,7 @@ class EditPostHandler(BaseHandler):
         post_info = {        
             "title": form.title.data,
             "intro": form.intro.data,
+            "cover": form.cover.data,
             "content": form.content.data,
             "channel_id": channel.id,
         }
@@ -168,7 +170,7 @@ class EditPostHandler(BaseHandler):
         # process post thumb
         thumb_file = self.request.files
         if thumb_file:
-            thumb_name = post.cover
+            thumb_name = post.thumb
             thumb_raw = self.request.files["thumb"][0]["body"]
             thumb_buffer = StringIO.StringIO(thumb_raw)
             thumb_origin = Image.open(thumb_buffer)
@@ -225,7 +227,7 @@ class NavPreviewHandler(BaseHandler):
             jobject = {
                 "id": std.id,
                 "title": std.title,
-                "cover": std.cover,
+                "cover": std.thumb,
             }
             jarray.append(jobject)
             i=i+1
@@ -242,7 +244,7 @@ class ChannelPreviewHandler(BaseHandler):
             jobject = {
                 "id": std.id,
                 "title": std.title,
-                "cover": std.cover,
+                "cover": std.thumb,
             }
             jarray.append(jobject)
             i=i+1

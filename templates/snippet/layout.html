@@ -231,7 +231,7 @@ $(document).ready(function() {
           $.getJSON('/nav/'+nav_name, function(data) {
             var preview_string='';
             for(i=0;i<data.stds.length;i++){
-              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].cover+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
+              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].thumb+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
             }
             preview_string+='<a href="/'+nav_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+nav_title+'</a>';
             preview_list.html(preview_string);
@@ -253,7 +253,7 @@ $ (".channel-item").hover(function(){
           $.getJSON('/channel/'+channel_name, function(data) {
             var preview_string='';
             for(i=0;i<data.stds.length;i++){
-              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].cover+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
+              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].thumb+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
             }
             preview_string+='<a href="/'+channel_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+channel_title+'</a>';
             preview_list.html(preview_string);

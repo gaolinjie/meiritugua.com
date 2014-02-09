@@ -104,10 +104,17 @@ class CreateForm(Form):
          validators.Required(message = "请填写帖子内容"),
      ])
 
+     thumb = TextField('Thumb', [
+         validators.Length(min = 0, message = "thumb"),
+     ])
+
      channel = TextField('Channel', [
          validators.Required(message = "请选择帖子频道"),
      ])
 
+     cover = TextField('Cover', [
+         validators.Required(message = "请选择文章封面"),
+     ])
 
 
      x1 = TextField('X1', [
@@ -169,6 +176,10 @@ class EditForm(Form):
 
      thumb = TextField('Thumb', [
          validators.Length(min = 0, message = "thumb"),
+     ])
+
+     cover = TextField('Cover', [
+         validators.Required(message = "请选择文章封面"),
      ])
 
      x1 = TextField('X1', [
