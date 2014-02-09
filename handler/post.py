@@ -227,7 +227,7 @@ class NavPreviewHandler(BaseHandler):
             jobject = {
                 "id": std.id,
                 "title": std.title,
-                "cover": std.thumb,
+                "thumb": std.thumb,
             }
             jarray.append(jobject)
             i=i+1
@@ -244,7 +244,7 @@ class ChannelPreviewHandler(BaseHandler):
             jobject = {
                 "id": std.id,
                 "title": std.title,
-                "cover": std.thumb,
+                "thumb": std.thumb,
             }
             jarray.append(jobject)
             i=i+1
