@@ -74,7 +74,9 @@ class Application(tornado.web.Application):
 
             (r"/head/manager", handler.post.HeadManagerHandler),
             (r"/head/hide/(\d+)", handler.post.HeadHideHandler),
+            (r"/head/del/(\d+)", handler.post.HeadDelHandler),
             (r"/head/edit/(\d+)", handler.post.HeadEditHandler),
+            (r"/head/add/(\d+)", handler.post.HeadAddHandler),
 
             (r"/(.*)", handler.channel.ChannelHandler),
             

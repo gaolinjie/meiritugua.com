@@ -1760,3 +1760,33 @@ background: #07e !important;
 	top: 180px !important;
 height: 295px !important;
 }
+
+.hide-confirm-dialog, .del-confirm-dialog {
+	width: 400px;
+}
+
+#hideHeadModal, #delHeadModal {
+	top: 140px;
+}
+
+tr .head-pid {
+	width: 48px;
+}
+
+tr .head-title {
+	width: 400px;
+}
+
+tr .head-sort {
+	width: 39px;
+}
+
+tr .head-op {
+	width: 142px;
+}
+
+#btn-head-add {
+position: absolute;
+left: 545px;
+top: 5px;
+}

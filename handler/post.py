@@ -344,6 +344,15 @@ class HeadHideHandler(BaseHandler):
                     "success": 1,
                 }))
 
+class HeadDelHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        if(user_info):
+            self.head_model.delete_head_by_post_id(post_id)
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                }))
+
 
 class HeadEditHandler(BaseHandler):
     @tornado.web.authenticated
@@ -368,6 +377,35 @@ class HeadEditHandler(BaseHandler):
                 "style": style,
             }
             self.head_model.update_head_by_post_id(post_id, head_info)
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                }))
+
+
+class HeadAddHandler(BaseHandler):
+    @tornado.web.authenticated
+    def post(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        if(user_info):
+            data = json.loads(self.request.body)
+            label = data["label"]
+            splash = data["splash"]
+            sort = data["sort"]
+            horizontal = data["horizontal"]
+            vertical = data["vertical"]
+            style = data["style"]
+            print style
+
+            head_info = {
+                "post_id": post_id,
+                "label": label,
+                "splash": splash,
+                "sort": sort,
+                "horizontal": horizontal,
+                "vertical": vertical,
+                "style": style,
+            }
+            self.head_model.add_new_head(head_info)
             self.write(lib.jsonp.print_JSON({
                     "success": 1,
                 }))

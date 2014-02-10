@@ -12,8 +12,8 @@ class HeadModel(Query):
         self.table_name = "head"
         super(HeadModel, self).__init__()
 
-    def add_new_head(self, head1_info):
-        return self.data(head1_info).add()
+    def add_new_head(self, head_info):
+        return self.data(head_info).add()
 
     def get_head_posts(self, num = 4, current_page = 1):
         join = "LEFT JOIN post ON head.post_id = post.id\
@@ -36,3 +36,8 @@ class HeadModel(Query):
     def update_head_by_post_id(self, post_id, head_info):
         where = "head.post_id = %s" % post_id
         return self.where(where).data(head_info).save()
+
+
+    def delete_head_by_post_id(self, post_id):
+        where = "head.post_id = %s" % post_id
+        return self.where(where).delete()

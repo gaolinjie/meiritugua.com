@@ -9,61 +9,56 @@
 {% endblock %}
 
 {% block main %}
+<div class="col-xs-12 col-md-12">
+  <div class="Column1 section bf_dom">
+    <div class="section">
+      <div class="content">
 
-  <div class="col-xs-12 col-md-12">
-    <div class="Column1 section bf_dom">
-      <div class="section">
-        <div class="content">
+        <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
 
-          <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
+          <div id="suplist_left_post_controls" style="min-height: 473px;">
 
-            <div id="suplist_left_post_controls" style="min-height: 473px;">
+            <div id="suplist_heading" class="c">
 
-              <div id="suplist_heading" class="c">
+              <h1 class="qp_create">管理头条</h1>
 
-                <h1 class="qp_create">管理头条</h1>
+              <input type="submit" id="btn-head-add" class="btn btn-sm btn-success" value="新建头条"></div>
 
-                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="新建头条">{{ xsrf_form_html() }}</div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>标题</th>
+                  <th>No.</th>
+                  <th>操作</th>
 
-              <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>标题</th>
-            <th>No.</th>
-            <th>操作</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          {% for head in heads %}
-          <tr data-title="{{ head.title }}" data-label="{{ head.label }}" data-splash="{{ head.splash }}"
+                </tr>
+              </thead>
+              <tbody>
+                {% for head in heads %}
+                <tr data-title="{{ head.title }}" data-label="{{ head.label }}" data-splash="{{ head.splash }}"
           data-sort="{{ head.sort }}" data-style="{{ head.style }}" data-horizontal="{{ head.horizontal }}" data-vertical="{{ head.vertical }}">
-            <td>{{head.post_id}}</td>
-            <td>{{head.title}}</td>
-            <td>{{head.sort}}</td>
-            <td>
-              <button type="button" class="btn btn-primary btn-xs btn-head-edit" data-post="{{ head.post_id }}">编辑</button>
-              <button type="button" class="btn btn-warning btn-xs btn-head-hide" data-post="{{ head.post_id }}">隐藏</button>
-              <button type="button" class="btn btn-danger btn-xs btn-head-del" data-post="{{ head.post_id }}">删除</button>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-
-             
-
-            </div>
+                  <td class="head-pid">{{head.post_id}}</td>
+                  <td class="head-title">{{head.title}}</td>
+                  <td class="head-sort">{{head.sort}}</td>
+                  <td class="head-op">
+                    <button type="button" class="btn btn-primary btn-xs btn-head-edit" data-post="{{ head.post_id }}">编辑</button>
+                    <button type="button" class="btn btn-warning btn-xs btn-head-hide" data-post="{{ head.post_id }}">隐藏</button>
+                    <button type="button" class="btn btn-danger btn-xs btn-head-del" data-post="{{ head.post_id }}">删除</button>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
 
           </div>
 
         </div>
+
       </div>
     </div>
   </div>
-
-
+</div>
 
 <div class="modal" id="EditHeadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -72,70 +67,142 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">编辑头条</h4>
       </div>
-      <div class="modal-body"> 
-      <input type="hidden" class="form-control" id="headPost" placeholder="">     
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="headPost" placeholder="">
 
-  <div class="form-group">
-    <label for="headTitle">文章标题</label>
-    <input type="text" class="form-control" id="headTitle" placeholder="" disabled>
-  </div>
-  <div class="form-group">
-    <label for="headLabel">标签</label>
-    <input type="text" class="form-control" id="headLabel" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="headSplash">封面</label>
-    <input type="text" class="form-control" id="headSplash" placeholder="">
-  </div>
-  <div class="form-group">
-    <label for="headSort">顺序</label>
-    <input type="text" class="form-control" id="headSort" placeholder="">
-  </div>
-<div class="form-group">
-  <label for="headPosition">位置</label>
-  <div>
-  <input type="radio" name="position" id="position1" value="1" />左上&nbsp;   
-<input type="radio" name="position" id="position2" value="2" />右上&nbsp; 
-<input type="radio" name="position" id="position3" value="3" />右下&nbsp;
-<input type="radio" name="position" id="position4" value="4" />左下&nbsp;
-</div>
-</div>
-  <div class="form-group">
-  <label for="headStyle">样式</label>
-  <div>
-  <input type="radio" name="style" id="style1" value="1" />白底黑字&nbsp;   
-<input type="radio" name="style" id="style2" value="2" />黑底白字&nbsp; 
-</div>
-</div>
-
+        <div class="form-group">
+          <label for="headTitle">文章标题</label>
+          <input type="text" class="form-control" id="headTitle" placeholder="" disabled></div>
+        <div class="form-group">
+          <label for="headLabel">标签</label>
+          <input type="text" class="form-control" id="headLabel" placeholder=""></div>
+        <div class="form-group">
+          <label for="headSplash">封面</label>
+          <input type="text" class="form-control" id="headSplash" placeholder=""></div>
+        <div class="form-group">
+          <label for="headSort">顺序</label>
+          <input type="text" class="form-control" id="headSort" placeholder=""></div>
+        <div class="form-group">
+          <label for="headPosition">位置</label>
+          <div>
+            <input type="radio" name="position" id="position1" value="1" />
+            左上&nbsp;
+            <input type="radio" name="position" id="position2" value="2" />
+            右上&nbsp;
+            <input type="radio" name="position" id="position3" value="3" />
+            右下&nbsp;
+            <input type="radio" name="position" id="position4" value="4" />
+            左下&nbsp;
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="headStyle">样式</label>
+          <div>
+            <input type="radio" name="style" id="style1" value="1" />
+            白底黑字&nbsp;
+            <input type="radio" name="style" id="style2" value="2" />
+            黑底白字&nbsp;
+          </div>
+        </div>
 
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="edit-head-btn-ok" >确定</button>
       </div>
     </div>
- </div>
+  </div>
+</div>
+
+<div class="modal" id="AddHeadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">新建头条</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="headPid">文章ID</label>
+          <input type="text" class="form-control" id="headPid" placeholder=""></div>
+        <div class="form-group">
+          <label for="headLabel2">标签</label>
+          <input type="text" class="form-control" id="headLabel2" placeholder=""></div>
+        <div class="form-group">
+          <label for="headSplash2">封面</label>
+          <input type="text" class="form-control" id="headSplash2" placeholder=""></div>
+        <div class="form-group">
+          <label for="headSort2">顺序</label>
+          <input type="text" class="form-control" id="headSort2" placeholder=""></div>
+        <div class="form-group">
+          <label for="headPosition">位置</label>
+          <div>
+            <input type="radio" name="position2" id="position21" value="1" />
+            左上&nbsp;
+            <input type="radio" name="position2" id="position22" value="2" />
+            右上&nbsp;
+            <input type="radio" name="position2" id="position23" value="3" />
+            右下&nbsp;
+            <input type="radio" name="position2" id="position24" value="4" />
+            左下&nbsp;
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="headStyle">样式</label>
+          <div>
+            <input type="radio" name="style2" id="style21" value="1" />
+            白底黑字&nbsp;
+            <input type="radio" name="style2" id="style22" value="2" />
+            黑底白字&nbsp;
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="add-head-btn-ok" >确定</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="modal" id="hideHeadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog hide-confirm-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">隐藏头条</h4>
       </div>
-      <div class="modal-body"> 
-      <input type="hidden" class="form-control" id="headPost" placeholder="">     
-
-
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="headPost" placeholder="">
+        <p>你确定要隐藏这个头条吗？</p>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="hide-head-btn-ok" >确定</button>
       </div>
     </div>
- </div>
+  </div>
 </div>
 
+<div class="modal" id="delHeadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog del-confirm-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">删除头条</h4>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" id="headPost" placeholder="">
+        <p>你确定要删除这个头条吗？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="del-head-btn-ok" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
@@ -159,6 +226,26 @@
 
               
             });    
+
+
+            $(document).on('click', '.btn-head-del',  function() {
+              var post_id = $(this).attr('data-post');
+              $('#headPost').val(post_id);
+              $('#delHeadModal').modal('show');
+              
+            }); 
+
+            $(document).on('click', '#del-head-btn-ok',  function() {
+              $('#delHeadModal').modal('hide'); 
+              var post_id =  $('#headPost').val();
+              $.getJSON('/head/del/'+post_id, function(data) {
+                            if(data.success!=0) {
+                                window.location.reload();
+                            }
+                        });
+
+              
+            });  
 
               
 
@@ -242,10 +329,64 @@
               error: function (msg) {
                 alert("error");
               }
+            });          
+        }); 
+
+$(document).on('click', '#btn-head-add',  function() { 
+              $('#AddHeadModal').modal('show');
             });
 
-           
+$(document).on('click', '#add-head-btn-ok',  function() {
+           $('#AddHeadModal').modal('hide');
+           var post_id = $('#headPid').val();
+              var label = $('#headLabel2').val();
+              var splash = $('#headSplash2').val();
+              var sort = $('#headSort2').val();
+              var position = $('input[type="radio"][name="position2"]:checked').val()
+              var horizontal;
+              var vertical;
+              if (position==1) {
+                horizontal = 'left';
+                vertical = 'top';
+              }
+              if (position==2) {
+                horizontal = 'right';
+                vertical = 'top';
+              }
+              if (position==3) {
+                horizontal = 'right';
+                vertical = 'bottom';
+              }
+              if (position==4) {
+                horizontal = 'left';
+                vertical = 'bottom';
+              }
+
+              var style_num = $('input[type="radio"][name="style2"]:checked').val()
+              var style;
+              if (style_num==1) {
+                style = 'dark-text-on-light-image';
+              }
+              else {
+                style = 'light-text-on-dark-image';
+              }
+
+              $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/head/add/"+post_id,
+              data: JSON.stringify({label: label, splash: splash, sort: sort, horizontal: horizontal, vertical: vertical, style: style}), 
+              success: function (msg) {
+                window.location.reload();
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });          
         }); 
+
+
         });
     </script>
 {% endblock %}
