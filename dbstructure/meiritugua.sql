@@ -68,6 +68,8 @@ DROP TABLE IF EXISTS `head`;
 CREATE TABLE `head` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_id` int(11) DEFAULT NULL,
+  `shows` int(11) DEFAULT 1,
+  `sort` int(11) DEFAULT 0,
   `splash` text,
   `label` text,
   `horizontal` text,

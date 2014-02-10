@@ -72,6 +72,10 @@ class Application(tornado.web.Application):
             (r"/channel/(.*)", handler.post.ChannelPreviewHandler),
             (r"/vote/(\d+)", handler.post.VoteHandler),
 
+            (r"/head/manager", handler.post.HeadManagerHandler),
+            (r"/head/hide/(\d+)", handler.post.HeadHideHandler),
+            (r"/head/edit/(\d+)", handler.post.HeadEditHandler),
+
             (r"/(.*)", handler.channel.ChannelHandler),
             
 

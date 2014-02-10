@@ -1,0 +1,221 @@
+{% extends 'snippet/layout.html' %}
+{% block title %}
+<title>每日图卦 管理头条</title>
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/static/bootstrap-tagsinput/bootstrap-tagsinput.css">
+{% endblock %}
+
+{% block main %}
+
+  <div class="col-xs-12 col-md-12">
+    <div class="Column1 section bf_dom">
+      <div class="section">
+        <div class="content">
+
+          <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
+
+            <div id="suplist_left_post_controls" style="min-height: 473px;">
+
+              <div id="suplist_heading" class="c">
+
+                <h1 class="qp_create">管理头条</h1>
+
+                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="新建头条">{{ xsrf_form_html() }}</div>
+
+              <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>标题</th>
+            <th>No.</th>
+            <th>操作</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for head in heads %}
+          <tr data-title="{{ head.title }}" data-label="{{ head.label }}" data-splash="{{ head.splash }}"
+          data-sort="{{ head.sort }}" data-style="{{ head.style }}" data-horizontal="{{ head.horizontal }}" data-vertical="{{ head.vertical }}">
+            <td>{{head.post_id}}</td>
+            <td>{{head.title}}</td>
+            <td>{{head.sort}}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-xs btn-head-edit" data-post="{{ head.post_id }}">编辑</button>
+              <button type="button" class="btn btn-warning btn-xs btn-head-hide" data-post="{{ head.post_id }}">隐藏</button>
+              <button type="button" class="btn btn-danger btn-xs btn-head-del" data-post="{{ head.post_id }}">删除</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+             
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="modal" id="EditHeadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">编辑头条</h4>
+      </div>
+      <div class="modal-body"> 
+      <input type="hidden" class="form-control" id="headPost" placeholder="">     
+
+  <div class="form-group">
+    <label for="headTitle">文章标题</label>
+    <input type="text" class="form-control" id="headTitle" placeholder="" disabled>
+  </div>
+  <div class="form-group">
+    <label for="headLabel">标签</label>
+    <input type="text" class="form-control" id="headLabel" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="headSplash">封面</label>
+    <input type="text" class="form-control" id="headSplash" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="headSort">顺序</label>
+    <input type="text" class="form-control" id="headSort" placeholder="">
+  </div>
+<div class="form-group">
+  <label for="headPosition">位置</label>
+  <div>
+  <input type="radio" name="position" id="position1" value="1" />左上&nbsp;   
+<input type="radio" name="position" id="position2" value="2" />右上&nbsp; 
+<input type="radio" name="position" id="position3" value="3" />右下&nbsp;
+<input type="radio" name="position" id="position4" value="4" />左下&nbsp;
+</div>
+</div>
+  <div class="form-group">
+  <label for="headStyle">样式</label>
+  <div>
+  <input type="radio" name="style" id="style1" value="1" />白底黑字&nbsp;   
+<input type="radio" name="style" id="style2" value="2" />黑底白字&nbsp; 
+</div>
+</div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="edit-head-btn-ok" >确定</button>
+      </div>
+    </div>
+ </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.btn-head-hide',  function() {
+              var post_id = $(this).attr('data-post');
+              var head_item = $(this).parent().parent();
+              $.getJSON('/head/hide/'+post_id, function(data) {
+                            if(data.success!=0) {
+                                head_item.hide();
+                            }
+                        }); 
+            });      
+
+            $(document).on('click', '.btn-head-edit',  function() {
+              var post_id = $(this).attr('data-post');
+              var head_item = $(this).parent().parent();
+              $('#headPost').val(post_id);
+              $('#headTitle').val(head_item.attr('data-title'));
+              $('#headLabel').val(head_item.attr('data-label'));
+              $('#headSplash').val(head_item.attr('data-splash'));
+              $('#headSort').val(head_item.attr('data-sort'));
+              var horizontal = head_item.attr('data-horizontal');
+              var vertical = head_item.attr('data-vertical');
+              if (horizontal=='left'&&vertical=='top') {
+                $("input[type='radio'][name='position'][value='1']").attr("checked", "checked");
+              }
+              if (horizontal=='right'&&vertical=='top') {
+                $("input[type='radio'][name='position'][value='2']").attr("checked", "checked");
+              }
+              if (horizontal=='right'&&vertical=='bottom') {
+                $("input[type='radio'][name='position'][value='3']").attr("checked", "checked");
+              }
+              if (horizontal=='left'&&vertical=='bottom') {
+                $("input[type='radio'][name='position'][value='4']").attr("checked", "checked");
+              }
+              
+              if (head_item.attr('data-style')=='dark-text-on-light-image') {
+                $("input[type='radio'][name='style'][value='1']").attr("checked", "checked");
+              }
+              else {
+                $("input[type='radio'][name='style'][value='2']").attr("checked", "checked");
+              }
+              
+              $('#EditHeadModal').modal('show');
+            });
+
+            $(document).on('click', '#edit-head-btn-ok',  function() {
+           $('#EditHeadModal').modal('hide');
+           var post_id = $('#headPost').val();
+              var label = $('#headLabel').val();
+              var splash = $('#headSplash').val();
+              var sort = $('#headSort').val();
+              var position = $('input[type="radio"][name="position"]:checked').val()
+              var horizontal;
+              var vertical;
+              if (position==1) {
+                horizontal = 'left';
+                vertical = 'top';
+              }
+              if (position==2) {
+                horizontal = 'right';
+                vertical = 'top';
+              }
+              if (position==3) {
+                horizontal = 'right';
+                vertical = 'bottom';
+              }
+              if (position==4) {
+                horizontal = 'left';
+                vertical = 'bottom';
+              }
+
+              var style_num = $('input[type="radio"][name="style"]:checked').val()
+              var style;
+              if (style_num==1) {
+                style = 'dark-text-on-light-image';
+              }
+              else {
+                style = 'light-text-on-dark-image';
+              }
+
+              $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "/head/edit/"+post_id,
+              data: JSON.stringify({label: label, splash: splash, sort: sort, horizontal: horizontal, vertical: vertical, style: style}), 
+              success: function (msg) {
+                window.location.reload();
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            });
+
+           
+        }); 
+        });
+    </script>
+{% endblock %}

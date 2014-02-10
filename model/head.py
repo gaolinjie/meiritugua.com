@@ -24,3 +24,15 @@ class HeadModel(Query):
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar"
         return self.order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def get_shows_head_posts(self):
+        where = "head.shows = 1"
+        join = "LEFT JOIN post ON head.post_id = post.id"
+        order = "head.sort DESC, head.id DESC"
+        field = "head.*, \
+                post.*"
+        return self.where(where).order(order).join(join).field(field).select()
+
+    def update_head_by_post_id(self, post_id, head_info):
+        where = "head.post_id = %s" % post_id
+        return self.where(where).data(head_info).save()

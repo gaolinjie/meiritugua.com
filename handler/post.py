@@ -323,3 +323,52 @@ class VoteHandler(BaseHandler):
                     "success": 1,
                 }))
 
+
+class HeadManagerHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        template_variables["user_info"] = user_info
+        page = int(self.get_argument("page", "1"))
+        template_variables["navs"] = self.nav_model.get_all_navs()
+        template_variables["channels"] = self.channel_model.get_all_channels()
+    
+        template_variables["heads"] = self.head_model.get_shows_head_posts()
+        self.render("head.html", **template_variables)
+
+class HeadHideHandler(BaseHandler):
+    def get(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        if(user_info):
+            self.head_model.update_head_by_post_id(post_id, {"shows": 0})
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                }))
+
+
+class HeadEditHandler(BaseHandler):
+    @tornado.web.authenticated
+    def post(self, post_id, template_variables = {}):
+        user_info = self.current_user
+        if(user_info):
+            data = json.loads(self.request.body)
+            label = data["label"]
+            splash = data["splash"]
+            sort = data["sort"]
+            horizontal = data["horizontal"]
+            vertical = data["vertical"]
+            style = data["style"]
+            print style
+
+            head_info = {
+                "label": label,
+                "splash": splash,
+                "sort": sort,
+                "horizontal": horizontal,
+                "vertical": vertical,
+                "style": style,
+            }
+            self.head_model.update_head_by_post_id(post_id, head_info)
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                }))
+            
