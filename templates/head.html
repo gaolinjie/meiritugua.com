@@ -117,6 +117,25 @@
  </div>
 </div>
 
+<div class="modal" id="hideHeadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">隐藏头条</h4>
+      </div>
+      <div class="modal-body"> 
+      <input type="hidden" class="form-control" id="headPost" placeholder="">     
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="hide-head-btn-ok" >确定</button>
+      </div>
+    </div>
+ </div>
+</div>
+
 {% endblock %}
 
 {% block javascript %}
@@ -124,13 +143,24 @@
         $(document).ready(function(){
             $(document).on('click', '.btn-head-hide',  function() {
               var post_id = $(this).attr('data-post');
-              var head_item = $(this).parent().parent();
+              $('#headPost').val(post_id);
+              $('#hideHeadModal').modal('show');
+              
+            }); 
+
+            $(document).on('click', '#hide-head-btn-ok',  function() {
+              $('#hideHeadModal').modal('hide'); 
+              var post_id =  $('#headPost').val();
               $.getJSON('/head/hide/'+post_id, function(data) {
                             if(data.success!=0) {
-                                head_item.hide();
+                                window.location.reload();
                             }
-                        }); 
-            });      
+                        });
+
+              
+            });    
+
+              
 
             $(document).on('click', '.btn-head-edit',  function() {
               var post_id = $(this).attr('data-post');
