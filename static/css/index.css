@@ -711,7 +711,7 @@ float: right;
 width: 46px;
 height: 46px;
 display: inline-block;
-background: url(http://buzzfeed.com/static/images/global/unified_sprite.png?v=201312161302) no-repeat -535px -497px;
+background: url(/static/images/unified_sprite.png) no-repeat -535px -497px;
 }
 .PageFooter ul li {
 float: none;
@@ -1782,7 +1782,7 @@ tr .head-sort {
 }
 
 tr .head-op {
-	width: 142px;
+	width: 132px;
 }
 
 #btn-head-add {
