@@ -1469,9 +1469,16 @@ height: 150px;
 	border-radius: 50%;
 }
 
-
+@media screen and (min-width:970px) {
 .entry-content img {
 	max-width: 570px !important;
+}
+}
+
+@media screen and (max-width:970px) {
+.entry-content img {
+	max-width: 100% !important;
+}
 }
 
 
