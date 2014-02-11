@@ -18,7 +18,7 @@
   <![endif]-->
   {% block stylesheet %}{% endblock %}
   <!-- Duoshuo Comment BEGIN -->
-<script type="text/javascript">
+  <script type="text/javascript">
 var duoshuoQuery = {
   short_name:"meiritugua",
   sso: {
@@ -58,27 +58,24 @@ var duoshuoQuery = {
             <a href="/{{ nav.name }}" class="nav-title">{{ nav.title }}</a>
             <ul class="dropdown-menu ">
               <div class="content-preview">
-              <div class="content-left">
-                {% for channel in channels %}
+                <div class="content-left">
+                  {% for channel in channels %}
               {% if channel.nav_id == nav.id %}
-                <li class="channel-item" id="channel-{{ channel.name }}" data-name="{{ channel.name }}">
-                  <a href="/{{ channel.name }}" class="channel-title">{{ channel.title }}</a>
-                </li>
-                {% endif %}
+                  <li class="channel-item" id="channel-{{ channel.name }}" data-name="{{ channel.name }}">
+                    <a href="/{{ channel.name }}" class="channel-title">{{ channel.title }}</a>
+                  </li>
+                  {% endif %}
               {% endfor %}
-              </div>
-              <div class="content-right">
-                <ul class="nav_preview"  id="nav_preview_{{ nav.name }}" style="display: none">
-                </ul>
-                {% for channel in channels %}
+                </div>
+                <div class="content-right">
+                  <ul class="nav_preview"  id="nav_preview_{{ nav.name }}" style="display: none"></ul>
+                  {% for channel in channels %}
               {% if channel.nav_id == nav.id %}
-              <ul class="nav_preview" id="nav_preview_{{ channel.name }}" style="display: none">
-                </ul>
-                {% endif %}
+                  <ul class="nav_preview" id="nav_preview_{{ channel.name }}" style="display: none"></ul>
+                  {% endif %}
               {% endfor %}
-
+                </div>
               </div>
-            </div>
             </ul>
           </li>
           {% endfor %}
@@ -197,7 +194,6 @@ var duoshuoQuery = {
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script src="/static/js/share_roll.js"></script>
-  
   {% block javascript %}
 
   {% endblock %}
@@ -254,10 +250,19 @@ $ (".channel-item").hover(function(){
  });
 
 });
-
-
     </script>
 
-<a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47970078-1', 'meiritugua.com');
+  ga('send', 'pageview');
+
+</script>
+
+  <a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>
 </body>
 </html>
