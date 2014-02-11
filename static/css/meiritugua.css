@@ -373,9 +373,12 @@ text-transform: uppercase;
 @media screen and (min-width:970px) {
 .Column1 {
 	width: 600px!important;
+}
+}
+
+.Column1 {
 	position: relative;
 	background: #fff;
-}
 }
 
 
