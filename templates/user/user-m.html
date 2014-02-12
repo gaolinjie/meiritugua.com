@@ -1,11 +1,21 @@
 {% extends 'snippet/layout-m.html' %}
 {% block title %}
-<title>每日图卦 {{channel.title}}</title>
+<title>每日图卦 {{view_user_info.username}}</title>
 {% endblock %}
 
 {% block main %}
-<div class="content-header channel-header">
-  <h1 class="channel-name yahei">{{channel.title}}</h1>
+<div class="author-profile user-profile clearfix">
+
+  <div class="author-profile-face user-profile-face clearfix">
+    <img class="gravatar user-avatar" src="{{ view_user_info.avatar }}" width="50" height="50"></div>
+
+  <div class="author-profile-text">
+    <h2 class="yahei">
+      <a href="/u/{{ view_user_info.username }}">{{ view_user_info.username }}</a>
+    </h2>
+    <p>{{ view_user_info.intro }}</p>
+  </div>
+
 </div>
 
 
@@ -17,7 +27,7 @@
                 <div class="thumb-unit bf_dom">
                   <a href="/p/{{ std.id }}">
                     <div style="position:relative;">
-                      <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.thumb }}" width="125" height="83" alt=""></div>
+                      <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.cover }}" width="125" height="83" alt=""></div>
                   </a>
                 </div>
                 <hgroup>
@@ -30,17 +40,19 @@
               </p>
               <p class="small-meta">
                 <span class="generic-image icon"></span>
-                <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
+                <a class="username notranslate" href="#">{{ std.author_username }}</a>
                 <span class="time-image icon"></span>
                 <span class="time-ago">{{ std.created|pretty_date }}</span>
+
                 <span class="response-image icon"></span>
                 <span class="num">{{ std.count }}</span> <font><font>&nbsp;人看过</font></font> 
+
               </p>
             </article>
           </li>
           {% endfor %}
         </ul>
- 
+
 
 <ul class="pager">
   {{ stds.page|pagination(request.uri) }}

@@ -21,6 +21,7 @@ from lib.sendmail import send
 from lib.variables import gen_random
 from lib.gravatar import Gravatar
 from form.user import *
+from lib.mobile import is_mobile_browser
 
 def do_login(self, user_id):
     user_info = self.user_model.get_user_by_uid(user_id)
@@ -146,7 +147,11 @@ class UserHandler(BaseHandler):
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()
 
-        self.render("user/user.html", **template_variables)
+        if is_mobile_browser(self):
+            self.render("user/user-m.html", **template_variables)
+        else:
+            self.render("user/user.html", **template_variables)
+
 
 
 
