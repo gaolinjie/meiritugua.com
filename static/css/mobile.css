@@ -172,4 +172,14 @@ background-position: 0px -60px;
 	width: 100px;
 }
 
+.previous {
+	margin-top: 10px;
+float: left;
+}
+
+.next {
+	margin-top: 10px;
+float: right;
+}
+
 /* std-posts end */
