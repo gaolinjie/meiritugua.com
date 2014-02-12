@@ -1,4 +1,8 @@
 /* navbar start */
+.navbar{
+	margin-bottom: 10px;
+}
+
 .mf-nav {
 	text-shadow: 0 -1px 0 rgba(0,0,0,.15);
 background-color: #fe4e5b;
@@ -297,7 +301,7 @@ color: #666;
 font-size: 15px;
 line-height: 1.8em;
 margin: 0;
-margin-top: 20px;
+margin-top: 10px;
 clear: both;
 word-wrap: break-word;
 word-break: normal;
