@@ -41,14 +41,10 @@
           {% endfor %}
         </ul>
 
+<ul class="pagination">
+  {{ stds.page|pagination(request.uri) }}
+</ul>
 
-
-
-
-
-<div id="navigation" align="center">
-<a href="/?page={{stds.page.next}}"></a>
-</div>
 {% endblock %}
 
 {% block javascript %}

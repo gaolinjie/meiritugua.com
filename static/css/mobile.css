@@ -172,4 +172,11 @@ background-position: 0px -60px;
 	width: 100px;
 }
 
+
+.row .pagination {
+  margin: 15px 20px;
+}
+    .row .pagination a {
+  color: #999;
+}
 /* std-posts end */
