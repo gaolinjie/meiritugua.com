@@ -174,9 +174,8 @@ background-position: 0px -60px;
 
 
 .row .pager {
-  margin: 15px 0px;
+  position: absolute;
+  bottom: 10px;
 }
-    .row .pagination a {
-  color: #999;
-}
+
 /* std-posts end */

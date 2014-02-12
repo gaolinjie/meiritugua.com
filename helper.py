@@ -54,8 +54,21 @@ class Filters():
         t = self.jinja2.from_string("""
             {% if page and not page.pages == 1 %}
                 
-                    <li class="previous" {% if page.current == page.prev %}class="disabled"{% endif %}><a href="{{ uri|build_uri('page', page.prev) }}">&larr; 上一页</a></li>
-                    <li class="next" {% if page.current == page.next %}class="disabled"{% endif %}><a href="{{ uri|build_uri('page', page.next) }}">下一页 &rarr;</a></li>
+                    <li class="previous {% if page.current == page.prev %}disabled{% endif %}" >
+                    {% if not page.current == page.prev %}
+                                <a href="{{ uri|build_uri('p', page.prev) }}">&larr; 上一页</a>
+                            {% else %}
+                                <a href="javascript:;">&larr; 上一页</a>
+                            {% endif %}
+                    </li>
+
+                    <li class="next {% if page.current == page.next %}disabled{% endif %}" >
+                    {% if not page.current == page.next %}
+                                <a href="{{ uri|build_uri('p', page.next) }}">下一页 &rarr;</a>
+                            {% else %}
+                                <a href="javascript:;">下一页 &rarr;</a>
+                            {% endif %}
+                    </li>
                 
             {% endif %}
             """)

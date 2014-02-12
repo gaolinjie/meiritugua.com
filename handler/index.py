@@ -31,11 +31,11 @@ from lib.mobile import is_mobile_browser
 class IndexHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
-        page = int(self.get_argument("page", "1"))
+        p = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        template_variables["stds"] = self.std_model.get_std_posts(current_page = page)
-        template_variables["hots"] = self.hot_model.get_hot_posts(current_page = page)
+        template_variables["stds"] = self.std_model.get_std_posts(current_page = p)
+        template_variables["hots"] = self.hot_model.get_hot_posts(current_page = p)
         template_variables["heads"] = self.head_model.get_shows_head_posts()
 
         template_variables["navs"] = self.nav_model.get_all_navs()
