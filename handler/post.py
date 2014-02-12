@@ -27,6 +27,8 @@ from lib.utils import find_mentions
 from lib.reddit import hot
 from lib.utils import pretty_date
 
+from lib.mobile import is_mobile_browser
+
 class PostHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
     	user_info = self.current_user
@@ -43,7 +45,11 @@ class PostHandler(BaseHandler):
         template_variables["vote"] = self.vote_model.get_vote_by_post_id(post_id)
         template_variables["tags"] = self.post_tag_model.get_post_all_tags(post_id)
 	
-        self.render("post.html", **template_variables)
+        
+        if is_mobile_browser(self):
+            self.render("post-m.html", **template_variables)
+        else:
+            self.render("post.html", **template_variables)
 
 class CreatePostHandler(BaseHandler):
     def get(self, template_variables = {}):
