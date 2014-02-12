@@ -44,4 +44,4 @@ class IndexHandler(BaseHandler):
         if is_mobile_browser(self):
             self.render("index-m.html", **template_variables)
         else:
-            self.render("index.html", **template_variables)
+            self.render("index-m.html", **template_variables)
