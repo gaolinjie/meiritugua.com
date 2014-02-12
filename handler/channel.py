@@ -26,6 +26,8 @@ from lib.utils import find_mentions
 from lib.reddit import hot
 from lib.utils import pretty_date
 
+from lib.mobile import is_mobile_browser
+
 class ChannelHandler(BaseHandler):
     def get(self, channel_name, template_variables = {}):
     	user_info = self.current_user
@@ -46,7 +48,7 @@ class ChannelHandler(BaseHandler):
             template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(nav.id, current_page = page)
             template_variables["hots"] = self.nav_model.get_hot_posts_by_nav_id(nav.id, current_page = page)
 
-        
-
-        
-        self.render("channel.html", **template_variables)
+        if is_mobile_browser(self):
+            self.render("channel-m.html", **template_variables)
+        else:
+            self.render("channel.html", **template_variables)
