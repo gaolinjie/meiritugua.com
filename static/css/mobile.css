@@ -173,8 +173,8 @@ background-position: 0px -60px;
 }
 
 
-.row .pagination {
-  margin: 15px 20px;
+.row .pager {
+  margin: 15px 0px;
 }
     .row .pagination a {
   color: #999;
