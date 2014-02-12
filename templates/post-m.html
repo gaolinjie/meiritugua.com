@@ -4,10 +4,7 @@
 {% endblock %}
 
 {% block main %}
-<div class="col-xs-12 col-md-8">
-  <div class="Column1 section bf_dom">
-    <div class="section">
-      <div class="content">
+
         <article id="post-394774" class="entry-common clearfix">
 
           <div class="entry-header">
@@ -35,37 +32,7 @@
 
           <div id="entry-content" class="entry-content">{{ post.content|content_process }}</div>
 
-          <div id="ifr-article-component" class="m-t-10 clearfix">
-            <div class="clearfix"></div>
-            {% if tags.list %}
-            <div class="entry-meta-tags">
-              标签：
-              {% for tag in tags.list %}
-              <a href="/tag/{{ tag.tag_name }}" rel="tag">{{ tag.tag_name }}</a>
-              {% endfor %}
-            </div>
-            {% endif %}
-            <div class="author-profile weixin-qrcode clearfix">
-
-              <div class="author-profile-face clearfix">
-                <img class="gravatar" src="{{ post.author_avatar }}" width="50" height="50"></div>
-
-              <div class="author-profile-text">
-                <h2 class="yahei">
-                  <a href="/u/{{ post.author_username }}">{{ post.author_username }}</a>
-                </h2>
-                <p>{{ post.author_intro }}</p>
-              </div>
-            </div>
-
-          </div>
-
           </article>
-
-      </div>
-    </div>
-  </div>
-</div>
 
 
 {% endblock %}

@@ -185,10 +185,84 @@ float: right;
 /* std-posts end */
 
 
-/* post start */
-.entry-common {
-margin: 0 15px 25px;
+
+
+
+/* page content css */
+
+.entry-content h1 {
+font: 20px/22px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
 }
+
+.entry-content h2 {
+font: 18px/20px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.entry-content h3 {
+font: 16px/18px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.entry-content h4 {
+font: 14px/16px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.entry-content h5 {
+font: 12px/14px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.entry-content h6 {
+font: 10px/12px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+.buzz_superlist_item {
+	margin-bottom: 30px;
+}
+
+.author-profile {
+	margin-bottom: 10px;
+}
+
+
+.sub_buzz_source_via, .sub_buzz_source_via a {
+font: 12px/15px "ProximaNovaRegular", Helvetica, Arial, sans-serif;
+color: #999;
+font-style: italic;
+}
+
+.share-box {
+	display: none;
+}
+
+
+
+
+
+/* post start */
+
 
 .entry-header {
 position: relative;
