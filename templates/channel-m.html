@@ -1,0 +1,51 @@
+{% extends 'snippet/layout-m.html' %}
+{% block title %}
+<title>每日图卦 {{channel.title}}</title>
+{% endblock %}
+
+{% block main %}
+<div class="content-header channel-header">
+  <h1 class="channel-name yahei">{{channel.title}}</h1>
+</div>
+
+
+        <ul class="std-posts" id="page_flow">
+          {% for std in stds.list %}
+          <li id="post-{{ std.id }}" class=" std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
+            <article>
+              <header>
+                <div class="thumb-unit bf_dom">
+                  <a href="/p/{{ std.id }}">
+                    <div style="position:relative;">
+                      <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.thumb }}" width="125" height="83" alt=""></div>
+                  </a>
+                </div>
+                <hgroup>
+                  <h2 class="" style="">
+                    <a href="/p/{{ std.id }}">{{ std.title }}</a>
+                  </h2>
+                </hgroup>
+              </header>
+              <p class="description " style=""> <b>{{ std.intro }}</b>
+              </p>
+              <p class="small-meta">
+                <span class="generic-image icon"></span>
+                <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
+                <span class="time-image icon"></span>
+                <span class="time-ago">{{ std.created|pretty_date }}</span>
+                <span class="response-image icon"></span>
+                <span class="num">{{ std.count }}</span> <font><font>&nbsp;人看过</font></font> 
+              </p>
+            </article>
+          </li>
+          {% endfor %}
+        </ul>
+ 
+
+<ul class="pager">
+  {{ stds.page|pagination(request.uri) }}
+</ul>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
