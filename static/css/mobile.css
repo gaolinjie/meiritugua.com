@@ -83,7 +83,7 @@ padding-left: 0px;
 background: 0;
 }
 .std-posts .post {
-padding: 15px 0 10px 115px;
+padding: 15px 0 10px 110px;
 border-bottom: 1px solid #eee;
 margin: 0;
 position: relative;
@@ -93,7 +93,7 @@ width: 100%;
 }
 
 .std-posts .thumb-unit {
-margin-left: -115px;
+margin-left: -110px;
 margin-top: 3px;
 float: left;
 width: 100px;
@@ -133,26 +133,22 @@ font-size: 13px;
 line-height: 16px;
 }
 
-
 p.small-meta > * {
-
+float: left;
 font-size: 10px;
 color: #aaa;
 }
-
 p.small-meta .icon {
 background: url(/static/images/small_meta_icons.png);
 width: 12px !important;
 height: 12px;
 float: left;
-margin: 1px 5px 0px 15px;
+margin: 1px 3px 0px 8px;
 }
 
 p.small-meta .generic-image {
 margin: 1px 5px 0px 0px;
 }
-
-
 .post .username {
 display: block;
 max-width: 130px;
@@ -168,25 +164,9 @@ p.small-meta .time-image {
 background-position: 0px -12px;
 }
 
-
-p.small-meta > * {
-float: left;
-font-size: 10px;
-color: #aaa;
-}
-
-
 p.small-meta .response-image {
 background-position: 0px -60px;
 }
-
-
-p.small-meta > * {
-float: left;
-font-size: 10px;
-color: #aaa;
-}
-
 
 .thumb {
 	width: 100px;
