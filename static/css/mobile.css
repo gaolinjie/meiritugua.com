@@ -469,3 +469,26 @@ margin-right: 10px;
 font-size: 12px;
 }
 /* post end */
+
+.channel-header {
+margin-bottom: 10px;
+border-top: 2px solid #ccc;
+}
+.content-header {
+margin-top: 0;
+}
+.content-header {
+background-color: #eee;
+padding: 30px 13px;
+font-size: 16px;
+font-weight: 700;
+}
+
+.channel-name {
+font-size: 25px;
+line-height: 20px;
+display: block;
+font-weight: 700;
+padding-right: 35px;
+letter-spacing: 8px;
+}
