@@ -52,6 +52,139 @@ background-color: #ee4a55;
 
 
 
+/* std-posts start */
+.main {
+background: #fff;
+}
+
+.container {
+padding-right: 0px;
+padding-left: 0px;
+}
+
+.row {
+margin-right: 0;
+margin-left: 0;
+}
+
+.section {
+float: left;
+width: 100%;
+margin-bottom: 15px;
+}
+
+
+.std-posts {
+position: relative;
+padding-left: 15px;
+}
+
+.std-posts .post.first {
+background: 0;
+}
+.std-posts .post {
+padding: 15px 0 10px 135px;
+border-bottom: 1px solid #eee;
+margin: 0;
+position: relative;
+float: left;
+display: inline;
+}
+
+.std-posts .thumb-unit {
+margin-left: -135px;
+margin-top: 3px;
+float: left;
+width: 125px;
+display: inline;
+position: relative;
+}
+
+img {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+background: transparent;
+vertical-align: baseline;
+}
+
+.std-posts .post h2 {
+margin-bottom: 6px;
+font: normal 21px/23px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+text-shadow: 1px 1px 0 white;
+margin-top: -3px;
+font-size: 18px;
+line-height: 22px;
+padding: 0;
+}
+
+.post h2 a {
+color: #07e;
+}
+
+.std-posts .post .description, .splash .BF_IFRAME .bf-item-title {
+padding-right: 0px;
+margin-bottom: 5px;
+font: normal 13px/17px "",Helvetica,Arial,sans-serif;
+font-size: 13px;
+line-height: 16px;
+}
+
+p.small-meta .generic-image {
+margin: 1px 5px 0px 0px;
+}
+
+p.small-meta > * {
+
+font-size: 10px;
+color: #aaa;
+}
+
+p.small-meta .icon {
+background: url(/static/images/small_meta_icons.png);
+width: 12px !important;
+height: 12px;
+float: left;
+
+}
+
+
+.post .username {
+display: block;
+max-width: 130px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+p.small-meta a {
+color: #aaa;
+}
+
+p.small-meta .time-image {
+background-position: 0px -12px;
+}
+
+
+p.small-meta > * {
+float: left;
+font-size: 10px;
+color: #aaa;
+}
+
+
+p.small-meta .response-image {
+background-position: 0px -60px;
+}
+
+
+p.small-meta > * {
+float: left;
+font-size: 10px;
+color: #aaa;
+}
 
 
 
+/* std-posts end */

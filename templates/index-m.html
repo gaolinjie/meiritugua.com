@@ -1,64 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-  {% block title %}{% endblock %}
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'snippet/layout-m.html' %}
+{% block title %}
+<title>每日图卦</title>
+{% endblock %}
 
-  <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/mobile.css">
-  {% block stylesheet %}{% endblock %}
-  <link rel="shortcut icon" href="/static/images/favicon.ico">
-</head>
+{% block main %}
 
-<body>
-  <header class="navbar navbar-inverse mf-nav" role="banner">
-    <div class="container">
-      <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="../" class="navbar-brand"></a>
-      </div>
-      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-        <ul class="nav navbar-nav">
-          {% for nav in navs %}
-          <li class=" nav-item" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
-            <a href="/{{ nav.name }}" class="nav-title">{{ nav.title }}</a>
+
+        <ul class="std-posts" id="page_flow">
+          {% for std in stds.list %}
+          <li id="post-{{ std.id }}" class=" std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
+            <article>
+              <header>
+                <div class="thumb-unit bf_dom">
+                  <a href="/p/{{ std.id }}">
+                    <div style="position:relative;">
+                      <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.thumb }}" width="125" height="83" alt=""></div>
+                  </a>
+                </div>
+                <hgroup>
+                  <h2 class="" style="">
+                    <a href="/p/{{ std.id }}">{{ std.title }}</a>
+                  </h2>
+                </hgroup>
+              </header>
+              <p class="description " style=""> <b>{{ std.intro }}</b>
+              </p>
+              <p class="small-meta">
+                <span class="generic-image icon"></span>
+                <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
+                <span class="time-image icon"></span>
+                <span class="time-ago">{{ std.created|pretty_date }}</span>
+                <span class="response-image icon"></span>
+                <span class="num">{{ std.count }}</span>
+                <font>
+                  <font>&nbsp;人看过</font>
+                </font>
+              </p>
+            </article>
           </li>
           {% endfor %}
         </ul>
-      </nav>
-    </div>
-  </header>
-
-  <div class="page-columns">
-    <div class="left-column-group bf_dom">
-      <div class="container main">
-        <div class="row">{% block main %}{% endblock %}</div>
-      </div>
-    </div>
-
-  </div>
 
 
-  <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-  <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-  {% block javascript %}
-  {% endblock %}
 
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-47970078-1', 'meiritugua.com');
-  ga('send', 'pageview');
 
-</script>
 
-</body>
-</html>
+<div id="navigation" align="center">
+<a href="/?page={{stds.page.next}}"></a>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
