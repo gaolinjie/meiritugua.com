@@ -1132,10 +1132,12 @@ padding: 0;
 }
 
 .entry-content img {
-
 border: 0 solid #ccc;
 max-width: 600px;
 height: auto;
+clear: both;
+ display: block;
+ margin:auto;
 }
 
 .aligncenter {

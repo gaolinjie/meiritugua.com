@@ -316,7 +316,7 @@ word-break: normal;
 color: #0052AA;
 text-decoration: none;
 }
-.entry-content img.aligncenter {
+.entry-content img{
 margin: 0 auto;
 text-align: center;
 }
@@ -330,6 +330,7 @@ padding: 0;
 border: 0 solid #ccc;
 max-width: 100%;
 height: auto;
+
 }
 
 .aligncenter {
