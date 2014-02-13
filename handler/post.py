@@ -267,49 +267,49 @@ class VoteHandler(BaseHandler):
             vote = self.vote_model.get_vote_by_post_id(post_id)
             if vote_type=="love":
                 self.vote_model.update_vote_by_post_id(post_id, {"love": vote.love+1})
-                if vote.love+1 > 30:
+                if vote.love+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
                         hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": post.channel_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
             if vote_type=="omg":
                 self.vote_model.update_vote_by_post_id(post_id, {"omg": vote.omg+1})
-                if vote.omg+1 > 30:
+                if vote.omg+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
                         hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": post.channel_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
             if vote_type=="gds":
                 self.vote_model.update_vote_by_post_id(post_id, {"gds": vote.gds+1})
-                if vote.gds+1 > 30:
+                if vote.gds+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
                         hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": post.channel_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})     
             if vote_type=="geili":
                 self.vote_model.update_vote_by_post_id(post_id, {"geili": vote.geili+1})
-                if vote.geili+1 > 30:
+                if vote.geili+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
                         hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": post.channel_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
             if vote_type=="lol":
                 self.vote_model.update_vote_by_post_id(post_id, {"lol": vote.lol+1})
-                if vote.lol+1 > 30:
+                if vote.lol+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
                         hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": post.channel_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
             if vote_type=="cute":
                 self.vote_model.update_vote_by_post_id(post_id, {"cute": vote.cute+1})
-                if vote.cute+1 > 30:
+                if vote.cute+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
                         hot_id = self.hot_model.add_new_hot({"post_id": post_id, "channel_id": post.channel_id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
             if vote_type=="zzs":
                 self.vote_model.update_vote_by_post_id(post_id, {"zzs": vote.zzs+1})
-                if vote.zzs+1 > 30:
+                if vote.zzs+1 > 3:
                     hot = self.hot_model.get_hot_by_post_id(post_id)
                     if not hot:
                         post = self.post_model.get_post_by_post_id(post_id)
