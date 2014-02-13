@@ -441,3 +441,11 @@ text-decoration: none;
 line-height: 1.5em;
 margin: 5px 0;
 }
+
+.post h2 a:hover {
+color: #fe4e5b;
+}
+
+a:hover {
+text-decoration: none;
+}
