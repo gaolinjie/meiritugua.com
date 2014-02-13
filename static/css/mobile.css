@@ -311,10 +311,7 @@ clear: both;
 word-wrap: break-word;
 word-break: normal;
 }
-.entry-content p {
-margin-bottom: 20px;
-line-height: 1.8em;
-}
+
 .entry-content a {
 color: #0052AA;
 text-decoration: none;
