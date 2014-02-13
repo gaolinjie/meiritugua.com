@@ -121,7 +121,7 @@ background-color: #ee4a55;
 }
 
 .navbar-brand {
-background: no-repeat url(/static/images/logo.png);
+background: no-repeat url(http://meiritugua.qiniudn.com/logo.png);
 margin: 10px 0px 10px 0px;
 width: 163px;
 }
@@ -486,7 +486,7 @@ margin-bottom: 0px;
 }
 
 p.small-meta .icon {
-background: url(/static/images/small_meta_icons.png);
+background: url(http://meiritugua.qiniudn.com/small_meta_icons.png);
 width: 12px !important;
 height: 12px;
 float: left;
@@ -1035,7 +1035,7 @@ float: right;
 width: 46px;
 height: 46px;
 display: inline-block;
-background: url(/static/images/unified_sprite.png) no-repeat -535px -497px;
+background: url(http://meiritugua.qiniudn.com/unified_sprite.png) no-repeat -535px -497px;
 }
 .PageFooter ul li {
 float: none;
@@ -1065,7 +1065,7 @@ color: #666;
 }
 
 body {
-background: url(/static/images/noise.png);
+background: url(http://meiritugua.qiniudn.com/noise.png);
 }
 
 .main {
@@ -1744,8 +1744,8 @@ opacity: 0.7;
   cursor:pointer;
   text-indent: -999px;
   overflow: hidden;
-  background-image: url(/static/images/h.gif);
-  _background-image: url(/static/images/h.gif);
+  background-image: url(http://meiritugua.qiniudn.com/h.gif);
+  _background-image: url(http://meiritugua.qiniudn.com/h.gif);
   background-repeat: no-repeat;
   background-position: 0 0;
   transition: bottom 0.9s;
@@ -2010,12 +2010,7 @@ letter-spacing: 0px;
 
 width: auto!important;
 }
-.social-actions .reactions_one li a.vote-love_or_hate span.heart, .social-actions .reactions_two li a.vote-love_or_hate span.heart, .social-actions .reaction_control_heart li a.vote-love_or_hate span.heart {
-display: block;
-width: 19px;
-height: 16px;
-background: url(/static/images/lovehate-16_no_bg.png);
-}
+
 .badge-vote-count {
 display: block;
 text-align: center;
@@ -2049,7 +2044,7 @@ background-position: -19px 0px;
 display: block;
 width: 19px;
 height: 16px;
-background: url(/static/images/lovehate-16_no_bg.png);
+background: url(http://meiritugua.qiniudn.com/lovehate-16_no_bg.png);
 }
 .social-actions .reactions_one li a.vote-love_or_hate {
 padding: 4px 8px 5px 8px !important;
@@ -2168,7 +2163,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 #stb_article_view #stb_article_view_icon {
 display: block;
 _display: inline-block;
-background: url("/static/images/bg.gif") 0 0 no-repeat;
+background: url("http://meiritugua.qiniudn.com/bg.gif") 0 0 no-repeat;
 height: 14px;
 width: 18px;
 margin: 3px auto 1px auto;
@@ -2185,7 +2180,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .stb_divide {
-background: url("/static/images/bg.gif") 1px -19px no-repeat;
+background: url("http://meiritugua.qiniudn.com/@/static/images/bg.gif") 1px -19px no-repeat;
 width: 9px;
 height: 33px;
 }
@@ -2211,7 +2206,7 @@ font-size: 12px;
 padding-left: 17px;
 line-height: 16px;
 height: 16px;
-background-image: url(/static/images/icons_0_16.png);
+background-image: url(http://meiritugua.qiniudn.com/icons_0_16.png);
 background-repeat: no-repeat;
 cursor: pointer;
 margin: 6px 6px 6px 0;
@@ -2265,7 +2260,7 @@ float: left;
 
 .bdshare-button-style0-16 .bds_count {
 color: #333;
-background: url(/static/images/sc.png) no-repeat 0 -30px;
+background: url(http://meiritugua.qiniudn.com/sc.png) no-repeat 0 -30px;
 width: 42px;
 height: 16px;
 padding: 0;
