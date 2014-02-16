@@ -47,3 +47,7 @@ class HotModel(Query):
     def get_hot_by_post_id(self, post_id):
         where = "post_id = %s" % post_id
         return self.where(where).find()
+
+    def update_hot_by_post_id(self, post_id, hot_info):
+        where = "hot.post_id = %s" % post_id
+        return self.where(where).data(hot_info).save()

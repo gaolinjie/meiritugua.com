@@ -45,6 +45,9 @@
                   <a href="/p/{{ std.id }}">
                     <div style="position:relative;">
                       <img class="thumb bf_dom " style="" src="/static/thumb/n_{{ std.thumb }}" width="125" height="83" alt=""></div>
+                      {% if std.nav_name == "video" %}
+                      <span class="video-play-icon"></span>
+                      {% endif %}
                   </a>
                 </div>
                 <hgroup>

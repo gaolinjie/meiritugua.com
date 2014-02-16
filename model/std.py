@@ -17,11 +17,14 @@ class StdModel(Query):
 
     def get_std_posts(self, num = 10, current_page = 1):
         join = "LEFT JOIN post ON std.post_id = post.id\
-                LEFT JOIN user AS author_user ON post.author_id = author_user.uid"
+                LEFT JOIN user AS author_user ON post.author_id = author_user.uid\
+                LEFT JOIN channel ON std.channel_id = channel.id\
+                LEFT JOIN nav ON channel.nav_id = nav.id"
         order = "post.created DESC, post.id DESC"
         field = "post.*, \
                 author_user.username as author_username, \
-                author_user.avatar as author_avatar"
+                author_user.avatar as author_avatar, \
+                nav.name as nav_name"
         return self.order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
 
@@ -44,3 +47,7 @@ class StdModel(Query):
                 author_user.username as author_username, \
                 author_user.avatar as author_avatar"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
+
+    def update_std_by_post_id(self, post_id, std_info):
+        where = "std.post_id = %s" % post_id
+        return self.where(where).data(std_info).save()

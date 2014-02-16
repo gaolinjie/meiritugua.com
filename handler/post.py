@@ -173,6 +173,9 @@ class EditPostHandler(BaseHandler):
         self.post_model.update_post_by_post_id(post_id, post_info)
         post = self.post_model.get_post_by_post_id(post_id)
 
+        self.std_model.update_std_by_post_id(post_id, {"channel_id": channel.id})
+        self.hot_model.update_hot_by_post_id(post_id, {"channel_id": channel.id})
+
         # process post thumb
         thumb_file = self.request.files
         if thumb_file:

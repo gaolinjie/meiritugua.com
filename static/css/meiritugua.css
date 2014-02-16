@@ -2321,3 +2321,14 @@ embed  {
 	width: 570px !important;
 	height: 361px !important;
 }
+
+.video-play-icon {
+bottom: 3px;
+width: 18px !important;
+height: 18px !important;
+position: absolute;
+margin: 0px;
+padding: 0px;
+left: 0px;
+background: url(http://meiritugua.qiniudn.com/play_icon.png) no-repeat;
+}
