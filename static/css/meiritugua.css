@@ -2316,3 +2316,8 @@ padding: 6px 0 0 3px;
   -moz-animation:kanan 1.2s infinite linear;
   -o-animation:kanan 1.2s infinite linear;
 }
+
+embed  {
+	width: 570px !important;
+	height: 361px !important;
+}

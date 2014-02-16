@@ -450,3 +450,7 @@ color: #fe4e5b;
 a:hover {
 text-decoration: none;
 }
+
+embed  {
+	width: 100%    !important;
+}
