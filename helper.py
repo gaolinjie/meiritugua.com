@@ -143,7 +143,7 @@ class Filters():
         # render @ mention links
         #content = re.sub(ur'@(?!_)(?!.*?_$)(?!\d+)([a-zA-Z0-9_\u4e00-\u9fa5]+)(\s|)', r'<a href="/u/\1">@\1</a> ', content)
         # render youku videos
-        content = re.sub(r'embed', r'video', content)
+        content = re.sub(r'<embed(.*)src="http://player.youku.com/player.php/sid/(\w+)/v.swf"(.*)>', r'<iframe width="100%" height="200" frameborder="0" src="http://player.youku.com/embed/\2" allowfullscreen=""></iframe>', content)
         return content
 
     def reply_process(self, content):
