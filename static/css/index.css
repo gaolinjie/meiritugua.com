@@ -1,298 +1,3 @@
-a, abbr, acronym, address, applet, area, article, aside, audio, b, base, basefont, bdo, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, command, datalist, dd, del, details, dfn, dir, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, frame, frameset, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, ins, keygen, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, noframes, noscript, object, ol, optgroup, option, output, p, param, pre, progress, q, rp, rt, ruby, s, samp, script, section, small, source, span, strike, strong, style, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, title, tr, tt, u, ul, var, video, wbr, xmp {
-margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
-font-size: 100%;
-background: transparent;
-}
-
-article, section, header, aside, nav, footer {
-display: block;
-}
-
-
-:focus, :active {
-outline: 0;
-}
-a {
-color: #07e;
-text-decoration: none;
-}
-
-a {
-	margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
-font-size: 100%;
-background: transparent;
-}
-
-a:hover {
-text-decoration: none;
-}
-
-.row {
-margin-right: 0;
-margin-left: 0;
-}
-
-.md-8, .col-xs-12, .col-md-4, .col-xs-6 {
-padding-left: 0;
-}
-/*
-.navbar-nav.navbar-right:last-child {
-margin-right: -27px;
-}*/
-
-img {
-margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
-font-size: 100%;
-background: transparent;
-vertical-align: baseline;
-}
-@media screen and (max-width: 970px) {
-	.container {
-width: 610px;
-padding-right: 0px;
-padding-left: 0px;
-}
-}
-
-@media screen and (min-width:970px) {
-	.container {
-width: 970px;
-padding-right: 0px;
-padding-left: 0px;
-}
-}
-
-
-
-
-.navbar {
-border-radius: 0px;
-}
-
-body {
-font: 14px Arial,Helvetica,sans-serif;
-color: #333;
-}
-
-h5 {
-font-weight: bold;
-font-family: Arial, Helvetica, sans-serif;
-margin-bottom: 5px;
-}
-
-
-
-.mf-nav {
-	text-shadow: 0 -1px 0 rgba(0,0,0,.15);
-background-color: #fe4e5b;
-border-color: #ee4a55;
-box-shadow: 0 1px 0 rgba(255,255,255,.1);
-}
-
-
-.mf-nav .navbar-toggle {
-border-color: #ee4a55;
-}
-
-.mf-nav .navbar-brand {
-color: #fff;
-}
-
-.mf-nav .navbar-collapse {
-border-color: #ee4a55;
-}
-
-.mf-nav .navbar-nav > li > a {
-color: #fff;
-}
-
-.mf-nav .navbar-nav > .active > a, .mf-nav .navbar-nav > .active > a:hover {
-color: #fff;
-background-color: #ee4a55;
-}
-
-.navbar-brand {
-background: no-repeat url(http://meiritugua.qiniudn.com/logo.png);
-margin: 11px 0px 9px 0px;
-width: 163px;
-}
-
-.container>.navbar-header {
-	margin-left: 15px;
-	margin-right: 5px;
-}
-
-.avatar_c {
-	padding-top: 9px !important;
-padding-bottom: 5px !important;
-}
-.avatar_c img
-{
-	border-radius: 50%;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
- }
-
-.dropdown-menu {
-	padding: 0 !important;
-	min-width: 510px !important;
-}
-
-
-.dropdown-menu-right {
-	min-width: 60px !important;
-}
-
- .navbar .nav ul li {
-background-color: #fe4e5b;
-}
-
-.dropdown-menu>li>a {
-color: #fff;
-padding: 12px 14px !important;
-}
-
-.navbar-right .dropdown-menu {
-left: 0 !important;
-}
-
-.dropdown-menu>li>a:hover {
-background-color: #ee4a55;
-color: #1abc9c;
-
-}
-
-
-.navbar {
-margin-bottom: 0px;
-}
-
-
-
-
-
-.dropdown-menu>.content-preview>.content-left>li>a {
-display: block;
-padding: 3px 20px;
-clear: both;
-font-weight: normal;
-line-height: 1.428571429;
-white-space: nowrap;
-padding: 2px 10px !important;
-margin: 10px 10px;
-font-weight:bold;
-}
-
-.dropdown-menu>.content-preview>.content-left>li>a:hover {
-background-color: #f7f7f7;
-color: #f34b2b;
-text-decoration: none;
-}
-
-
-.content-left {
-	width: 68px;
-}
-
-.navbar .nav ul .content-preview .content-left li  {
-	background-color: #fff;
-	margin: 20px 0;
-}
-
-.nav>.dropdown:hover {
-background-color: #ee4a55
-}
-
-.nav-item {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.nav_preview {
-min-height: 340px;
-}
-
-.nav_preview li {
-width: auto;
-display: block;
-overflow: hidden;
-margin: 0 0 15px 0;
-}
-
-.nav_preview li .thumb_warpper {
-float: left;
-width: 100px;
-height: 66px;
-margin: 0 10px 0 0;
-position: relative;
-}
-
-.nav_preview li .image_square {
-width: 100px;
-height: 66px;
-}
-
-.nav_preview li .title_small {
-width: 290px;
-}
-
-.nav_preview li .title_small {
-width: 260px;
-font-size: 14px;
-font-family: 'ProximaNovaRegular', sans-serif;
-color: black;
-line-height: 22px;
-}
-
-.nav_preview li:hover .title_small {
-color: #07e;
-} 
-
-.nav_preview a.more_vertical {
-font-size: 14px;
-font-family: 'ProximaNovaSemibold', sans-serif;
-color: #f34b2b;
-display: block;
-margin: 10px 0;
-}
-
-.nav_preview a.more_vertical:hover {
-color: #07e;
-}
-
-.content-preview {
-	position: relative;
-}
-.content-left {
-	float: left;
-}
-
-.content-right {
-	float: left;
-	width: 380px;
-	margin-left: 20px;
-}
-
-.navbar .nav ul .content-preview  .nav_preview li  {
-	background-color: #fff;
-	margin: 20px 0;
-}
-
-.ds-icons-32 {
-margin-right: -15px;
-}
-
 
 .mf-header {
 font-size: 21px;
@@ -379,33 +84,11 @@ text-transform: uppercase;
 
 
 /* Column1 */
-@media screen and (min-width:970px) {
 .Column1 {
 	width: 600px!important;
-}
-}
-
-.Column1 {
 	position: relative;
 	background: #fff;
 }
-
-
-@media screen and (max-width:970px) {
-.Column2 {
-	display: none;
-}
-
-#share_toolbar_wrapper {
-	display: none;
-}
-
-#returnTop {
-	display: none;
-}
-}
-
-
 
 .Column1 .content {
 padding-top: 0px;
@@ -423,13 +106,8 @@ list-style-type: none;
 background: 0;
 }
 
-@media screen and (min-width:970px) {
-	.Column1 .std-posts .post {;
-width: 580px;
-}
-}
-
 .Column1 .std-posts .post {;
+width: 580px;
 padding: 15px 0 10px 135px;
 border-bottom: 1px solid #eee;
 margin: 0;
@@ -437,8 +115,6 @@ position: relative;
 float: left;
 display: inline;
 }
-
-
 
 .Column1 .std-posts .thumb-unit {
 margin-left: -135px;
@@ -486,7 +162,7 @@ margin-bottom: 0px;
 }
 
 p.small-meta .icon {
-background: url(http://meiritugua.qiniudn.com/small_meta_icons.png);
+background: url(/static/images/small_meta_icons.png);
 width: 12px !important;
 height: 12px;
 float: left;
@@ -1035,7 +711,7 @@ float: right;
 width: 46px;
 height: 46px;
 display: inline-block;
-background: url(http://meiritugua.qiniudn.com/unified_sprite.png) no-repeat -535px -497px;
+background: url(/static/images/unified_sprite.png) no-repeat -535px -497px;
 }
 .PageFooter ul li {
 float: none;
@@ -1065,7 +741,7 @@ color: #666;
 }
 
 body {
-background: url(http://meiritugua.qiniudn.com/noise.png);
+background: url(/static/images/noise.png);
 }
 
 .main {
@@ -1117,7 +793,10 @@ clear: both;
 word-wrap: break-word;
 word-break: normal;
 }
-
+.entry-content p {
+margin-bottom: 20px;
+line-height: 1.8em;
+}
 .entry-content a {
 color: #0052AA;
 text-decoration: none;
@@ -1132,12 +811,10 @@ padding: 0;
 }
 
 .entry-content img {
+
 border: 0 solid #ccc;
 max-width: 600px;
 height: auto;
-clear: both;
- display: block;
- margin:auto;
 }
 
 .aligncenter {
@@ -1477,16 +1154,9 @@ height: 150px;
 	border-radius: 50%;
 }
 
-@media screen and (min-width:970px) {
+
 .entry-content img {
 	max-width: 570px !important;
-}
-}
-
-@media screen and (max-width:970px) {
-.entry-content img {
-	max-width: 100% !important;
-}
 }
 
 
@@ -1743,8 +1413,8 @@ opacity: 0.7;
   cursor:pointer;
   text-indent: -999px;
   overflow: hidden;
-  background-image: url(http://meiritugua.qiniudn.com/h.gif);
-  _background-image: url(http://meiritugua.qiniudn.com/h.gif);
+  background-image: url(/static/images/h.gif);
+  _background-image: url(/static/images/h.gif);
   background-repeat: no-repeat;
   background-position: 0 0;
   transition: bottom 0.9s;
@@ -1935,14 +1605,9 @@ position: relative;
 margin: 10px 0 10px;
 
 }
-
-@media screen and (min-width:970px) {
 .social-actions-hybrid .badge-voting {
 width: 630px;
 }
-}
-
-
 .social-actions .badge-voting {
 margin-right: 10px;
 margin-top: 5px;
@@ -2009,7 +1674,12 @@ letter-spacing: 0px;
 
 width: auto!important;
 }
-
+.social-actions .reactions_one li a.vote-love_or_hate span.heart, .social-actions .reactions_two li a.vote-love_or_hate span.heart, .social-actions .reaction_control_heart li a.vote-love_or_hate span.heart {
+display: block;
+width: 19px;
+height: 16px;
+background: url(/static/images/lovehate-16_no_bg.png);
+}
 .badge-vote-count {
 display: block;
 text-align: center;
@@ -2043,7 +1713,7 @@ background-position: -19px 0px;
 display: block;
 width: 19px;
 height: 16px;
-background: url(http://meiritugua.qiniudn.com/lovehate-16_no_bg.png);
+background: url(/static/images/lovehate-16_no_bg.png);
 }
 .social-actions .reactions_one li a.vote-love_or_hate {
 padding: 4px 8px 5px 8px !important;
@@ -2119,216 +1789,4 @@ tr .head-op {
 position: absolute;
 left: 545px;
 top: 5px;
-}
-
-#share_toolbar_wrapper {
-padding-top: 4px;
-background: #fff;
-_zoom: 1;
-}
-
-
-#share_toolbar {
-width: 570px;
-height: 33px;
-line-height: 33px;
-_height: 32px;
-_line-height: 14px;
-border: 1px solid #ddd;
-background: #fcfcfc;
-border-radius: 5px;
-}
-
-media="screen"
-#share_toolbar_wrapper #share_toolbar {
-border-radius: 0;
-}
-
-.stb_group, .stb_divide {
-float: left;
-display: block;
-}
-
-
-#stb_article_view span {
-display: block;
-line-height: 12px;
-font-size: 11px;
-margin: 0 5px;
-color: #aaa;
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-#stb_article_view #stb_article_view_icon {
-display: block;
-_display: inline-block;
-background: url("http://meiritugua.qiniudn.com/bg.gif") 0 0 no-repeat;
-height: 14px;
-width: 18px;
-margin: 3px auto 1px auto;
-_margin-left: 8px;
-}
-
-#stb_article_view span {
-display: block;
-line-height: 12px;
-font-size: 11px;
-margin: 0 5px;
-color: #aaa;
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-.stb_divide {
-background: url("http://meiritugua.qiniudn.com/@/static/images/bg.gif") 1px -19px no-repeat;
-width: 9px;
-height: 33px;
-}
-.stb_group, .stb_divide {
-float: left;
-display: block;
-}
-
-.bdsharebuttonbox {
-height: 31px;
-line-height: 28px;
-padding: 3px 5px 0 5px;
-overflow: hidden;
-float: left;
-}
-.bdshare-button-style0-16 {
-zoom: 1;
-}
-
-.bdshare-button-style0-16 a, .bdshare-button-style0-16 .bds_more {
-float: left;
-font-size: 12px;
-padding-left: 17px;
-line-height: 16px;
-height: 16px;
-background-image: url(http://meiritugua.qiniudn.com/icons_0_16.png);
-background-repeat: no-repeat;
-cursor: pointer;
-margin: 6px 6px 6px 0;
-}
-.bdsharebuttonbox .bds_has_name {
-padding: 0 5px 0 20px;
-border-right: 1px solid #ccc;
-}
-.bdshare-button-style0-16 .bds_tsina {
-background-position: 0 -104px;
-}
-.bdsharebuttonbox a {
-height: 16px;
-line-height: 16px;
-margin-right: 6px;
-color: #999;
-}
-
-.bdshare-button-style0-16 .bds_qzone {
-background-position: 0 -52px;
-}
-
-.bdshare-button-style0-16 .bds_weixin {
-background-position: 0 -1612px;
-}
-
-.bdshare-button-style0-16 .bds_renren {
-background-position: 0 -208px;
-}
-
-.bdshare-button-style0-16 .bds_tqq {
-background-position: 0 -260px;
-}
-
-.bdshare-button-style0-16 .bds_douban {
-background-position: 0 -468px;
-}
-
-.bdshare-button-style0-16 .bds_baidu {
-background-position: 0 -2600px;
-}
-
-.bdshare-button-style0-16 .bds_tieba {
-background-position: 0 -728px;
-}
-
-.bdshare-button-style0-16 .bds_more {
-color: #333;
-float: left;
-}
-
-.bdshare-button-style0-16 .bds_count {
-color: #333;
-background: url(http://meiritugua.qiniudn.com/sc.png) no-repeat 0 -30px;
-width: 42px;
-height: 16px;
-padding: 0;
-margin: 6px 0 0;
-text-align: center;
-}
-
-
-.bdsharebuttonbox .bds_count {
-color: #890;
-background-position: -42px -30px;
-}
-
-#stb_like_gplus {
-float: left;
-padding: 6px 0 0 3px;
-}
-
-
-.infscr-loading h1{
-  font-family: 'Actor', sans-serif;
-  color: #999;
-  font-size:16px;
-  letter-spacing:1px;
-  font-weight:200;
-}
-.infscr-loading span{
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  display:inline-block;
-  position:absolute;
-  -webkit-animation:3s infinite linear;
-  -moz-animation:3s infinite linear;
-  -o-animation:3s infinite linear;
-  
-}
-
-
-.infscr-loading span:nth-child(2){
-  background:#E84C3D;
-  -webkit-animation:kiri 1.2s infinite linear;
-  -moz-animation:kiri 1.2s infinite linear;
-  -o-animation:kiri 1.2s infinite linear;
-  
-}
-.infscr-loading span:nth-child(3){
-  background:#F1C40F;
-  z-index:100;
-}
-.infscr-loading span:nth-child(4){
-  background:#2FCC71;
-  -webkit-animation:kanan 1.2s infinite linear;
-  -moz-animation:kanan 1.2s infinite linear;
-  -o-animation:kanan 1.2s infinite linear;
-}
-
-embed  {
-	width: 570px !important;
-	height: 361px !important;
-}
-
-.video-play-icon {
-bottom: 3px;
-width: 18px !important;
-height: 18px !important;
-position: absolute;
-margin: 0px;
-padding: 0px;
-left: 0px;
-background: url(http://meiritugua.qiniudn.com/play_icon.png) no-repeat;
 }
