@@ -127,7 +127,7 @@ position: relative;
 
 .Column1 .std-posts .post h2 {
 	margin-bottom: 6px;
-	font: normal 21px/23px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+	font: normal 21px/23px "Microsoft Yahei",arial,helvetica,sans-serif;
 text-shadow: 1px 1px 0 white;
 margin-top: -3px;
 font-size: 18px;
@@ -329,7 +329,7 @@ top: 0px;
 color: #fff;
 }
 .hp-fresh-post h2 {
-font: normal 14px/16px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font: normal 14px/16px "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 
 .hp-fresh-post.has_image .more-link {
@@ -361,7 +361,7 @@ top: 0px;
 color: #fff;
 }
 .hp-fresh-post h2 {
-font: normal 14px/16px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font: normal 14px/16px "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 
 .hp-fresh-post.no_image {
@@ -386,7 +386,7 @@ padding: 5px;
 color: #000;
 }
 .hp-fresh-post h2 {
-font: normal 14px/16px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font: normal 14px/16px "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 
 
@@ -1285,7 +1285,7 @@ background-color: #f03011;
 color: #FFFFFF;
 }
 #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 
 #splash-overlay.right > div {
@@ -1317,10 +1317,10 @@ width: inherit;
 }
 #splash-overlay .description {
 display: none;
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 #splash-overlay .title, #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 .splash-desc {
 max-width: 360px;
@@ -1362,7 +1362,7 @@ background-color: #f03011;
 color: #FFFFFF;
 }
 #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 #splash-overlay.left > div {
 float: left;

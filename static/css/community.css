@@ -111,7 +111,7 @@ text-transform: uppercase;
 color: #FFFFFF;
 }
 #splash-overlay .title, #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 #splash_01 #splash-overlay.right > div {
 text-align: right;
@@ -161,7 +161,7 @@ width: inherit;
 }
 #splash-overlay .description {
 display: none;
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
 }
 .VerticalSection #splash_01 .splash-desc, .HomePage #splash_01.vertical .splash-desc {
 font-size: 85%;
