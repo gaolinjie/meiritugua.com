@@ -212,8 +212,8 @@ class EditPostHandler(BaseHandler):
             thumb_y = int(form.y1.data)
             thumb_w = float(form.x2.data) - float(form.x1.data)
             thumb_h = float(form.y2.data) - float(form.y1.data)
-            ratio1_w = thumb1_w / 125
-            ratio1_h = thumb1_h / 83
+            ratio1_w = thumb_w / 125
+            ratio1_h = thumb_h / 83
             ratio1 = ratio1_w if ratio1_w<ratio1_h else ratio1_h
             thumb_crop_region = (thumb_x, thumb_y, int(125*ratio1), int(83*ratio1))
             thumb = thumb_origin.crop(thumb_crop_region)
