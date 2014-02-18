@@ -149,14 +149,14 @@ class UserHandler(BaseHandler):
         user_info = self.current_user
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random    
-        page = int(self.get_argument("page", "1"))
+        p = int(self.get_argument("p", "1"))
         if(re.match(r'^\d+$', user)):
             view_user_info = self.user_model.get_user_by_uid(user)
         else:
             view_user_info = self.user_model.get_user_by_username(user)
         template_variables["view_user_info"] = view_user_info
-        template_variables["stds"] = self.std_model.get_std_posts_by_user_id(view_user_info.uid, current_page = page)
-        template_variables["hots"] = self.hot_model.get_hot_posts_by_user_id(view_user_info.uid, current_page = page)
+        template_variables["stds"] = self.std_model.get_std_posts_by_user_id(view_user_info.uid, current_page = p)
+        template_variables["hots"] = self.hot_model.get_hot_posts_by_user_id(view_user_info.uid, current_page = p)
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()
 

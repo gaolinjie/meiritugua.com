@@ -31,7 +31,7 @@ from lib.mobile import is_mobile_browser
 class ChannelHandler(BaseHandler):
     def get(self, channel_name, template_variables = {}):
     	user_info = self.current_user
-        page = int(self.get_argument("page", "1"))
+        p = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
         template_variables["navs"] = self.nav_model.get_all_navs()
@@ -40,13 +40,13 @@ class ChannelHandler(BaseHandler):
         channel = self.channel_model.get_channel_by_channel_name(channel_name)
         if channel:
             template_variables["channel"] = channel
-            template_variables["stds"] = self.std_model.get_std_posts_by_channel_id(channel.id, current_page = page)
-            template_variables["hots"] = self.hot_model.get_hot_posts_by_channel_id(channel.id, current_page = page)
+            template_variables["stds"] = self.std_model.get_std_posts_by_channel_id(channel.id, current_page = p)
+            template_variables["hots"] = self.hot_model.get_hot_posts_by_channel_id(channel.id, current_page = p)
         else:
             nav = self.nav_model.get_nav_by_nav_name(channel_name)
             template_variables["channel"] = nav
-            template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(nav.id, current_page = page)
-            template_variables["hots"] = self.nav_model.get_hot_posts_by_nav_id(nav.id, current_page = page)
+            template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(nav.id, current_page = p)
+            template_variables["hots"] = self.nav_model.get_hot_posts_by_nav_id(nav.id, current_page = p)
 
         if is_mobile_browser(self):
             self.render("channel-m.html", **template_variables)
