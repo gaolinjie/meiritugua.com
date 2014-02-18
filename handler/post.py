@@ -223,15 +223,15 @@ class EditPostHandler(BaseHandler):
             thumb_125x83.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s" % thumb_name, "PNG")
 
 
-            thumb2_x = int(form.x3.data)
-            thumb2_y = int(form.y3.data)
+            thumb2_x = int(round(float(form.x3.data)))
+            thumb2_y = int(round(float(form.y3.data)))
             thumb2_w = float(form.x4.data) - float(form.x3.data)
             thumb2_h = float(form.y4.data) - float(form.y3.data)
-            ratio2_w = thumb2_w / 340
-            ratio2_h = thumb2_h / 120
+            ratio2_w = thumb2_w / 340.0
+            ratio2_h = thumb2_h / 120.0
             ratio2 = ratio2_w if ratio2_w<ratio2_h else ratio2_h
 
-            thumb2_crop_region = (thumb2_x, thumb2_y, int(340*ratio2), int(120*ratio2))
+            thumb2_crop_region = (thumb2_x, thumb2_y, int(round(340*ratio2)), int(round(120*ratio2)))
             thumb2 = thumb_origin.crop(thumb2_crop_region)
 
             thumb_355x125 = thumb2.resize((340, 120), Image.ANTIALIAS)
