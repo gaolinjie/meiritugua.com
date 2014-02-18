@@ -2437,3 +2437,8 @@ opacity: 0.9;
 	display: none;
 }
 /* duoshuo css end */
+
+
+.visible-chooser select {
+width: 208px;
+}

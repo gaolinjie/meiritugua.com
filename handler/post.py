@@ -69,6 +69,11 @@ class CreatePostHandler(BaseHandler):
             self.get({"errors": form.errors})
             return
 
+        if form.visible.data=='公开':
+            visible = 1
+        else:
+            visible = 0
+
         # continue while validate succeed
         channel = self.channel_model.get_channel_by_channel_title(form.channel.data)
         post_info = {
@@ -78,11 +83,14 @@ class CreatePostHandler(BaseHandler):
             "cover": form.cover.data,
             "content": form.content.data,
             "channel_id": channel.id,
+            "visible": visible,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
         post_id = self.post_model.add_new_post(post_info)
-        std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+
+        if form.visible.data=='公开':
+            std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
 
         # process post thumb
         thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))
@@ -160,6 +168,11 @@ class EditPostHandler(BaseHandler):
             self.get({"errors": form.errors})
             return
 
+        if form.visible.data=='公开':
+            visible = 1
+        else:
+            visible = 0
+
         # continue while validate succeed
         channel = self.channel_model.get_channel_by_channel_title(form.channel.data)
         post_info = {        
@@ -168,13 +181,23 @@ class EditPostHandler(BaseHandler):
             "cover": form.cover.data,
             "content": form.content.data,
             "channel_id": channel.id,
+            "visible": visible,
         }
 
         self.post_model.update_post_by_post_id(post_id, post_info)
         post = self.post_model.get_post_by_post_id(post_id)
 
-        self.std_model.update_std_by_post_id(post_id, {"channel_id": channel.id})
-        self.hot_model.update_hot_by_post_id(post_id, {"channel_id": channel.id})
+        if form.visible.data=='公开':
+            std_id = self.std_model.get_std_by_post_id(post_id)
+            if std_id == None:
+                std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+            else:
+                self.std_model.update_std_by_post_id(post_id, {"channel_id": channel.id})
+                self.hot_model.update_hot_by_post_id(post_id, {"channel_id": channel.id})
+        else:
+            print '不公开'
+            self.std_model.delete_std_by_post_id(post_id)
+            self.hot_model.delete_hot_by_post_id(post_id)
 
         # process post thumb
         thumb_file = self.request.files

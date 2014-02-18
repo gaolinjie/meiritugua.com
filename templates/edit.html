@@ -159,6 +159,16 @@
             <input type="text" id="quickpost-tag" name="tag" value="{{tag_str}}" data-role="tagsinput" />
           </div>
 
+          <div class="visible-chooser">
+          <h5>
+            <label>是否公开</label>
+          </h5>
+          <select type="text" id='visible' name="visible">
+            <option {% if post.visible == 0 %} selected="selected" {% endif %}>不公开</option>
+            <option {% if post.visible == 1 %} selected="selected" {% endif %}>公开</option>
+          </select>
+        </div>
+
       </div>
     </div>
   </div>

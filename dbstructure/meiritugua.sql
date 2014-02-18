@@ -50,7 +50,8 @@ CREATE TABLE `post` (
   `content` text,
   `author_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
-  `count` int(11) DEFAULT 0,   
+  `count` int(11) DEFAULT 0,
+  `visible` int(11) DEFAULT 0, 
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -51,3 +51,7 @@ class HotModel(Query):
     def update_hot_by_post_id(self, post_id, hot_info):
         where = "hot.post_id = %s" % post_id
         return self.where(where).data(hot_info).save()
+
+    def delete_hot_by_post_id(self, post_id):
+        where = "hot.post_id = %s" % post_id
+        return self.where(where).delete()

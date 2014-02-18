@@ -112,6 +112,10 @@ class CreateForm(Form):
          validators.Required(message = "请选择帖子频道"),
      ])
 
+     visible = TextField('Visible', [
+         validators.Required(message = "请选择帖子是否公开"),
+     ])
+
      cover = TextField('Cover', [
          validators.Required(message = "请选择文章封面"),
      ])
@@ -172,6 +176,10 @@ class EditForm(Form):
 
      channel = TextField('Channel', [
          validators.Required(message = "请选择帖子频道"),
+     ])
+
+     visible = TextField('Visible', [
+         validators.Required(message = "请选择帖子是否公开"),
      ])
 
      thumb = TextField('Thumb', [
