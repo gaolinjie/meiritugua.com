@@ -71,6 +71,7 @@ class Application(tornado.web.Application):
             (r"/nav/(.*)", handler.post.NavPreviewHandler),
             (r"/channel/(.*)", handler.post.ChannelPreviewHandler),
             (r"/vote/(\d+)", handler.post.VoteHandler),
+            (r"/update/avatar/(\d+)", handler.user.UpdateAvatarHandler),
 
             (r"/head/manager", handler.post.HeadManagerHandler),
             (r"/head/hide/(\d+)", handler.post.HeadHideHandler),

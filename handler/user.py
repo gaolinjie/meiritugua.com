@@ -87,6 +87,19 @@ class LoginHandler(BaseHandler):
 
         self.redirect(self.referer)
 
+class UpdateAvatarHandler(BaseHandler):
+    def get(self, duoshuo_id, template_variables = {}):
+        url2 = 'http://api.duoshuo.com/users/profile.json?user_id=' + duoshuo_id
+        response2 = urllib2.urlopen(url2)
+        result2 = json.load(response2)
+
+        duplicated_user = self.user_model.get_user_by_duoshuo_id(result2["response"]["user_id"])
+
+        if(duplicated_user):          
+            updated = self.user_model.set_user_base_info_by_uid(duplicated_user["uid"], {"avatar": result2["response"]["avatar_url"]})
+
+        self.redirect('/setting')
+
 class LogoutHandler(BaseHandler):
     def initialize(self, *args, **kwargs):
         self.referer = self.request.headers.get('Referer', '/')
