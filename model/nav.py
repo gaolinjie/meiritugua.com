@@ -31,7 +31,7 @@ class NavModel(Query):
         where = "title = '%s'" % nav_title
         return self.where(where).find()
 
-    def get_std_posts_by_nav_id(self, nav_id, num = 6, current_page = 1):
+    def get_std_posts_by_nav_id(self, nav_id, num = 10, current_page = 1):
         where = "nav.id = '%s'" % nav_id
         join = "RIGHT JOIN channel ON nav.id = channel.nav_id\
                 RIGHT JOIN std ON channel.id = std.channel_id\
