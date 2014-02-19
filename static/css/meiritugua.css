@@ -2452,4 +2452,42 @@ width: 208px;
 #editor-modal textarea {
 	margin: 10px 0;
 }
+
+#content-preview {
+	margin: 40px 0;
+}
+
+#content-preview .mt-item {
+	margin: 30px 0;
+}
+
+#content-preview {
+font-size: 15px;
+line-height: 1.8em;
+}
+
+#content-preview h2 {
+font: 18px/20px ProximaNovaSemibold, Helvetica, Arial;
+font-weight: normal;
+color: #121212;
+padding: 0 0 8px 0;
+margin: 0;
+}
+
+#content-preview .mt-item:hover {
+	background-color: #e6e6e6;
+}
+
+#editor-modal textarea {
+	height: 120px; 
+}
+
+.img-entry {
+	line-height: 1em;
+}
+.img-src a {
+	font: 12px/15px "ProximaNovaRegular", Helvetica, Arial, sans-serif;
+color: #999;
+font-style: italic;
+}
 /* editor css end */
