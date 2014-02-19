@@ -1,0 +1,393 @@
+{% extends 'snippet/layout.html' %}
+{% block title %}
+<title>每日图卦 新建文章</title>
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/static/bootstrap-tagsinput/bootstrap-tagsinput.css">
+{% endblock %}
+
+{% block main %}
+<form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
+  {{ errors|dump_errors }}
+  <div class="col-xs-12 col-md-9">
+    <div class="Column1 section bf_dom">
+      <div class="section">
+        <div class="content">
+
+          <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
+
+            <div id="suplist_left_post_controls" style="min-height: 473px;">
+
+              <div id="suplist_heading" class="c">
+
+                <h1 class="qp_create">新建文章</h1>
+
+                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="立即创建">{{ xsrf_form_html() }}</div>
+
+              <div class="c qp_std_promo" id="suplist_promo">
+
+                <div class="qp_std_promo_fields">
+
+                  <fieldset>
+
+                    <div class="qp_input has_autocap">
+                      <input type="text" id="quickpost-title" name="title" class="form-control" placeholder="标题" title="" alt=""></div>
+                  </fieldset>
+
+                  <fieldset>
+                    <div class="qp_input">
+                      <textarea class="form-control" id="quickpost-intro" name="intro" placeholder="简介" title=""></textarea>
+                    </div>
+
+                  </fieldset>
+                </div>
+
+              </div>
+
+              <div id="content-preview">
+                
+              </div>
+
+              <div class="c qp_std_promo" id="suplist_promo">
+
+                <div class="qp_std_promo_fields">
+
+                  <fieldset>
+                      <input type="text" id="add-box" class="form-control" placeholder="点击添加内容" title="" alt="">
+                  </fieldset>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-3">
+    <div class="section bf_dom ">
+      <div class="section sidebar_featured_unified sidebar_config">
+
+        <div class="thumbnail-chooser suplist_options_top_row">
+          <h5>
+            <label>文章缩略图</label>
+          </h5>
+
+          <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-reg suplist_image_box bf_dom">
+                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
+                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+            </div>
+
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-wide suplist_image_box bf_dom">
+                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
+                <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+            </div>
+
+            <div class="suplist_image_buttons">
+                <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                  <div class="suplist_module_image_uploader" style="height: 20px;">
+                    <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                      <span>上传图片</span>
+                      <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                    <input type="hidden" id="x1" name="x1" />
+                    <input type="hidden" id="y1" name="y1" />
+                    <input type="hidden" id="x2" name="x2" />
+                    <input type="hidden" id="y2" name="y2" />
+                    <input type="hidden" id="x3" name="x3" />
+                    <input type="hidden" id="y3" name="y3" />
+                    <input type="hidden" id="x4" name="x4" />
+                    <input type="hidden" id="y4" name="y4" />
+                  </div>
+                </div>
+             
+            </div>
+          </div>
+        </div>
+
+        <div class="thumbnail-chooser suplist_options_top_row">
+          <h5>
+            <label>文章封面</label>
+          </h5>
+          <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-wide suplist-cover-wide suplist_image_box bf_dom">
+                <img id="cover-preview-wide" class="qp_std_promo_fields suplist-thumb-img"></div>
+            </div>
+
+            <div class="suplist_image_buttons suplist_image_buttons_cover">
+              <div>
+                <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                  <div class="suplist_module_image_uploader" style="height: 20px;">
+                    <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                      <span>选择图片</span>
+                      <input id="cover" name="cover" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="channel-chooser">
+          <h5>
+            <label>选择频道</label>
+          </h5>
+          <select type="text" id='channel' name="channel">
+            {% for channel in channels %}
+            <option>{{ channel.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="tagsinput-wrapper">
+          <h5>
+            <label>文章标签</label>
+          </h5>
+          <input type="text" id="quickpost-tag" name="tag" value="" data-role="tagsinput" />
+        </div>
+
+        <div class="visible-chooser">
+          <h5>
+            <label>是否公开</label>
+          </h5>
+          <select type="text" id='visible' name="visible">
+            <option selected="selected">不公开</option>
+            <option>公开</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-thumb">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">设置窄版缩略图</h4>
+      </div>
+      <div class="modal-body" align=center>
+        <div id="img-wrapper">
+          <img id="img-preview" src=""/>
+        </div>
+        <div id="img-wrapper2" style="display: none">
+          <img id="img-preview2" src="" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-next">下一步</button>
+        <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
+      </div>
+    </div>
+ </div>
+</div>
+
+<div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">设置文章封面</h4>
+      </div>
+      <div class="modal-body" align=center>       
+      <input type="text" class="form-control" id="coverImage" name="cover" placeholder="请输入图片地址">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="cover-btn-ok" >确定</button>
+      </div>
+    </div>
+ </div>
+</div>
+
+<div class="modal" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body" align=center>       
+      <ul id="editor-tab" class="nav nav-tabs">
+  <li class="active"><a href="#text" data-toggle="tab">文字</a></li>
+  <li><a href="#image" data-toggle="tab">图片</a></li>
+  <li><a href="#video" data-toggle="tab">视频</a></li>
+  <li><a href="#embed" data-toggle="tab">内嵌</a></li>
+  <li><a href="#link" data-toggle="tab">链接</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="text">
+    <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
+    <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
+  </div>
+  <div class="tab-pane fade" id="image">profile</div>
+  <div class="tab-pane fade" id="video">messages</div>
+  <div class="tab-pane fade" id="embed">settings</div>
+  <div class="tab-pane fade" id="link">link</div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="editor-btn-ok" >确定</button>
+      </div>
+    </div>
+ </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $(document).on('click', '#add-box',  function() {
+           $('#editor-modal').modal('show');
+  });
+
+  $('#editor-tab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+$(document).on('click', '#editor-btn-ok',  function() {
+           $('#editor-modal').modal('hide'); 
+           active_tab = $(".tab-pane.active").attr("id");
+           if (active_tab=="text") {
+            var text_title = $('#text-title').val();
+            var text_content = $('#text-content').val();
+           }
+
+        });
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  // update info by cropping (onChange and onSelect events handler)
+function updateInfo(e) {
+    $('#x1').val(e.x);
+    $('#y1').val(e.y);
+    $('#x2').val(e.x2);
+    $('#y2').val(e.y2);
+};
+
+function updateInfo2(e) {
+    $('#x3').val(e.x);
+    $('#y3').val(e.y);
+    $('#x4').val(e.x2);
+    $('#y4').val(e.y2);
+};
+
+  function readURL() {
+// get selected file
+    var oFile = $('#thumb')[0].files[0];
+
+    // check for image type (jpg and png are allowed)
+    var rFilter = /^(image\/jpeg|image\/png)$/i;
+    if (! rFilter.test(oFile.type)) {
+      alert("type error!!!")
+        return;
+    }
+
+    // check for file size
+    if (oFile.size < 125 * 83) {
+        alert("image too small!!!")
+        return;
+    }
+
+    // preview element
+    var oImage = document.getElementById('img-preview');
+    var oImage2 = document.getElementById('img-preview2');
+
+    // prepare HTML5 FileReader
+    var oReader = new FileReader();
+        oReader.onload = function(e) {
+
+        // e.target.result contains the DataURL which we can use as a source of the image
+        oImage.src = e.target.result;
+        oImage2.src = e.target.result;
+        oImage.onload = function () { // onload event handler           
+                // initialize Jcrop
+                $('#img-preview').Jcrop({
+                    keySupport: false,
+                    minSize: [125, 83], // min crop size
+                    aspectRatio : 1.5, // keep aspect ratio 1:1
+                    bgFade: true, // use fade effect
+                    bgOpacity: .3, // fade opacity
+                    onChange: updateInfo,
+                    onSelect: updateInfo,
+
+                }, function(){
+
+                });
+        };
+
+        oImage2.onload = function () { // onload event handler
+                $('#img-preview2').Jcrop({
+                    keySupport: false,
+                    minSize: [340, 120], // min crop size
+                    aspectRatio : 2.83, // keep aspect ratio 1:1
+                    bgFade: true, // use fade effect
+                    bgOpacity: .3, // fade opacity
+                    onChange: updateInfo2,
+                    onSelect: updateInfo2,
+
+                }, function(){
+
+                });
+        };
+    };
+
+    // read selected file as DataURL
+    oReader.readAsDataURL(oFile);
+  }
+
+        $(document).on('change', '#thumb',  function() {
+           readURL();
+           $('#myModal').modal('show');
+        });
+
+        $(document).on('click', '#btn-next',  function() {
+           $(this).hide();
+           $('#btn-ok').show();
+           $('#myModalLabel').text("设置宽版缩略图");
+           $('#img-wrapper').hide();
+           $('#img-wrapper2').show();
+        });
+
+        $(document).on('click', '#btn-ok',  function() {
+           $(this).hide();
+           $('#myModal').modal('hide');
+           $('.glyphicon-ok').show();
+        });
+      });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.suplist_image_buttons_cover',  function() {
+              $('#myModal2').modal('show');
+            });
+
+            $(document).on('click', '#cover-btn-ok',  function() {
+           $('#myModal2').modal('hide');
+           var coverSrc = $('#coverImage').val();
+           $('#cover-preview-wide').attr("src", coverSrc);
+           $('#cover').val(coverSrc);
+           $('#coverImage').val('');
+        });        
+        });
+    </script>
+
+<script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
+<script src="/static/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+{% endblock %}
