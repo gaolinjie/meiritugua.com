@@ -253,12 +253,30 @@
   <option>图片在标题和描述中间</option>
 </select>
           </div>
-          <div class="tab-pane fade" id="video">messages</div>
+          <div class="tab-pane fade" id="video">
+            
+            <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">           
+            <textarea class="form-control" id="video-intro" placeholder="视频介绍（可选）..."></textarea>
+
+            <input type="text" class="form-control" id="video-address" placeholder="输入视频地址">
+            <input type="text" class="form-control" id="video-embed" placeholder="输入视频embed">
+            <input type="text" class="form-control" id="video-iframe" placeholder="输入视频iframe">
+            
+            <input type="text" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
+
+            <select class="form-control" id="video-layout">
+  <option>标题和描述在视频上面</option>
+  <option>标题和描述在视频下面</option>
+  <option>视频在标题和描述中间</option>
+</select>
+          </div>
           <div class="tab-pane fade" id="embed">settings</div>
           <div class="tab-pane fade" id="link">link</div>
         </div>
       </div>
       <div class="modal-footer">
+        <input type="hidden" id="mt-item-id">
+        <button type="button" class="btn btn-danger hidden" id="editor-btn-del" >删除</button>
         <button type="button" class="btn btn-primary" id="editor-btn-ok" >确定</button>
       </div>
     </div>
@@ -270,6 +288,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $(document).on('click', '#add-box',  function() {
+    $('#editor-btn-del').addClass('hidden');
            $('#editor-modal').modal('show');
   });
 
@@ -278,9 +297,14 @@ $(document).ready(function(){
   $(this).tab('show')
 })
 
+  
+
 $(document).on('click', '#editor-btn-ok',  function() {
             
            active_tab = $(".tab-pane.active").attr("id");
+           var mt_item_id = $('#mt-item-id').val();
+  
+
            if (active_tab=="text") {
             var text_title = $('#text-title').val();
             var text_content = $('#text-content').val();
@@ -296,9 +320,20 @@ $(document).on('click', '#editor-btn-ok',  function() {
               return;
             }
 
-            content = $('#content-preview').html()+ '<div class="mt-item" data-type="text">' + content + '</div>';
+            if(mt_item_id=='') {
+              content = $('#content-preview').html()+ '<div class="mt-item" data-type="text" data-id="'+ new Date().getTime() + '">' + content + '</div>';
             $('#content-preview').html(content);
             $('#content-input').val(content);
+
+            }
+            else {
+              $('.mt-item[data-id="'+mt_item_id+'"]').html(content);
+            $('#content-input').val($('#content-preview').html());
+            mt_item_id='';
+
+            }
+
+            
             $('#text-title').val('');
             $('#text-content').val('');
 
@@ -348,10 +383,20 @@ $(document).on('click', '#editor-btn-ok',  function() {
               content = img_title + img_address + img_intro;
 
             }
-            
-            content = $('#content-preview').html()+ '<div class="mt-item" data-type="image">' + content + '</div>';
+
+            if(mt_item_id=='') {
+              content = $('#content-preview').html()+ '<div class="mt-item" data-type="image" data-id="'+ new Date().getTime() + '">' + content + '</div>';
             $('#content-preview').html(content);
             $('#content-input').val(content);
+
+            }
+            else {
+              $('.mt-item[data-id="'+mt_item_id+'"]').html(content);
+            $('#content-input').val($('#content-preview').html());
+            mt_item_id='';
+
+            }
+
             $('#image-title').val('');
             $('#image-address').val('');
             $('#image-intro').val('');
@@ -362,10 +407,108 @@ $(document).on('click', '#editor-btn-ok',  function() {
 
            }
 
+
+           if (active_tab=="video") {
+              var video_title = $('#video-title').val();
+              var video_intro = $('#video-intro').val();
+              var video_address = $('#video-address').val();             
+              var video_embed = $('#video-embed').val();
+              var video_iframe = $('#video-iframe').val();
+              var video_cover = $('#video-cover').val();
+              var video_layout = $('#video-layout').val();
+
+              var video = "";
+              if (video_cover!='') {
+                if (video_embed==''&&video_iframe=='') {
+                    video_cover = "<img class='video-cover' src='"+video_cover+"'>";
+                    if (video_address=='') {
+                      alert("视频地址, 视频embed, 视频iframe不能同时为空!");
+                      return;
+                    }
+                    video = "<a class='video-address' href='"+video_address+"'>"+video_cover+"</a>";
+                }
+                else {
+                    if (video_embed!='') {
+                      video_embed = video_embed.slice(video_embed.indexOf('http'), video_embed.lastIndexOf(">"));
+                      video_embed = video_embed.slice(0, video_embed.indexOf('"'));
+                    }
+                    if (video_iframe!='') {
+                      video_iframe = video_iframe.slice(video_iframe.indexOf('http'), video_iframe.lastIndexOf(">"));
+                      video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
+                    }
+                    video = "<img class='video-cover' src='"+video_cover+"' data-embed='"+video_embed+"' data-iframe='"+video_iframe+"'>";
+                }   
+              }
+              else {
+                if (video_embed==''||video_iframe=='') {
+                    //alert("视频封面, 视频embed, 视频iframe不能同时为空!");
+                    //return;
+                }
+                if (video_embed!='') {
+                  video = video_embed;
+                }
+                if (video_iframe!='') {
+                  video = video_iframe;
+                }
+              }
+
+              var content='';
+            if (video_title!='') {
+              video_title = '<h2 class="video-title">' + video_title + '</h2>';
+            }
+            if (video_intro!='') {
+              video_intro = '<p class="video-intro">' + video_intro + '</p>';
+            }
+
+              if (video_layout=='标题和描述在视频上面') {
+              content = video_title + video_intro + video;
+
+            }
+            else if (img_layout=='标题和描述在视频下面') {
+              content = video + video_title + video_intro;
+
+            }
+            else if (img_layout=='视频在标题和描述中间') {
+              content = video_title + video + video_intro;
+
+            }
+
+            if(mt_item_id=='') {
+              content = $('#content-preview').html()+ '<div class="mt-item" data-type="video" data-id="'+ new Date().getTime() + '">' + content + '</div>';
+            $('#content-preview').html(content);
+            $('#content-input').val(content);
+
+            }
+            else {
+              $('.mt-item[data-id="'+mt_item_id+'"]').html(content);
+            $('#content-input').val($('#content-preview').html());
+            mt_item_id='';
+
+            }
+
+            $('#video-title').val('');
+            $('#video-address').val('');
+            $('#video-intro').val('');
+            $('#video-embed').val('');
+            $('#video-iframe').val('');
+            $('#video-cover').val('');
+
+            $('#editor-modal').modal('hide');
+
+
+
+
+           }
+
         });
 
 $(document).on('click', '.mt-item',  function() {
   var type = $(this).attr('data-type');
+  var mt_item_id = $(this).attr('data-id');
+  $('#mt-item-id').val(mt_item_id);
+  if (mt_item_id!='') {
+    $('#editor-btn-del').removeClass('hidden');
+  }
   if (type=='text') {
     var text_title = $(this).find('.text-title').text();
            var text_content = $(this).find('.text-content').text();
@@ -391,11 +534,85 @@ $(document).on('click', '.mt-item',  function() {
            $('#editor-tab a[href="#image"]').tab('show')
            $('#editor-modal').modal('show'); 
   }
+  else if (type=='video') {
+            var video_embed = '';
+            var video_iframe = '';
+            var video_address = '';
+            var video_title = '';
+            var video_intro = '';
+           var video_cover=$(this).find('img.video-cover');
+           if(video_cover!=null) {
+            video_embed='"'+video_cover.attr('data-embed')+'"'
+            video_iframe='"'+video_cover.attr('data-iframe')+'"';
+            video_cover=video_cover.attr('src');
+           }
+           else {
+            video_cover='';
+            if ($(this).find('embed')!=null){
+              video_embed='"'+$(this).find('embed').attr('src')+'"';
+            }
+            if ($(this).find('iframe')!=null){
+            video_iframe='"'+$(this).find('iframe').attr('src')+'"';
+          }
+
+           }
+
+           if ($(this).find('.video-address')!=null){
+
+           video_address = $(this).find('.video-address').attr('href');
+         }
+         if ($(this).find('.video-title')!=null){
+            video_title = $(this).find('.video-title').text();
+          }
+          if ($(this).find('.video-intro')!=null){
+           video_intro = $(this).find('.video-intro').text();
+         }
+
+
+           $('#video-address').val(video_address);
+           $('#video-title').val(video_title);
+           $('#video-intro').val(video_intro);
+           $('#video-cover').val(video_cover);
+           $('#video-embed').val(video_embed);
+           $('#video_iframe').val(video_iframe);
+           $('#editor-tab a[href="#video"]').tab('show')
+           $('#editor-modal').modal('show'); 
+           
+  }
   
            
            
 
         });
+
+$(document).on('click', '#editor-btn-del',  function() {
+    var mt_item_id = $('#mt-item-id').val();
+    $('.mt-item[data-id="'+mt_item_id+'"]').remove();
+    $('#content-input').val($('#content-preview').html());
+    $('#editor-modal').modal('hide');
+    var active_tab = $(".tab-pane.active").attr("id");
+    if (active_tab=="text") {
+      $('#text-title').val('');
+            $('#text-content').val('');
+    }
+    if (active_tab=="image") {
+
+            $('#image-title').val('');
+            $('#image-address').val('');
+            $('#image-intro').val('');
+            $('#image-source-title').val('');
+            $('#image-source-address').val('');
+    }
+    if (active_tab=="video") {
+      $('#video-title').val('');
+            $('#video-address').val('');
+            $('#video-intro').val('');
+            $('#video-embed').val('');
+            $('#video-iframe').val('');
+            $('#video-cover').val('');
+    }
+
+  })
 
 $('#editor-modal').on('hidden.bs.modal', function () {
     $('#text-title').val('');

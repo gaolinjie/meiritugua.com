@@ -56,7 +56,7 @@ class CreatePostHandler(BaseHandler):
     	user_info = self.current_user
         template_variables["user_info"] = user_info
         template_variables["channels"] = self.channel_model.get_all_channels()
-        self.render("create.html", **template_variables)
+        self.render("create2.html", **template_variables)
 
     @tornado.web.authenticated
     def post(self, template_variables = {}):
