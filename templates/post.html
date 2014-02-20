@@ -66,7 +66,9 @@
             </div>
           </div>
 
-          <div id="entry-content" class="entry-content">{{ post.content }}</div>
+          <div id="entry-content" class="entry-content">
+            {{post.content}}
+          </div>
 
           <div id="social-actions" class="section SocialActions social-actions social-actions-hybrid">
 
@@ -402,4 +404,24 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"{{post.title}}-@ÊØèÊó
             });        
         });
     </script>
+
+<script type="text/javascript">
+$(document).on('click', '.mt-item .video-wrapper img', function () {
+          if ($(this).parent().hasClass('video-address')) {
+            return;
+          }
+          var video_embed = $(this).attr('data-embed');
+          var video_iframe = $(this).attr('data-iframe');
+          if (video_embed!='') {
+            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
+          $(this).parent().html(video_embed);
+          return;
+          }
+          if (video_iframe!='') {
+            video_iframe = '<iframe height=498 width=510 src="'+video_iframe+'" frameborder=0 allowfullscreen></iframe>'
+            $(this).parent().html(video_iframe);
+          }
+          
+        });
+</script>
 {% endblock %}

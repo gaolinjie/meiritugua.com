@@ -54,8 +54,7 @@
 
                   <fieldset>
                     <input type="text" id="add-box" class="form-control" placeholder="点击添加内容" title="" alt="">
-                    <input type="hidden" id="content-input" name="content">
-                  </fieldset>
+                    <input type="hidden" id="content-input" name="content"></fieldset>
                 </div>
 
               </div>
@@ -241,34 +240,34 @@
           </div>
           <div class="tab-pane fade" id="image">
             <input type="text" class="form-control" id="image-address" placeholder="输入图片地址">
-            <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">           
+            <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
             <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
             <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
             <input type="text" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
             <input type="text" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
 
             <select class="form-control" id="image-layout">
-  <option>标题和描述在图片上面</option>
-  <option>标题和描述在图片下面</option>
-  <option>图片在标题和描述中间</option>
-</select>
+              <option>标题和描述在图片上面</option>
+              <option>标题和描述在图片下面</option>
+              <option>图片在标题和描述中间</option>
+            </select>
           </div>
           <div class="tab-pane fade" id="video">
-            
-            <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">           
+
+            <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">
             <textarea class="form-control" id="video-intro" placeholder="视频介绍（可选）..."></textarea>
 
             <input type="text" class="form-control" id="video-address" placeholder="输入视频地址">
             <input type="text" class="form-control" id="video-embed" placeholder="输入视频embed">
             <input type="text" class="form-control" id="video-iframe" placeholder="输入视频iframe">
-            
+
             <input type="text" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
 
             <select class="form-control" id="video-layout">
-  <option>标题和描述在视频上面</option>
-  <option>标题和描述在视频下面</option>
-  <option>视频在标题和描述中间</option>
-</select>
+              <option>标题和描述在视频上面</option>
+              <option>标题和描述在视频下面</option>
+              <option>视频在标题和描述中间</option>
+            </select>
           </div>
           <div class="tab-pane fade" id="embed">settings</div>
           <div class="tab-pane fade" id="link">link</div>
@@ -286,459 +285,449 @@
 
 {% block javascript %}
 <script type="text/javascript">
-$(document).ready(function(){
-  $(document).on('click', '#add-box',  function() {
-    $('#editor-btn-del').addClass('hidden');
-           $('#editor-modal').modal('show');
-  });
+    $(document).ready(function () {
+        $(document).on('click', '#add-box', function () {
+            $('#editor-btn-del').addClass('hidden');
+            $('#editor-modal').modal('show');
+        });
 
-  $('#editor-tab a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+        $('#editor-tab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
 
-  
+        $(document).on('click', '#editor-btn-ok', function () {
 
-$(document).on('click', '#editor-btn-ok',  function() {
-            
-           active_tab = $(".tab-pane.active").attr("id");
-           var mt_item_id = $('#mt-item-id').val();
-  
+            active_tab = $(".tab-pane.active").attr("id");
+            var mt_item_id = $('#mt-item-id').val();
 
-           if (active_tab=="text") {
-            var text_title = $('#text-title').val();
-            var text_content = $('#text-content').val();
-            var content = '';
-            if (text_title!='') {
-              content = '<h2 class="text-title">' + text_title + '</h2>';
+
+            if (active_tab == "text") {
+                var text_title = $('#text-title').val();
+                var text_content = $('#text-content').val();
+                var content = '';
+                if (text_title != '') {
+                    content = '<h2 class="text-title">' + text_title + '</h2>';
+                }
+                if (text_content != '') {
+                    content += '<p class="text-content">' + text_content + '</p>';
+                } else {
+                    alert('文字内容不能为空！')
+                    return;
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item" data-type="text" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+
+                }
+
+                $('#text-title').val('');
+                $('#text-content').val('');
+
+                $('#editor-modal').modal('hide');
             }
-            if (text_content!='') {
-              content += '<p class="text-content">' + text_content + '</p>';
-            }
-            else {
-              alert('文字内容不能为空！')
-              return;
-            }
+            if (active_tab == "image") {
+                var img_title = $('#image-title').val();
+                var img_address = $('#image-address').val();
+                var img_intro = $('#image-intro').val();
+                var img_link = $('#image-link').val();
+                var img_src_title = $('#image-source-title').val();
+                var img_src_address = $('#image-source-address').val();
+                var img_layout = $('#image-layout').val();
 
-            if(mt_item_id=='') {
-              content = $('#content-preview').html()+ '<div class="mt-item" data-type="text" data-id="'+ new Date().getTime() + '">' + content + '</div>';
-            $('#content-preview').html(content);
-            $('#content-input').val(content);
+                var content = '';
+                if (img_title != '') {
+                    img_title = '<h2 class="img-title">' + img_title + '</h2>';
+                }
+                if (img_intro != '') {
+                    img_intro = '<p class="img-intro">' + img_intro + '</p>';
+                }
+                if (img_address != '') {
+                    img_address = '<img class="img-address" src="' + img_address + '">';
+                } else {
+                    alert('图片地址不能为空！')
+                    return;
+                }
+                if (img_link != '') {
+                    img_link = '<a class="img-link" target="_blank" href="' + img_link + '">' + img_address + '</a>';
+                }
+                if (img_src_title != '') {
+                    img_src_title = '<div class="img-src"><a target="_blank" href="' + img_src_address + '">' + img_src_title + '</a></div>';
+                    img_address += img_src_title;
+                }
+                img_address = '<div class="img-entry">' + img_address + '</div>'
 
-            }
-            else {
-              $('.mt-item[data-id="'+mt_item_id+'"]').html(content);
-            $('#content-input').val($('#content-preview').html());
-            mt_item_id='';
+                if (img_layout == '标题和描述在图片上面') {
+                    content = img_title + img_intro + img_address;
 
-            }
+                } else if (img_layout == '标题和描述在图片下面') {
+                    content = img_address + img_title + img_intro;
 
-            
-            $('#text-title').val('');
-            $('#text-content').val('');
+                } else if (img_layout == '图片在标题和描述中间') {
+                    content = img_title + img_address + img_intro;
 
-            $('#editor-modal').modal('hide');
-           }
-           if (active_tab=="image") {
-            var img_title = $('#image-title').val();
-            var img_address = $('#image-address').val();
-            var img_intro = $('#image-intro').val();
-            var img_link = $('#image-link').val();
-            var img_src_title = $('#image-source-title').val();
-            var img_src_address = $('#image-source-address').val();
-            var img_layout = $('#image-layout').val();
+                }
 
-            var content='';
-            if (img_title!='') {
-              img_title = '<h2 class="img-title">' + img_title + '</h2>';
-            }
-            if (img_intro!='') {
-              img_intro = '<p class="img-intro">' + img_intro + '</p>';
-            }
-            if (img_address!='') {
-              img_address = '<img class="img-address" src="'+ img_address + '">';
-            }
-            else {
-              alert('图片地址不能为空！')
-              return;
-            }
-            if (img_link!='') {
-              img_link = '<a class="img-link" target="_blank" href="'+ img_link + '">' + img_address + '</a>';
-            }
-            if (img_src_title!='') {
-              img_src_title = '<div class="img-src"><a target="_blank" href="'+ img_src_address + '">' + img_src_title + '</a></div>';
-              img_address += img_src_title;
-            }
-            img_address = '<div class="img-entry">' + img_address + '</div>'
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item" data-type="image" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
 
-            if (img_layout=='标题和描述在图片上面') {
-              content = img_title + img_intro + img_address;
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
 
-            }
-            else if (img_layout=='标题和描述在图片下面') {
-              content = img_address + img_title + img_intro;
+                }
 
-            }
-            else if (img_layout=='图片在标题和描述中间') {
-              content = img_title + img_address + img_intro;
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+                $('#image-source-title').val('');
+                $('#image-source-address').val('');
+
+                $('#editor-modal').modal('hide');
 
             }
 
-            if(mt_item_id=='') {
-              content = $('#content-preview').html()+ '<div class="mt-item" data-type="image" data-id="'+ new Date().getTime() + '">' + content + '</div>';
-            $('#content-preview').html(content);
-            $('#content-input').val(content);
 
-            }
-            else {
-              $('.mt-item[data-id="'+mt_item_id+'"]').html(content);
-            $('#content-input').val($('#content-preview').html());
-            mt_item_id='';
+            if (active_tab == "video") {
+                var video_title = $('#video-title').val();
+                var video_intro = $('#video-intro').val();
+                var video_address = $('#video-address').val();
+                var video_embed = $('#video-embed').val();
+                var video_iframe = $('#video-iframe').val();
+                var video_cover = $('#video-cover').val();
+                var video_layout = $('#video-layout').val();
 
-            }
-
-            $('#image-title').val('');
-            $('#image-address').val('');
-            $('#image-intro').val('');
-            $('#image-source-title').val('');
-            $('#image-source-address').val('');
-
-            $('#editor-modal').modal('hide');
-
-           }
-
-
-           if (active_tab=="video") {
-              var video_title = $('#video-title').val();
-              var video_intro = $('#video-intro').val();
-              var video_address = $('#video-address').val();             
-              var video_embed = $('#video-embed').val();
-              var video_iframe = $('#video-iframe').val();
-              var video_cover = $('#video-cover').val();
-              var video_layout = $('#video-layout').val();
-
-              var video = "";
-              if (video_cover!='') {
-                if (video_embed==''&&video_iframe=='') {
-                    video_cover = "<img class='video-cover' src='"+video_cover+"'>";
-                    if (video_address=='') {
-                      alert("视频地址, 视频embed, 视频iframe不能同时为空!");
-                      return;
+                var video = "";
+                if (video_cover != '') {
+                    if (video_embed == '' && video_iframe == '') {
+                        video_cover = "<img class='video-cover' src='" + video_cover + "'>";
+                        if (video_address == '') {
+                            alert("视频地址, 视频embed, 视频iframe不能同时为空!");
+                            return;
+                        }
+                        video = "<div class='video-wrapper'> <a class='video-address' target='_blank' href='" + video_address + "'>" + video_cover + "</a><i class='play-icon'></i></div>";
+                    } else {
+                        if (video_embed != '') {
+                            video_embed = video_embed.slice(video_embed.indexOf('http'), video_embed.lastIndexOf(">"));
+                            video_embed = video_embed.slice(0, video_embed.indexOf('"'));
+                        }
+                        if (video_iframe != '') {
+                            video_iframe = video_iframe.slice(video_iframe.indexOf('http'), video_iframe.lastIndexOf(">"));
+                            video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
+                        }
+                        video = "<div class='video-wrapper'> <img class='video-cover' src='" + video_cover + "' data-embed='" + video_embed + "' data-iframe='" + video_iframe + "'> <i class='play-icon'></i></div>";
                     }
-                    video = "<a class='video-address' href='"+video_address+"'>"+video_cover+"</a>";
-                }
-                else {
-                    if (video_embed!='') {
-                      video_embed = video_embed.slice(video_embed.indexOf('http'), video_embed.lastIndexOf(">"));
-                      video_embed = video_embed.slice(0, video_embed.indexOf('"'));
+                } else {
+                    if (video_embed == '' || video_iframe == '') {
+                        //alert("视频封面, 视频embed, 视频iframe不能同时为空!");
+                        //return;
                     }
-                    if (video_iframe!='') {
-                      video_iframe = video_iframe.slice(video_iframe.indexOf('http'), video_iframe.lastIndexOf(">"));
-                      video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
+                    if (video_embed != '') {
+                        video = video_embed;
                     }
-                    video = "<img class='video-cover' src='"+video_cover+"' data-embed='"+video_embed+"' data-iframe='"+video_iframe+"'>";
-                }   
-              }
-              else {
-                if (video_embed==''||video_iframe=='') {
-                    //alert("视频封面, 视频embed, 视频iframe不能同时为空!");
-                    //return;
+                    if (video_iframe != '') {
+                        video = video_iframe;
+                    }
                 }
-                if (video_embed!='') {
-                  video = video_embed;
+
+                var content = '';
+                if (video_title != '') {
+                    video_title = '<h2 class="video-title">' + video_title + '</h2>';
                 }
-                if (video_iframe!='') {
-                  video = video_iframe;
+                if (video_intro != '') {
+                    video_intro = '<p class="video-intro">' + video_intro + '</p>';
                 }
-              }
 
-              var content='';
-            if (video_title!='') {
-              video_title = '<h2 class="video-title">' + video_title + '</h2>';
+                if (video_layout == '标题和描述在视频上面') {
+                    content = video_title + video_intro + video;
+
+                } else if (img_layout == '标题和描述在视频下面') {
+                    content = video + video_title + video_intro;
+
+                } else if (img_layout == '视频在标题和描述中间') {
+                    content = video_title + video + video_intro;
+
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item" data-type="video" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+
+                }
+
+                $('#video-title').val('');
+                $('#video-address').val('');
+                $('#video-intro').val('');
+                $('#video-embed').val('');
+                $('#video-iframe').val('');
+                $('#video-cover').val('');
+
+                $('#editor-modal').modal('hide');
             }
-            if (video_intro!='') {
-              video_intro = '<p class="video-intro">' + video_intro + '</p>';
-            }
-
-              if (video_layout=='标题和描述在视频上面') {
-              content = video_title + video_intro + video;
-
-            }
-            else if (img_layout=='标题和描述在视频下面') {
-              content = video + video_title + video_intro;
-
-            }
-            else if (img_layout=='视频在标题和描述中间') {
-              content = video_title + video + video_intro;
-
-            }
-
-            if(mt_item_id=='') {
-              content = $('#content-preview').html()+ '<div class="mt-item" data-type="video" data-id="'+ new Date().getTime() + '">' + content + '</div>';
-            $('#content-preview').html(content);
-            $('#content-input').val(content);
-
-            }
-            else {
-              $('.mt-item[data-id="'+mt_item_id+'"]').html(content);
-            $('#content-input').val($('#content-preview').html());
-            mt_item_id='';
-
-            }
-
-            $('#video-title').val('');
-            $('#video-address').val('');
-            $('#video-intro').val('');
-            $('#video-embed').val('');
-            $('#video-iframe').val('');
-            $('#video-cover').val('');
-
-            $('#editor-modal').modal('hide');
-
-
-
-
-           }
 
         });
 
-$(document).on('click', '.mt-item',  function() {
-  var type = $(this).attr('data-type');
-  var mt_item_id = $(this).attr('data-id');
-  $('#mt-item-id').val(mt_item_id);
-  if (mt_item_id!='') {
-    $('#editor-btn-del').removeClass('hidden');
-  }
-  if (type=='text') {
-    var text_title = $(this).find('.text-title').text();
-           var text_content = $(this).find('.text-content').text();
-           $('#text-title').val(text_title);
-           $('#text-content').val(text_content);
-           $('#editor-tab a[href="#text"]').tab('show')
-           $('#editor-modal').modal('show'); 
-
-  }
-  else if (type=='image') {
-            var img_address = $(this).find('.img-address').attr('src');
-            var img_title = $(this).find('.img-title').text();
-           var img_intro = $(this).find('.img-intro').text();
-           var img_link = $(this).find('.img-link').attr('href');
-           var img_src_title = $(this).find('.img-src a').text();
-           var img_src_address = $(this).find('.img-src a').attr('href');
-           $('#image-address').val(img_address);
-           $('#image-title').val(img_title);
-           $('#image-intro').val(img_intro);
-           $('#image-link').val(img_link);
-           $('#image-source-title').val(img_src_title);
-           $('#image-source-address').val(img_src_address);
-           $('#editor-tab a[href="#image"]').tab('show')
-           $('#editor-modal').modal('show'); 
-  }
-  else if (type=='video') {
-            var video_embed = '';
-            var video_iframe = '';
-            var video_address = '';
-            var video_title = '';
-            var video_intro = '';
-           var video_cover=$(this).find('img.video-cover');
-           if(video_cover!=null) {
-            video_embed='"'+video_cover.attr('data-embed')+'"'
-            video_iframe='"'+video_cover.attr('data-iframe')+'"';
-            video_cover=video_cover.attr('src');
-           }
-           else {
-            video_cover='';
-            if ($(this).find('embed')!=null){
-              video_embed='"'+$(this).find('embed').attr('src')+'"';
+        $(document).on('click', '.mt-item', function () {
+            var type = $(this).attr('data-type');
+            var mt_item_id = $(this).attr('data-id');
+            $('#mt-item-id').val(mt_item_id);
+            if (mt_item_id != '') {
+                $('#editor-btn-del').removeClass('hidden');
             }
-            if ($(this).find('iframe')!=null){
-            video_iframe='"'+$(this).find('iframe').attr('src')+'"';
-          }
+            if (type == 'text') {
+                var text_title = $(this).find('.text-title').text();
+                var text_content = $(this).find('.text-content').text();
+                $('#text-title').val(text_title);
+                $('#text-content').val(text_content);
+                $('#editor-tab a[href="#text"]').tab('show')
+                $('#editor-modal').modal('show');
 
-           }
+            } else if (type == 'image') {
+                var img_address = $(this).find('.img-address').attr('src');
+                var img_title = $(this).find('.img-title').text();
+                var img_intro = $(this).find('.img-intro').text();
+                var img_link = $(this).find('.img-link').attr('href');
+                var img_src_title = $(this).find('.img-src a').text();
+                var img_src_address = $(this).find('.img-src a').attr('href');
+                $('#image-address').val(img_address);
+                $('#image-title').val(img_title);
+                $('#image-intro').val(img_intro);
+                $('#image-link').val(img_link);
+                $('#image-source-title').val(img_src_title);
+                $('#image-source-address').val(img_src_address);
+                $('#editor-tab a[href="#image"]').tab('show')
+                $('#editor-modal').modal('show');
+            } else if (type == 'video') {
+                var video_embed = '';
+                var video_iframe = '';
+                var video_address = '';
+                var video_title = '';
+                var video_intro = '';
+                var video_cover = $(this).find('img.video-cover');
+                if (video_cover != null) {
+                    video_embed = '"' + video_cover.attr('data-embed') + '"'
+                    video_iframe = '"' + video_cover.attr('data-iframe') + '"';
+                    video_cover = video_cover.attr('src');
+                } else {
+                    video_cover = '';
+                    if ($(this).find('embed') != null) {
+                        video_embed = '"' + $(this).find('embed').attr('src') + '"';
+                    }
+                    if ($(this).find('iframe') != null) {
+                        video_iframe = '"' + $(this).find('iframe').attr('src') + '"';
+                    }
 
-           if ($(this).find('.video-address')!=null){
+                }
 
-           video_address = $(this).find('.video-address').attr('href');
-         }
-         if ($(this).find('.video-title')!=null){
-            video_title = $(this).find('.video-title').text();
-          }
-          if ($(this).find('.video-intro')!=null){
-           video_intro = $(this).find('.video-intro').text();
-         }
+                if ($(this).find('.video-address') != null) {
+
+                    video_address = $(this).find('.video-address').attr('href');
+                }
+                if ($(this).find('.video-title') != null) {
+                    video_title = $(this).find('.video-title').text();
+                }
+                if ($(this).find('.video-intro') != null) {
+                    video_intro = $(this).find('.video-intro').text();
+                }
 
 
-           $('#video-address').val(video_address);
-           $('#video-title').val(video_title);
-           $('#video-intro').val(video_intro);
-           $('#video-cover').val(video_cover);
-           $('#video-embed').val(video_embed);
-           $('#video_iframe').val(video_iframe);
-           $('#editor-tab a[href="#video"]').tab('show')
-           $('#editor-modal').modal('show'); 
-           
-  }
-  
-           
-           
+                $('#video-address').val(video_address);
+                $('#video-title').val(video_title);
+                $('#video-intro').val(video_intro);
+                $('#video-cover').val(video_cover);
+                $('#video-embed').val(video_embed);
+                $('#video_iframe').val(video_iframe);
+                $('#editor-tab a[href="#video"]').tab('show')
+                $('#editor-modal').modal('show');
+
+            }
+
+
+
 
         });
 
-$(document).on('click', '#editor-btn-del',  function() {
-    var mt_item_id = $('#mt-item-id').val();
-    $('.mt-item[data-id="'+mt_item_id+'"]').remove();
-    $('#content-input').val($('#content-preview').html());
-    $('#editor-modal').modal('hide');
-    var active_tab = $(".tab-pane.active").attr("id");
-    if (active_tab=="text") {
-      $('#text-title').val('');
-            $('#text-content').val('');
-    }
-    if (active_tab=="image") {
+        $(document).on('click', '#editor-btn-del', function () {
+            var mt_item_id = $('#mt-item-id').val();
+            $('.mt-item[data-id="' + mt_item_id + '"]').remove();
+            $('#content-input').val($('#content-preview').html());
+            $('#editor-modal').modal('hide');
+            var active_tab = $(".tab-pane.active").attr("id");
+            if (active_tab == "text") {
+                $('#text-title').val('');
+                $('#text-content').val('');
+            }
+            if (active_tab == "image") {
 
-            $('#image-title').val('');
-            $('#image-address').val('');
-            $('#image-intro').val('');
-            $('#image-source-title').val('');
-            $('#image-source-address').val('');
-    }
-    if (active_tab=="video") {
-      $('#video-title').val('');
-            $('#video-address').val('');
-            $('#video-intro').val('');
-            $('#video-embed').val('');
-            $('#video-iframe').val('');
-            $('#video-cover').val('');
-    }
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+                $('#image-source-title').val('');
+                $('#image-source-address').val('');
+            }
+            if (active_tab == "video") {
+                $('#video-title').val('');
+                $('#video-address').val('');
+                $('#video-intro').val('');
+                $('#video-embed').val('');
+                $('#video-iframe').val('');
+                $('#video-cover').val('');
+            }
 
-  })
+        })
 
-$('#editor-modal').on('hidden.bs.modal', function () {
-    $('#text-title').val('');
-            $('#text-content').val('');
-})
+        $('#editor-modal').on('hidden.bs.modal', function () {
+                $('#text-title').val('');
+                $('#text-content').val('');
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+                $('#image-source-title').val('');
+                $('#image-source-address').val('');   
+                $('#video-title').val('');
+                $('#video-address').val('');
+                $('#video-intro').val('');
+                $('#video-embed').val('');
+                $('#video-iframe').val('');
+                $('#video-cover').val('');           
+        })
 
-});
+    });
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  // update info by cropping (onChange and onSelect events handler)
-function updateInfo(e) {
-    $('#x1').val(e.x);
-    $('#y1').val(e.y);
-    $('#x2').val(e.x2);
-    $('#y2').val(e.y2);
-};
-
-function updateInfo2(e) {
-    $('#x3').val(e.x);
-    $('#y3').val(e.y);
-    $('#x4').val(e.x2);
-    $('#y4').val(e.y2);
-};
-
-  function readURL() {
-// get selected file
-    var oFile = $('#thumb')[0].files[0];
-
-    // check for image type (jpg and png are allowed)
-    var rFilter = /^(image\/jpeg|image\/png)$/i;
-    if (! rFilter.test(oFile.type)) {
-      alert("type error!!!")
-        return;
-    }
-
-    // check for file size
-    if (oFile.size < 125 * 83) {
-        alert("image too small!!!")
-        return;
-    }
-
-    // preview element
-    var oImage = document.getElementById('img-preview');
-    var oImage2 = document.getElementById('img-preview2');
-
-    // prepare HTML5 FileReader
-    var oReader = new FileReader();
-        oReader.onload = function(e) {
-
-        // e.target.result contains the DataURL which we can use as a source of the image
-        oImage.src = e.target.result;
-        oImage2.src = e.target.result;
-        oImage.onload = function () { // onload event handler           
-                // initialize Jcrop
-                $('#img-preview').Jcrop({
-                    keySupport: false,
-                    minSize: [125, 83], // min crop size
-                    aspectRatio : 1.5, // keep aspect ratio 1:1
-                    bgFade: true, // use fade effect
-                    bgOpacity: .3, // fade opacity
-                    onChange: updateInfo,
-                    onSelect: updateInfo,
-
-                }, function(){
-
-                });
+    $(document).ready(function () {
+        // update info by cropping (onChange and onSelect events handler)
+        function updateInfo(e) {
+            $('#x1').val(e.x);
+            $('#y1').val(e.y);
+            $('#x2').val(e.x2);
+            $('#y2').val(e.y2);
         };
 
-        oImage2.onload = function () { // onload event handler
-                $('#img-preview2').Jcrop({
-                    keySupport: false,
-                    minSize: [340, 120], // min crop size
-                    aspectRatio : 2.83, // keep aspect ratio 1:1
-                    bgFade: true, // use fade effect
-                    bgOpacity: .3, // fade opacity
-                    onChange: updateInfo2,
-                    onSelect: updateInfo2,
-
-                }, function(){
-
-                });
+        function updateInfo2(e) {
+            $('#x3').val(e.x);
+            $('#y3').val(e.y);
+            $('#x4').val(e.x2);
+            $('#y4').val(e.y2);
         };
-    };
 
-    // read selected file as DataURL
-    oReader.readAsDataURL(oFile);
-  }
+        function readURL() {
+            // get selected file
+            var oFile = $('#thumb')[0].files[0];
 
-        $(document).on('change', '#thumb',  function() {
-           readURL();
-           $('#myModal').modal('show');
+            // check for image type (jpg and png are allowed)
+            var rFilter = /^(image\/jpeg|image\/png)$/i;
+            if (!rFilter.test(oFile.type)) {
+                alert("type error!!!")
+                return;
+            }
+
+            // check for file size
+            if (oFile.size < 125 * 83) {
+                alert("image too small!!!")
+                return;
+            }
+
+            // preview element
+            var oImage = document.getElementById('img-preview');
+            var oImage2 = document.getElementById('img-preview2');
+
+            // prepare HTML5 FileReader
+            var oReader = new FileReader();
+            oReader.onload = function (e) {
+
+                // e.target.result contains the DataURL which we can use as a source of the image
+                oImage.src = e.target.result;
+                oImage2.src = e.target.result;
+                oImage.onload = function () { // onload event handler           
+                    // initialize Jcrop
+                    $('#img-preview').Jcrop({
+                        keySupport: false,
+                        minSize: [125, 83], // min crop size
+                        aspectRatio: 1.5, // keep aspect ratio 1:1
+                        bgFade: true, // use fade effect
+                        bgOpacity: .3, // fade opacity
+                        onChange: updateInfo,
+                        onSelect: updateInfo,
+
+                    }, function () {
+
+                    });
+                };
+
+                oImage2.onload = function () { // onload event handler
+                    $('#img-preview2').Jcrop({
+                        keySupport: false,
+                        minSize: [340, 120], // min crop size
+                        aspectRatio: 2.83, // keep aspect ratio 1:1
+                        bgFade: true, // use fade effect
+                        bgOpacity: .3, // fade opacity
+                        onChange: updateInfo2,
+                        onSelect: updateInfo2,
+
+                    }, function () {
+
+                    });
+                };
+            };
+
+            // read selected file as DataURL
+            oReader.readAsDataURL(oFile);
+        }
+
+        $(document).on('change', '#thumb', function () {
+            readURL();
+            $('#myModal').modal('show');
         });
 
-        $(document).on('click', '#btn-next',  function() {
-           $(this).hide();
-           $('#btn-ok').show();
-           $('#myModalLabel').text("设置宽版缩略图");
-           $('#img-wrapper').hide();
-           $('#img-wrapper2').show();
+        $(document).on('click', '#btn-next', function () {
+            $(this).hide();
+            $('#btn-ok').show();
+            $('#myModalLabel').text("设置宽版缩略图");
+            $('#img-wrapper').hide();
+            $('#img-wrapper2').show();
         });
 
-        $(document).on('click', '#btn-ok',  function() {
-           $(this).hide();
-           $('#myModal').modal('hide');
-           $('.glyphicon-ok').show();
+        $(document).on('click', '#btn-ok', function () {
+            $(this).hide();
+            $('#myModal').modal('hide');
+            $('.glyphicon-ok').show();
         });
-      });
+    });
 </script>
 
 <script type="text/javascript">
-        $(document).ready(function(){
-            $(document).on('click', '.suplist_image_buttons_cover',  function() {
-              $('#myModal2').modal('show');
-            });
-
-            $(document).on('click', '#cover-btn-ok',  function() {
-           $('#myModal2').modal('hide');
-           var coverSrc = $('#coverImage').val();
-           $('#cover-preview-wide').attr("src", coverSrc);
-           $('#cover').val(coverSrc);
-           $('#coverImage').val('');
-        });        
+    $(document).ready(function () {
+        $(document).on('click', '.suplist_image_buttons_cover', function () {
+            $('#myModal2').modal('show');
         });
-    </script>
+
+        $(document).on('click', '#cover-btn-ok', function () {
+            $('#myModal2').modal('hide');
+            var coverSrc = $('#coverImage').val();
+            $('#cover-preview-wide').attr("src", coverSrc);
+            $('#cover').val(coverSrc);
+            $('#coverImage').val('');
+        });
+    });
+</script>
 
 <script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
 <script src="/static/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
