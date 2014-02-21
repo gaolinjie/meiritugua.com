@@ -6,14 +6,12 @@
 
 {% block main %}
 <div class="content-header channel-header">
-                          <h1 class="tag-name yahei">标签：{{tag.name}}</h1>
-              </div>
+  <h1 class="tag-name yahei">标签：{{tag.name}}</h1>
+</div>
 <div class="col-xs-12 col-md-8">
   <div class="Column1 section bf_dom">
     <div class="section">
       <div class="content">
-        
-
 
         <ul class="std-posts" id="page_flow">
           {% for std in stds.list %}
@@ -59,10 +57,7 @@
       <!--
                 <div id="big_stories_header" class="header">
 
-      <h1>
-        <font>
-          <font class="">热门新闻</font>
-        </font>
+      <h1> <font><font class="">热门新闻</font></font> 
       </h1>
     </div>
     -->
@@ -75,9 +70,7 @@
           <h3>
             <a href="/p/{{ hot.id }}">
               <span>
-                <font>
-                  <font>{{ hot.title }}</font>
-                </font>
+                <font><font>{{ hot.title }}</font></font> 
               </span>
             </a>
           </h3>

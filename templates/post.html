@@ -66,9 +66,7 @@
             </div>
           </div>
 
-          <div id="entry-content" class="entry-content">
-            {{post.content}}
-          </div>
+          <div id="entry-content" class="entry-content">{{post.content}}</div>
 
           <div id="social-actions" class="section SocialActions social-actions social-actions-hybrid">
 
@@ -370,58 +368,74 @@
 
 {% block javascript %}
 <script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"{{post.title}}-@每日图卦","bdMini":"2","bdPic":"{{ post.cover }}","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<script type="text/javascript">
-  window.___gcfg = {lang: 'zh-CN'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "{{post.title}}-@每日图卦",
+            "bdMini": "2",
+            "bdPic": "{{ post.cover }}",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 </script>
 
 <script type="text/javascript">
-        $(document).ready(function(){
-            $(document).on('click', '.us_reactions',  function() {
-                var post_id = $('.reactions').attr('data-post');
-                var vote_type = $(this).attr('data-vote');
-                var vote_num = $(this).find('.badge-vote-count').find('font').find('font');
-                vote_badge = $(this).find('.vote-badge');
+    window.___gcfg = {
+        lang: 'zh-CN'
+    };
 
-                if(vote_badge.hasClass('voted')) {
-                  alert("谢谢，但是好像你已经评价过了^_^")
-                }
-                else {
-                  $.getJSON('/vote/'+post_id+'?vote='+vote_type, function(data) {
-                            if(data.success!=0) {
-                                vote_num.text(parseInt(vote_num.text())+1);
-                                vote_badge.addClass('voted');
-                            }
-                        }); 
-                }  
-            });        
-        });
-    </script>
+    (function () {
+        var po = document.createElement('script');
+        po.type = 'text/javascript';
+        po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+    })();
+</script>
 
 <script type="text/javascript">
-$(document).on('click', '.mt-item .video-wrapper img', function () {
-          if ($(this).parent().hasClass('video-address')) {
-            return;
-          }
-          var video_embed = $(this).attr('data-embed');
-          var video_iframe = $(this).attr('data-iframe');
-          if (video_embed!='') {
-            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
-          $(this).parent().html(video_embed);
-          return;
-          }
-          if (video_iframe!='') {
-            video_iframe = '<iframe height=498 width=510 src="'+video_iframe+'" frameborder=0 allowfullscreen></iframe>'
-            $(this).parent().html(video_iframe);
-          }
-          
+    $(document).ready(function () {
+        $(document).on('click', '.us_reactions', function () {
+            var post_id = $('.reactions').attr('data-post');
+            var vote_type = $(this).attr('data-vote');
+            var vote_num = $(this).find('.badge-vote-count').find('font').find('font');
+            vote_badge = $(this).find('.vote-badge');
+
+            if (vote_badge.hasClass('voted')) {
+                alert("谢谢，但是好像你已经评价过了^_^")
+            } else {
+                $.getJSON('/vote/' + post_id + '?vote=' + vote_type, function (data) {
+                    if (data.success != 0) {
+                        vote_num.text(parseInt(vote_num.text()) + 1);
+                        vote_badge.addClass('voted');
+                    }
+                });
+            }
         });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).on('click', '.mt-item .video-wrapper img', function () {
+        if ($(this).parent().hasClass('video-address')) {
+            return;
+        }
+        var video_embed = $(this).attr('data-embed');
+        var video_iframe = $(this).attr('data-iframe');
+        if (video_embed != '') {
+            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
+            $(this).parent().html(video_embed);
+            return;
+        }
+        if (video_iframe != '') {
+            video_iframe = '<iframe height=498 width=510 src="' + video_iframe + '" frameborder=0 allowfullscreen></iframe>'
+            $(this).parent().html(video_iframe);
+        }
+
+    });
 </script>
 {% endblock %}

@@ -6,25 +6,24 @@
 
   <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/meiritugua.css">
-
   {% block stylesheet %}{% endblock %}
   <!-- Duoshuo Comment BEGIN -->
   <script type="text/javascript">
-var duoshuoQuery = {
-  short_name:"meiritugua",
-  sso: {
-    login: "/login",
-    logout: "http://meiritugua.com/logout" /* need change when deploy */
-  }
-};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
+    var duoshuoQuery = {
+        short_name: "meiritugua",
+        sso: {
+            login: "/login",
+            logout: "http://meiritugua.com/logout" /* need change when deploy */
+        }
+    };
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
   </script>
   <!-- Duoshuo Comment END -->
   <link rel="shortcut icon" href="/static/images/favicon.ico"></head>
@@ -186,69 +185,72 @@ var duoshuoQuery = {
 
   {% endblock %}
   <script type="text/javascript" src="/static/js/returnTop.js"></script>
-  <script type="text/javascript">
-   $(document).ready(function(){
-      $("#returnTop").returntop();
-   });
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#returnTop").returntop();
+    });
 </script>
 
-  <script>
-$(document).ready(function() {
-   $ (".nav-item").hover(function(){
-    
-      var nav_name = $(this).attr('data-name'); 
-      var preview_list = $(this).find("#nav_preview_"+nav_name);
-      var nav_title = $(this).find(".nav-title").text();
-      
-          //alert(nav_name)
-          $.getJSON('/nav/'+nav_name, function(data) {
-            var preview_string='';
-            for(i=0;i<data.stds.length;i++){
-              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].thumb+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
-            }
-            preview_string+='<a href="/'+nav_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+nav_title+'</a>';
-            preview_list.html(preview_string);
-            $ (".nav_preview").hide();
-            preview_list.show();
-          });
-  },function(){
- });
+<script>
+    $(document).ready(function () {
+        $(".nav-item").hover(function () {
+
+            var nav_name = $(this).attr('data-name');
+            var preview_list = $(this).find("#nav_preview_" + nav_name);
+            var nav_title = $(this).find(".nav-title").text();
+
+            //alert(nav_name)
+            $.getJSON('/nav/' + nav_name, function (data) {
+                var preview_string = '';
+                for (i = 0; i < data.stds.length; i++) {
+                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="/static/thumb/n_' + data.stds[i].thumb + '" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
+                }
+                preview_string += '<a href="/' + nav_name + '" class="more_vertical"><span class="pointer unicode">▶</span> 更多' + nav_title + '</a>';
+                preview_list.html(preview_string);
+                $(".nav_preview").hide();
+                preview_list.show();
+            });
+        }, function () {});
 
 
-$ (".channel-item").hover(function(){
-    
-      var channel_name = $(this).attr('data-name'); 
+        $(".channel-item").hover(function () {
 
-      var preview_list = $(this).parent().parent().find("#nav_preview_"+channel_name);
-      var channel_title = $(this).find(".channel-title").text();
-      
-          //alert(nav_name)
-          $.getJSON('/channel/'+channel_name, function(data) {
-            var preview_string='';
-            for(i=0;i<data.stds.length;i++){
-              preview_string+='<li><a href="/p/'+data.stds[i].id+'" class="thumb_warpper"><img src="/static/thumb/n_'+data.stds[i].thumb+'" class="image_square"></a><a href="/p/'+data.stds[i].id+'"> <span class="title_small">'+data.stds[i].title+'</span></a></li>';
-            }
-            preview_string+='<a href="/'+channel_name+'" class="more_vertical"><span class="pointer unicode">▶</span> 更多'+channel_title+'</a>';
-            preview_list.html(preview_string);
-            $ (".nav_preview").hide();
-            preview_list.show();
-          });
-  },function(){
- });
+            var channel_name = $(this).attr('data-name');
 
-});
-    </script>
+            var preview_list = $(this).parent().parent().find("#nav_preview_" + channel_name);
+            var channel_title = $(this).find(".channel-title").text();
 
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            //alert(nav_name)
+            $.getJSON('/channel/' + channel_name, function (data) {
+                var preview_string = '';
+                for (i = 0; i < data.stds.length; i++) {
+                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="/static/thumb/n_' + data.stds[i].thumb + '" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
+                }
+                preview_string += '<a href="/' + channel_name + '" class="more_vertical"><span class="pointer unicode">▶</span> 更多' + channel_title + '</a>';
+                preview_list.html(preview_string);
+                $(".nav_preview").hide();
+                preview_list.show();
+            });
+        }, function () {});
 
-  ga('create', 'UA-47970078-1', 'meiritugua.com');
-  ga('send', 'pageview');
+    });
+</script>
 
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47970078-1', 'meiritugua.com');
+    ga('send', 'pageview');
 </script>
 
   <a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>

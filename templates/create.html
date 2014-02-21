@@ -94,22 +94,22 @@
             </div>
 
             <div class="suplist_image_buttons">
-                <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
-                  <div class="suplist_module_image_uploader" style="height: 20px;">
-                    <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
-                      <span>上传图片</span>
-                      <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
-                    <input type="hidden" id="x1" name="x1" />
-                    <input type="hidden" id="y1" name="y1" />
-                    <input type="hidden" id="x2" name="x2" />
-                    <input type="hidden" id="y2" name="y2" />
-                    <input type="hidden" id="x3" name="x3" />
-                    <input type="hidden" id="y3" name="y3" />
-                    <input type="hidden" id="x4" name="x4" />
-                    <input type="hidden" id="y4" name="y4" />
-                  </div>
+              <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                <div class="suplist_module_image_uploader" style="height: 20px;">
+                  <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                    <span>上传图片</span>
+                    <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                  <input type="hidden" id="x1" name="x1" />
+                  <input type="hidden" id="y1" name="y1" />
+                  <input type="hidden" id="x2" name="x2" />
+                  <input type="hidden" id="y2" name="y2" />
+                  <input type="hidden" id="x3" name="x3" />
+                  <input type="hidden" id="y3" name="y3" />
+                  <input type="hidden" id="x4" name="x4" />
+                  <input type="hidden" id="y4" name="y4" />
                 </div>
-             
+              </div>
+
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@
         <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
       </div>
     </div>
- </div>
+  </div>
 </div>
 
 <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -202,16 +202,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">设置文章封面</h4>
       </div>
-      <div class="modal-body" align=center>       
-      <input type="text" class="form-control" id="coverImage" name="cover" placeholder="请输入图片地址">
-      </div>
+      <div class="modal-body" align=center>
+        <input type="text" class="form-control" id="coverImage" name="cover" placeholder="请输入图片地址"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="cover-btn-ok" >确定</button>
       </div>
     </div>
- </div>
+  </div>
 </div>
-
 {% endblock %}
 
 {% block javascript %}

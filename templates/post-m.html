@@ -4,37 +4,34 @@
 {% endblock %}
 
 {% block main %}
+<article class="entry-common clearfix">
 
-        <article class="entry-common clearfix">
+  <div class="entry-header">
 
-          <div class="entry-header">
+    <h1 class="entry-name yahei">{{ post.title }}</h1>
 
-            <h1 class="entry-name yahei">{{ post.title }}</h1>
+  </div>
 
-          </div>
+  <div class="entry-meta">
 
-          <div class="entry-meta">
+    <span class="article-publisher">
+      <a href="/u/{{ post.author_username }}" title="由 {{ post.author_username }} 发布" rel="author">{{ post.author_username }}</a>
+    </span>
+    <span class="article-pubdate">
+      <time datetime="{{ post.created }}" pubdate="pubdate">{{ post.created|pretty_date }}</time>
+      发布在
+    </span>
+    <span class="article-category">
+      <a href="/{{ post.nav_name }}" title="查看 {{ post.nav_title }} 中的全部文章" rel="category tag">{{ post.nav_title }}</a>
+      /
+      <a href="/{{ post.channel_name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a>
+    </span>
 
-            <span class="article-publisher">
-              <a href="/u/{{ post.author_username }}" title="由 {{ post.author_username }} 发布" rel="author">{{ post.author_username }}</a>
-            </span>
-            <span class="article-pubdate">
-              <time datetime="{{ post.created }}" pubdate="pubdate">{{ post.created|pretty_date }}</time>
-              发布在
-            </span>
-            <span class="article-category">
-              <a href="/{{ post.nav_name }}" title="查看 {{ post.nav_title }} 中的全部文章" rel="category tag">{{ post.nav_title }}</a>
-              /
-              <a href="/{{ post.channel_name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a>
-            </span>
+  </div>
 
-          </div>
+  <div id="entry-content" class="entry-content">{{ post.content | content_process }}</div>
 
-          <div id="entry-content" class="entry-content">{{ post.content | content_process }}</div>
-
-          </article>
-
-
+</article>
 {% endblock %}
 
 {% block javascript %}
@@ -44,5 +41,4 @@
       
         });
     </script>
-
 {% endblock %}
