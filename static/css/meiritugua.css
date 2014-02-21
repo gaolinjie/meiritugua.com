@@ -2518,7 +2518,7 @@ margin-left: -32px;
 position: absolute;
 left: 50%;
 top: 50%;
-z-index: 1;
+
 
 }
 
@@ -2526,7 +2526,4 @@ z-index: 1;
 opacity: 0.9;
 }
 
-.mt-item .video-wrapper img:hover {
-opacity: 1;
-}
 /* editor css end */
