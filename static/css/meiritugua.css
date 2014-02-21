@@ -1854,23 +1854,23 @@ margin-top: 15px;
 font: 20px/22px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
 color: #121212;
-padding: 0 0 8px 0;
+padding: 0 0 5px 0;
 margin: 0;
 }
 
 .entry-content h2 {
-font: 18px/20px ProximaNovaSemibold, Helvetica, Arial;
+font: 18px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
 color: #121212;
-padding: 0 0 8px 0;
 margin: 0;
+line-height: 1.8em
 }
 
 .entry-content h3 {
 font: 16px/18px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
 color: #121212;
-padding: 0 0 8px 0;
+padding: 0 0 5px 0;
 margin: 0;
 }
 
@@ -1878,7 +1878,7 @@ margin: 0;
 font: 14px/16px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
 color: #121212;
-padding: 0 0 8px 0;
+padding: 0 0 5px 0;
 margin: 0;
 }
 
@@ -1886,7 +1886,7 @@ margin: 0;
 font: 12px/14px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
 color: #121212;
-padding: 0 0 8px 0;
+padding: 0 0 5px 0;
 margin: 0;
 }
 
@@ -1894,7 +1894,7 @@ margin: 0;
 font: 10px/12px ProximaNovaSemibold, Helvetica, Arial;
 font-weight: normal;
 color: #121212;
-padding: 0 0 8px 0;
+padding: 0 0 5px 0;
 margin: 0;
 }
 
@@ -2317,12 +2317,7 @@ padding: 6px 0 0 3px;
   -o-animation:kanan 1.2s infinite linear;
 }
 
-.entry-content .mt-video embed, .entry-content .mt-video iframe  {
-	width: 570px !important;
-	height: 361px !important;
-}
-
-#content-preview .mt-video embed, #content-preview .mt-video iframe  {
+.mt-video embed, .mt-video iframe  {
 	width: 570px !important;
 	height: 361px !important;
 }
@@ -2477,6 +2472,7 @@ font-weight: normal;
 color: #121212;
 padding: 0 0 8px 0;
 margin: 0;
+line-height: 1.8em;
 }
 
 #content-preview .mt-item:hover {
@@ -2487,7 +2483,7 @@ margin: 0;
 	height: 120px; 
 }
 
-.img-entry {
+.img-wrapper {
 	line-height: 1em;
 }
 .img-src a {
@@ -2497,8 +2493,8 @@ font-style: italic;
 }
 
 
-.entry-content .mt-item {
-	margin: 30px 0;
+.mt-item {
+	margin-bottom: 40px;
 }
 
 .mt-item .video-wrapper{
@@ -2524,6 +2520,22 @@ top: 50%;
 
 .mt-item .video-wrapper img {
 opacity: 0.9;
+}
+
+.mt-item .img-wrapper {
+	margin: 10px auto;
+}
+
+.mt-item .img-src {
+	text-align: center;
+}
+
+.mt-item .video-wrapper {
+	margin: 10px auto;
+}
+
+#content-preview img {
+max-width: 570px !important;
 }
 
 /* editor css end */

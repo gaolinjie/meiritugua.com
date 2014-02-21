@@ -227,6 +227,9 @@
           <li>
             <a href="#embed" data-toggle="tab">内嵌</a>
           </li>
+          <li>
+            <a href="#link" data-toggle="tab">链接</a>
+          </li>
         </ul>
 
         <!-- Tab panes -->
@@ -266,16 +269,8 @@
               <option>视频在标题和描述中间</option>
             </select>
           </div>
-          <div class="tab-pane fade" id="embed">
-            <input type="text" class="form-control" id="embed-title" placeholder="标题（可选）">
-            <textarea class="form-control" id="embed-intro" placeholder="介绍（可选）..."></textarea>
-            <input type="text" class="form-control" id="embed-embed" placeholder="输入embed">
-            <select class="form-control" id="embed-layout">
-              <option>标题和描述在内嵌上面</option>
-              <option>标题和描述在内嵌下面</option>
-              <option>内嵌在标题和描述中间</option>
-            </select>
-          </div>
+          <div class="tab-pane fade" id="embed">settings</div>
+          <div class="tab-pane fade" id="link">link</div>
         </div>
       </div>
       <div class="modal-footer">
@@ -288,6 +283,7 @@
 </div>
 {% endblock %}
 
+                if (text_title != '') {
 {% block javascript %}
 <script type="text/javascript">
  $.fn.outerHtml = function(){
