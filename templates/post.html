@@ -421,6 +421,9 @@
 
 <script type="text/javascript">
     $(document).on('click', '.mt-item .video-wrapper', function () {
+        if($(this).find('.video-address').length > 0) {
+          return;
+        }
         
         var video_embed = $(this).find('img').attr('data-embed');
         var video_iframe = $(this).find('img').attr('data-iframe');

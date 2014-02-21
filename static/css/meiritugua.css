@@ -2317,12 +2317,12 @@ padding: 6px 0 0 3px;
   -o-animation:kanan 1.2s infinite linear;
 }
 
-.entry-content embed, .entry-content iframe  {
+.entry-content .mt-video embed, .entry-content .mt-video iframe  {
 	width: 570px !important;
 	height: 361px !important;
 }
 
-#content-preview embed, #content-preview iframe  {
+#content-preview .mt-video embed, #content-preview .mt-video iframe  {
 	width: 570px !important;
 	height: 361px !important;
 }

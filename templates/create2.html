@@ -227,9 +227,6 @@
           <li>
             <a href="#embed" data-toggle="tab">内嵌</a>
           </li>
-          <li>
-            <a href="#link" data-toggle="tab">链接</a>
-          </li>
         </ul>
 
         <!-- Tab panes -->
@@ -269,8 +266,16 @@
               <option>视频在标题和描述中间</option>
             </select>
           </div>
-          <div class="tab-pane fade" id="embed">settings</div>
-          <div class="tab-pane fade" id="link">link</div>
+          <div class="tab-pane fade" id="embed">
+            <input type="text" class="form-control" id="embed-title" placeholder="标题（可选）">
+            <textarea class="form-control" id="embed-intro" placeholder="介绍（可选）..."></textarea>
+            <input type="text" class="form-control" id="embed-embed" placeholder="输入embed">
+            <select class="form-control" id="embed-layout">
+              <option>标题和描述在内嵌上面</option>
+              <option>标题和描述在内嵌下面</option>
+              <option>内嵌在标题和描述中间</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -285,6 +290,10 @@
 
 {% block javascript %}
 <script type="text/javascript">
+ $.fn.outerHtml = function(){
+  return $("<p></p>").append(this.clone()).html(); 
+  };
+
     $(document).ready(function () {
         $(document).on('click', '#add-box', function () {
             $('#editor-btn-del').addClass('hidden');
@@ -297,10 +306,8 @@
         })
 
         $(document).on('click', '#editor-btn-ok', function () {
-
             active_tab = $(".tab-pane.active").attr("id");
             var mt_item_id = $('#mt-item-id').val();
-
 
             if (active_tab == "text") {
                 var text_title = $('#text-title').val();
@@ -317,7 +324,7 @@
                 }
 
                 if (mt_item_id == '') {
-                    content = $('#content-preview').html() + '<div class="mt-item" data-type="text" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    content = $('#content-preview').html() + '<div class="mt-item mt-text" data-type="text" data-id="' + new Date().getTime() + '">' + content + '</div>';
                     $('#content-preview').html(content);
                     $('#content-input').val(content);
 
@@ -333,6 +340,7 @@
 
                 $('#editor-modal').modal('hide');
             }
+
             if (active_tab == "image") {
                 var img_title = $('#image-title').val();
                 var img_address = $('#image-address').val();
@@ -376,7 +384,7 @@
                 }
 
                 if (mt_item_id == '') {
-                    content = $('#content-preview').html() + '<div class="mt-item" data-type="image" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    content = $('#content-preview').html() + '<div class="mt-item mt-img" data-type="image" data-id="' + new Date().getTime() + '">' + content + '</div>';
                     $('#content-preview').html(content);
                     $('#content-input').val(content);
 
@@ -394,9 +402,7 @@
                 $('#image-source-address').val('');
 
                 $('#editor-modal').modal('hide');
-
             }
-
 
             if (active_tab == "video") {
                 var video_title = $('#video-title').val();
@@ -429,8 +435,8 @@
                     }
                 } else {
                     if (video_embed == '' || video_iframe == '') {
-                        //alert("视频封面, 视频embed, 视频iframe不能同时为空!");
-                        //return;
+                        alert("视频封面, 视频embed, 视频iframe不能同时为空!");
+                        return;
                     }
                     if (video_embed != '') {
                         video = video_embed;
@@ -451,16 +457,16 @@
                 if (video_layout == '标题和描述在视频上面') {
                     content = video_title + video_intro + video;
 
-                } else if (img_layout == '标题和描述在视频下面') {
+                } else if (video_layout == '标题和描述在视频下面') {
                     content = video + video_title + video_intro;
 
-                } else if (img_layout == '视频在标题和描述中间') {
+                } else if (video_layout == '视频在标题和描述中间') {
                     content = video_title + video + video_intro;
 
                 }
 
                 if (mt_item_id == '') {
-                    content = $('#content-preview').html() + '<div class="mt-item" data-type="video" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    content = $('#content-preview').html() + '<div class="mt-item mt-video" data-type="video" data-id="' + new Date().getTime() + '">' + content + '</div>';
                     $('#content-preview').html(content);
                     $('#content-input').val(content);
 
@@ -481,6 +487,55 @@
                 $('#editor-modal').modal('hide');
             }
 
+            if (active_tab == "embed") {
+                var embed_title = $('#embed-title').val();
+                var embed_intro = $('#embed-intro').val();
+                var embed_embed = $('#embed-embed').val();
+                var embed_layout = $('#embed-layout').val();
+
+                if (embed_embed == '') {
+                      alert("embed不能为空!");
+                        return;
+                    }
+       
+                var content = '';
+                if (embed_title != '') {
+                    embed_title = '<h2 class="embed-title">' + embed_title + '</h2>';
+                }
+                if (embed_intro != '') {
+                    embed_intro = '<p class="embed-intro">' + embed_intro + '</p>';
+                }
+
+                if (embed_layout == '标题和描述在内嵌上面') {
+                    content = embed_title + embed_intro + embed_embed;
+
+                } else if (embed_layout == '标题和描述在内嵌下面') {
+                    content = embed_embed + embed_title + embed_intro;
+
+                } else if (embed_layout == '内嵌在标题和描述中间') {
+                    content = embed_title + embed_embed + embed_intro;
+
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item mt-embed" data-type="embed" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+
+                }
+
+                $('#embed-title').val('');
+                $('#embed-intro').val('');
+                $('#embed-embed').val('');
+                $('#embed-layout').val('');
+
+                $('#editor-modal').modal('hide');
+            }
         });
 
         $(document).on('click', '.mt-item', function () {
@@ -526,23 +581,23 @@
                     video_cover = video_cover.attr('src');
                 } else {
                     video_cover = '';
-                    if ($(this).find('embed') != null) {
+                    if ($(this).find('embed').length > 0) {
                         video_embed = '"' + $(this).find('embed').attr('src') + '"';
                     }
-                    if ($(this).find('iframe') != null) {
+                    if ($(this).find('iframe').length > 0) {
                         video_iframe = '"' + $(this).find('iframe').attr('src') + '"';
                     }
 
                 }
 
-                if ($(this).find('.video-address') != null) {
+                if ($(this).find('.video-address').length > 0) {
 
                     video_address = $(this).find('.video-address').attr('href');
                 }
-                if ($(this).find('.video-title') != null) {
+                if ($(this).find('.video-title').length > 0) {
                     video_title = $(this).find('.video-title').text();
                 }
-                if ($(this).find('.video-intro') != null) {
+                if ($(this).find('.video-intro').length > 0) {
                     video_intro = $(this).find('.video-intro').text();
                 }
 
@@ -555,12 +610,28 @@
                 $('#video_iframe').val(video_iframe);
                 $('#editor-tab a[href="#video"]').tab('show')
                 $('#editor-modal').modal('show');
-
             }
+            else if (type == 'embed') {
+                var embed_embed = '';
+                var embed_title = '';
+                var embed_intro = '';
 
+                if ($(this).find('embed').length > 0) {
+                    embed_embed = $(this).find('embed').outerHtml();
+                }
+                if ($(this).find('.embed-title').length > 0) {
+                    embed_title = $(this).find('.embed-title').text();
+                }
+                if ($(this).find('.embed-intro').length > 0) {
+                    embed_intro = $(this).find('.embed-intro').text();
+                }
 
-
-
+                $('#embed-title').val(embed_title);
+                $('#embed-intro').val(embed_intro);
+                $('#embed-embed').val(embed_embed);
+                $('#editor-tab a[href="#embed"]').tab('show')
+                $('#editor-modal').modal('show');
+            }
         });
 
         $(document).on('click', '#editor-btn-del', function () {
@@ -574,7 +645,6 @@
                 $('#text-content').val('');
             }
             if (active_tab == "image") {
-
                 $('#image-title').val('');
                 $('#image-address').val('');
                 $('#image-intro').val('');
@@ -589,7 +659,13 @@
                 $('#video-iframe').val('');
                 $('#video-cover').val('');
             }
-
+            if (active_tab == "embed") {
+                $('#embed-title').val('');
+                $('#embed-intro').val('');
+                $('#embed-embed').val('');
+                $('#embed-layout').val('');
+            }
+            $('#mt-item-id').val('');
         })
 
         $('#editor-modal').on('hidden.bs.modal', function () {
@@ -605,7 +681,11 @@
                 $('#video-intro').val('');
                 $('#video-embed').val('');
                 $('#video-iframe').val('');
-                $('#video-cover').val('');           
+                $('#video-cover').val('');   
+                $('#embed-title').val();
+                $('#embed-intro').val();
+                $('#embed-embed').val();
+                $('#embed-layout').val();        
         })
 
     });
