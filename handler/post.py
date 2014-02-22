@@ -155,7 +155,7 @@ class EditPostHandler(BaseHandler):
             tagStr += tag.tag_name + ','
         template_variables["tag_str"] = tagStr
 
-        self.render("edit.html", **template_variables)
+        self.render("edit2.html", **template_variables)
 
     @tornado.web.authenticated
     def post(self, post_id, template_variables = {}):

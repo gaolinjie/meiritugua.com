@@ -1,6 +1,6 @@
 {% extends 'snippet/layout.html' %}
 {% block title %}
-<title>每日图卦 新建文章</title>
+<title>每日图卦 编辑文章</title>
 {% endblock %}
 
 {% block stylesheet %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block main %}
-<form class="mt10" action='/create' method="POST" enctype="multipart/form-data">
+<form class="mt10" action='/edit/{{post.id}}' method="POST" enctype="multipart/form-data">
   {{ errors|dump_errors }}
   <div class="col-xs-12 col-md-9">
     <div class="Column1 section bf_dom">
@@ -22,9 +22,9 @@
 
               <div id="suplist_heading" class="c">
 
-                <h1 class="qp_create">新建文章</h1>
+                <h1 class="qp_create">编辑文章</h1>
 
-                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="立即创建">{{ xsrf_form_html() }}</div>
+                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="立即更新">{{ xsrf_form_html() }}</div>
 
               <div class="c qp_std_promo" id="suplist_promo">
 
@@ -33,12 +33,12 @@
                   <fieldset>
 
                     <div class="qp_input has_autocap">
-                      <input type="text" id="quickpost-title" name="title" class="form-control" placeholder="标题" title="" alt=""></div>
+                      <input type="text" id="quickpost-title" name="title" class="qp_text autocap autocap_on autocap_status_headline bf_dom" placeholder="标题" title="" alt="" value="{{post.title}}"></div>
                   </fieldset>
 
                   <fieldset>
                     <div class="qp_input">
-                      <textarea class="form-control" id="quickpost-intro" name="intro" placeholder="简介" title=""></textarea>
+                      <textarea class="qp bf_dom" id="quickpost-intro" name="intro" placeholder="简介" title="">{{post.intro}}</textarea>
                     </div>
 
                   </fieldset>
@@ -46,7 +46,7 @@
 
               </div>
 
-              <div id="content-preview"></div>
+              <div id="content-preview">{{post.content}}</div>
 
               <div class="c qp_std_promo" id="suplist_promo">
 
@@ -81,212 +81,214 @@
             <div class="suplist_thumb_container">
               <div class="suplist-thumb-reg suplist_image_box bf_dom">
                 <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-            </div>
+                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" src="/static/thumb/n_{{post.thumb}}"</div></div>
 
-            <div class="suplist_thumb_container">
-              <div class="suplist-thumb-wide suplist_image_box bf_dom">
-                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-            </div>
-
-            <div class="suplist_image_buttons">
-              <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
-                <div class="suplist_module_image_uploader" style="height: 20px;">
-                  <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
-                    <span>上传图片</span>
-                    <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
-                  <input type="hidden" id="x1" name="x1" />
-                  <input type="hidden" id="y1" name="y1" />
-                  <input type="hidden" id="x2" name="x2" />
-                  <input type="hidden" id="y2" name="y2" />
-                  <input type="hidden" id="x3" name="x3" />
-                  <input type="hidden" id="y3" name="y3" />
-                  <input type="hidden" id="x4" name="x4" />
-                  <input type="hidden" id="y4" name="y4" />
-                </div>
+              <div class="suplist_thumb_container">
+                <div class="suplist-thumb-wide suplist_image_box bf_dom">
+                  <span class="glyphicon glyphicon-ok" style="display: none;"></span>
+                  <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" src="/static/thumb/w_{{post.thumb}}"></div>
               </div>
 
-            </div>
-          </div>
-        </div>
+              <div class="suplist_image_buttons">
 
-        <div class="thumbnail-chooser suplist_options_top_row">
-          <h5>
-            <label>文章封面</label>
-          </h5>
-          <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
-            <div class="suplist_thumb_container">
-              <div class="suplist-thumb-wide suplist-cover-wide suplist_image_box bf_dom">
-                <img id="cover-preview-wide" class="qp_std_promo_fields suplist-thumb-img"></div>
-            </div>
+                <div>
+                  <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                    <div class="suplist_module_image_uploader" style="height: 20px;">
+                      <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                        <span>上传图片</span>
+                        <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                      <input type="hidden" id="x1" name="x1" />
+                      <input type="hidden" id="y1" name="y1" />
+                      <input type="hidden" id="x2" name="x2" />
+                      <input type="hidden" id="y2" name="y2" />
+                      <input type="hidden" id="x3" name="x3" />
+                      <input type="hidden" id="y3" name="y3" />
+                      <input type="hidden" id="x4" name="x4" />
+                      <input type="hidden" id="y4" name="y4" />
 
-            <div class="suplist_image_buttons suplist_image_buttons_cover">
-              <div>
-                <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
-                  <div class="suplist_module_image_uploader" style="height: 20px;">
-                    <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
-                      <span>选择图片</span>
-                      <input id="cover" name="cover" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="channel-chooser">
-          <h5>
-            <label>选择频道</label>
-          </h5>
-          <select type="text" id='channel' name="channel">
-            {% for channel in channels %}
-            <option>{{ channel.title }}</option>
-            {% endfor %}
-          </select>
-        </div>
+          <div class="thumbnail-chooser suplist_options_top_row">
+            <h5>
+              <label>文章封面</label>
+            </h5>
+            <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+              <div class="suplist_thumb_container">
+                <div class="suplist-thumb-wide suplist-cover-wide suplist_image_box bf_dom">
+                  <img id="cover-preview-wide" class="qp_std_promo_fields suplist-thumb-img" src="{{post.cover}}"></div>
+              </div>
 
-        <div class="tagsinput-wrapper">
-          <h5>
-            <label>文章标签</label>
-          </h5>
-          <input type="text" id="quickpost-tag" name="tag" value="" data-role="tagsinput" />
-        </div>
-
-        <div class="visible-chooser">
-          <h5>
-            <label>是否公开</label>
-          </h5>
-          <select type="text" id='visible' name="visible">
-            <option selected="selected">不公开</option>
-            <option>公开</option>
-          </select>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-</form>
-
-<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-thumb">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">设置窄版缩略图</h4>
-      </div>
-      <div class="modal-body" align=center>
-        <div id="img-wrapper">
-          <img id="img-preview" src=""/>
-        </div>
-        <div id="img-wrapper2" style="display: none">
-          <img id="img-preview2" src="" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btn-next">下一步</button>
-        <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">设置文章封面</h4>
-      </div>
-      <div class="modal-body" align=center>
-        <input type="text" class="form-control" id="coverImage" name="cover" placeholder="请输入图片地址"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="cover-btn-ok" >确定</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-body" align=center>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <ul id="editor-tab" class="nav nav-tabs">
-          <li class="active">
-            <a href="#text" data-toggle="tab">文字</a>
-          </li>
-          <li>
-            <a href="#image" data-toggle="tab">图片</a>
-          </li>
-          <li>
-            <a href="#video" data-toggle="tab">视频</a>
-          </li>
-          <li>
-            <a href="#embed" data-toggle="tab">内嵌</a>
-          </li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div class="tab-pane fade in active" id="text">
-            <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
-            <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
+              <div class="suplist_image_buttons suplist_image_buttons_cover">
+                <div>
+                  <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                    <div class="suplist_module_image_uploader" style="height: 20px;">
+                      <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                        <span>选择图片</span>
+                        <input id="cover" name="cover" class="file_mask" value="{{post.cover}}" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tab-pane fade" id="image">
-            <input type="text" class="form-control" id="image-address" placeholder="输入图片地址">
-            <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
-            <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
-            <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
-            <input type="text" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
-            <input type="text" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
 
-            <select class="form-control" id="image-layout">
-              <option>标题和描述在图片上面</option>
-              <option>标题和描述在图片下面</option>
-              <option>图片在标题和描述中间</option>
+          <div class="channel-chooser">
+            <h5>
+              <label>选择频道</label>
+            </h5>
+            <select type="text" id='channel' name="channel">
+              {% for channel in channels %}
+              <option {% if post.channel_title == channel.title %} selected="selected" {% endif %}>{{ channel.title }}</option>
+              {% endfor %}
             </select>
           </div>
-          <div class="tab-pane fade" id="video">
 
-            <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">
-            <textarea class="form-control" id="video-intro" placeholder="视频介绍（可选）..."></textarea>
+          <div class="tagsinput-wrapper">
+            <h5>
+              <label>文章标签</label>
+            </h5>
+            <input type="text" id="quickpost-tag" name="tag" value="{{tag_str}}" data-role="tagsinput" />
+          </div>
 
-            <input type="text" class="form-control" id="video-address" placeholder="输入视频地址">
-            <input type="text" class="form-control" id="video-embed" placeholder="输入视频embed">
-            <input type="text" class="form-control" id="video-iframe" placeholder="输入视频iframe">
-
-            <input type="text" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
-
-            <select class="form-control" id="video-layout">
-              <option>标题和描述在视频上面</option>
-              <option>标题和描述在视频下面</option>
-              <option>视频在标题和描述中间</option>
+          <div class="visible-chooser">
+            <h5>
+              <label>是否公开</label>
+            </h5>
+            <select type="text" id='visible' name="visible">
+              <option {% if post.visible == 0 %} selected="selected" {% endif %}>不公开</option>
+              <option {% if post.visible == 1 %} selected="selected" {% endif %}>公开</option>
             </select>
           </div>
-          <div class="tab-pane fade" id="embed">
-            <input type="text" class="form-control" id="embed-title" placeholder="标题（可选）">
-            <textarea class="form-control" id="embed-intro" placeholder="介绍（可选）..."></textarea>
-            <input type="text" class="form-control" id="embed-embed" placeholder="输入embed">
-            <select class="form-control" id="embed-layout">
-              <option>标题和描述在内嵌上面</option>
-              <option>标题和描述在内嵌下面</option>
-              <option>内嵌在标题和描述中间</option>
-            </select>
-          </div>
+
         </div>
       </div>
-      <div class="modal-footer">
-        <input type="hidden" id="mt-item-id">
-        <button type="button" class="btn btn-danger hidden" id="editor-btn-del" >删除</button>
-        <button type="button" class="btn btn-primary" id="editor-btn-ok" >确定</button>
+    </div>
+
+  </form>
+
+  <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-thumb">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">设置窄版缩略图</h4>
+        </div>
+        <div class="modal-body" style=" OVERFLOW: auto;WIDTH: 800px; HEIGHT: 600px" align=center>
+          <div id="img-wrapper">
+            <img id="img-preview" src=""/>
+          </div>
+          <div id="img-wrapper2" style="display: none">
+            <img id="img-preview2" src="" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="btn-next">下一步</button>
+          <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
+
+  <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">设置文章封面</h4>
+        </div>
+        <div class="modal-body" align=center>
+          <input type="text" class="form-control" id="coverImage" name="cover" placeholder="请输入图片地址"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="cover-btn-ok" >确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body" align=center>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <ul id="editor-tab" class="nav nav-tabs">
+            <li class="active">
+              <a href="#text" data-toggle="tab">文字</a>
+            </li>
+            <li>
+              <a href="#image" data-toggle="tab">图片</a>
+            </li>
+            <li>
+              <a href="#video" data-toggle="tab">视频</a>
+            </li>
+            <li>
+              <a href="#embed" data-toggle="tab">内嵌</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="text">
+              <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
+              <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
+            </div>
+            <div class="tab-pane fade" id="image">
+              <input type="text" class="form-control" id="image-address" placeholder="输入图片地址">
+              <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
+              <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
+              <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
+              <input type="text" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
+              <input type="text" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
+
+              <select class="form-control" id="image-layout">
+                <option>标题和描述在图片上面</option>
+                <option>标题和描述在图片下面</option>
+                <option>图片在标题和描述中间</option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="video">
+
+              <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">
+              <textarea class="form-control" id="video-intro" placeholder="视频介绍（可选）..."></textarea>
+
+              <input type="text" class="form-control" id="video-address" placeholder="输入视频地址">
+              <input type="text" class="form-control" id="video-embed" placeholder="输入视频embed">
+              <input type="text" class="form-control" id="video-iframe" placeholder="输入视频iframe">
+
+              <input type="text" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
+
+              <select class="form-control" id="video-layout">
+                <option>标题和描述在视频上面</option>
+                <option>标题和描述在视频下面</option>
+                <option>视频在标题和描述中间</option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="embed">
+              <input type="text" class="form-control" id="embed-title" placeholder="标题（可选）">
+              <textarea class="form-control" id="embed-intro" placeholder="介绍（可选）..."></textarea>
+              <input type="text" class="form-control" id="embed-embed" placeholder="输入embed">
+              <select class="form-control" id="embed-layout">
+                <option>标题和描述在内嵌上面</option>
+                <option>标题和描述在内嵌下面</option>
+                <option>内嵌在标题和描述中间</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="mt-item-id">
+          <button type="button" class="btn btn-danger hidden" id="editor-btn-del" >删除</button>
+          <button type="button" class="btn btn-primary" id="editor-btn-ok" >确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 
 {% block javascript %}
 <script type="text/javascript">
@@ -812,4 +814,4 @@
 
 <script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
 <script src="/static/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-{% endblock %}
+  {% endblock %}
