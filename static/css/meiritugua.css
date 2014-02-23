@@ -2538,4 +2538,7 @@ opacity: 0.9;
 max-width: 570px !important;
 }
 
+.mce-statusbar {
+	display: none !important;
+}
 /* editor css end */

@@ -208,7 +208,7 @@
   </div>
 </div>
 
-<div class="modal" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal" id="editor-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -235,10 +235,10 @@
             <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
             <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
           </div>
-          <div class="tab-pane fade" id="image">
-            <input type="text" class="form-control" id="image-address" placeholder="输入图片地址">
+          <div class="tab-pane fade" id="image">        
             <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
             <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
+            <input type="text" class="form-control" id="image-address" placeholder="输入图片地址">
             <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
             <input type="text" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
             <input type="text" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
@@ -311,13 +311,14 @@
 
             if (active_tab == "text") {
                 var text_title = $('#text-title').val();
+                tinyMCE.triggerSave();
                 var text_content = $('#text-content').val();
                 var content = '';
                 if (text_title != '') {
                     content = '<h2 class="text-title">' + text_title + '</h2>';
                 }
                 if (text_content != '') {
-                    content += '<p class="text-content">' + text_content + '</p>';
+                    content += '<div class="text-content">' + text_content + '</div>';
                 } else {
                     alert('文字内容不能为空！')
                     return;
@@ -333,11 +334,11 @@
                     $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'text');
                     $('#content-input').val($('#content-preview').html());
                     mt_item_id = '';
-
                 }
 
                 $('#text-title').val('');
                 $('#text-content').val('');
+                tinymce.activeEditor.setContent('');
 
                 $('#editor-modal').modal('hide');
             }
@@ -345,6 +346,7 @@
             if (active_tab == "image") {
                 var img_title = $('#image-title').val();
                 var img_address = $('#image-address').val();
+                tinyMCE.triggerSave();
                 var img_intro = $('#image-intro').val();
                 var img_link = $('#image-link').val();
                 var img_src_title = $('#image-source-title').val();
@@ -356,7 +358,7 @@
                     img_title = '<h2 class="img-title">' + img_title + '</h2>';
                 }
                 if (img_intro != '') {
-                    img_intro = '<p class="img-intro">' + img_intro + '</p>';
+                    img_intro = '<div class="img-intro">' + img_intro + '</div>';
                 }
                 if (img_address != '') {
                     img_address = '<img class="img-address" src="' + img_address + '">';
@@ -402,12 +404,14 @@
                 $('#image-intro').val('');
                 $('#image-source-title').val('');
                 $('#image-source-address').val('');
+                tinymce.activeEditor.setContent('');
 
                 $('#editor-modal').modal('hide');
             }
 
             if (active_tab == "video") {
                 var video_title = $('#video-title').val();
+                tinyMCE.triggerSave();
                 var video_intro = $('#video-intro').val();
                 var video_address = $('#video-address').val();
                 var video_embed = $('#video-embed').val();
@@ -453,7 +457,7 @@
                     video_title = '<h2 class="video-title">' + video_title + '</h2>';
                 }
                 if (video_intro != '') {
-                    video_intro = '<p class="video-intro">' + video_intro + '</p>';
+                    video_intro = '<div class="video-intro">' + video_intro + '</div>';
                 }
 
                 if (video_layout == '标题和描述在视频上面') {
@@ -464,7 +468,6 @@
 
                 } else if (video_layout == '视频在标题和描述中间') {
                     content = video_title + video + video_intro;
-
                 }
 
                 if (mt_item_id == '') {
@@ -477,7 +480,6 @@
                     $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'video');
                     $('#content-input').val($('#content-preview').html());
                     mt_item_id = '';
-
                 }
 
                 $('#video-title').val('');
@@ -486,12 +488,14 @@
                 $('#video-embed').val('');
                 $('#video-iframe').val('');
                 $('#video-cover').val('');
+                tinymce.activeEditor.setContent('');
 
                 $('#editor-modal').modal('hide');
             }
 
             if (active_tab == "embed") {
                 var embed_title = $('#embed-title').val();
+                tinyMCE.triggerSave();
                 var embed_intro = $('#embed-intro').val();
                 var embed_embed = $('#embed-embed').val();
                 var embed_layout = $('#embed-layout').val();
@@ -506,7 +510,7 @@
                     embed_title = '<h2 class="embed-title">' + embed_title + '</h2>';
                 }
                 if (embed_intro != '') {
-                    embed_intro = '<p class="embed-intro">' + embed_intro + '</p>';
+                    embed_intro = '<div class="embed-intro">' + embed_intro + '</div>';
                 }
 
                 if (embed_layout == '标题和描述在内嵌上面') {
@@ -517,7 +521,6 @@
 
                 } else if (embed_layout == '内嵌在标题和描述中间') {
                     content = embed_title + embed_embed + embed_intro;
-
                 }
 
                 if (mt_item_id == '') {
@@ -530,12 +533,12 @@
                     $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'embed');
                     $('#content-input').val($('#content-preview').html());
                     mt_item_id = '';
-
                 }
 
                 $('#embed-title').val('');
                 $('#embed-intro').val('');
                 $('#embed-embed').val('');
+                tinymce.activeEditor.setContent('');
 
                 $('#editor-modal').modal('hide');
             }
@@ -550,9 +553,10 @@
             }
             if (type == 'text') {
                 var text_title = $(this).find('.text-title').text();
-                var text_content = $(this).find('.text-content').text();
+                var text_content = $(this).find('.text-content').html();
                 $('#text-title').val(text_title);
                 $('#text-content').val(text_content);
+                tinymce.activeEditor.setContent(text_content);
                 $('#editor-tab a[href="#text"]').tab('show')
                 $('#editor-modal').modal('show');
 
@@ -560,16 +564,19 @@
                 var img_address = $(this).find('.img-address').attr('src');
                 var img_title = $(this).find('.img-title').text();
                 var img_intro = $(this).find('.img-intro').text();
+                tinymce.activeEditor.setContent(img_intro);
                 var img_link = $(this).find('.img-link').attr('href');
                 var img_src_title = $(this).find('.img-src a').text();
                 var img_src_address = $(this).find('.img-src a').attr('href');
                 $('#image-address').val(img_address);
                 $('#image-title').val(img_title);
                 $('#image-intro').val(img_intro);
+                
                 $('#image-link').val(img_link);
                 $('#image-source-title').val(img_src_title);
                 $('#image-source-address').val(img_src_address);
-                $('#editor-tab a[href="#image"]').tab('show')
+                $('#editor-tab a[href="#image"]').tab('show')                
+
                 $('#editor-modal').modal('show');
             } else if (type == 'video') {
                 var video_embed = '';
@@ -608,6 +615,7 @@
                 $('#video-address').val(video_address);
                 $('#video-title').val(video_title);
                 $('#video-intro').val(video_intro);
+                tinymce.activeEditor.setContent(video_intro);
                 $('#video-cover').val(video_cover);
                 $('#video-embed').val(video_embed);
                 $('#video_iframe').val(video_iframe);
@@ -631,6 +639,7 @@
 
                 $('#embed-title').val(embed_title);
                 $('#embed-intro').val(embed_intro);
+                tinymce.activeEditor.setContent(embed_intro);
                 $('#embed-embed').val(embed_embed);
                 $('#editor-tab a[href="#embed"]').tab('show')
                 $('#editor-modal').modal('show');
@@ -646,6 +655,7 @@
             if (active_tab == "text") {
                 $('#text-title').val('');
                 $('#text-content').val('');
+                tinymce.activeEditor.setContent('');
             }
             if (active_tab == "image") {
                 $('#image-title').val('');
@@ -668,11 +678,12 @@
                 $('#embed-embed').val('');
             }
             $('#mt-item-id').val('');
-        })
+        });
 
         $('#editor-modal').on('hidden.bs.modal', function () {
                 $('#text-title').val('');
                 $('#text-content').val('');
+                tinymce.activeEditor.setContent('');
                 $('#image-title').val('');
                 $('#image-address').val('');
                 $('#image-intro').val('');
@@ -687,10 +698,64 @@
                 $('#embed-title').val();
                 $('#embed-intro').val();
                 $('#embed-embed').val();       
-        })
-
+        });
     });
 </script>
+
+
+<script src="/static/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+        selector: "#text-content",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 100,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+
+tinymce.init({
+        selector: "#image-intro",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 100,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+
+tinymce.init({
+        selector: "#video-intro",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 100,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+
+
+tinymce.init({
+        selector: "#embed-intro",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 100,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+</script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -749,7 +814,6 @@
                         onSelect: updateInfo,
 
                     }, function () {
-
                     });
                 };
 
