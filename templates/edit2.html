@@ -583,7 +583,6 @@
 
                 $('#editor-modal').modal('show');
             } else if (type == 'video') {
-              alert('video_intro')
                 var video_embed = '';
                 var video_iframe = '';
                 var video_address = '';
@@ -619,8 +618,7 @@
 
                 $('#video-address').val(video_address);
                 $('#video-title').val(video_title);
-                $('#video-intro').val(video_intro);
-                alert(video_intro)
+                $('#video-intro').val(video_intro);              
                 tinymce.activeEditor.setContent(video_intro);
                 $('#video-cover').val(video_cover);
                 $('#video-embed').val(video_embed);
