@@ -29,6 +29,28 @@ from lib.utils import pretty_date
 
 from lib.mobile import is_mobile_browser
 
+import qiniu.conf
+import qiniu.io
+import qiniu.rs
+
+qiniu.conf.ACCESS_KEY = "hmHRMwms0cn9OM9PMETYwsXMLG93z3FiBmCtPu7y"
+qiniu.conf.SECRET_KEY = "nCDM7Tuggre39RiqXaDmjo8sZn6MLGmckUaCrOJU"
+bucket_name = 'meiritugua-img'
+
+class PutPolicy(object):
+    scope = None             # 可以是 bucketName 或者 bucketName:key
+    expires = 3600           # 默认是 3600 秒
+    callbackUrl = None
+    callbackBody = None
+    returnUrl = None
+    returnBody = None
+    endUser = None
+    asyncOps = None
+
+    def __init__(self, scope):
+        self.scope = scope
+
+
 class PostHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
     	user_info = self.current_user
@@ -56,6 +78,21 @@ class CreatePostHandler(BaseHandler):
     	user_info = self.current_user
         template_variables["user_info"] = user_info
         template_variables["channels"] = self.channel_model.get_all_channels()
+
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        template_variables["up_token"] = uptoken
+        data=open('/home/gao/logo.png')
+        print uptoken
+        ret, err = qiniu.io.put(uptoken, None, data) #key直接none就可以
+
+        if err is not None:
+            print 'Error'+err
+        else:
+            print 'Success'
+
+
+
         self.render("create2.html", **template_variables)
 
     @tornado.web.authenticated
