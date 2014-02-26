@@ -16,7 +16,7 @@ import lib.jsonp
 import pprint
 import math
 import datetime 
-import os.path
+import os
 
 from base import *
 from lib.variables import *
@@ -35,21 +35,7 @@ import qiniu.rs
 
 qiniu.conf.ACCESS_KEY = "hmHRMwms0cn9OM9PMETYwsXMLG93z3FiBmCtPu7y"
 qiniu.conf.SECRET_KEY = "nCDM7Tuggre39RiqXaDmjo8sZn6MLGmckUaCrOJU"
-bucket_name = 'meiritugua-img'
-
-class PutPolicy(object):
-    scope = None             # 可以是 bucketName 或者 bucketName:key
-    expires = 3600           # 默认是 3600 秒
-    callbackUrl = None
-    callbackBody = None
-    returnUrl = None
-    returnBody = None
-    endUser = None
-    asyncOps = None
-
-    def __init__(self, scope):
-        self.scope = scope
-
+bucket_name = 'mrtgimg'
 
 class PostHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
@@ -66,8 +52,7 @@ class PostHandler(BaseHandler):
 
         template_variables["vote"] = self.vote_model.get_vote_by_post_id(post_id)
         template_variables["tags"] = self.post_tag_model.get_post_all_tags(post_id)
-	
-        
+	        
         if is_mobile_browser(self):
             self.render("post-m.html", **template_variables)
         else:
@@ -82,13 +67,11 @@ class CreatePostHandler(BaseHandler):
         policy = qiniu.rs.PutPolicy(bucket_name)
         uptoken = policy.token()
         template_variables["up_token"] = uptoken
-        print uptoken
         
         self.render("create2.html", **template_variables)
 
     @tornado.web.authenticated
     def post(self, template_variables = {}):
-        print 'fdsafdasfsadfasdf'
         template_variables = {}
 
         # validate the fields
@@ -109,7 +92,6 @@ class CreatePostHandler(BaseHandler):
             "author_id": self.current_user["uid"],           
             "title": form.title.data,
             "intro": form.intro.data,
-            "cover": form.cover.data,
             "content": form.content.data,
             "channel_id": channel.id,
             "visible": visible,
@@ -122,10 +104,19 @@ class CreatePostHandler(BaseHandler):
             std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
 
         # process post thumb
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        usr_home = os.path.expanduser('~')
+
         thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))
         thumb_raw = self.request.files["thumb"][0]["body"]
         thumb_buffer = StringIO.StringIO(thumb_raw)
         thumb_origin = Image.open(thumb_buffer)
+
+        thumb_origin.save(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name, "PNG")
+        data=open(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name)
+        ret, err = qiniu.io.put(uptoken, "o_"+thumb_name, data)
+        os.remove(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name)
 
         # crop avatar if it's not square
         thumb_x = int(form.x1.data)
@@ -136,9 +127,11 @@ class CreatePostHandler(BaseHandler):
         thumb = thumb_origin.crop(thumb_crop_region)
 
         thumb_125x83 = thumb.resize((125, 83), Image.ANTIALIAS)
-        usr_home = os.path.expanduser('~')
         thumb_125x83.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name, "PNG")
 
+        data=open(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
+        ret, err = qiniu.io.put(uptoken, "n_"+thumb_name, data)
+        os.remove(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
 
         thumb2_x = int(form.x3.data)
         thumb2_y = int(form.y3.data)
@@ -150,7 +143,12 @@ class CreatePostHandler(BaseHandler):
         thumb_355x125 = thumb2.resize((355, 125), Image.ANTIALIAS)
         thumb_355x125.save(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name, "PNG")
 
-        result = self.post_model.set_post_thumb_by_post_id(post_id, "%s.png" % thumb_name)
+        data=open(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
+        ret, err = qiniu.io.put(uptoken, "w_"+thumb_name, data)
+        os.remove(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
+
+        cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
+        result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})
         
         # process tags
         tagStr = form.tag.data
@@ -212,7 +210,6 @@ class EditPostHandler(BaseHandler):
         post_info = {        
             "title": form.title.data,
             "intro": form.intro.data,
-            "cover": form.cover.data,
             "content": form.content.data,
             "channel_id": channel.id,
             "visible": visible,
@@ -241,35 +238,56 @@ class EditPostHandler(BaseHandler):
             thumb_buffer = StringIO.StringIO(thumb_raw)
             thumb_origin = Image.open(thumb_buffer)
 
+            policy = qiniu.rs.PutPolicy(bucket_name+":o_"+thumb_name)
+            uptoken = policy.token()
+            usr_home = os.path.expanduser('~')
+
+            thumb_origin.save(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name, "PNG")
+            data=open(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name)
+            ret, err = qiniu.io.put(uptoken, "o_"+thumb_name, data)
+            os.remove(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name)
+
             # crop avatar if it's not square
             thumb_x = int(form.x1.data)
             thumb_y = int(form.y1.data)
-            thumb_w = float(form.x2.data) - float(form.x1.data)
-            thumb_h = float(form.y2.data) - float(form.y1.data)
-            ratio1_w = thumb_w / 125.0
-            ratio1_h = thumb_h / 83.0
-            ratio1 = ratio1_w if ratio1_w<ratio1_h else ratio1_h
-            thumb_crop_region = (thumb_x, thumb_y, int(round(125*ratio1)), int(round(83*ratio1)))
+            thumb_x2 = int(round(float(form.x2.data)))
+            thumb_y2 = int(round(float(form.y2.data)))
+            thumb_crop_region = (thumb_x, thumb_y, thumb_x2, thumb_y2)
+            thumb = thumb_origin.crop(thumb_crop_region)
             thumb = thumb_origin.crop(thumb_crop_region)
 
             thumb_125x83 = thumb.resize((125, 83), Image.ANTIALIAS)
-            usr_home = os.path.expanduser('~')
-            thumb_125x83.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s" % thumb_name, "PNG")
+            thumb_125x83.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name, "PNG")
+
+            policy = qiniu.rs.PutPolicy(bucket_name+":n_"+thumb_name)
+            uptoken = policy.token()
+            data=open(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
+            ret, err = qiniu.io.put(uptoken, "n_"+thumb_name, data)
+            if err is not None:
+                print 'Error'+err
+            else:
+                print 'Success'
+            os.remove(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
 
 
             thumb2_x = int(form.x3.data)
             thumb2_y = int(form.y3.data)
-            thumb2_w = float(form.x4.data) - float(form.x3.data)
-            thumb2_h = float(form.y4.data) - float(form.y3.data)
-            ratio2_w = thumb2_w / 340.0
-            ratio2_h = thumb2_h / 120.0
-            ratio2 = ratio2_w if ratio2_w<ratio2_h else ratio2_h
-
-            thumb2_crop_region = (thumb2_x, thumb2_y, int(round(340*ratio2)), int(round(120*ratio2)))
+            thumb2_x2 = int(round(float(form.x4.data)))
+            thumb2_y2 = int(round(float(form.y4.data)))
+            thumb2_crop_region = (thumb2_x, thumb2_y, thumb2_x2, thumb2_y2)
             thumb2 = thumb_origin.crop(thumb2_crop_region)
 
             thumb_355x125 = thumb2.resize((340, 120), Image.ANTIALIAS)
-            thumb_355x125.save(usr_home+"/www/meiritugua.com/static/thumb/w_%s" % thumb_name, "PNG")
+            thumb_355x125.save(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name, "PNG")
+
+            policy = qiniu.rs.PutPolicy(bucket_name+":w_"+thumb_name)
+            uptoken = policy.token()
+            data=open(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
+            ret, err = qiniu.io.put(uptoken, "w_"+thumb_name, data)
+            os.remove(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
+
+            cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
+            result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})
         
         # process tags
         tagStr = form.tag.data

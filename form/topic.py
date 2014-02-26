@@ -116,10 +116,6 @@ class CreateForm(Form):
          validators.Required(message = "请选择帖子是否公开"),
      ])
 
-     cover = TextField('Cover', [
-         validators.Required(message = "请选择文章封面"),
-     ])
-
 
      x1 = TextField('X1', [
          validators.Required(message = "x1"),
@@ -186,9 +182,6 @@ class EditForm(Form):
          validators.Length(min = 0, message = "thumb"),
      ])
 
-     cover = TextField('Cover', [
-         validators.Required(message = "请选择文章封面"),
-     ])
 
      x1 = TextField('X1', [
          validators.Length(min = 0, message = "x1"),
