@@ -117,8 +117,6 @@
             <label>文章封面</label>
           </h5>
 
-          
-
           <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
             <div class="suplist_thumb_container">
               <div class="suplist-thumb-wide suplist-cover-wide suplist_image_box bf_dom">
@@ -212,8 +210,6 @@
   </div>
 </div>
 
-
-
 <div class="modal" id="editor-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -241,14 +237,16 @@
             <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
             <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
           </div>
-          <div class="tab-pane fade" id="image">        
+          <div class="tab-pane fade" id="image">
             <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
             <form action="http://up.qiniu.com/" class="dropzone" id="image-upload">
-  <input name="token" type="hidden" value="{{up_token}}">
-</form>
+              <img id="image-upload-preview" src="">
+              <input name="token" type="hidden" value="{{up_token}}">
+              
+            </form>
             <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
             <input type="hidden" class="form-control" id="image-address" placeholder="输入图片地址">
-            
+
             <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
             <input type="text" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
             <input type="text" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
@@ -304,13 +302,18 @@
   return $("<p></p>").append(this.clone()).html(); 
   };
 
+
+
     $(document).ready(function () {
       Dropzone.options.imageUpload = {
-        url: "http://up.qiniu.com/",
-  paramName: "file", // The name that will be used to transfer the file
-  maxFilesize: 2, // MB,
-  accept: function(file, done) {
-    
+        maxFiles: 1,
+  init: function() {
+    this.on("success", function(file, responseText) { 
+      $('#image-address').val('http://meiritugua-img.qiniudn.com/'+responseText['hash']);
+      $('#image-upload-preview').attr('src', 'http://meiritugua-img.qiniudn.com/'+responseText['hash']);
+      $('#image-upload .dz-preview').hide();
+    });
+
   }
 };
 
@@ -721,7 +724,6 @@
     });
 </script>
 
-
 <script src="/static/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
 tinymce.init({
@@ -773,8 +775,6 @@ tinymce.init({
         language:'zh_CN',
 });
 </script>
-
-
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -896,5 +896,5 @@ tinymce.init({
 <script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
 <script src="/static/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
-<script src="/static/dropzone-3.8.4/downloads/dropzone.js"></script>
+<script src="/static/dropzone-3.8.4/downloads/dropzone.min.js"></script>
 {% endblock %}

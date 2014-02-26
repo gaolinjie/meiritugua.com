@@ -82,21 +82,13 @@ class CreatePostHandler(BaseHandler):
         policy = qiniu.rs.PutPolicy(bucket_name)
         uptoken = policy.token()
         template_variables["up_token"] = uptoken
-        data=open('/home/gao/logo.png')
         print uptoken
-        ret, err = qiniu.io.put(uptoken, None, data) #key直接none就可以
-
-        if err is not None:
-            print 'Error'+err
-        else:
-            print 'Success'
-
-
-
+        
         self.render("create2.html", **template_variables)
 
     @tornado.web.authenticated
     def post(self, template_variables = {}):
+        print 'fdsafdasfsadfasdf'
         template_variables = {}
 
         # validate the fields
