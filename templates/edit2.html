@@ -6,6 +6,7 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
 <link rel="stylesheet" href="/static/bootstrap-tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="/static/dropzone-3.8.4/downloads/css/dropzone.css">
 {% endblock %}
 
 {% block main %}
@@ -237,13 +238,18 @@
             <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
             <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
           </div>
-          <div class="tab-pane fade" id="image">        
+          <div class="tab-pane fade" id="image">
             <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
+            <form action="http://up.qiniu.com/" class="dropzone" id="image-upload">
+              <input name="token" type="hidden" value="{{up_token}}">
+              
+            </form>
             <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
-            <input type="text" class="form-control" id="image-address" placeholder="输入图片地址">
+            <input type="hidden" class="form-control" id="image-address" placeholder="输入图片地址">
+
             <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
-            <input type="text" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
-            <input type="text" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
+            <input type="hidden" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
+            <input type="hidden" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
 
             <select class="form-control" id="image-layout">
               <option>标题和描述在图片上面</option>
@@ -254,13 +260,16 @@
           <div class="tab-pane fade" id="video">
 
             <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">
+            <form action="http://up.qiniu.com/" class="dropzone" id="video-image-upload">
+              <input name="token" type="hidden" value="{{up_token}}">
+            </form>
             <textarea class="form-control" id="video-intro" placeholder="视频介绍（可选）..."></textarea>
 
             <input type="text" class="form-control" id="video-address" placeholder="输入视频地址">
             <input type="text" class="form-control" id="video-embed" placeholder="输入视频embed">
             <input type="text" class="form-control" id="video-iframe" placeholder="输入视频iframe">
 
-            <input type="text" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
+            <input type="hidden" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
 
             <select class="form-control" id="video-layout">
               <option>标题和描述在视频上面</option>
@@ -291,14 +300,82 @@
   {% endblock %}
 
 {% block javascript %}
+<script src="/static/dropzone-3.8.4/downloads/dropzone.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    Dropzone.options.imageUpload = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#image-address').val('http://meiritugua-img.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+
+              }
+              else {
+                $('#image-address').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#editor-btn-ok, #editor-modal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+
+    Dropzone.options.videoImageUpload = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#video-cover').val('http://meiritugua-img.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+              }
+              else {
+                $('#video-cover').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#editor-btn-ok, #editor-modal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+})
+</script>
+
 <script type="text/javascript">
  $.fn.outerHtml = function(){
   return $("<p></p>").append(this.clone()).html(); 
   };
 
     $(document).ready(function () {
-        $('#content-input').val($('#content-preview').html());
-        
+      $('#content-input').val($('#content-preview').html());
+      
         $(document).on('click', '#add-box', function () {
             $('#editor-btn-del').addClass('hidden');
             $('#editor-modal').modal('show');
@@ -342,7 +419,8 @@
 
                 $('#text-title').val('');
                 $('#text-content').val('');
-                tinymce.activeEditor.setContent('');
+                tinyMCE.get('text-content').setContent('');
+                $('#mt-item-id').val('');
 
                 $('#editor-modal').modal('hide');
             }
@@ -408,7 +486,8 @@
                 $('#image-intro').val('');
                 $('#image-source-title').val('');
                 $('#image-source-address').val('');
-                tinymce.activeEditor.setContent('');
+                tinyMCE.get('image-intro').setContent('');
+                $('#mt-item-id').val('');
 
                 $('#editor-modal').modal('hide');
             }
@@ -492,7 +571,8 @@
                 $('#video-embed').val('');
                 $('#video-iframe').val('');
                 $('#video-cover').val('');
-                tinymce.activeEditor.setContent('');
+                tinyMCE.get('video-intro').setContent('');  
+                $('#mt-item-id').val('');
 
                 $('#editor-modal').modal('hide');
             }
@@ -542,7 +622,8 @@
                 $('#embed-title').val('');
                 $('#embed-intro').val('');
                 $('#embed-embed').val('');
-                tinymce.activeEditor.setContent('');
+                tinyMCE.get('embed-intro').setContent('');
+                $('#mt-item-id').val('');
 
                 $('#editor-modal').modal('hide');
             }
@@ -560,7 +641,7 @@
                 var text_content = $(this).find('.text-content').html();
                 $('#text-title').val(text_title);
                 $('#text-content').val(text_content);
-                tinymce.activeEditor.setContent(text_content);
+                tinyMCE.get('text-content').setContent(text_content);
                 $('#editor-tab a[href="#text"]').tab('show')
                 $('#editor-modal').modal('show');
 
@@ -568,13 +649,21 @@
                 var img_address = $(this).find('.img-address').attr('src');
                 var img_title = $(this).find('.img-title').text();
                 var img_intro = $(this).find('.img-intro').text();
-                tinymce.activeEditor.setContent(img_intro);
+                tinyMCE.get('image-intro').setContent(img_intro);
                 var img_link = $(this).find('.img-link').attr('href');
                 var img_src_title = $(this).find('.img-src a').text();
                 var img_src_address = $(this).find('.img-src a').attr('href');
                 $('#image-address').val(img_address);
                 $('#image-title').val(img_title);
                 $('#image-intro').val(img_intro);
+
+                var imageUploadDropzone = Dropzone.forElement("#image-upload");
+                var mockFile = { name: "Filename", size: 12345 };
+                imageUploadDropzone.emit("addedfile", mockFile);
+                imageUploadDropzone.emit("thumbnail", mockFile, img_address);
+                imageUploadDropzone.files.push( mockFile );
+                var existingFileCount = 1;
+                imageUploadDropzone.options.maxFiles = imageUploadDropzone.options.maxFiles - existingFileCount;
                 
                 $('#image-link').val(img_link);
                 $('#image-source-title').val(img_src_title);
@@ -618,8 +707,18 @@
 
                 $('#video-address').val(video_address);
                 $('#video-title').val(video_title);
-                $('#video-intro').val(video_intro);              
-                tinymce.activeEditor.setContent(video_intro);
+                $('#video-intro').val(video_intro);
+                tinyMCE.get('video-intro').setContent(video_intro);
+
+                var videoImageUploadDropzone = Dropzone.forElement("#video-image-upload");
+                videoImageUploadDropzone.emit("removeAllFiles");
+                var mockFile = { name: "Filename", size: 12345 };
+                videoImageUploadDropzone.emit("addedfile", mockFile);
+                videoImageUploadDropzone.emit("thumbnail", mockFile, video_cover);
+                videoImageUploadDropzone.files.push( mockFile );
+                var existingFileCount = 1;
+                videoImageUploadDropzone.options.maxFiles = videoImageUploadDropzone.options.maxFiles - existingFileCount;
+
                 $('#video-cover').val(video_cover);
                 $('#video-embed').val(video_embed);
                 $('#video_iframe').val(video_iframe);
@@ -643,7 +742,7 @@
 
                 $('#embed-title').val(embed_title);
                 $('#embed-intro').val(embed_intro);
-                tinymce.activeEditor.setContent(embed_intro);
+                tinyMCE.get('embed-intro').setContent(embed_intro);
                 $('#embed-embed').val(embed_embed);
                 $('#editor-tab a[href="#embed"]').tab('show')
                 $('#editor-modal').modal('show');
@@ -687,7 +786,6 @@
         $('#editor-modal').on('hidden.bs.modal', function () {
                 $('#text-title').val('');
                 $('#text-content').val('');
-                tinymce.activeEditor.setContent('');
                 $('#image-title').val('');
                 $('#image-address').val('');
                 $('#image-intro').val('');
@@ -701,11 +799,14 @@
                 $('#video-cover').val('');   
                 $('#embed-title').val();
                 $('#embed-intro').val();
-                $('#embed-embed').val();       
+                $('#embed-embed').val();
+                tinyMCE.get('text-content').setContent('');
+                tinyMCE.get('image-intro').setContent('');
+                tinyMCE.get('video-intro').setContent('');
+                tinyMCE.get('embed-intro').setContent('');
         });
     });
 </script>
-
 
 <script src="/static/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
@@ -715,7 +816,7 @@ tinymce.init({
                 "link paste autoresize"
         ],
         toolbar1: "bold italic blockquote link | removeformat undo redo",
-        height : 100,
+        height : 50,
         menubar: false,
         toolbar_items_size: 'small',
         language:'zh_CN',
@@ -758,8 +859,6 @@ tinymce.init({
         language:'zh_CN',
 });
 </script>
-
-
 
 <script type="text/javascript">
     $(document).ready(function () {

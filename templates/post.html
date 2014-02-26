@@ -440,16 +440,17 @@
 
     $('.play-icon').hover( function () {
       $(this).parent().find('img').css("opacity","1");
+      $(this).css("cursor", "pointer");
     }, function () {
       
     });
 
     $('.mt-item .video-wrapper img').hover( function () {
       $(this).css("opacity","1");
+      $(this).css("cursor", "pointer");
     }, function () {
       $(this).css("opacity","0.9");
+      $(this).css("cursor", "default");
     });
-
-    
 </script>
 {% endblock %}

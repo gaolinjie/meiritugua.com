@@ -184,6 +184,11 @@ class EditPostHandler(BaseHandler):
             tagStr += tag.tag_name + ','
         template_variables["tag_str"] = tagStr
 
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        template_variables["up_token"] = uptoken
+        print uptoken
+
         self.render("edit2.html", **template_variables)
 
     @tornado.web.authenticated
