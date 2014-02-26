@@ -23,7 +23,8 @@ class Filters():
         #self.jinja2.filters["tojson"] = json.JSONEncoder().encode
         self.jinja2.filters["tojson"] = dumps
         self.jinja2.filters["pretty_date"] = self.pretty_date
-        self.jinja2.filters["content_process"] = self.content_process
+        self.jinja2.filters["desktop_content_process"] = self.desktop_content_process
+        self.jinja2.filters["mobile_content_process"] = self.mobile_content_process
         self.jinja2.filters["reply_process"] = self.reply_process
         self.jinja2.filters["markdown"] = self.markdown
         return self.jinja2
@@ -131,7 +132,14 @@ class Filters():
             return str(day_diff / 30) + " 月前"
         return str(day_diff / 365) + " 天前"
 
-    def content_process(self, content):
+    def desktop_content_process(self, content):
+        # render content included gist
+        #content = re.sub(r'http(s)?:\/\/gist.github.com\/(\d+)(.js)?', r'<script src="http://gist.github.com/\2.js"></script>', content)
+        # render sinaimg pictures
+        content = re.sub(r'src="(http:\/\/meiritugua-img.qiniudn.com\/.\w+)"', r'src="\1-desktop"', content)
+        return content
+
+    def mobile_content_process(self, content):
         # render content included gist
         #content = re.sub(r'http(s)?:\/\/gist.github.com\/(\d+)(.js)?', r'<script src="http://gist.github.com/\2.js"></script>', content)
         # render sinaimg pictures
@@ -143,6 +151,7 @@ class Filters():
         # render @ mention links
         #content = re.sub(ur'@(?!_)(?!.*?_$)(?!\d+)([a-zA-Z0-9_\u4e00-\u9fa5]+)(\s|)', r'<a href="/u/\1">@\1</a> ', content)
         # render youku videos
+        content = re.sub(r'src="(http:\/\/meiritugua-img.qiniudn.com\/.\w+)"', r'src="\1-mobile"', content)
         content = re.sub(r'<embed(.*)src="http://player.youku.com/player.php/sid/(\w+)/v.swf"(.*)>', r'<iframe width="100%" height="" frameborder="0" src="http://player.youku.com/embed/\2" allowfullscreen=""></iframe>', content)
         return content
 
