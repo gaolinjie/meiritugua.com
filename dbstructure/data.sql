@@ -14,7 +14,7 @@ INSERT INTO `channel` VALUES (4, 1, 'ideas', '其它');
 
 INSERT INTO `channel` VALUES (5, 2, 'star', '搞笑');
 INSERT INTO `channel` VALUES (6, 2, 'star', '八卦');
-INSERT INTO `channel` VALUES (7, 1, 'sports', '体育');
+INSERT INTO `channel` VALUES (7, 2, 'sports', '体育');
 INSERT INTO `channel` VALUES (8, 2, 'music', '音乐');
 
 
