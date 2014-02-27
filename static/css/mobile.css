@@ -461,3 +461,56 @@ padding: 0px;
 left: 0px;
 background: url(http://meiritugua.qiniudn.com/play_icon.png) no-repeat;
 }
+
+.img-wrapper {
+	line-height: 1em;
+}
+.img-src a {
+	font: 12px/15px "ProximaNovaRegular", Helvetica, Arial, sans-serif;
+color: #999;
+font-style: italic;
+}
+
+
+.mt-item {
+	margin-bottom: 40px;
+}
+
+.mt-item .video-wrapper{
+	position: relative;
+}
+
+
+.mt-item .video-wrapper .play-icon {
+background-image: url(http://cdn3.sbnation.com/images/verge/compass-sprites/video-hero-seff4cba2ae.vea1b814.png);
+background-position: 0 0;
+background-repeat: no-repeat;
+content: '';
+width: 65px;
+height: 65px;
+margin-top: -32px;
+margin-left: -32px;
+position: absolute;
+left: 50%;
+top: 50%;
+
+
+}
+
+.mt-item .video-wrapper img {
+opacity: 0.9;
+}
+
+.mt-item .img-wrapper {
+	margin: 10px auto;
+}
+
+.mt-item .img-src {
+	text-align: center;
+}
+
+.mt-item .video-wrapper {
+	margin: 10px auto;
+}
+
+
