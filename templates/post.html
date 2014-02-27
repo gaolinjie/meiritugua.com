@@ -400,6 +400,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).on('click', '.us_reactions', function () {
+          {% if user_info==none  %}
+          alert('请先登录再评价，谢谢！')
+          return
+          {% endif %}
             var post_id = $('.reactions').attr('data-post');
             var vote_type = $(this).attr('data-vote');
             var vote_num = $(this).find('.badge-vote-count').find('font').find('font');
