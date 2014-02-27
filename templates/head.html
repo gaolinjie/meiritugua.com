@@ -4,8 +4,7 @@
 {% endblock %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
-<link rel="stylesheet" href="/static/bootstrap-tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="/static/dropzone-3.8.4/downloads/css/dropzone.css">
 {% endblock %}
 
 {% block main %}
@@ -78,7 +77,10 @@
           <input type="text" class="form-control" id="headLabel" placeholder=""></div>
         <div class="form-group">
           <label for="headSplash">封面</label>
-          <input type="text" class="form-control" id="headSplash" placeholder=""></div>
+          <form action="http://up.qiniu.com/" class="dropzone" id="image-upload">
+              <input name="token" type="hidden" value="{{up_token}}">
+            </form>
+          <input type="hidden" class="form-control" id="headSplash" placeholder=""></div>
         <div class="form-group">
           <label for="headSort">顺序</label>
           <input type="text" class="form-control" id="headSort" placeholder=""></div>
@@ -130,7 +132,10 @@
           <input type="text" class="form-control" id="headLabel2" placeholder=""></div>
         <div class="form-group">
           <label for="headSplash2">封面</label>
-          <input type="text" class="form-control" id="headSplash2" placeholder=""></div>
+          <form action="http://up.qiniu.com/" class="dropzone" id="image-upload2">
+              <input name="token" type="hidden" value="{{up_token}}">
+            </form>
+          <input type="hidden" class="form-control" id="headSplash2" placeholder=""></div>
         <div class="form-group">
           <label for="headSort2">顺序</label>
           <input type="text" class="form-control" id="headSort2" placeholder=""></div>
@@ -206,6 +211,75 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="/static/dropzone-3.8.4/downloads/dropzone.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    Dropzone.options.imageUpload = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#headSplash').val('http://mrtgimg.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+
+              }
+              else {
+                $('#headSplash').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#edit-head-btn-ok, #EditHeadModal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+
+    Dropzone.options.imageUpload2 = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#headSplash2').val('http://mrtgimg.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+              }
+              else {
+                $('#headSplash2').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#add-head-btn-ok, #AddHeadModal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+})
+</script>
+
+
 <script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click', '.btn-head-hide',  function() {
@@ -245,9 +319,7 @@
                         });
 
               
-            });  
-
-              
+            });   
 
             $(document).on('click', '.btn-head-edit',  function() {
               var post_id = $(this).attr('data-post');
@@ -256,6 +328,15 @@
               $('#headTitle').val(head_item.attr('data-title'));
               $('#headLabel').val(head_item.attr('data-label'));
               $('#headSplash').val(head_item.attr('data-splash'));
+
+              var imageUploadDropzone = Dropzone.forElement("#image-upload");
+              var mockFile = { name: "Filename", size: 12345 };
+              imageUploadDropzone.emit("addedfile", mockFile);
+              imageUploadDropzone.emit("thumbnail", mockFile, head_item.attr('data-splash'));
+              imageUploadDropzone.files.push( mockFile );
+              var existingFileCount = 1;
+              imageUploadDropzone.options.maxFiles = imageUploadDropzone.options.maxFiles - existingFileCount;
+
               $('#headSort').val(head_item.attr('data-sort'));
               var horizontal = head_item.attr('data-horizontal');
               var vertical = head_item.attr('data-vertical');

@@ -2544,7 +2544,7 @@ max-width: 570px !important;
 /* editor css end */
 
 
-#image-upload, #video-image-upload {
+#image-upload, #image-upload2, #video-image-upload {
   min-height: 150px;
   background-color: #e6e6e6;
   margin: 20px 0;

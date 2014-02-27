@@ -103,6 +103,25 @@ class CreatePostHandler(BaseHandler):
         if form.visible.data=='公开':
             std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
 
+        # process tags
+        tagStr = form.tag.data
+        if tagStr:
+            print 'process tags'
+            tagNames = tagStr.split(',')  
+            for tagName in tagNames:  
+                tag = self.tag_model.get_tag_by_tag_name(tagName)
+                if tag:
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag.id})
+                    self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num+1})
+                else:
+                    tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
+
+        # add vote
+        self.vote_model.add_new_vote({'post_id': post_id})
+
+        self.redirect("/p/"+str(post_id))
+
         # process post thumb
         policy = qiniu.rs.PutPolicy(bucket_name)
         uptoken = policy.token()
@@ -150,26 +169,6 @@ class CreatePostHandler(BaseHandler):
         cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
         result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})
         
-        # process tags
-        tagStr = form.tag.data
-        if tagStr:
-            print 'process tags'
-            tagNames = tagStr.split(',')  
-            for tagName in tagNames:  
-                tag = self.tag_model.get_tag_by_tag_name(tagName)
-                if tag:
-                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag.id})
-                    self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num+1})
-                else:
-                    tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
-                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
-
-        # add vote
-        self.vote_model.add_new_vote({'post_id': post_id})
-
-        self.redirect("/p/"+str(post_id))
-
-
 class EditPostHandler(BaseHandler):
     def get(self, post_id, template_variables = {}):
         user_info = self.current_user
@@ -230,6 +229,25 @@ class EditPostHandler(BaseHandler):
             self.std_model.delete_std_by_post_id(post_id)
             self.hot_model.delete_hot_by_post_id(post_id)
 
+        # process tags
+        tagStr = form.tag.data
+        if tagStr:
+            self.post_tag_model.delete_post_tag_by_post_id(post_id)
+            tags = self.post_tag_model.get_post_all_tags(post_id)
+            for tag in tags["list"]:
+                self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num-1})
+            tagNames = tagStr.split(',')
+            for tagName in tagNames:  
+                tag = self.tag_model.get_tag_by_tag_name(tagName)
+                if tag:
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag.id})
+                    self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num+1})
+                else:
+                    tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
+
+        self.redirect("/p/"+post_id)
+
         # process post thumb
         thumb_file = self.request.files
         if thumb_file:
@@ -288,26 +306,6 @@ class EditPostHandler(BaseHandler):
 
             cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
             result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})
-        
-        # process tags
-        tagStr = form.tag.data
-        if tagStr:
-            self.post_tag_model.delete_post_tag_by_post_id(post_id)
-            tags = self.post_tag_model.get_post_all_tags(post_id)
-            for tag in tags["list"]:
-                self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num-1})
-            tagNames = tagStr.split(',')
-            for tagName in tagNames:  
-                tag = self.tag_model.get_tag_by_tag_name(tagName)
-                if tag:
-                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag.id})
-                    self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num+1})
-                else:
-                    tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
-                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
-
-        self.redirect("/p/"+post_id)
-
 
 class NavPreviewHandler(BaseHandler):
     def get(self, nav_name, template_variables = {}):
@@ -424,6 +422,11 @@ class HeadManagerHandler(BaseHandler):
         template_variables["channels"] = self.channel_model.get_all_channels()
     
         template_variables["heads"] = self.head_model.get_shows_head_posts()
+
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        template_variables["up_token"] = uptoken
+
         self.render("head.html", **template_variables)
 
 class HeadHideHandler(BaseHandler):
@@ -485,7 +488,6 @@ class HeadAddHandler(BaseHandler):
             horizontal = data["horizontal"]
             vertical = data["vertical"]
             style = data["style"]
-            print style
 
             head_info = {
                 "post_id": post_id,
@@ -495,6 +497,7 @@ class HeadAddHandler(BaseHandler):
                 "horizontal": horizontal,
                 "vertical": vertical,
                 "style": style,
+                "shows": 1,
             }
             self.head_model.add_new_head(head_info)
             self.write(lib.jsonp.print_JSON({
