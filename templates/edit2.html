@@ -476,7 +476,7 @@ $(document).ready(function () {
                             video_embed = video_embed.slice(video_embed.indexOf('http'), video_embed.lastIndexOf(">"));
                             video_embed = video_embed.slice(0, video_embed.indexOf('"'));
                         }
-                        if (video_iframe != ''&&video_embed.search("<iframe")>=0) {
+                        if (video_iframe != ''&&video_iframe.search("<iframe")>=0) {
                             video_iframe = video_iframe.slice(video_iframe.indexOf('http'), video_iframe.lastIndexOf(">"));
                             video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
                         }
@@ -681,7 +681,7 @@ $(document).ready(function () {
 
                 $('#video-cover').val(video_cover);
                 $('#video-embed').val(video_embed);
-                $('#video_iframe').val(video_iframe);
+                $('#video-iframe').val(video_iframe);
                 $('#editor-tab a[href="#video"]').tab('show')
                 $('#editor-modal').modal('show');
             }
