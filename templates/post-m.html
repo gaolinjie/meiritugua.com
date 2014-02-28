@@ -41,4 +41,39 @@
       
         });
     </script>
+
+<script type="text/javascript">
+    $(document).on('click', '.mt-item .video-wrapper', function () {
+        if($(this).find('.video-address').length > 0) {
+          return;
+        }
+        
+        var video_embed = $(this).find('img').attr('data-embed');
+        var video_iframe = $(this).find('img').attr('data-iframe');
+        if (video_embed != '') {
+            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
+            $(this).html(video_embed);
+            return;
+        }
+        if (video_iframe != '') {
+            video_iframe = '<iframe height=498 width=510 src="' + video_iframe + '" frameborder=0 allowfullscreen></iframe>'
+            $(this).html(video_iframe);
+        }
+    });
+
+    $('.play-icon').hover( function () {
+      $(this).parent().find('img').css("opacity","1");
+      $(this).css("cursor", "pointer");
+    }, function () {
+      
+    });
+
+    $('.mt-item .video-wrapper img').hover( function () {
+      $(this).css("opacity","1");
+      $(this).css("cursor", "pointer");
+    }, function () {
+      $(this).css("opacity","0.9");
+      $(this).css("cursor", "default");
+    });
+</script>
 {% endblock %}
