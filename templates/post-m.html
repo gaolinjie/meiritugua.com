@@ -50,15 +50,15 @@
         
         var video_embed = $(this).find('img').attr('data-embed');
         var video_iframe = $(this).find('img').attr('data-iframe');
-        if (video_embed != '') {
-            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
-            $(this).html(video_embed);
-            return;
-        }
         if (video_iframe != '') {
             video_iframe = '<iframe height=498 width=510 src="' + video_iframe + '" frameborder=0 allowfullscreen></iframe>'
             $(this).html(video_iframe);
+            return;
         }
+        if (video_embed != '') {
+            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></embed>';
+            $(this).html(video_embed);
+        } 
     });
 
     $('.play-icon').hover( function () {

@@ -432,7 +432,7 @@
         var video_embed = $(this).find('img').attr('data-embed');
         var video_iframe = $(this).find('img').attr('data-iframe');
         if (video_embed != '') {
-            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
+            video_embed = '<embed src="' + video_embed + '" allowFullScreen="true" quality="high" autostart="0" align="middle" allowScriptAccess="always" flashvars="isAutoPlay=true" type="application/x-shockwave-flash"></embed>';
             $(this).html(video_embed);
             return;
         }
