@@ -476,7 +476,7 @@ $(document).ready(function () {
                             video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
                             var i = video_iframe.search("http://player.youku.com/embed/");
                             if (i>=0) {
-                              var youku_id = video_iframe.slice(video_iframe.lastIndexOf('/'), video_iframe.length());
+                              var youku_id = video_iframe.slice(video_iframe.lastIndexOf('/')+1, video_iframe.length);
                               video_iframe = "http://static.youku.com/v1.0.0104/v/swf/qplayer.swf?VideoIDS="+youku_id+"&embedid=MTEwLjI0My40Mi4xMjgCMzQ4ODI0NzYCemhpZGFvLmJhaWR1LmNvbQIvcXVlc3Rpb24vMTUzMDcwMTYzLmh0bWw=&isAutoPlay=true&embedid.mp3";
                             }
                         }
