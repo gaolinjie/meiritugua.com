@@ -513,4 +513,7 @@ opacity: 0.9;
 	margin: 10px auto;
 }
 
+.mt-video embed, .mt-video iframe  {
+	width: 100% !important;
+}
 
