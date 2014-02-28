@@ -51,8 +51,9 @@
         var video_embed = $(this).find('img').attr('data-embed');
         var video_iframe = $(this).find('img').attr('data-iframe');
         if (video_iframe != '') {
-            video_iframe = '<iframe height=498 width=510 src="' + video_iframe + '" frameborder=0 allowfullscreen></iframe>'
+            video_iframe = '<iframe src="' + video_iframe + '" frameborder=0 allowfullscreen></iframe>'
             $(this).html(video_iframe);
+            $('iframe').height(document.body.clientWidth/1.7);
             return;
         }
         if (video_embed != '') {
