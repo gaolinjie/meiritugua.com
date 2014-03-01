@@ -14,16 +14,16 @@
               {% for head in heads %}
               <li>
                 <div>
-                  <a id="splash-link" href="/p/{{ head.post_id }}">
-                    <div id="splash-container" >
-                      <img id="splash-image" src="{{ head.splash }}" alt="" >
+                  <a class="splash-link" href="/p/{{ head.post_id }}">
+                    <div class="splash-container">
+                      <img id="splash-image" src="{{ head.splash }}" alt="">
                       <div id="overlay-text"></div>
                       <div class="{{ head.vertical }} {{ head.horizontal }} splash-overlay" id="splash-overlay">
-                        <div class="label"> <font><font>{{ head.label }}</font></font> 
+                        <div class="label"> <font>{{ head.label }}</font> 
                         </div>
                         <div class="title {{ head.style }}" style="font-size: 25px; line-height: 25px;">
                           <div class="splash-desc">
-                            <font><font>{{ head.title }}</font></font> 
+                            <font>{{ head.title }}</font> 
                           </div>
                         </div>
                       </div>

@@ -1567,14 +1567,14 @@ opacity: 1;
 
 
 
-#splash-container {
+.splash-container {
 width: 580px;
 height: 185px;
 }
-#splash-container {
+.splash-container {
 margin-right: 10px;
 }
-#splash-container {
+.splash-container {
 position: relative;
 overflow: hidden;
 }
