@@ -489,11 +489,6 @@ $(document).ready(function () {
                         if (video_iframe != ''&&video_iframe.search("<iframe")>=0) {
                             video_iframe = video_iframe.slice(video_iframe.indexOf('http'), video_iframe.lastIndexOf(">"));
                             video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
-                            var i = video_iframe.search("http://player.youku.com/embed/");
-                            if (i>=0) {
-                              var youku_id = video_iframe.slice(video_iframe.lastIndexOf('/')+1, video_iframe.length);
-                              video_iframe = "http://static.youku.com/v1.0.0104/v/swf/qplayer.swf?VideoIDS="+youku_id+"&embedid=MTEwLjI0My40Mi4xMjgCMzQ4ODI0NzYCemhpZGFvLmJhaWR1LmNvbQIvcXVlc3Rpb24vMTUzMDcwMTYzLmh0bWw=&isAutoPlay=true&embedid.mp3";
-                            }
                         }
                         video = "<div class='video-wrapper'> <img class='video-cover' src='" + video_cover + "' data-embed='" + video_embed + "' data-iframe='" + video_iframe + "'> <i class='play-icon'></i></div>";
                     }
@@ -507,7 +502,7 @@ $(document).ready(function () {
                           var i = video_address.search("v.youku.com/v_show/id_");
                           if (i>=0) {
                             var youku_id = video_address.slice(i+22, video_address.search(".html"));
-                            video = '<embed wmode="transparent" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/'+youku_id+'/v.swf" allowfullscreen="true" quality="high" flashvars="isShowRelatedVideo=false&amp;showAd=0&amp;show_pre=1&amp;show_next=1&amp;isAutoPlay=false&amp;isDebug=false&amp;UserID=&amp;winType=interior&amp;playMovie=true&amp;MMControl=false&amp;MMout=false&amp;RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" play="true" loop="true" menu="true" data-pinit="registered">'
+                            video = '<embed wmode="transparent" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/'+youku_id+'/v.swf" allowfullscreen="true" quality="high" flashvars="isShowRelatedVideo=false&amp;showAd=0&amp;show_pre=1&amp;show_next=1&amp;isAutoPlay=true&amp;isDebug=false&amp;UserID=&amp;winType=interior&amp;playMovie=true&amp;MMControl=false&amp;MMout=false&amp;RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" play="true" loop="true" menu="true" data-pinit="registered">'
                           }
                           else {
                             alert("视频封面, 视频embed, 视频iframe不能同时为空!");
