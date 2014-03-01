@@ -465,7 +465,7 @@ $(document).ready(function () {
                 var video = "";
                 if (video_cover != '') {
                     if (video_embed == '' && video_iframe == '') {
-                        video_cover = "<img class='video-cover' src='" + video_cover + "'>";
+                        
                         if (video_address == '') {
                             alert("视频地址, 视频embed, 视频iframe不能同时为空!");
                             return;
@@ -478,6 +478,7 @@ $(document).ready(function () {
                           video = "<div class='video-wrapper'> <img class='video-cover' src='" + video_cover + "' data-embed='" + video_e + "' data-iframe='" + video_i + "'> <i class='play-icon'></i></div>";
                         }
                         else {
+                          video_cover = "<img class='video-cover' src='" + video_cover + "'>";
                           video = "<div class='video-wrapper'> <a class='video-address' target='_blank' href='" + video_address + "'>" + video_cover + "</a><i class='play-icon'></i></div>";
                         }        
                     } else {
