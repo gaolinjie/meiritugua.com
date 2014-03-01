@@ -470,7 +470,16 @@ $(document).ready(function () {
                             alert("视频地址, 视频embed, 视频iframe不能同时为空!");
                             return;
                         }
-                        video = "<div class='video-wrapper'> <a class='video-address' target='_blank' href='" + video_address + "'>" + video_cover + "</a><i class='play-icon'></i></div>";
+                        var i = video_address.search("v.youku.com/v_show/id_");
+                        if (i>=0) {
+                          var youku_id = video_address.slice(i+22, video_address.search(".html"));
+                          video_e = "http://player.youku.com/player.php/sid/"+youku_id+"/v.swf";
+                          video_i = "http://player.youku.com/embed/"+youku_id;
+                          video = "<div class='video-wrapper'> <img class='video-cover' src='" + video_cover + "' data-embed='" + video_e + "' data-iframe='" + video_i + "'> <i class='play-icon'></i></div>";
+                        }
+                        else {
+                          video = "<div class='video-wrapper'> <a class='video-address' target='_blank' href='" + video_address + "'>" + video_cover + "</a><i class='play-icon'></i></div>";
+                        }        
                     } else {
                         if (video_embed != ''&&video_embed.search("<embed")>=0) {
                             video_embed = video_embed.slice(video_embed.indexOf('http'), video_embed.lastIndexOf(">"));
@@ -489,8 +498,21 @@ $(document).ready(function () {
                     }
                 } else {
                     if (video_embed == '' && video_iframe == '') {
-                        alert("视频封面, 视频embed, 视频iframe不能同时为空!");
-                        return;
+                        if (video_address == '') {
+                            alert("视频地址, 视频embed, 视频iframe不能同时为空!");
+                            return;
+                        }
+                        else {
+                          var i = video_address.search("v.youku.com/v_show/id_");
+                          if (i>=0) {
+                            var youku_id = video_address.slice(i+22, video_address.search(".html"));
+                            video = '<embed wmode="transparent" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/'+youku_id+'/v.swf" allowfullscreen="true" quality="high" flashvars="isShowRelatedVideo=false&amp;showAd=0&amp;show_pre=1&amp;show_next=1&amp;isAutoPlay=false&amp;isDebug=false&amp;UserID=&amp;winType=interior&amp;playMovie=true&amp;MMControl=false&amp;MMout=false&amp;RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" play="true" loop="true" menu="true" data-pinit="registered">'
+                          }
+                          else {
+                            alert("视频封面, 视频embed, 视频iframe不能同时为空!");
+                            return;
+                          }
+                        }    
                     }
                     if (video_embed != '') {
                         video = video_embed;
@@ -675,14 +697,16 @@ $(document).ready(function () {
                 $('#video-intro').val(video_intro);
                 tinyMCE.get('video-intro').setContent(video_intro);
 
-                var videoImageUploadDropzone = Dropzone.forElement("#video-image-upload");
-                videoImageUploadDropzone.emit("removeAllFiles");
-                var mockFile = { name: "Filename", size: 12345 };
-                videoImageUploadDropzone.emit("addedfile", mockFile);
-                videoImageUploadDropzone.emit("thumbnail", mockFile, video_cover);
-                videoImageUploadDropzone.files.push( mockFile );
-                var existingFileCount = 1;
-                videoImageUploadDropzone.options.maxFiles = videoImageUploadDropzone.options.maxFiles - existingFileCount;
+                if (video_cover.length > 0) {
+                  var videoImageUploadDropzone = Dropzone.forElement("#video-image-upload");
+                  videoImageUploadDropzone.emit("removeAllFiles");
+                  var mockFile = { name: "Filename", size: 12345 };
+                  videoImageUploadDropzone.emit("addedfile", mockFile);
+                  videoImageUploadDropzone.emit("thumbnail", mockFile, video_cover);
+                  videoImageUploadDropzone.files.push( mockFile );
+                  var existingFileCount = 1;
+                  videoImageUploadDropzone.options.maxFiles = videoImageUploadDropzone.options.maxFiles - existingFileCount;
+                }
 
                 $('#video-cover').val(video_cover);
                 $('#video-embed').val(video_embed);
