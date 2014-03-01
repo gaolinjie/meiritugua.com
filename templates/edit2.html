@@ -502,7 +502,7 @@ $(document).ready(function () {
                           var i = video_address.search("v.youku.com/v_show/id_");
                           if (i>=0) {
                             var youku_id = video_address.slice(i+22, video_address.search(".html"));
-                            video = '<embed wmode="transparent" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/'+youku_id+'/v.swf" allowfullscreen="true" quality="high" flashvars="isShowRelatedVideo=false&amp;showAd=0&amp;show_pre=1&amp;show_next=1&amp;isAutoPlay=true&amp;isDebug=false&amp;UserID=&amp;winType=interior&amp;playMovie=true&amp;MMControl=false&amp;MMout=false&amp;RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" play="true" loop="true" menu="true" data-pinit="registered">'
+                            video = '<embed wmode="transparent" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/'+youku_id+'/v.swf" allowfullscreen="true" quality="high" flashvars="isShowRelatedVideo=false&amp;showAd=0&amp;show_pre=1&amp;show_next=1&amp;isAutoPlay=false&amp;isDebug=false&amp;UserID=&amp;winType=interior&amp;playMovie=true&amp;MMControl=false&amp;MMout=false&amp;RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" play="true" loop="true" menu="true" data-pinit="registered">'
                           }
                           else {
                             alert("视频封面, 视频embed, 视频iframe不能同时为空!");
