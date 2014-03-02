@@ -517,3 +517,6 @@ opacity: 0.9;
 	width: 100% !important;
 }
 
+.mt-embed iframe {
+	margin: auto;
+}
