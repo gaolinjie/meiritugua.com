@@ -2550,7 +2550,7 @@ max-width: 570px !important;
   margin: 20px 0;
 }
 
-.mt-embed iframe {
-	margin: auto;
+.mt-embed {
+	text-align: center;
 }
 
