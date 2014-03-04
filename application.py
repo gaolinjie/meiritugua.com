@@ -43,6 +43,7 @@ class Application(tornado.web.Application):
             blog_title = u"meiritugua.com",
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
             static_path = os.path.join(os.path.dirname(__file__), "static"),
+            root_path = os.path.join(os.path.dirname(__file__), "/"),
             xsrf_cookies = False,
             cookie_secret = "cookie_secret_code",
             login_url = "/login",
@@ -57,6 +58,7 @@ class Application(tornado.web.Application):
             (r"/(sitemap.*$)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(bdsitemap\.txt)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
             (r"/(orca\.txt)", tornado.web.StaticFileHandler, dict(path = settings["static_path"])),
+            (r"/(root\.txt)", tornado.web.StaticFileHandler, dict(path = settings["root_path"])),
 
             (r"/", handler.index.IndexHandler),
             (r"/community", handler.community.CommunityHandler),
