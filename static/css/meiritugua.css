@@ -487,7 +487,6 @@ color: #aaa;
 .post .small-meta {
 	margin-left: 0;
 	width: 100%;
-float: left;
 font-size: 10px;
 margin-bottom: 10px;
 }
@@ -1014,7 +1013,6 @@ margin-left: 0;
 }
 p.small-meta {
 width: 355px;
-float: left;
 font-size: 10px;
 margin-bottom: 0px;
 }
@@ -2571,4 +2569,5 @@ border-radius: 5px;
 
 .std-post-cover {
 	display: block;
+	clear: both;
 }
