@@ -2569,3 +2569,6 @@ margin-top: 10px;
 border-radius: 5px;
 }
 
+.std-post-cover {
+	display: block;
+}
