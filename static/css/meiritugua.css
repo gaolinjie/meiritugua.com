@@ -466,7 +466,7 @@ position: relative;
 text-shadow: 1px 1px 0 white;
 margin-top: -3px;
 font-size: 22px;
-line-height: 22px;
+line-height: 26px;
 padding: 0;
 }
 
@@ -580,7 +580,7 @@ background: none;
 }
 
 .Column2 .small-posts h3 a {
-color: #222;
+color: #6f6f6f;
 }
 
 .Column2 .small-posts h3 a:hover {
