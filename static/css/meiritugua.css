@@ -489,6 +489,7 @@ color: #aaa;
 	width: 100%;
 font-size: 10px;
 margin-bottom: 10px;
+float: left;
 }
 
 p.small-meta .icon {
