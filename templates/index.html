@@ -41,23 +41,13 @@
           <li id="post-{{ std.id }}" class=" std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
             <article>
               <header>
-                <div class="thumb-unit bf_dom">
-                  <a href="/p/{{ std.id }}">
-                    <div style="position:relative;">
-                      <img class="thumb bf_dom " style="" src="http://mrtgimg.qiniudn.com/n_{{ std.thumb }}" width="125" height="83" alt=""></div>
-                    {% if std.nav_name == "video" %}
-                    <span class="video-play-icon"></span>
-                    {% endif %}
-                  </a>
-                </div>
                 <hgroup>
                   <h2 class="" style="">
                     <a href="/p/{{ std.id }}">{{ std.title }}</a>
                   </h2>
                 </hgroup>
               </header>
-              <p class="description " style=""> {{ std.intro }}
-              </p>
+
               <p class="small-meta">
                 <span class="generic-image icon"></span>
                 <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
@@ -69,6 +59,13 @@
                   <font>&nbsp;人看过</font>
                 </font>
               </p>
+
+              <a href="/p/{{ std.id }}" target="_blank"><img src="http://mrtgimg.qiniudn.com/n_{{ std.thumb }}" width="580" height="197" alt="{{std.title}}" title="{{std.title}}"></a>
+
+              <p class="description "> 
+                {{ std.intro }}
+              </p>
+              
             </article>
           </li>
           {% endfor %}

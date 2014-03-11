@@ -76,14 +76,11 @@ padding-left: 0px;
 
 @media screen and (min-width:970px) {
 	.container {
-width: 970px;
+width: 980px;
 padding-right: 0px;
 padding-left: 0px;
 }
 }
-
-
-
 
 .navbar {
 border-radius: 0px;
@@ -430,9 +427,6 @@ ul, ol {
 list-style-type: none;
 }
 
-.Column1 .std-posts .post.first {
-background: 0;
-}
 
 @media screen and (min-width:970px) {
 	.Column1 .std-posts .post {;
@@ -441,12 +435,12 @@ width: 580px;
 }
 
 .Column1 .std-posts .post {;
-padding: 15px 0 10px 135px;
-border-bottom: 1px solid #eee;
+padding: 25px 0 25px 5px;
 margin: 0;
 position: relative;
 float: left;
 display: inline;
+background: url("http://static.xiaomi.cn/xiaomicms/statics/images/index_v2/newsLine.gif") center bottom no-repeat;
 }
 
 
@@ -461,11 +455,11 @@ position: relative;
 }
 
 .Column1 .std-posts .post h2 {
-	margin-bottom: 6px;
+	margin-bottom: 15px;
 	font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 text-shadow: 1px 1px 0 white;
 margin-top: -3px;
-font-size: 22px;
+font-size: 20px;
 line-height: 26px;
 padding: 0;
 }
@@ -477,6 +471,7 @@ color: #434a54;
 .Column1 .std-posts .post .description, .splash .BF_IFRAME .bf-item-title {
 	padding-right: 0px;
 	margin-bottom: 5px;
+	margin-top: 15px;
 line-height: 24px;
 color: #706f6f;
 font-size: 14px;
@@ -491,10 +486,10 @@ color: #aaa;
 
 .post .small-meta {
 	margin-left: 0;
-	width: 355px;
+	width: 100%;
 float: left;
 font-size: 10px;
-margin-bottom: 0px;
+margin-bottom: 10px;
 }
 
 p.small-meta .icon {
@@ -2564,5 +2559,13 @@ max-width: 570px !important;
 
 .mt-embed {
 	text-align: center;
+}
+
+.std-post img {
+display: block;
+margin-top: 10px;
+}
+.std-post img {
+border-radius: 5px;
 }
 
