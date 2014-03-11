@@ -4,6 +4,11 @@ font-size: 14px;
 font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+font-size: 100%;
+font-weight: normal;
+}
+
 a, abbr, acronym, address, applet, area, article, aside, audio, b, base, basefont, bdo, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, command, datalist, dd, del, details, dfn, dir, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, frame, frameset, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, ins, keygen, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, noframes, noscript, object, ol, optgroup, option, output, p, param, pre, progress, q, rp, rt, ruby, s, samp, script, section, small, source, span, strike, strong, style, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, title, tr, tt, u, ul, var, video, wbr, xmp {
 margin: 0;
 padding: 0;
@@ -567,7 +572,7 @@ height: 120px !important;
 }
 
 .Column2 .section .small-posts h3 {
-font: normal 16px/20px "ProximaNovaSemibold",Helvetica,Arial,sans-serif !important;
+font: normal 16px/20px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif !important;
 text-shadow: 1px 1px 0 white;
 margin: 5px 0;
 float: left;
@@ -660,7 +665,7 @@ top: 0px;
 color: #fff;
 }
 .hp-fresh-post h2 {
-font: normal 14px/16px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font: normal 14px/16px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 .hp-fresh-post.has_image .more-link {
@@ -692,7 +697,7 @@ top: 0px;
 color: #fff;
 }
 .hp-fresh-post h2 {
-font: normal 14px/16px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font: normal 14px/16px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 .hp-fresh-post.no_image {
@@ -717,7 +722,7 @@ padding: 5px;
 color: #000;
 }
 .hp-fresh-post h2 {
-font: normal 14px/16px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font: normal 14px/16px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 
@@ -726,7 +731,7 @@ color: #FFF;
 margin: 5px 0 0 0;
 }
 .hp-fresh-post .more-link {
-font: normal 12px/12px "ProximaNovaRegular",Helvetica,Arial,sans-serif;
+font: normal 12px/12px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 .hp-fresh-post.no_image:hover h2 {
@@ -1858,7 +1863,7 @@ margin-top: 15px;
 /* page content css */
 
 .entry-content h1 {
-font: 20px/22px ProximaNovaSemibold, Helvetica, Arial;
+font: 20px/22px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 padding: 0 0 5px 0;
@@ -1866,7 +1871,7 @@ margin: 0;
 }
 
 .entry-content h2 {
-font: 18px ProximaNovaSemibold, Helvetica, Arial;
+font: 18px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 margin: 0;
@@ -1874,7 +1879,7 @@ line-height: 1.8em
 }
 
 .entry-content h3 {
-font: 16px/18px ProximaNovaSemibold, Helvetica, Arial;
+font: 16px/18px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 padding: 0 0 5px 0;
@@ -1882,7 +1887,7 @@ margin: 0;
 }
 
 .entry-content h4 {
-font: 14px/16px ProximaNovaSemibold, Helvetica, Arial;
+font: 14px/16px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 padding: 0 0 5px 0;
@@ -1890,7 +1895,7 @@ margin: 0;
 }
 
 .entry-content h5 {
-font: 12px/14px ProximaNovaSemibold, Helvetica, Arial;
+font: 12px/14px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 padding: 0 0 5px 0;
@@ -1898,7 +1903,7 @@ margin: 0;
 }
 
 .entry-content h6 {
-font: 10px/12px ProximaNovaSemibold, Helvetica, Arial;
+font: 10px/12px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 padding: 0 0 5px 0;
@@ -2474,7 +2479,7 @@ line-height: 1.8em;
 }
 
 #content-preview h2 {
-font: 18px/20px ProximaNovaSemibold, Helvetica, Arial;
+font: 18px/20px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-weight: normal;
 color: #121212;
 padding: 0 0 8px 0;
@@ -2494,7 +2499,7 @@ line-height: 1.8em;
 	line-height: 1em;
 }
 .img-src a {
-	font: 12px/15px "ProximaNovaRegular", Helvetica, Arial, sans-serif;
+	font: 12px/15px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #999;
 font-style: italic;
 }
