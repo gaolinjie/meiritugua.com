@@ -322,10 +322,11 @@
 <div class="col-xs-12 col-md-4">
   <div class="Column2 section bf_dom ">
     <div class="section sidebar_featured_unified">
+      <script charset="gbk" src="http://p.tanx.com/ex?i=mm_31931873_5792707_20294282"></script>
 
-      <ul id="big_stories_container">
+      <ul id="big_stories_container" class="hot-posts">
         {% for hot in hots.list %}
-        <li class="small-posts pinned bf_dom">
+        <li class="hot-post small-posts pinned bf_dom">
           <div class="bf_dom bf_cts-5-1 bf_cts">
             <a href="/p/{{ hot.id }}">
               <img class="bf_dom pinned-image" src="http://mrtgimg.qiniudn.com/w_{{ hot.thumb }}" alt="{{ hot.title }}"></a>
@@ -363,6 +364,10 @@
       </ul>
     </div>
   </div>
+</div>
+
+<div id="navigation" align="center">
+<a href="/?p={{hots.page.next}}"></a>
 </div>
 {% endblock %}
 
@@ -457,4 +462,18 @@
       $(this).css("cursor", "default");
     });
 </script>
+
+<script src="/static/js/jquery.infinitescroll.js"></script>
+<script>
+ $(document).ready(function (){
+    $(".hot-posts").infinitescroll({
+          navSelector: "#navigation",
+          nextSelector: "#navigation a",
+          itemSelector: ".hot-post",
+          maxPage: {{hots.page.pages}},   
+      }, function(newElems) {
+
+      });
+ }); 
+    </script>
 {% endblock %}
