@@ -1,3 +1,9 @@
+html {
+color: #6f6f6f;
+font-size: 14px;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
+}
+
 a, abbr, acronym, address, applet, area, article, aside, audio, b, base, basefont, bdo, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, command, datalist, dd, del, details, dfn, dir, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, frame, frameset, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, ins, keygen, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, noframes, noscript, object, ol, optgroup, option, output, p, param, pre, progress, q, rp, rt, ruby, s, samp, script, section, small, source, span, strike, strong, style, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, title, tr, tt, u, ul, var, video, wbr, xmp {
 margin: 0;
 padding: 0;
@@ -85,7 +91,7 @@ color: #333;
 
 h5 {
 font-weight: bold;
-font-family: Arial, Helvetica, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 margin-bottom: 5px;
 }
 
@@ -250,7 +256,7 @@ width: 290px;
 .nav_preview li .title_small {
 width: 260px;
 font-size: 14px;
-font-family: 'ProximaNovaRegular', sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: black;
 line-height: 22px;
 }
@@ -261,7 +267,7 @@ color: #07e;
 
 .nav_preview a.more_vertical {
 font-size: 14px;
-font-family: 'ProximaNovaSemibold', sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #f34b2b;
 display: block;
 margin: 10px 0;
@@ -451,24 +457,25 @@ position: relative;
 
 .Column1 .std-posts .post h2 {
 	margin-bottom: 6px;
-	font: normal 21px/23px "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+	font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 text-shadow: 1px 1px 0 white;
 margin-top: -3px;
-font-size: 18px;
+font-size: 22px;
 line-height: 22px;
 padding: 0;
 }
 
 .post h2 a {
-color: #07e;
+color: #434a54;
 }
 
 .Column1 .std-posts .post .description, .splash .BF_IFRAME .bf-item-title {
 	padding-right: 0px;
 	margin-bottom: 5px;
-font: normal 13px/17px "",Helvetica,Arial,sans-serif;
-font-size: 13px;
-line-height: 16px;
+line-height: 24px;
+color: #706f6f;
+font-size: 14px;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 p.small-meta > * {
@@ -728,7 +735,7 @@ color: #FFF;
 
 .hp-more-fresh {
 font-size: 13px;
-font-family: "ProximaNovabold", sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #999;
 }
 
@@ -749,7 +756,7 @@ border-radius: 5px;
 color: #fff;
 padding: 5px 20px;
 font-weight: normal;
-font-family: "ProximaNovaBold";
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-size: 14px;
 }
 
@@ -769,7 +776,7 @@ margin: 0px 0px 10px 0px;
 border-bottom: none;
 }
 .hot_homepage_block .block_header .hot_on {
-font-family: "ProximaNovaBold";
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 text-align: center;
 float: none;
 padding-bottom: 0px;
@@ -898,12 +905,12 @@ text-align: center;
 margin: 5px auto;
 }
 .footer-main-menu li {
-font-family: 'ProximaNovaSemibold', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-size: 16px;
 text-transform: uppercase;
 }
 .country-toggle {
-font-family: 'ProximaNovaSemibold', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-size: 16px;
 padding: 4px 11px;
 color: #3498db;
@@ -931,7 +938,7 @@ box-shadow: 0 1px 3px #999;
 color: black;
 margin: 0 0 5px 0;
 display: block;
-font: 18px 'ProximaNovaRegular',Arial,Helvetica,sans-serif;
+font: 18px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 .sidebar-footer-sub-menu {
 width: 100px;
@@ -948,7 +955,7 @@ line-height: 170%;
 margin: 0 5px;
 }
 .footer-sub-menu li {
-font-family: 'ProximaNovaRegular', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #999;
 font-size: 13px;
 }
@@ -963,7 +970,7 @@ line-height: 170%;
 margin: 0 5px;
 }
 .footer-sub-menu li {
-font-family: 'ProximaNovaRegular', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #999;
 font-size: 13px;
 }
@@ -975,7 +982,7 @@ margin-top: 20px;
 text-align: center;
 }
 .footer-copyright-text {
-font-family: 'ProximaNovaRegular', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #999;
 font-size: 13px;
 margin-bottom: 20px;
@@ -991,7 +998,7 @@ text-align: center;
 margin: 5px auto;
 }
 .footer-main-menu li {
-font-family: 'ProximaNovaSemibold', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-size: 16px;
 text-transform: uppercase;
 
@@ -1042,7 +1049,7 @@ float: none;
 line-height: 170%;
 }
 .footer-main-menu li {
-font-family: 'ProximaNovaSemibold', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 font-size: 16px;
 text-transform: uppercase;
 margin: 0 10px 10px 0;
@@ -1055,7 +1062,7 @@ float: none;
 line-height: 170%;
 }
 .footer-sub-menu li {
-font-family: 'ProximaNovaRegular', Helvetica, Arial, sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #999;
 font-size: 13px;
 margin: 0 10px 0 0;
@@ -1092,7 +1099,7 @@ font-weight: 700;
 }
 
 .yahei {
-font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 .entry-name a {
@@ -1289,7 +1296,7 @@ width: 990px;
 position: relative;
 margin: 0 0 12px 0;
 padding: 16px 14px;
-font-family: ProximaNovaRegular;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 #qp_superlist #suplist_left_post_controls {
 float: left;
@@ -1348,7 +1355,7 @@ border: 1px solid #cccccc;
 font-size: 16px;
 line-height: 18px;
 color: #000;
-font-family: ProximaNovaRegular;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 -webkit-border-radius: 3px;
 -moz-border-radius: 3px;
 border-radius: 3px;
@@ -1376,7 +1383,7 @@ color: #424242;
 position: relative;
 }
 .suplist_options_top_row label {
-font-family: Arial, Helvetica, sans-serif!important;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif !important;
 }
 
 #qp_superlist #suplist_upload_fields {
@@ -1615,7 +1622,7 @@ background-color: #f03011;
 color: #FFFFFF;
 }
 #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 #splash-overlay.right > div {
@@ -1647,10 +1654,10 @@ width: inherit;
 }
 #splash-overlay .description {
 display: none;
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 #splash-overlay .title, #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 .splash-desc {
 max-width: 360px;
@@ -1692,7 +1699,7 @@ background-color: #f03011;
 color: #FFFFFF;
 }
 #splash-overlay .label {
-font-family: "ProximaNovaSemibold",Helvetica,Arial,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 #splash-overlay.left > div {
 float: left;
@@ -1969,7 +1976,7 @@ font: bold 11px Arial,sans-serif;
 }
 h5 {
 font-weight: bold!important;
-font-family: Arial, Helvetica, sans-serif!important;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif !important;
 margin-bottom: 5px!important;
 }
 .social-actions .badge-voting ul {
@@ -2156,7 +2163,7 @@ line-height: 12px;
 font-size: 11px;
 margin: 0 5px;
 color: #aaa;
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 #stb_article_view #stb_article_view_icon {
@@ -2175,7 +2182,7 @@ line-height: 12px;
 font-size: 11px;
 margin: 0 5px;
 color: #aaa;
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 }
 
 .stb_divide {
@@ -2280,7 +2287,7 @@ padding: 6px 0 0 3px;
 
 
 .infscr-loading h1{
-  font-family: 'Actor', sans-serif;
+  font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
   color: #999;
   font-size:16px;
   letter-spacing:1px;
