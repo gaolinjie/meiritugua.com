@@ -417,6 +417,7 @@ text-transform: uppercase;
 
 .Column1 .content {
 padding-top: 0px;
+margin-left: 5px;
 }
 
 .std-posts {
@@ -1013,6 +1014,7 @@ text-transform: uppercase;
 
 #big_stories_container .small-meta {
 margin-left: 0;
+float: left;
 }
 p.small-meta {
 width: 355px;
