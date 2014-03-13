@@ -36,7 +36,7 @@ class IndexHandler(BaseHandler):
         template_variables["gen_random"] = gen_random
         template_variables["stds"] = self.std_model.get_std_posts(current_page = p)
         template_variables["hots"] = self.hot_model.get_hot_posts(current_page = p)
-        template_variables["heads"] = self.head_model.get_shows_head_posts()
+        #template_variables["heads"] = self.head_model.get_shows_head_posts()
 
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()

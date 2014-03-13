@@ -131,7 +131,7 @@ class ChannelModel(Query):
                 follow.user_id as follow_user_id"
         return self.where(where).order(order).join(join).field(field).pages(current_page = current_page, list_rows = num)
 
-    def get_channel_std_posts(self, channel_name, num = 10, current_page = 1):
+    def get_channel_std_posts(self, channel_name, num = 4, current_page = 1):
         where = "channel.name = '%s'" % channel_name
         join = "RIGHT JOIN std ON channel.id = std.channel_id\
                 LEFT JOIN post ON std.post_id = post.id\
