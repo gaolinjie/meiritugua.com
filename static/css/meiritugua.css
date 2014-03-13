@@ -441,10 +441,10 @@ margin-left: 5px;
 position: relative;
 float: left;
 display: inline;
-background: url("http://static.xiaomi.cn/xiaomicms/statics/images/index_v2/newsLine.gif") center bottom no-repeat;
+background: url("http://meiritugua.qiniudn.com/newsLine.gif") center bottom no-repeat;
 }
 
-.Column1 .std-posts .post.first {
+.Column1 .std-posts li:first-child {
  padding-top: 0;
  }
 
