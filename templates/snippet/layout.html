@@ -26,6 +26,7 @@
     })();
   </script>
   <!-- Duoshuo Comment END -->
+
   <link rel="shortcut icon" href="/static/images/favicon.ico"></head>
 <body>
 
@@ -181,6 +182,7 @@
   <script src="http://cdn.staticfile.org/jquery/2.1.0/jquery.min.js"></script>
   <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="/static/js/share_roll.js"></script>
+  <script type="text/javascript" src="/static/freezeframe/freezeframe.js"></script>
   {% block javascript %}
 
   {% endblock %}
@@ -203,7 +205,7 @@
             $.getJSON('/nav/' + nav_name, function (data) {
                 var preview_string = '';
                 for (i = 0; i < data.stds.length; i++) {
-                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="http://mrtgimg.qiniudn.com/n_' + data.stds[i].thumb + '" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
+                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="http://mrtgimg.qiniudn.com/n_' + data.stds[i].thumb + '-small" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
                 }
                 preview_string += '<a href="/' + nav_name + '" class="more_vertical"><span class="pointer unicode">▶</span> 更多' + nav_title + '</a>';
                 preview_list.html(preview_string);
@@ -224,7 +226,7 @@
             $.getJSON('/channel/' + channel_name, function (data) {
                 var preview_string = '';
                 for (i = 0; i < data.stds.length; i++) {
-                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="http://mrtgimg.qiniudn.com/n_' + data.stds[i].thumb + '" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
+                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="http://mrtgimg.qiniudn.com/n_' + data.stds[i].thumb + '-small" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
                 }
                 preview_string += '<a href="/' + channel_name + '" class="more_vertical"><span class="pointer unicode">▶</span> 更多' + channel_title + '</a>';
                 preview_list.html(preview_string);
