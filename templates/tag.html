@@ -18,31 +18,31 @@
           <li id="post-{{ std.id }}" class=" std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
             <article>
               <header>
-                <div class="thumb-unit bf_dom">
-                  <a href="/p/{{ std.id }}">
-                    <div style="position:relative;">
-                      <img class="thumb bf_dom " style="" src="http://mrtgimg.qiniudn.com/n_{{ std.thumb }}" alt=""></div>
-                  </a>
-                </div>
                 <hgroup>
                   <h2 class="" style="">
                     <a href="/p/{{ std.id }}">{{ std.title }}</a>
                   </h2>
                 </hgroup>
               </header>
-              <p class="description " style=""> <b>{{ std.intro }}</b>
-              </p>
+
               <p class="small-meta">
                 <span class="generic-image icon"></span>
-                <a class="username notranslate" href="#">{{ std.author_username }}</a>
+                <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
                 <span class="time-image icon"></span>
                 <span class="time-ago">{{ std.created|pretty_date }}</span>
-                <a href="#" class="responses">
-                  <span class="response-image icon"></span>
-                  <span class="num">{{ std.comment_count }}</span>
-                  回应
-                </a>
+                <span class="response-image icon"></span>
+                <span class="num">{{ std.count }}</span>
+                <font>
+                  <font>&nbsp;人看过</font>
+                </font>
               </p>
+
+              <a href="/p/{{ std.id }}" target="_blank" class="std-post-cover"><img src="http://mrtgimg.qiniudn.com/n_{{ std.thumb }}" width="580" height="197" alt="{{std.title}}" title="{{std.title}}"></a>
+
+              <p class="description "> 
+                {{ std.intro }}
+              </p>
+              
             </article>
           </li>
           {% endfor %}
