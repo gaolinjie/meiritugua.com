@@ -44,9 +44,13 @@ class ChannelHandler(BaseHandler):
             template_variables["hots"] = self.hot_model.get_hot_posts_by_channel_id(channel.id, current_page = p)
         else:
             nav = self.nav_model.get_nav_by_nav_name(channel_name)
-            template_variables["channel"] = nav
-            template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(nav.id, current_page = p)
-            template_variables["hots"] = self.nav_model.get_hot_posts_by_nav_id(nav.id, current_page = p)
+            if nav:
+                template_variables["channel"] = nav
+                template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(nav.id, current_page = p)
+                template_variables["hots"] = self.nav_model.get_hot_posts_by_nav_id(nav.id, current_page = p)
+            else:
+                self.render("404.html", **template_variables)
+                return
 
         if is_mobile_browser(self):
             self.render("channel-m.html", **template_variables)
