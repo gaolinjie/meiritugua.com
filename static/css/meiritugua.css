@@ -553,7 +553,7 @@ border-bottom: 1px solid #e76;
 .Column2 .header h1 {
 
 padding: 2px 0px 6px 0px;
-font: 18px/19px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
+font: bold 18px/19px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #fe4e5b !important;
 }
 
@@ -2576,4 +2576,95 @@ border-radius: 5px;
 .std-post-cover {
 	display: block;
 	clear: both;
+}
+
+
+
+.stick-row {
+
+	position: relative;
+}
+
+.stick-row:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.stick-content {
+	float: left;
+	width: 500px;
+}
+
+.stick-aside {
+	float: right;
+	width: 42px;
+}
+
+
+.stickit {
+	margin-left: 518px;
+	position: fixed;
+	top: 0;
+}
+
+.stickit-end {
+	bottom: 40px;
+	position: absolute;
+	right: 0;
+}
+
+
+
+.vertical-vote {
+width: 42px;
+margin-bottom: 10px;
+}
+
+.vertical-vote li {
+list-style-type: none;
+margin-bottom: 10px;
+}
+
+.vertical-vote a.up, .horizontal-vote a.up {
+background: url(http://d1y9yo7q4hy8a7.cloudfront.net/static/main/web6/20140304_1393916877/img/sticky-vote.png) no-repeat;
+}
+
+.vertical-vote a, .horizontal-vote a {
+display: block;
+width: 42px;
+height: 32px;
+border: 1px solid #ddd;
+overflow: hidden;
+text-indent: -999px;
+border-radius: 3px;
+}
+
+.vertical-vote a.down, .horizontal-vote a.down {
+background: url(http://d1y9yo7q4hy8a7.cloudfront.net/static/main/web6/20140304_1393916877/img/sticky-vote.png) no-repeat 0 -32px;
+}
+
+.others li {
+list-style-type: none;
+}
+
+.others a.comment {
+width: 42px;
+height: 32px;
+border: 1px solid #ddd;
+display: block;
+overflow: hidden;
+text-indent: -999px;
+border-radius: 3px;
+background: url(http://d1y9yo7q4hy8a7.cloudfront.net/static/main/web6/20140304_1393916877/img/other-buttons.png) no-repeat 0 -32px;
+}
+
+.stick-content img {
+	width: 500px !important;
+}
+
+.Column1 .std-posts .post {
+	width: 560px !important;
 }

@@ -25,6 +25,7 @@ import handler.community
 import handler.user
 import handler.channel
 import handler.tag
+import handler.ooxx
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -80,6 +81,8 @@ class Application(tornado.web.Application):
             (r"/head/del/(\d+)", handler.post.HeadDelHandler),
             (r"/head/edit/(\d+)", handler.post.HeadEditHandler),
             (r"/head/add/(\d+)", handler.post.HeadAddHandler),
+
+            (r"/ooxx", handler.ooxx.OoxxHandler),
 
             (r"/(.*)", handler.channel.ChannelHandler),
             

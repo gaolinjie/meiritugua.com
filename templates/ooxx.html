@@ -1,0 +1,135 @@
+{% extends 'snippet/layout.html' %}
+{% block title %}
+<title>每日图卦</title>
+{% endblock %}
+
+{% block main %}
+<div class="col-xs-12 col-md-8">
+  <div class="Column1 section bf_dom">
+    <div class="section">
+      <div class="content">
+
+        <ul class="std-posts" id="page_flow">
+          {% for std in stds.list %}
+          <li id="post-{{ std.id }}" class=" std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
+            <div class="stick-container">
+              <div class="stick-row stickem-container">
+                <div class="stick-content">
+                  <article>
+                    <header>
+                      <hgroup>
+                        <h2 class="" style="">
+                          <a href="/p/{{ std.id }}">{{ std.title }}</a>
+                        </h2>
+                      </hgroup>
+                    </header>
+
+                    <p class="small-meta">
+                      <span class="generic-image icon"></span>
+                      <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
+                      <span class="time-image icon"></span>
+                      <span class="time-ago">{{ std.created|pretty_date }}</span>
+                      <span class="response-image icon"></span>
+                      <span class="num">{{ std.count }}</span> <font><font>&nbsp;人看过</font></font> 
+                    </p>
+
+                    <a href="/p/{{ std.id }}" target="_blank" class="std-post-cover">
+                      <img src="http://mrtgimg.qiniudn.com/n_{{ std.thumb }}" width="580" height="197" alt="{{std.title}}" title="{{std.title}}"></a>
+
+                    <p class="description ">{{ std.intro }}</p>
+
+                  </article>
+                </div>
+
+                <div class="stick-aside stickem badge-entry-sticky-shadow sticky-action">
+
+                  <div class="badge-entry-sticky" style="position: relative; z-index: 1;">
+                    <ul class="badge-item-vote-container vertical-vote  ">
+                      <li>
+                        <a class="badge-item-vote-up up" href="javascript:void(0);">Upvote</a>
+                      </li>
+                      <li>
+                        <a class="badge-item-vote-down down" href="javascript:void(0);">Downvote</a>
+                      </li>
+                    </ul>
+                    <ul class="others">
+                      <li>
+                        <a class="comment badge-evt badge-item-comment" target="_blank" href="/gag/aVOVboy#comment" data-evt="EntryAction,CommentButtonClicked,ListPage">Comment</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                </div>
+              </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  
+  <div class="col-xs-12 col-md-4">
+    <div class="Column2 section bf_dom ">
+      <div class="section sidebar_featured_unified">
+        <div id="big_stories_header" class="header">
+
+          <h1>
+            <font><font class="">编辑推荐</font></font> 
+          </h1>
+        </div>
+        <ul id="big_stories_container" class="hot-posts">
+          {% for hot in hots.list %}
+          <li class="hot-post small-posts pinned bf_dom">
+            <div class="bf_dom bf_cts-5-1 bf_cts">
+              <a href="/p/{{ hot.id }}">
+                <img class="bf_dom pinned-image" src="http://mrtgimg.qiniudn.com/n_{{ hot.thumb }}-hot" alt="{{ hot.title }}"></a>
+              <h3>
+                <a href="/p/{{ hot.id }}">
+                  <span>
+                    <font>
+                      <font>{{ hot.title }}</font>
+                    </font>
+                  </span>
+                </a>
+              </h3>
+            </div>
+            <p class="small-meta">
+              <span class="generic-image icon"></span>
+              <a class="username notranslate" href="/u/{{hot.author_username }}">{{ hot.author_username }}</a>
+              <span class="time-image icon"></span>
+              <span class="time-ago">
+                <font>
+                  <font>{{ hot.created|pretty_date }}</font>
+                </font>
+              </span>
+              <span class="response-image icon"></span>
+              <span class="num">
+                <font>
+                  <font>{{ hot.count }}</font>
+                </font>
+              </span>
+              <font>
+                <font>&nbsp;人看过</font>
+              </font>
+            </p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+{% block javascript %}
+  <script src="/static/js/jquery.infinitescroll.js"></script>
+  <script src="/static/jQuery-Stickem/jquery.stickem.js"></script>
+  <script>
+ $(document).ready(function() {
+      $('.stick-container').stickem();
+    });
+    </script>
+  {% endblock %}
