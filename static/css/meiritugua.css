@@ -2665,6 +2665,14 @@ background: url(http://d1y9yo7q4hy8a7.cloudfront.net/static/main/web6/20140304_1
 	width: 500px !important;
 }
 
-.Column1 .std-posts .post {
+.Column1 .std-posts .ox-post {
 	width: 560px !important;
+}
+
+.vertical-vote a:hover, .horizontal-vote a:hover {
+border-color: #999;
+}
+
+.others a.comment:hover {
+border: 1px solid #999;
 }

@@ -1,6 +1,6 @@
 INSERT INTO `nav` VALUES (1, 'news', '新鲜事');
 
-INSERT INTO `nav` VALUES (2, 'ooxx', 'ox图');
+INSERT INTO `nav` VALUES (2, 'ooxx', 'OX图');
 
 INSERT INTO `nav` VALUES (3, 'fls', '福利社');
 
