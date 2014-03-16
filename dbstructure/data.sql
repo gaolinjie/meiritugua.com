@@ -10,3 +10,5 @@ INSERT INTO `channel` VALUES (1, 1, 'girls', '女人');
 INSERT INTO `channel` VALUES (2, 1, 'life', '生活');
 INSERT INTO `channel` VALUES (3, 1, 'gossip', '八卦');
 INSERT INTO `channel` VALUES (4, 1, 'video', '视频');
+
+INSERT INTO `channel` VALUES (5, 2, 'oximg', 'OX图');
