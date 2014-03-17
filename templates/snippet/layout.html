@@ -196,8 +196,10 @@
 <script>
     $(document).ready(function () {
         $(".nav-item").hover(function () {
-
             var nav_name = $(this).attr('data-name');
+            if (nav_name=='ooxx'||nav_name=='bbs') {
+              return;
+            }
             var preview_list = $(this).find("#nav_preview_" + nav_name);
             var nav_title = $(this).find(".nav-title").text();
 
