@@ -34,7 +34,7 @@ class IndexHandler(BaseHandler):
         p = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        template_variables["stds"] = self.nav_model.get_index_posts_by_nav_id(current_page = p)
+        template_variables["stds"] = self.std_model.get_std_posts(current_page = p)
         template_variables["hots"] = self.hot_model.get_hot_posts(current_page = p)
         #template_variables["heads"] = self.head_model.get_shows_head_posts()
 
