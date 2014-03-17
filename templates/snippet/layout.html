@@ -44,8 +44,9 @@
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
           {% for nav in navs %}
-          <li class="dropdown nav-item" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
+          <li class="dropdown nav-item{%if active==nav.name%} active {%endif%}" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
             <a href="/{{ nav.name }}" class="nav-title">{{ nav.title }}</a>
+            {% if nav.id != 2 and nav.id != 4%}
             <ul class="dropdown-menu ">
               <div class="content-preview">
                 <div class="content-left">
@@ -67,6 +68,7 @@
                 </div>
               </div>
             </ul>
+            {% endif %}
           </li>
           {% endfor %}
         </ul>

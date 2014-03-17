@@ -34,6 +34,7 @@ class OoxxHandler(BaseHandler):
         p = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
+        template_variables["active"] = "ooxx"
         template_variables["hots"] = self.hot_model.get_hot_posts(current_page = p)
         #template_variables["heads"] = self.head_model.get_shows_head_posts()
         template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(2, current_page = p)
