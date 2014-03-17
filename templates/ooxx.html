@@ -3,11 +3,18 @@
 <title>每日图卦</title>
 {% endblock %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/dropzone-3.8.4/downloads/css/dropzone.css">
+{% endblock %}
+
 {% block main %}
 <div class="col-xs-12 col-md-8">
   <div class="Column1 section bf_dom">
     <div class="section">
       <div class="content">
+
+        <a href="" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#editor-modal">上传OX图</a>
+
 
         <ul class="std-posts" id="page_flow">
           {% for std in stds.list %}
@@ -119,6 +126,30 @@
       </div>
     </div>
   </div>
+
+
+  <div class="modal" id="editor-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+      </div>
+      <div class="modal-body" align=center>
+
+            <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
+            <form action="http://up.qiniu.com/" class="dropzone" id="image-upload">
+              <input name="token" type="hidden" value="{{up_token}}">
+            </form>
+            <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
+            <input type="hidden" class="form-control" id="image-address" placeholder="输入图片地址">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="editor-btn-ok" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
   {% endblock %}
 
 {% block javascript %}
@@ -129,4 +160,77 @@
       $('.stick-container').stickem();
     });
     </script>
+
+    <script src="/static/dropzone-3.8.4/downloads/dropzone.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    Dropzone.options.imageUpload = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#image-address').val('http://mrtgimg.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+
+              }
+              else {
+                $('#image-address').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#editor-btn-ok, #editor-modal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+
+
+    $(document).on('click', '#editor-btn-ok', function () {        
+                var img_title = $('#image-title').val();
+                var img_address = $('#image-address').val();
+                var img_intro = $('#image-intro').val();                
+  
+                if (img_title == '') {
+                    alert('图片标题不能为空！');
+                    return;
+                }
+                if (img_address == '') {
+                    alert('图片地址不能为空！');
+                    return;
+                }
+
+                $.ajax({
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+               dataType: "json",
+              url: "/ooxx/add",
+              data: JSON.stringify({title: img_title, img: img_address, intro: img_intro}), 
+              success: function (msg) {
+                window.location.reload();
+              },
+              error: function (msg) {
+                alert("error");
+              }
+            }); 
+
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+
+                $('#editor-modal').modal('hide');  
+        });
+})
+</script>
   {% endblock %}

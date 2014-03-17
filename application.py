@@ -83,6 +83,8 @@ class Application(tornado.web.Application):
             (r"/head/add/(\d+)", handler.post.HeadAddHandler),
 
             (r"/ooxx", handler.ooxx.OoxxHandler),
+            (r"/ooxx/add", handler.ooxx.OoxxAddHandler),
+            
 
             (r"/(.*)", handler.channel.ChannelHandler),
             

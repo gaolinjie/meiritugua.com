@@ -401,7 +401,7 @@ $(document).ready(function () {
               $.ajax({
               type: "POST",
               contentType: "application/json; charset=utf-8",
-              dataType: "json",
+               dataType: "json",
               url: "/head/edit/"+post_id,
               data: JSON.stringify({label: label, splash: splash, sort: sort, horizontal: horizontal, vertical: vertical, style: style}), 
               success: function (msg) {

@@ -28,6 +28,14 @@ from lib.utils import pretty_date
 
 from lib.mobile import is_mobile_browser
 
+import qiniu.conf
+import qiniu.io
+import qiniu.rs
+
+qiniu.conf.ACCESS_KEY = "hmHRMwms0cn9OM9PMETYwsXMLG93z3FiBmCtPu7y"
+qiniu.conf.SECRET_KEY = "nCDM7Tuggre39RiqXaDmjo8sZn6MLGmckUaCrOJU"
+bucket_name = 'mrtgimg'
+
 class OoxxHandler(BaseHandler):
     def get(self, template_variables = {}):
         user_info = self.current_user
@@ -37,12 +45,45 @@ class OoxxHandler(BaseHandler):
         template_variables["active"] = "ooxx"
         template_variables["hots"] = self.hot_model.get_hot_posts(current_page = p)
         #template_variables["heads"] = self.head_model.get_shows_head_posts()
-        template_variables["stds"] = self.nav_model.get_std_posts_by_nav_id(2, current_page = p)
+        template_variables["stds"] = self.post_model.get_all_posts_by_channel_id(5, current_page = p)
 
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()
+
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        template_variables["up_token"] = uptoken
 
         if is_mobile_browser(self):
             self.render("ooxx-m.html", **template_variables)
         else:
             self.render("ooxx.html", **template_variables)
+
+class OoxxAddHandler(BaseHandler):
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        user_info = self.current_user
+        if(user_info):
+            data = json.loads(self.request.body)
+            title = data["title"]
+            img = data["img"]
+            intro = data["intro"]
+
+            intro2 = '<div class="img-intro">' + intro + '</div>';
+            img2 = '<img class="img-address" src="' + img + '">';
+            content = img2 + intro2;
+
+            post_info = {
+                "author_id": self.current_user["uid"],           
+                "title": title,
+                "intro": intro,
+                "content": content,
+                "channel_id": 5,
+                "visible": 1,
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+
+            post_id = self.post_model.add_new_post(post_info)
+            self.write(lib.jsonp.print_JSON({
+                    "success": 1,
+                }))
