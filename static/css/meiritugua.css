@@ -523,21 +523,20 @@ p.small-meta .time-image {
 background-position: 0px -12px;
 }
 
-p.small-meta .response-image {
+p.small-meta .response-image2 {
 background-position: 0px -24px;
 }
 
-p.small-meta .oo-image {
-width: 12px !important;
-height: 12px;
-float: left;
-margin: 1px 15px 0px 15px;
+p.small-meta .response-image {
+background-position: 0px -60px;
 }
-p.small-meta .xx-image {
+
+p.small-meta .oo-image, p.small-meta .xx-image {
 width: 12px !important;
 height: 12px;
 float: left;
 margin: 1px 15px 0px 15px;
+line-height: 12px;
 }
 
 .post h2 a:hover {
