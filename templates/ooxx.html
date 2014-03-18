@@ -23,7 +23,7 @@
                     <header>
                       <hgroup>
                         <h2 class="" style="">
-                          <a href="/p/{{ std.id }}">{{ std.title }}</a>
+                          <a href="/p/{{ std.id }}" target="_blank">{{ std.title }}</a>
                         </h2>
                       </hgroup>
                     </header>
@@ -89,10 +89,10 @@
           {% for hot in hots.list %}
           <li class="hot-post small-posts pinned bf_dom">
             <div class="bf_dom bf_cts-5-1 bf_cts">
-              <a href="/p/{{ hot.id }}">
+              <a href="/p/{{ hot.id }}" target="_blank">
                 <img class="bf_dom pinned-image" src="http://mrtgimg.qiniudn.com/n_{{ hot.thumb }}-hot" alt="{{ hot.title }}"></a>
               <h3>
-                <a href="/p/{{ hot.id }}">
+                <a href="/p/{{ hot.id }}" target="_blank">
                   <span>
                     <font>
                       <font>{{ hot.title }}</font>
