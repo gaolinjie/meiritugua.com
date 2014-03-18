@@ -524,7 +524,20 @@ background-position: 0px -12px;
 }
 
 p.small-meta .response-image {
-background-position: 0px -60px;
+background-position: 0px -24px;
+}
+
+p.small-meta .oo-image {
+width: 12px !important;
+height: 12px;
+float: left;
+margin: 1px 15px 0px 15px;
+}
+p.small-meta .xx-image {
+width: 12px !important;
+height: 12px;
+float: left;
+margin: 1px 15px 0px 15px;
 }
 
 .post h2 a:hover {
@@ -2628,22 +2641,17 @@ list-style-type: none;
 margin-bottom: 10px;
 }
 
-.vertical-vote a.up, .horizontal-vote a.up {
-background: url(http://d1y9yo7q4hy8a7.cloudfront.net/static/main/web6/20140304_1393916877/img/sticky-vote.png) no-repeat;
-}
-
 .vertical-vote a, .horizontal-vote a {
 display: block;
 width: 42px;
 height: 32px;
 border: 1px solid #ddd;
 overflow: hidden;
-text-indent: -999px;
+/* text-indent: -999px; */
 border-radius: 3px;
-}
-
-.vertical-vote a.down, .horizontal-vote a.down {
-background: url(http://d1y9yo7q4hy8a7.cloudfront.net/static/main/web6/20140304_1393916877/img/sticky-vote.png) no-repeat 0 -32px;
+color: #999999;
+font-size: 18px;
+text-align: center;
 }
 
 .others li {
