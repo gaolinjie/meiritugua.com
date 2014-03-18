@@ -77,6 +77,8 @@ class OoxxAddHandler(BaseHandler):
                 "author_id": self.current_user["uid"],           
                 "title": title,
                 "intro": intro,
+                "thumb": img,
+                "cover": img,
                 "content": content,
                 "channel_id": 5,
                 "visible": 1,

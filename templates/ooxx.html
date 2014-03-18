@@ -12,11 +12,8 @@
   <div class="Column1 section bf_dom">
     <div class="section">
       <div class="content">
-
-        <a href="" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#editor-modal">上传OX图</a>
-
-
         <ul class="std-posts" id="page_flow">
+          <a href="" id="ooxx-upload" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#editor-modal">上传OX图</a>
           {% for std in stds.list %}
           <li id="post-{{ std.id }}" class="ox-post std-post post track bf_dom first  has-like-button bf_cts-1-1 bf_cts  scrolled_past">
             <div class="stick-container">
@@ -40,7 +37,10 @@
                       <span class="num">{{ std.count }}</span> <font><font>&nbsp;人看过</font></font> 
                     </p>
 
-                    <p class="content ">{{ std.content }}</p>
+                    <a href="/p/{{ std.id }}" target="_blank" class="std-post-cover"><img src="{{ std.thumb }}" alt="{{std.title}}" title="{{std.title}}"></a>
+                    <p class="description "> 
+                {{ std.intro }}
+              </p>
 
                   </article>
                 </div>

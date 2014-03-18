@@ -87,7 +87,7 @@ border-radius: 0px;
 }
 
 body {
-font: 14px Arial,Helvetica,sans-serif;
+font: 14px "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 color: #333;
 }
 
@@ -459,7 +459,7 @@ position: relative;
 }
 
 .Column1 .std-posts .post h2 {
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif;
 text-shadow: 1px 1px 0 white;
 margin-top: -3px;
@@ -2675,4 +2675,8 @@ border-color: #999;
 
 .others a.comment:hover {
 border: 1px solid #999;
+}
+
+#ooxx-upload {
+	width: 565px;
 }
