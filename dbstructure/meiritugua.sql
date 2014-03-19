@@ -94,6 +94,20 @@ CREATE TABLE `std` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+-- ----------------------------
+--  Table structure for `std`
+-- ----------------------------
+DROP TABLE IF EXISTS `ooxx`;
+CREATE TABLE `ooxx` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `oo` int(11) DEFAULT 0,
+  `xx` int(11) DEFAULT 0,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 --  Table structure for `hot`
 -- ----------------------------

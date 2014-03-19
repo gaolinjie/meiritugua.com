@@ -45,7 +45,7 @@ class OoxxHandler(BaseHandler):
         template_variables["active"] = "ooxx"
         template_variables["hots"] = self.hot_model.get_hot_posts(current_page = p)
         #template_variables["heads"] = self.head_model.get_shows_head_posts()
-        template_variables["stds"] = self.post_model.get_all_posts_by_channel_id(5, current_page = p)
+        template_variables["stds"] = self.ooxx_model.get_ooxx_posts(current_page = p)
 
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()
@@ -84,8 +84,13 @@ class OoxxAddHandler(BaseHandler):
                 "visible": 1,
                 "created": time.strftime('%Y-%m-%d %H:%M:%S'),
             }
-
             post_id = self.post_model.add_new_post(post_info)
+
+            ooxx_info = {
+                "post_id": post_id,
+                "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+            self.ooxx_model.add_new_ooxx(ooxx_info)
             self.write(lib.jsonp.print_JSON({
                     "success": 1,
                 }))

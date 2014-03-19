@@ -64,6 +64,10 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.std_model
 
     @property
+    def ooxx_model(self):
+        return self.application.ooxx_model
+
+    @property
     def hot_model(self):
         return self.application.hot_model
 

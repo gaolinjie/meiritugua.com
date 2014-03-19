@@ -107,6 +107,7 @@ class Application(tornado.web.Application):
         self.user_model = self.loader.use("user.model")
         self.post_model = self.loader.use("post.model")
         self.std_model = self.loader.use("std.model")
+        self.ooxx_model = self.loader.use("ooxx.model")
         self.hot_model = self.loader.use("hot.model")
         self.comment_model = self.loader.use("comment.model")
         self.nav_model = self.loader.use("nav.model")

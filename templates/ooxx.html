@@ -33,12 +33,10 @@
                       <a class="username notranslate" href="/u/{{ std.author_username }}">{{ std.author_username }}</a>
                       <span class="time-image icon"></span>
                       <span class="time-ago">{{ std.created|pretty_date }}</span>
-                      <span class="response-image2 icon"></span>
-                      <span class="num">{{ std.count }}</span> <font><font>&nbsp;个评论</font></font> 
                       <span class="oo-image">OO</span>
-                      <span class="num">{{ std.count }}</span> <font><font>&nbsp;</font></font> 
+                      <span class="num">{{ std.oo }}</span> <font><font>&nbsp;人</font></font> 
                       <span class="xx-image">XX</span>
-                      <span class="num">{{ std.count }}</span> <font><font>&nbsp;</font></font> 
+                      <span class="num">{{ std.xx }}</span> <font><font>&nbsp;人</font></font> 
                     </p>
 
                     <a href="/p/{{ std.id }}" target="_blank" class="std-post-cover"><img src="{{ std.thumb }}" alt="{{std.title}}" title="{{std.title}}"></a>
@@ -52,12 +50,12 @@
                 <div class="stick-aside stickem badge-entry-sticky-shadow sticky-action">
 
                   <div class="badge-entry-sticky" style="position: relative; z-index: 1;">
-                    <ul class="badge-item-vote-container vertical-vote  ">
+                    <ul class="badge-item-vote-container vertical-vote">
                       <li>
-                        <a class="badge-item-vote-up up" href="javascript:void(0);">oo</a>
+                        <a class="badge-item-vote-up up vote" href="javascript:void(0);">oo</a>
                       </li>
                       <li>
-                        <a class="badge-item-vote-down down" href="javascript:void(0);">xx</a>
+                        <a class="badge-item-vote-down down vote" href="javascript:void(0);">xx</a>
                       </li>
                     </ul>
                     <ul class="others">
@@ -236,5 +234,16 @@ $(document).ready(function () {
                 $('#editor-modal').modal('hide');  
         });
 })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('click', '.vote', function () {
+          {% if user_info==none  %}
+          alert('请先登录再评价，谢谢！')
+          return
+          {% endif %}
+        });
+    });
 </script>
   {% endblock %}
