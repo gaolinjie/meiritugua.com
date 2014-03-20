@@ -407,6 +407,12 @@ class VoteHandler(BaseHandler):
                 self.vote_model.update_vote_by_post_id(post_id, {"beiju": vote.beiju+1})
             if vote_type=="hate":
                 self.vote_model.update_vote_by_post_id(post_id, {"hate": vote.hate+1})
+            if vote_type=="oo":
+                ooxx = self.ooxx_model.get_ooxx_by_post_id(post_id)
+                self.ooxx_model.update_ooxx_by_post_id(post_id, {"oo": ooxx.oo+1})
+            if vote_type=="xx":
+                ooxx = self.ooxx_model.get_ooxx_by_post_id(post_id)
+                self.ooxx_model.update_ooxx_by_post_id(post_id, {"xx": ooxx.xx+1})
             
             self.write(lib.jsonp.print_JSON({
                     "success": 1,

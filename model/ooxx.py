@@ -32,3 +32,7 @@ class OoxxModel(Query):
     def delete_ooxx_by_post_id(self, post_id):
         where = "ooxx.post_id = %s" % post_id
         return self.where(where).delete()
+
+    def get_ooxx_by_post_id(self, post_id):
+        where = "ooxx.post_id = %s" % post_id
+        return self.where(where).find()

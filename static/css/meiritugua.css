@@ -2687,3 +2687,15 @@ border: 1px solid #999;
 #ooxx-upload {
 	width: 565px;
 }
+
+.badge-item-vote-up.voted {
+color: #fff;
+background: #d9534f;
+border-color: #d43f3a;
+}
+
+.badge-item-vote-down.voted {
+color: #fff;
+background-color: #428bca;
+border-color: #357ebd;
+}
