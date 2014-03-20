@@ -535,7 +535,7 @@ p.small-meta .oo-image, p.small-meta .xx-image {
 width: 12px !important;
 height: 12px;
 float: left;
-margin: 1px 15px 0px 15px;
+margin: 1px 12px 0px 15px;
 line-height: 12px;
 }
 
@@ -2689,13 +2689,14 @@ border: 1px solid #999;
 }
 
 .badge-item-vote-up.voted {
-color: #fff;
-background: #d9534f;
-border-color: #d43f3a;
+	color: #fff;
+background-color: #5cb85c;
+border-color: #4cae4c;
+
 }
 
 .badge-item-vote-down.voted {
 color: #fff;
-background-color: #428bca;
-border-color: #357ebd;
+background: #d9534f;
+border-color: #d43f3a;
 }
