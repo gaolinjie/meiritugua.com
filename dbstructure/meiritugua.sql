@@ -109,6 +109,22 @@ CREATE TABLE `ooxx` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+--  Table structure for `item`
+-- ----------------------------
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) DEFAULT NULL,
+  `channel_id` int(11) DEFAULT NULL,
+  `price` float(4,2) DEFAULT 0,
+  `link` text,
+  `like` int(11) DEFAULT NULL,
+  `show` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 --  Table structure for `hot`
 -- ----------------------------
 DROP TABLE IF EXISTS `hot`;

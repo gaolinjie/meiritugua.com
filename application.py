@@ -26,6 +26,7 @@ import handler.user
 import handler.channel
 import handler.tag
 import handler.ooxx
+import handler.fuli
 
 from tornado.options import define, options
 from lib.loader import Loader
@@ -84,6 +85,8 @@ class Application(tornado.web.Application):
 
             (r"/ooxx", handler.ooxx.OoxxHandler),
             (r"/ooxx/add", handler.ooxx.OoxxAddHandler),
+
+            (r"/fuli", handler.fuli.FuliHandler),
             
 
             (r"/(.*)", handler.channel.ChannelHandler),

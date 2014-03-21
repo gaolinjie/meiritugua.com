@@ -1,0 +1,27 @@
+{% extends 'snippet/layout.html' %}
+{% block title %}
+<title>每日图卦</title>
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/dropzone-3.8.4/downloads/css/dropzone.css">
+{% endblock %}
+
+{% block main %}
+<div class="col-xs-12 col-md-12">
+  <div class="Column1 section bf_dom">
+    <div class="section">
+      <div class="content">
+        <ul class="std-posts" id="page_flow">
+          
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+
+{% block javascript %}
+  <script src="/static/js/jquery.infinitescroll.js"></script>
+{% endblock %}
