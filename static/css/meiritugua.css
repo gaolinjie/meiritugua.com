@@ -129,7 +129,7 @@ background-color: #ee4a55;
 }
 
 .navbar-brand {
-background: no-repeat url(http://meiritugua.qiniudn.com/logo.png);
+background: no-repeat url(/static/images/logo.png);
 margin: 11px 0px 9px 0px;
 width: 163px;
 }
