@@ -100,10 +100,9 @@ margin-bottom: 5px;
 
 
 .mf-nav {
-	text-shadow: 0 -1px 0 rgba(0,0,0,.15);
-background-color: #fe4e5b;
-border-color: #ee4a55;
-box-shadow: 0 1px 0 rgba(255,255,255,.1);
+background: -webkit-gradient(linear,0 0,0 100%,from(#FC6060),to(#ee4a55));
+border: 0;
+box-shadow: 0px 0px 3px 1px #ddd;
 }
 
 

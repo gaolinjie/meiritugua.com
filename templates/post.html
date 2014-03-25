@@ -30,10 +30,15 @@
               /
               <a href="/{{ post.channel_name }}" title="查看 {{ post.channel_title }} 中的全部文章" rel="category tag">{{ post.channel_title }}</a>
             </span>
+            {%if via_title!='none'%}
+            <span class="entry-url-icon">来自<a rel="nofollow" target="_blank" href="{{via_link}}">{{via_title}}</a></span>
+            {%endif%}
 
+            {%if user_info.id==post.author_id%}
             <a href="/edit/{{post.id}}" title="编辑 {{ post.title }}">
               <span class="label label-default">编辑</span>
             </a>
+            {%endif%}
 
           </div>
 

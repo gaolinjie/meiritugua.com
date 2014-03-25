@@ -153,6 +153,10 @@ class CreateForm(Form):
          validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
      ])
 
+     via = TextField('Via', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
+
 class EditForm(Form):
      title = TextField('Title', [
          validators.Required(message = "请填写帖子标题"),

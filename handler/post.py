@@ -50,6 +50,15 @@ class PostHandler(BaseHandler):
         self.post_model.update_post_by_post_id(post_id, {"count": post.count+1})
     	template_variables["post"] = post
 
+        if post.via:
+            vias = post.via.split(',')
+            template_variables["via_title"] = via[0]
+            template_variables["via_link"] = via[1]
+        else:
+            template_variables["via_title"] = 'none'
+            template_variables["via_link"] = 'none'
+            
+
         template_variables["vote"] = self.vote_model.get_vote_by_post_id(post_id)
         template_variables["tags"] = self.post_tag_model.get_post_all_tags(post_id)
 	        
@@ -93,6 +102,7 @@ class CreatePostHandler(BaseHandler):
             "title": form.title.data,
             "intro": form.intro.data,
             "content": form.content.data,
+            "via": form.via.data,
             "channel_id": channel.id,
             "visible": visible,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),

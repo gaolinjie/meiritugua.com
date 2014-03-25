@@ -48,10 +48,11 @@ CREATE TABLE `post` (
   `cover` text,
   `intro` text,
   `content` text,
+  `via` text,
   `author_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
   `count` int(11) DEFAULT 0,
-  `visible` int(11) DEFAULT 0, 
+  `visible` int(11) DEFAULT 0,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
