@@ -537,7 +537,7 @@ p.small-meta .oo-image, p.small-meta .xx-image {
 width: 12px !important;
 height: 12px;
 float: left;
-margin: 1px 12px 0px 15px;
+margin: 2px 12px 0px 15px;
 line-height: 12px;
 }
 
@@ -3035,6 +3035,14 @@ opacity: 0.8;
 .thing .pre_ribbon.ship span {
 background: #f0ad4e;
 }
+
+.loading-things {
+float: left;
+width: 100%;
+text-align: center;
+}
+
+
 
 /* sequ css */
 
