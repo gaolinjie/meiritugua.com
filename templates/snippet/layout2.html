@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}{% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.0/css/bootstrap.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/meiritugua.css">
+  {% block stylesheet %}{% endblock %}
+  <!-- Duoshuo Comment BEGIN -->
+  <script type="text/javascript">
+    var duoshuoQuery = {
+        short_name: "meiritugua",
+        sso: {
+            login: "/login",
+            logout: "http://meiritugua.com/logout" /* need change when deploy */
+        }
+    };
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- Duoshuo Comment END -->
+
+  <link rel="shortcut icon" href="/static/images/favicon.ico"></head>
+<body>
+
+  <header class="navbar navbar-inverse mf-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="../" class="navbar-brand"></a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          {% for nav in navs %}
+          <li class="dropdown nav-item{%if active==nav.name%} active {%endif%}" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
+            <a href="/{{ nav.name }}" class="nav-title">{{ nav.title }}</a>
+            {% if nav.id != 2 and nav.id != 4%}
+            <ul class="dropdown-menu ">
+              <div class="content-preview">
+                <div class="content-left">
+                  {% for channel in channels %}
+              {% if channel.nav_id == nav.id %}
+                  <li class="channel-item" id="channel-{{ channel.name }}" data-name="{{ channel.name }}">
+                    <a href="/{{ channel.name }}" class="channel-title">{{ channel.title }}</a>
+                  </li>
+                  {% endif %}
+              {% endfor %}
+                </div>
+                <div class="content-right">
+                  <ul class="nav_preview"  id="nav_preview_{{ nav.name }}" style="display: none"></ul>
+                  {% for channel in channels %}
+              {% if channel.nav_id == nav.id %}
+                  <ul class="nav_preview" id="nav_preview_{{ channel.name }}" style="display: none"></ul>
+                  {% endif %}
+              {% endfor %}
+                </div>
+              </div>
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user_info %}
+          <li class="active dropdown">
+            <a title="{{ user_info.username }}" class="avatar_c" href="/u/{{ user_info.username }}">
+              <img src="{{ user_info.avatar }}" width="30"></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <a href="/setting">设置</a>
+              </li>
+              <li>
+                <a href="http://meiritugua.duoshuo.com/logout/?sso=1&redirect_uri=http%3A%2F%2Fmeiritugua.com%2Flogout">退出</a>
+              </li>
+            </ul>
+          </li>
+          {% else %}
+          <li>
+            <div class="ds-login"></div>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-columns">
+    <div class="left-column-group bf_dom">
+      <div class="container fuli-main">
+        <div class="row">{% block main %}{% endblock %}</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="http://cdn.staticfile.org/jquery/2.1.0/jquery.min.js"></script>
+  <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="/static/js/share_roll.js"></script>
+  <script type="text/javascript" src="/static/freezeframe/freezeframe.js"></script>
+  {% block javascript %}
+
+  {% endblock %}
+  <script type="text/javascript" src="/static/js/returnTop.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#returnTop").returntop();
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav-item").hover(function () {
+            var nav_name = $(this).attr('data-name');
+            if (nav_name=='ooxx'||nav_name=='bbs') {
+              return;
+            }
+            var preview_list = $(this).find("#nav_preview_" + nav_name);
+            var nav_title = $(this).find(".nav-title").text();
+
+            //alert(nav_name)
+            $.getJSON('/nav/' + nav_name, function (data) {
+                var preview_string = '';
+                for (i = 0; i < data.stds.length; i++) {
+                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="http://mrtgimg.qiniudn.com/n_' + data.stds[i].thumb + '-small" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
+                }
+                preview_string += '<a href="/' + nav_name + '" class="more_vertical"><span class="pointer unicode">▶</span> 更多' + nav_title + '</a>';
+                preview_list.html(preview_string);
+                $(".nav_preview").hide();
+                preview_list.show();
+            });
+        }, function () {});
+
+
+        $(".channel-item").hover(function () {
+
+            var channel_name = $(this).attr('data-name');
+
+            var preview_list = $(this).parent().parent().find("#nav_preview_" + channel_name);
+            var channel_title = $(this).find(".channel-title").text();
+
+            //alert(nav_name)
+            $.getJSON('/channel/' + channel_name, function (data) {
+                var preview_string = '';
+                for (i = 0; i < data.stds.length; i++) {
+                    preview_string += '<li><a href="/p/' + data.stds[i].id + '" class="thumb_warpper"><img src="http://mrtgimg.qiniudn.com/n_' + data.stds[i].thumb + '-small" class="image_square"></a><a href="/p/' + data.stds[i].id + '"> <span class="title_small">' + data.stds[i].title + '</span></a></li>';
+                }
+                preview_string += '<a href="/' + channel_name + '" class="more_vertical"><span class="pointer unicode">▶</span> 更多' + channel_title + '</a>';
+                preview_list.html(preview_string);
+                $(".nav_preview").hide();
+                preview_list.show();
+            });
+        }, function () {});
+
+    });
+</script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47970078-1', 'meiritugua.com');
+    ga('send', 'pageview');
+</script>
+
+  <a id="returnTop"  href="javascript:return false;" title="回到顶部">回到顶部</a>
+</body>
+</html>
