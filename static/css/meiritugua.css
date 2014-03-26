@@ -2980,7 +2980,61 @@ color: #46a546;
 margin-right: .5em;
 }
 
+.thing .pre_ribbon span {
+display: block;
+width: 150px;
+padding-left: 10px;
+padding-top: 3px;
+position: relative;
+left: 20px;
+top: -30px;
+text-align: center;
+font-size: 14px;
+-webkit-transform-origin: 0 0;
+-moz-transform-origin: 0 0;
+-ms-transform-origin: 0 0;
+-o-transform-origin: 0 0;
+transform-origin: 0 0;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
+filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+opacity: 0.8;
+}
 
+.thing .pre_ribbon.stock span {
+background: #5cb85c;
+}
+
+.thing .pre_ribbon span {
+display: block;
+width: 150px;
+padding-left: 10px;
+padding-top: 3px;
+position: relative;
+left: 20px;
+top: -30px;
+text-align: center;
+font-size: 14px;
+-webkit-transform-origin: 0 0;
+-moz-transform-origin: 0 0;
+-ms-transform-origin: 0 0;
+-o-transform-origin: 0 0;
+transform-origin: 0 0;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
+filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+opacity: 0.8;
+}
+
+.thing .pre_ribbon.ship span {
+background: #f0ad4e;
+}
 
 /* sequ css */
 

@@ -42,7 +42,7 @@ class SequHandler(BaseHandler):
         p = int(self.get_argument("p", "1"))
         template_variables["user_info"] = user_info
         template_variables["gen_random"] = gen_random
-        template_variables["active"] = "fuli"
+        template_variables["active"] = "bbs"
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()
     

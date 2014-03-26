@@ -47,7 +47,7 @@
           {% for nav in navs %}
           <li class="dropdown nav-item{%if active==nav.name%} active {%endif%}" id="nav-{{ nav.name }}" data-name="{{ nav.name }}">
             <a href="/{{ nav.name }}" class="nav-title">{{ nav.title }}</a>
-            {% if nav.id != 2 and nav.id != 4%}
+            {% if nav.id == 1 %}
             <ul class="dropdown-menu ">
               <div class="content-preview">
                 <div class="content-left">
@@ -124,7 +124,7 @@
     $(document).ready(function () {
         $(".nav-item").hover(function () {
             var nav_name = $(this).attr('data-name');
-            if (nav_name=='ooxx'||nav_name=='bbs') {
+            if (nav_name=='ooxx'||nav_name=='fuli'||nav_name=='bbs') {
               return;
             }
             var preview_list = $(this).find("#nav_preview_" + nav_name);
