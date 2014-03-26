@@ -2716,7 +2716,7 @@ margin-right: -15px;
 
 #home_things li {
 float: left;
-width: 300px;
+width: 306px;
 margin: 15px;
 }
 
@@ -2978,5 +2978,29 @@ color: #46a546;
 
 .thing figcaption p>* {
 margin-right: .5em;
+}
+
+
+
+/* sequ css */
+
+#mainBbs {
+height: 600px;
+background-color: #f4f2ed;
+font-weight: bold;
+margin-bottom: -20px;
+}
+
+.bbsword {
+margin: 0px auto;
+width: 213px;
+font-size: 40px;
+color: #888888;
+padding: 70px 0;
+}
+
+.bbs {
+margin: 0 auto;
+width: 351px;
 }
 
