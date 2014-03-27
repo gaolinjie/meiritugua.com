@@ -101,6 +101,10 @@ margin-bottom: 5px;
 
 .mf-nav {
 background: -webkit-gradient(linear,0 0,0 100%,from(#FC6060),to(#ee4a55));
+background-image: -ms-linear-gradient(top, #FC6060 0%, #ee4a55 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FC6060', endColorstr='#ee4a55');
+background-image: -moz-linear-gradient(top,#FC6060 33%,#ee4a55 100%);
+
 border: 0;
 box-shadow: 0px 0px 3px 1px #ddd;
 }

@@ -52,8 +52,8 @@ class PostHandler(BaseHandler):
 
         if post.via:
             vias = post.via.split(',')
-            template_variables["via_title"] = via[0]
-            template_variables["via_link"] = via[1]
+            template_variables["via_title"] = vias[0]
+            template_variables["via_link"] = vias[1]
         else:
             template_variables["via_title"] = 'none'
             template_variables["via_link"] = 'none'
@@ -161,20 +161,6 @@ class CreatePostHandler(BaseHandler):
         data=open(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
         ret, err = qiniu.io.put(uptoken, "n_"+thumb_name, data)
         os.remove(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
-
-        thumb2_x = int(form.x3.data)
-        thumb2_y = int(form.y3.data)
-        thumb2_x2 = int(round(float(form.x4.data)))
-        thumb2_y2 = int(round(float(form.y4.data)))
-        thumb2_crop_region = (thumb2_x, thumb2_y, thumb2_x2, thumb2_y2)
-        thumb2 = thumb_origin.crop(thumb2_crop_region)
-
-        thumb_355x125 = thumb2.resize((355, 125), Image.ANTIALIAS)
-        thumb_355x125.save(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name, "PNG")
-
-        data=open(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
-        ret, err = qiniu.io.put(uptoken, "w_"+thumb_name, data)
-        os.remove(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
 
         cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
         result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})
@@ -296,23 +282,6 @@ class EditPostHandler(BaseHandler):
             else:
                 print 'Success'
             os.remove(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
-
-
-            thumb2_x = int(form.x3.data)
-            thumb2_y = int(form.y3.data)
-            thumb2_x2 = int(round(float(form.x4.data)))
-            thumb2_y2 = int(round(float(form.y4.data)))
-            thumb2_crop_region = (thumb2_x, thumb2_y, thumb2_x2, thumb2_y2)
-            thumb2 = thumb_origin.crop(thumb2_crop_region)
-
-            thumb_355x125 = thumb2.resize((340, 120), Image.ANTIALIAS)
-            thumb_355x125.save(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name, "PNG")
-
-            policy = qiniu.rs.PutPolicy(bucket_name+":w_"+thumb_name)
-            uptoken = policy.token()
-            data=open(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
-            ret, err = qiniu.io.put(uptoken, "w_"+thumb_name, data)
-            os.remove(usr_home+"/www/meiritugua.com/static/thumb/w_%s.png" % thumb_name)
 
             cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
             result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})

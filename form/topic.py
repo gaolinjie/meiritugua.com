@@ -133,22 +133,6 @@ class CreateForm(Form):
          validators.Required(message = "y2"),
      ])
 
-     x3 = TextField('X3', [
-         validators.Required(message = "x3"),
-     ])
-
-     y3 = TextField('Y3', [
-         validators.Required(message = "y3"),
-     ])
-
-     x4 = TextField('X4', [
-         validators.Required(message = "x4"),
-     ])
-
-     y4 = TextField('Y4', [
-         validators.Required(message = "y4"),
-     ])
-
      tag = TextField('Tag', [
          validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
      ])
@@ -203,22 +187,10 @@ class EditForm(Form):
          validators.Length(min = 0, message = "y2"),
      ])
 
-     x3 = TextField('X3', [
-         validators.Length(min = 0, message = "x3"),
-     ])
-
-     y3 = TextField('Y3', [
-         validators.Length(min = 0, message = "y3"),
-     ])
-
-     x4 = TextField('X4', [
-         validators.Length(min = 0, message = "x4"),
-     ])
-
-     y4 = TextField('Y4', [
-         validators.Length(min = 0, message = "y4"),
-     ])
-
      tag = TextField('Tag', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
+
+     via = TextField('Via', [
          validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
      ])

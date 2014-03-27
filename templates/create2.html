@@ -79,11 +79,6 @@
           </h5>
 
           <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
-            <div class="suplist_thumb_container">
-              <div class="suplist-thumb-reg suplist_image_box bf_dom">
-                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
-                <img id="image-preview" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
-            </div>
 
             <div class="suplist_thumb_container">
               <div class="suplist-thumb-wide suplist_image_box bf_dom">
@@ -101,10 +96,6 @@
                   <input type="hidden" id="y1" name="y1" />
                   <input type="hidden" id="x2" name="x2" />
                   <input type="hidden" id="y2" name="y2" />
-                  <input type="hidden" id="x3" name="x3" />
-                  <input type="hidden" id="y3" name="y3" />
-                  <input type="hidden" id="x4" name="x4" />
-                  <input type="hidden" id="y4" name="y4" />
                 </div>
               </div>
 
@@ -158,19 +149,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">设置窄版缩略图</h4>
+        <h4 class="modal-title" id="myModalLabel">设置缩略图</h4>
       </div>
       <div class="modal-body" align=center>
         <div id="img-wrapper">
           <img id="img-preview" src=""/>
         </div>
-        <div id="img-wrapper2" style="display: none">
-          <img id="img-preview2" src="" />
-        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btn-next">下一步</button>
-        <button type="button" class="btn btn-primary" id="btn-ok" style="display: none">确定</button>
+        <button type="button" class="btn btn-primary" id="btn-ok">确定</button>
       </div>
     </div>
   </div>
@@ -854,13 +841,6 @@ tinymce.init({
             $('#y2').val(e.y2);
         };
 
-        function updateInfo2(e) {
-            $('#x3').val(e.x);
-            $('#y3').val(e.y);
-            $('#x4').val(e.x2);
-            $('#y4').val(e.y2);
-        };
-
         function readURL() {
             // get selected file
             var oFile = $('#thumb')[0].files[0];
@@ -880,7 +860,6 @@ tinymce.init({
 
             // preview element
             var oImage = document.getElementById('img-preview');
-            var oImage2 = document.getElementById('img-preview2');
 
             // prepare HTML5 FileReader
             var oReader = new FileReader();
@@ -888,7 +867,6 @@ tinymce.init({
 
                 // e.target.result contains the DataURL which we can use as a source of the image
                 oImage.src = e.target.result;
-                oImage2.src = e.target.result;
                 oImage.onload = function () { // onload event handler           
                     // initialize Jcrop
                     $('#img-preview').Jcrop({
@@ -903,21 +881,6 @@ tinymce.init({
                     }, function () {
                     });
                 };
-
-                oImage2.onload = function () { // onload event handler
-                    $('#img-preview2').Jcrop({
-                        keySupport: false,
-                        minSize: [340, 120], // min crop size
-                        aspectRatio: 2.83, // keep aspect ratio 1:1
-                        bgFade: true, // use fade effect
-                        bgOpacity: .3, // fade opacity
-                        onChange: updateInfo2,
-                        onSelect: updateInfo2,
-
-                    }, function () {
-
-                    });
-                };
             };
 
             // read selected file as DataURL
@@ -929,13 +892,6 @@ tinymce.init({
             $('#myModal').modal('show');
         });
 
-        $(document).on('click', '#btn-next', function () {
-            $(this).hide();
-            $('#btn-ok').show();
-            $('#myModalLabel').text("设置宽版缩略图");
-            $('#img-wrapper').hide();
-            $('#img-wrapper2').show();
-        });
 
         $(document).on('click', '#btn-ok', function () {
             $(this).hide();
