@@ -49,6 +49,7 @@ CREATE TABLE `post` (
   `intro` text,
   `content` text,
   `via` text,
+  `type` text,
   `author_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
   `count` int(11) DEFAULT 0,
@@ -118,9 +119,11 @@ CREATE TABLE `item` (
   `post_id` int(11) DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
   `price` float(4,2) DEFAULT 0,
+  `label` text,
   `link` text,
-  `like` int(11) DEFAULT NULL,
-  `show` int(11) DEFAULT NULL,
+  `like` int(11) DEFAULT 0,
+  `have` int(11) DEFAULT 0,
+  `show` int(11) DEFAULT 0,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

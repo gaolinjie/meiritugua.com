@@ -103,6 +103,7 @@ class CreatePostHandler(BaseHandler):
             "intro": form.intro.data,
             "content": form.content.data,
             "via": form.via.data,
+            "type": 'news',
             "channel_id": channel.id,
             "visible": visible,
             "created": time.strftime('%Y-%m-%d %H:%M:%S'),

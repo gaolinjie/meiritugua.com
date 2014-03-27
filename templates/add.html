@@ -1,0 +1,920 @@
+{% extends 'snippet/layout.html' %}
+{% block title %}
+<title>福利色 新建商品</title>
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/static/bootstrap-tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="/static/dropzone-3.8.4/downloads/css/dropzone.css">
+{% endblock %}
+
+{% block main %}
+<form class="mt10" action='/add' method="POST" enctype="multipart/form-data">
+  {{ errors|dump_errors }}
+  <div class="col-xs-12 col-md-9">
+    <div class="Column1 section bf_dom">
+      <div class="section">
+        <div class="content">
+
+          <div id="qp_superlist" class="suplist_image_width_off  old-source has_drag_drop suplist_list_none suplist_post_width_standard" style="">
+
+            <div id="suplist_left_post_controls" style="min-height: 473px;">
+
+              <div id="suplist_heading" class="c">
+
+                <h1 class="qp_create">新建商品</h1>
+
+                <input type="submit" id="checkall" class="btn btn-sm btn-success" value="立即创建">{{ xsrf_form_html() }}</div>
+
+              <div class="c qp_std_promo" id="suplist_promo">
+
+                <div class="qp_std_promo_fields">
+
+                  <fieldset>
+
+                    <div class="qp_input has_autocap">
+                      <input type="text" id="quickpost-title" name="title" class="form-control" placeholder="标题" title="" alt=""></div>
+                  </fieldset>
+
+                  <fieldset>
+                    <div class="qp_input">
+                      <textarea class="form-control" id="quickpost-intro" name="intro" placeholder="简介" title=""></textarea>
+                    </div>
+
+                  </fieldset>
+                </div>
+
+              </div>
+
+              <div id="content-preview"></div>
+
+              <div class="c qp_std_promo" id="suplist_promo">
+
+                <div class="qp_std_promo_fields">
+
+                  <fieldset>
+                    <input type="text" id="add-box" class="form-control" placeholder="点击添加内容" title="" alt="">
+                    <input type="hidden" id="content-input" name="content"></fieldset>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-3">
+    <div class="section bf_dom ">
+      <div class="section sidebar_featured_unified sidebar_config">
+
+        <div class="thumbnail-chooser suplist_options_top_row">
+          <h5>
+            <label>商品缩略图</label>
+          </h5>
+
+          <div class="image-upload-fields suplist_image_show_upload bf_dom c" id="suplist_upload_fields">
+
+            <div class="suplist_thumb_container">
+              <div class="suplist-thumb-wide suplist_image_box bf_dom">
+                <span class="glyphicon glyphicon-ok" style="display: none;"></span>
+                <img id="image-preview-wide" class="qp_std_promo_fields suplist-thumb-img" style="display:none"></div>
+            </div>
+
+            <div class="suplist_image_buttons">
+              <div class="c suplist_module_image_uploader_wrapper bf_dropdown">
+                <div class="suplist_module_image_uploader" style="height: 20px;">
+                  <div id="suplist_module_thumb_uploader" class="suplist_module_image_uploader_computer bf_button bf_button_left" style="position: relative; overflow: hidden; direction: ltr;">
+                    <span>上传图片</span>
+                    <input id="thumb" name="thumb" type="file" class="file_mask" style="position: absolute; right: 0px; top: 0px; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; width: 100%; height: 100%;"></div>
+                  <input type="hidden" id="x1" name="x1" />
+                  <input type="hidden" id="y1" name="y1" />
+                  <input type="hidden" id="x2" name="x2" />
+                  <input type="hidden" id="y2" name="y2" />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="channel-chooser">
+          <h5>
+            <label>选择频道</label>
+          </h5>
+          <select type="text" id='channel' name="channel">
+            {% for channel in channels %}
+            <option>{{ channel.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="tagsinput-wrapper">
+          <h5>
+            <label>文章标签</label>
+          </h5>
+          <input type="text" id="quickpost-tag" name="tag" value="" data-role="tagsinput" />
+        </div>
+
+        <div class="priceinput-wrapper">
+          <h5>
+            <label>商品价格</label>
+          </h5>
+          <input type="text" id="quickpost-price" name="price" value=""/>
+        </div>
+
+        <div class="linkinput-wrapper">
+          <h5>
+            <label>购买链接</label>
+          </h5>
+          <input type="text" id="quickpost-link" name="link" value=""/>
+        </div>
+
+        <div class="labelinput-wrapper">
+          <h5>
+            <label>商品标记</label>
+          </h5>
+          <input type="text" id="quickpost-label" name="label" value=""/>
+        </div>
+
+        <div class="visible-chooser">
+          <h5>
+            <label>是否公开</label>
+          </h5>
+          <select type="text" id='visible' name="visible">
+            <option selected="selected">不公开</option>
+            <option>公开</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-thumb">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">设置缩略图</h4>
+      </div>
+      <div class="modal-body" align=center>
+        <div id="img-wrapper">
+          <img id="img-preview" src=""/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-ok">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editor-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body" align=center>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <ul id="editor-tab" class="nav nav-tabs">
+          <li class="active">
+            <a href="#text" data-toggle="tab">文字</a>
+          </li>
+          <li>
+            <a href="#image" data-toggle="tab">图片</a>
+          </li>
+          <li>
+            <a href="#video" data-toggle="tab">视频</a>
+          </li>
+          <li>
+            <a href="#embed" data-toggle="tab">内嵌</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="text">
+            <input type="text" class="form-control" id="text-title" placeholder="标题（可选）">
+            <textarea class="form-control" id="text-content" name="content" placeholder="输入文字..."></textarea>
+          </div>
+          <div class="tab-pane fade" id="image">
+            <input type="text" class="form-control" id="image-title" placeholder="标题（可选）">
+            <form action="http://up.qiniu.com/" class="dropzone" id="image-upload">
+              <input name="token" type="hidden" value="{{up_token}}">
+            </form>
+            <textarea class="form-control" id="image-intro" placeholder="图片介绍（可选）..."></textarea>
+            <input type="hidden" class="form-control" id="image-address" placeholder="输入图片地址">
+
+            <input type="text" class="form-control" id="image-link" placeholder="图片链接（可选）">
+            <input type="hidden" class="form-control" id="image-source-title" placeholder="图片来源标题（可选）">
+            <input type="hidden" class="form-control" id="image-source-address" placeholder="图片来源地址（可选）">
+
+            <select class="form-control" id="image-layout">
+              <option>标题和描述在图片上面</option>
+              <option>标题和描述在图片下面</option>
+              <option>图片在标题和描述中间</option>
+            </select>
+          </div>
+          <div class="tab-pane fade" id="video">
+
+            <input type="text" class="form-control" id="video-title" placeholder="标题（可选）">
+            <form action="http://up.qiniu.com/" class="dropzone" id="video-image-upload">
+              <input name="token" type="hidden" value="{{up_token}}">
+            </form>
+            <textarea class="form-control" id="video-intro" placeholder="视频介绍（可选）..."></textarea>
+
+            <input type="text" class="form-control" id="video-address" placeholder="输入视频地址">
+            <input type="text" class="form-control" id="video-embed" placeholder="输入视频embed">
+            <input type="text" class="form-control" id="video-iframe" placeholder="输入视频iframe">
+
+            <input type="hidden" class="form-control" id="video-cover" placeholder="输入视频封面图片地址">
+
+            <select class="form-control" id="video-layout">
+              <option>标题和描述在视频上面</option>
+              <option>标题和描述在视频下面</option>
+              <option>视频在标题和描述中间</option>
+            </select>
+          </div>
+          <div class="tab-pane fade" id="embed">
+            <input type="text" class="form-control" id="embed-title" placeholder="标题（可选）">
+            <textarea class="form-control" id="embed-intro" placeholder="介绍（可选）..."></textarea>
+            <input type="text" class="form-control" id="embed-embed" placeholder="输入embed">
+            <select class="form-control" id="embed-layout">
+              <option>标题和描述在内嵌上面</option>
+              <option>标题和描述在内嵌下面</option>
+              <option>内嵌在标题和描述中间</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="mt-item-id">
+        <button type="button" class="btn btn-danger hidden" id="editor-btn-del" >删除</button>
+        <button type="button" class="btn btn-primary" id="editor-btn-ok" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="/static/dropzone-3.8.4/downloads/dropzone.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    Dropzone.options.imageUpload = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#image-address').val('http://mrtgimg.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+
+              }
+              else {
+                $('#image-address').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#editor-btn-ok, #editor-modal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+
+    Dropzone.options.videoImageUpload = {
+        maxFiles: 1,
+        maxFilesize: 5,
+        addRemoveLinks: true,
+        acceptedFiles: "image/*",
+        init: function () {
+            var isExceeded = false;
+            this.on("success", function (file, responseText) {
+                $('#video-cover').val('http://mrtgimg.qiniudn.com/' + responseText['hash']);
+            });
+            this.on("removedfile", function (file) {
+              if (isExceeded) {
+              }
+              else {
+                $('#video-cover').val('');
+                this.options.maxFiles = 1;
+              }
+              isExceeded = false;      
+            });
+            this.on("maxfilesexceeded", function (file) {
+                isExceeded = true;
+                this.removeFile(file);
+                alert('请先移除已上传的图片！');
+            });
+            var _this = this;
+            $(document).on('click', '#editor-btn-ok, #editor-modal .close', function () {
+              _this.removeAllFiles();
+            });
+        }     
+    };
+})
+</script>
+
+<script type="text/javascript">
+ $.fn.outerHtml = function(){
+  return $("<p></p>").append(this.clone()).html(); 
+  };
+
+    $(document).ready(function () {
+        $(document).on('click', '#add-box', function () {
+            $('#editor-btn-del').addClass('hidden');
+            $('#editor-modal').modal('show');
+        });
+
+        $('#editor-tab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+        $(document).on('click', '#editor-btn-ok', function () {
+            active_tab = $(".tab-pane.active").attr("id");
+            var mt_item_id = $('#mt-item-id').val();
+
+            if (active_tab == "text") {
+                var text_title = $('#text-title').val();
+                tinyMCE.triggerSave();
+                var text_content = $('#text-content').val();
+                var content = '';
+                if (text_title != '') {
+                    content = '<h2 class="text-title">' + text_title + '</h2>';
+                }
+                if (text_content != '') {
+                    content += '<div class="text-content">' + text_content + '</div>';
+                } else {
+                    alert('文字内容不能为空！')
+                    return;
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item mt-text" data-type="text" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'text');
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+                }
+
+                $('#text-title').val('');
+                $('#text-content').val('');
+                tinyMCE.get('text-content').setContent('');
+                $('#mt-item-id').val('');
+
+                $('#editor-modal').modal('hide');
+            }
+
+            if (active_tab == "image") {
+                var img_title = $('#image-title').val();
+                var img_address = $('#image-address').val();
+                tinyMCE.triggerSave();
+                var img_intro = $('#image-intro').val();
+                var img_link = $('#image-link').val();
+                var img_src_title = $('#image-source-title').val();
+                var img_src_address = $('#image-source-address').val();
+                var img_layout = $('#image-layout').val();
+
+                var content = '';
+                if (img_title != '') {
+                    img_title = '<h2 class="img-title">' + img_title + '</h2>';
+                }
+                if (img_intro != '') {
+                    img_intro = '<div class="img-intro">' + img_intro + '</div>';
+                }
+                if (img_address != '') {
+                    img_address = '<img class="img-address" src="' + img_address + '">';
+                } else {
+                    alert('图片地址不能为空！')
+                    return;
+                }
+                if (img_link != '') {
+                    img_link = '<a class="img-link" target="_blank" href="' + img_link + '">' + img_address + '</a>';
+                }
+                if (img_src_title != '') {
+                    img_src_title = '<div class="img-src"><a target="_blank" href="' + img_src_address + '">' + img_src_title + '</a></div>';
+                    img_address += img_src_title;
+                }
+                img_address = '<div class="img-entry">' + img_address + '</div>'
+
+                if (img_layout == '标题和描述在图片上面') {
+                    content = img_title + img_intro + img_address;
+
+                } else if (img_layout == '标题和描述在图片下面') {
+                    content = img_address + img_title + img_intro;
+
+                } else if (img_layout == '图片在标题和描述中间') {
+                    content = img_title + img_address + img_intro;
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item mt-img" data-type="image" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'image');
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+                }
+
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+                $('#image-source-title').val('');
+                $('#image-source-address').val('');
+                tinyMCE.get('image-intro').setContent('');
+                $('#mt-item-id').val('');
+
+                $('#editor-modal').modal('hide');
+            }
+
+            if (active_tab == "video") {
+                var video_title = $('#video-title').val();
+                tinyMCE.triggerSave();
+                var video_intro = $('#video-intro').val();
+                var video_address = $('#video-address').val();
+                var video_embed = $('#video-embed').val();
+                var video_iframe = $('#video-iframe').val();
+                var video_cover = $('#video-cover').val();
+                var video_layout = $('#video-layout').val();
+
+                var video = "";
+                if (video_cover != '') {
+                    if (video_embed == '' && video_iframe == '') {                       
+                        if (video_address == '') {
+                            alert("视频地址, 视频embed, 视频iframe不能同时为空!");
+                            return;
+                        }
+                        var i = video_address.search("v.youku.com/v_show/id_");
+                        if (i>=0) {
+                          var youku_id = video_address.slice(i+22, video_address.search(".html"));
+                          video_e = "http://player.youku.com/player.php/sid/"+youku_id+"/v.swf";
+                          video_i = "http://player.youku.com/embed/"+youku_id;
+                          video = "<div class='video-wrapper'> <img class='video-cover' src='" + video_cover + "' data-embed='" + video_e + "' data-iframe='" + video_i + "'> <i class='play-icon'></i></div>";
+                        }
+                        else {
+                          video_cover = "<img class='video-cover' src='" + video_cover + "'>";
+                          video = "<div class='video-wrapper'> <a class='video-address' target='_blank' href='" + video_address + "'>" + video_cover + "</a><i class='play-icon'></i></div>";
+                        }                       
+                    } else {
+                        if (video_embed != ''&&video_embed.search("<embed")>=0) {
+                            video_embed = video_embed.slice(video_embed.indexOf('http'), video_embed.lastIndexOf(">"));
+                            video_embed = video_embed.slice(0, video_embed.indexOf('"'));
+                        }
+                        if (video_iframe != ''&&video_iframe.search("<iframe")>=0) {
+                            video_iframe = video_iframe.slice(video_iframe.indexOf('http'), video_iframe.lastIndexOf(">"));
+                            video_iframe = video_iframe.slice(0, video_iframe.indexOf('"'));
+                        }
+                        video = "<div class='video-wrapper'> <img class='video-cover' src='" + video_cover + "' data-embed='" + video_embed + "' data-iframe='" + video_iframe + "'> <i class='play-icon'></i></div>";
+                    }
+                } else {
+                    if (video_embed == '' && video_iframe == '') {
+                        if (video_address == '') {
+                            alert("视频地址, 视频embed, 视频iframe不能同时为空!");
+                            return;
+                        }
+                        else {
+                          var i = video_address.search("v.youku.com/v_show/id_");
+                          if (i>=0) {
+                            var youku_id = video_address.slice(i+22, video_address.search(".html"));
+                            video = '<embed wmode="transparent" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/'+youku_id+'/v.swf" allowfullscreen="true" quality="high" flashvars="isShowRelatedVideo=false&amp;showAd=0&amp;show_pre=1&amp;show_next=1&amp;isAutoPlay=false&amp;isDebug=false&amp;UserID=&amp;winType=interior&amp;playMovie=true&amp;MMControl=false&amp;MMout=false&amp;RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" play="true" loop="true" menu="true" data-pinit="registered">'
+                          }
+                          else {
+                            alert("视频封面, 视频embed, 视频iframe不能同时为空!");
+                            return;
+                          }
+                        }    
+                    }
+                    if (video_embed != '') {
+                        video = video_embed;
+                    }
+                    if (video_iframe != '') {
+                        video = video_iframe;
+                    }
+                }
+
+                var content = '';
+                if (video_title != '') {
+                    video_title = '<h2 class="video-title">' + video_title + '</h2>';
+                }
+                if (video_intro != '') {
+                    video_intro = '<div class="video-intro">' + video_intro + '</div>';
+                }
+
+                if (video_layout == '标题和描述在视频上面') {
+                    content = video_title + video_intro + video;
+
+                } else if (video_layout == '标题和描述在视频下面') {
+                    content = video + video_title + video_intro;
+
+                } else if (video_layout == '视频在标题和描述中间') {
+                    content = video_title + video + video_intro;
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item mt-video" data-type="video" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'video');
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+                }
+
+                $('#video-title').val('');
+                $('#video-address').val('');
+                $('#video-intro').val('');
+                $('#video-embed').val('');
+                $('#video-iframe').val('');
+                $('#video-cover').val('');
+                tinyMCE.get('video-intro').setContent('');  
+                $('#mt-item-id').val('');
+
+                $('#editor-modal').modal('hide');
+            }
+
+            if (active_tab == "embed") {
+                var embed_title = $('#embed-title').val();
+                tinyMCE.triggerSave();
+                var embed_intro = $('#embed-intro').val();
+                var embed_embed = $('#embed-embed').val();
+                var embed_layout = $('#embed-layout').val();
+
+                if (embed_embed == '') {
+                      alert("embed不能为空!");
+                        return;
+                    }
+       
+                var content = '';
+                if (embed_title != '') {
+                    embed_title = '<h2 class="embed-title">' + embed_title + '</h2>';
+                }
+                if (embed_intro != '') {
+                    embed_intro = '<div class="embed-intro">' + embed_intro + '</div>';
+                }
+
+                if (embed_layout == '标题和描述在内嵌上面') {
+                    content = embed_title + embed_intro + embed_embed;
+
+                } else if (embed_layout == '标题和描述在内嵌下面') {
+                    content = embed_embed + embed_title + embed_intro;
+
+                } else if (embed_layout == '内嵌在标题和描述中间') {
+                    content = embed_title + embed_embed + embed_intro;
+                }
+
+                if (mt_item_id == '') {
+                    content = $('#content-preview').html() + '<div class="mt-item mt-embed" data-type="embed" data-id="' + new Date().getTime() + '">' + content + '</div>';
+                    $('#content-preview').html(content);
+                    $('#content-input').val(content);
+
+                } else {
+                    $('.mt-item[data-id="' + mt_item_id + '"]').html(content);
+                    $('.mt-item[data-id="' + mt_item_id + '"]').attr('data-type', 'embed');
+                    $('#content-input').val($('#content-preview').html());
+                    mt_item_id = '';
+                }
+
+                $('#embed-title').val('');
+                $('#embed-intro').val('');
+                $('#embed-embed').val('');
+                tinyMCE.get('embed-intro').setContent('');
+                $('#mt-item-id').val('');
+
+                $('#editor-modal').modal('hide');
+            }
+        });
+
+        $(document).on('click', '.mt-item', function () {
+            var type = $(this).attr('data-type');
+            var mt_item_id = $(this).attr('data-id');
+            $('#mt-item-id').val(mt_item_id);
+            if (mt_item_id != '') {
+                $('#editor-btn-del').removeClass('hidden');
+            }
+            if (type == 'text') {
+                var text_title = $(this).find('.text-title').text();
+                var text_content = $(this).find('.text-content').html();
+                $('#text-title').val(text_title);
+                $('#text-content').val(text_content);
+                tinyMCE.get('text-content').setContent(text_content);
+                $('#editor-tab a[href="#text"]').tab('show')
+                $('#editor-modal').modal('show');
+
+            } else if (type == 'image') {
+                var img_address = $(this).find('.img-address').attr('src');
+                var img_title = $(this).find('.img-title').text();
+                var img_intro = $(this).find('.img-intro').text();
+                tinyMCE.get('image-intro').setContent(img_intro);
+                var img_link = $(this).find('.img-link').attr('href');
+                var img_src_title = $(this).find('.img-src a').text();
+                var img_src_address = $(this).find('.img-src a').attr('href');
+                $('#image-address').val(img_address);
+                $('#image-title').val(img_title);
+                $('#image-intro').val(img_intro);
+
+                var imageUploadDropzone = Dropzone.forElement("#image-upload");
+                var mockFile = { name: "Filename", size: 12345 };
+                imageUploadDropzone.emit("addedfile", mockFile);
+                imageUploadDropzone.emit("thumbnail", mockFile, img_address);
+                imageUploadDropzone.files.push( mockFile );
+                var existingFileCount = 1;
+                imageUploadDropzone.options.maxFiles = imageUploadDropzone.options.maxFiles - existingFileCount;
+                
+                $('#image-link').val(img_link);
+                $('#image-source-title').val(img_src_title);
+                $('#image-source-address').val(img_src_address);
+                $('#editor-tab a[href="#image"]').tab('show')                
+
+                $('#editor-modal').modal('show');
+            } else if (type == 'video') {
+                var video_embed = '';
+                var video_iframe = '';
+                var video_address = '';
+                var video_title = '';
+                var video_intro = '';
+                var video_cover = $(this).find('img.video-cover');
+                if (video_cover.length > 0) {
+                    video_embed = video_cover.attr('data-embed');
+                    if (video_embed!='') {
+                      video_embed = '<embed src="'+video_embed+'"></embed>';
+                    }
+                    video_iframe = video_cover.attr('data-iframe');
+                    if (video_iframe!='') {
+                      video_iframe = '<iframe src="'+video_iframe+'"></iframe>';
+                    }
+                    video_cover = video_cover.attr('src');
+                } else {
+                    video_cover = '';
+                    video_embed = $(this).find('embed').outerHtml();
+                    video_iframe = $(this).find('iframe').outerHtml();
+                }
+
+                if ($(this).find('.video-address').length > 0) {
+
+                    video_address = $(this).find('.video-address').attr('href');
+                }
+                if ($(this).find('.video-title').length > 0) {
+                    video_title = $(this).find('.video-title').text();
+                }
+                if ($(this).find('.video-intro').length > 0) {
+                    video_intro = $(this).find('.video-intro').text();
+                }
+
+                $('#video-address').val(video_address);
+                $('#video-title').val(video_title);
+                $('#video-intro').val(video_intro);
+                tinyMCE.get('video-intro').setContent(video_intro);
+
+                if (video_cover.length > 0) {
+                  var videoImageUploadDropzone = Dropzone.forElement("#video-image-upload");
+                  videoImageUploadDropzone.emit("removeAllFiles");
+                  var mockFile = { name: "Filename", size: 12345 };
+                  videoImageUploadDropzone.emit("addedfile", mockFile);
+                  videoImageUploadDropzone.emit("thumbnail", mockFile, video_cover);
+                  videoImageUploadDropzone.files.push( mockFile );
+                  var existingFileCount = 1;
+                  videoImageUploadDropzone.options.maxFiles = videoImageUploadDropzone.options.maxFiles - existingFileCount;
+                } 
+
+                $('#video-cover').val(video_cover);
+                $('#video-embed').val(video_embed);
+                $('#video-iframe').val(video_iframe);
+                $('#editor-tab a[href="#video"]').tab('show')
+                $('#editor-modal').modal('show');
+            }
+            else if (type == 'embed') {
+                var embed_embed = '';
+                var embed_title = '';
+                var embed_intro = '';
+
+                if ($(this).find('embed').length > 0) {
+                    embed_embed = $(this).find('embed').outerHtml();
+                }
+                if ($(this).find('.embed-title').length > 0) {
+                    embed_title = $(this).find('.embed-title').text();
+                }
+                if ($(this).find('.embed-intro').length > 0) {
+                    embed_intro = $(this).find('.embed-intro').text();
+                }
+
+                $('#embed-title').val(embed_title);
+                $('#embed-intro').val(embed_intro);
+                tinyMCE.get('embed-intro').setContent(embed_intro);
+                $('#embed-embed').val(embed_embed);
+                $('#editor-tab a[href="#embed"]').tab('show')
+                $('#editor-modal').modal('show');
+            }
+        });
+
+        $(document).on('click', '#editor-btn-del', function () {
+            var mt_item_id = $('#mt-item-id').val();
+            $('.mt-item[data-id="' + mt_item_id + '"]').remove();
+            $('#content-input').val($('#content-preview').html());
+            $('#editor-modal').modal('hide');
+            var active_tab = $(".tab-pane.active").attr("id");
+            if (active_tab == "text") {
+                $('#text-title').val('');
+                $('#text-content').val('');
+                tinymce.activeEditor.setContent('');
+            }
+            if (active_tab == "image") {
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+                $('#image-source-title').val('');
+                $('#image-source-address').val('');
+            }
+            if (active_tab == "video") {
+                $('#video-title').val('');
+                $('#video-address').val('');
+                $('#video-intro').val('');
+                $('#video-embed').val('');
+                $('#video-iframe').val('');
+                $('#video-cover').val('');
+            }
+            if (active_tab == "embed") {
+                $('#embed-title').val('');
+                $('#embed-intro').val('');
+                $('#embed-embed').val('');
+            }
+            $('#mt-item-id').val('');
+        });
+
+        $('#editor-modal').on('hidden.bs.modal', function () {
+                $('#text-title').val('');
+                $('#text-content').val('');
+                $('#image-title').val('');
+                $('#image-address').val('');
+                $('#image-intro').val('');
+                $('#image-source-title').val('');
+                $('#image-source-address').val('');   
+                $('#video-title').val('');
+                $('#video-address').val('');
+                $('#video-intro').val('');
+                $('#video-embed').val('');
+                $('#video-iframe').val('');
+                $('#video-cover').val('');   
+                $('#embed-title').val();
+                $('#embed-intro').val();
+                $('#embed-embed').val();
+                tinyMCE.get('text-content').setContent('');
+                tinyMCE.get('image-intro').setContent('');
+                tinyMCE.get('video-intro').setContent('');
+                tinyMCE.get('embed-intro').setContent('');
+        });
+    });
+</script>
+
+<script src="/static/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+        selector: "#text-content",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 10,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+
+tinymce.init({
+        selector: "#image-intro",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 10,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+
+tinymce.init({
+        selector: "#video-intro",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 10,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+
+
+tinymce.init({
+        selector: "#embed-intro",
+        plugins: [
+                "link paste autoresize"
+        ],
+        toolbar1: "bold italic blockquote link | removeformat undo redo",
+        height : 10,
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // update info by cropping (onChange and onSelect events handler)
+        function updateInfo(e) {
+            $('#x1').val(e.x);
+            $('#y1').val(e.y);
+            $('#x2').val(e.x2);
+            $('#y2').val(e.y2);
+        };
+
+        function readURL() {
+            // get selected file
+            var oFile = $('#thumb')[0].files[0];
+
+            // check for image type (jpg and png are allowed)
+            var rFilter = /^(image\/jpeg|image\/png|image\/gif)$/i;
+            if (!rFilter.test(oFile.type)) {
+                alert("type error!!!")
+                return;
+            }
+
+            // check for file size
+            if (oFile.size < 125 * 83) {
+                alert("image too small!!!")
+                return;
+            }
+
+            // preview element
+            var oImage = document.getElementById('img-preview');
+
+            // prepare HTML5 FileReader
+            var oReader = new FileReader();
+            oReader.onload = function (e) {
+
+                // e.target.result contains the DataURL which we can use as a source of the image
+                oImage.src = e.target.result;
+                oImage.onload = function () { // onload event handler           
+                    // initialize Jcrop
+                    $('#img-preview').Jcrop({
+                        keySupport: false,
+                        //minSize: [580, 197], // min crop size
+                        //aspectRatio: 2.94, // keep aspect ratio 1:1
+                        bgFade: true, // use fade effect
+                        bgOpacity: .3, // fade opacity
+                        onChange: updateInfo,
+                        onSelect: updateInfo,
+
+                    }, function () {
+                    });
+                };
+            };
+
+            // read selected file as DataURL
+            oReader.readAsDataURL(oFile);
+        }
+
+        $(document).on('change', '#thumb', function () {
+            readURL();
+            $('#myModal').modal('show');
+        });
+
+
+        $(document).on('click', '#btn-ok', function () {
+            $(this).hide();
+            $('#myModal').modal('hide');
+            $('.glyphicon-ok').show();
+        });
+    });
+</script>
+
+<script src="/static/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
+<script src="/static/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+{% endblock %}

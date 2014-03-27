@@ -16,6 +16,7 @@ import lib.jsonp
 import pprint
 import math
 import datetime 
+import os
 
 from base import *
 from lib.variables import *
@@ -45,8 +46,123 @@ class FuliHandler(BaseHandler):
         template_variables["active"] = "fuli"
         template_variables["navs"] = self.nav_model.get_all_navs()
         template_variables["channels"] = self.channel_model.get_all_channels()
+
+        template_variables["items"] = self.item_model.get_all_items(current_page = p)
     
         if is_mobile_browser(self):
-            self.render("fuli-m.html", **template_variables)
+            self.render("fuli.html", **template_variables)
         else:
             self.render("fuli.html", **template_variables)
+
+class AddItemHandler(BaseHandler):
+    def get(self, template_variables = {}):
+        user_info = self.current_user
+        template_variables["user_info"] = user_info
+        template_variables["channels"] = self.channel_model.get_all_channels()
+
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        template_variables["up_token"] = uptoken
+        
+        self.render("add.html", **template_variables)
+
+    @tornado.web.authenticated
+    def post(self, template_variables = {}):
+        template_variables = {}
+
+        # validate the fields
+        form = AddForm(self)
+
+        if not form.validate():
+            self.get({"errors": form.errors})
+            return
+
+        if form.visible.data=='公开':
+            visible = 1
+        else:
+            visible = 0
+
+        # continue while validate succeed
+        channel = self.channel_model.get_channel_by_channel_title(form.channel.data)
+        post_info = {
+            "author_id": self.current_user["uid"],           
+            "title": form.title.data,
+            "intro": form.intro.data,
+            "content": form.content.data,
+            "type": 'item',
+            "channel_id": channel.id,
+            "visible": visible,
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        post_id = self.post_model.add_new_post(post_info)
+
+        if form.price.data:
+            price = float(form.price.data)
+        else:
+            price = 0
+
+        item_info = {
+            "post_id": post_id,           
+            "channel_id": channel.id,
+            "price": price,
+            "link": form.link.data,
+            "label": form.label.data,
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+        item_id = self.item_model.add_new_item(item_info)
+
+        if form.visible.data=='公开':
+            std_id = self.std_model.add_new_std({"post_id": post_id, "channel_id": channel.id, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+
+        # process tags
+        tagStr = form.tag.data
+        if tagStr:
+            print 'process tags'
+            tagNames = tagStr.split(',')  
+            for tagName in tagNames:  
+                tag = self.tag_model.get_tag_by_tag_name(tagName)
+                if tag:
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag.id})
+                    self.tag_model.update_tag_by_tag_id(tag.id, {"post_num": tag.post_num+1})
+                else:
+                    tag_id = self.tag_model.add_new_tag({"name": tagName, "post_num": 1, "created": time.strftime('%Y-%m-%d %H:%M:%S')})
+                    self.post_tag_model.add_new_post_tag({"post_id": post_id, "tag_id": tag_id})
+
+        # add vote
+        self.vote_model.add_new_vote({'post_id': post_id})
+
+        self.redirect("/p/"+str(post_id))
+
+        # process post thumb
+        policy = qiniu.rs.PutPolicy(bucket_name)
+        uptoken = policy.token()
+        usr_home = os.path.expanduser('~')
+
+        thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))
+        thumb_raw = self.request.files["thumb"][0]["body"]
+        thumb_buffer = StringIO.StringIO(thumb_raw)
+        thumb_origin = Image.open(thumb_buffer)
+
+        thumb_origin.save(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name, "PNG")
+        data=open(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name)
+        ret, err = qiniu.io.put(uptoken, "o_"+thumb_name, data)
+        os.remove(usr_home+"/www/meiritugua.com/static/thumb/o_%s.png" % thumb_name)
+
+        # crop avatar if it's not square
+        thumb_x = int(form.x1.data)
+        thumb_y = int(form.y1.data)
+        thumb_x2 = int(round(float(form.x2.data)))
+        thumb_y2 = int(round(float(form.y2.data)))
+        thumb_crop_region = (thumb_x, thumb_y, thumb_x2, thumb_y2)
+        thumb = thumb_origin.crop(thumb_crop_region)
+
+        #thumb_125x83 = thumb.resize((580, 197), Image.ANTIALIAS)
+        thumb.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name, "PNG")
+
+        data=open(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
+        ret, err = qiniu.io.put(uptoken, "n_"+thumb_name, data)
+        os.remove(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name)
+
+        cover = "http://mrtgimg.qiniudn.com/o_" + thumb_name
+        result = self.post_model.update_post_by_post_id(post_id, {"thumb": thumb_name, "cover": cover})

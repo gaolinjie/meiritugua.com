@@ -88,6 +88,7 @@ class Application(tornado.web.Application):
             (r"/ooxx/add", handler.ooxx.OoxxAddHandler),
 
             (r"/fuli", handler.fuli.FuliHandler),
+            (r"/add", handler.fuli.AddItemHandler),
             (r"/bbs", handler.sequ.SequHandler),
             
 
@@ -121,6 +122,7 @@ class Application(tornado.web.Application):
         self.post_tag_model = self.loader.use("post_tag.model")
         self.tag_model = self.loader.use("tag.model")
         self.vote_model = self.loader.use("vote.model")
+        self.item_model = self.loader.use("item.model")
 
         # Have one global session controller
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)

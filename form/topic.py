@@ -194,3 +194,66 @@ class EditForm(Form):
      via = TextField('Via', [
          validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
      ])
+
+
+class AddForm(Form):
+     title = TextField('Title', [
+         validators.Required(message = "请填写帖子标题"),
+         validators.Length(min = 3, message = "帖子标题长度过短（3-100个字符）"),
+         validators.Length(max = 100, message = "帖子标题长度过长（3-100个字符）"),
+     ])
+
+     intro = TextField('Intro', [
+         validators.Required(message = "请填写帖子简介"),
+         validators.Length(min = 3, message = "帖子标题长度过短（3-400个字符）"),
+         validators.Length(max = 400, message = "帖子标题长度过长（3-400个字符）"),
+     ])
+ 
+     content = TextField('Content', [
+         validators.Required(message = "请填写帖子内容"),
+     ])
+
+     thumb = TextField('Thumb', [
+         validators.Length(min = 0, message = "thumb"),
+     ])
+
+     channel = TextField('Channel', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
+
+     visible = TextField('Visible', [
+         validators.Required(message = "请选择帖子是否公开"),
+     ])
+
+
+     x1 = TextField('X1', [
+         validators.Required(message = "x1"),
+     ])
+
+     y1 = TextField('Y1', [
+         validators.Required(message = "y1"),
+     ])
+
+     x2 = TextField('X2', [
+         validators.Required(message = "x2"),
+     ])
+
+     y2 = TextField('Y2', [
+         validators.Required(message = "y2"),
+     ])
+
+     tag = TextField('Tag', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
+
+     price = TextField('Price', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
+
+     link = TextField('Link', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
+
+     label = TextField('Label', [
+         validators.Length(min = 0, message = "帖子标题长度过短（3-100个字符）"),
+     ])
