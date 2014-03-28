@@ -263,7 +263,7 @@ class EditItemHandler(BaseHandler):
         # process post thumb
         thumb_file = self.request.files
         if thumb_file:
-            thumb_name = post.thumb
+            thumb_name = "%s" % uuid.uuid5(uuid.NAMESPACE_DNS, str(post_id))
             thumb_raw = self.request.files["thumb"][0]["body"]
             thumb_buffer = StringIO.StringIO(thumb_raw)
             thumb_origin = Image.open(thumb_buffer)
