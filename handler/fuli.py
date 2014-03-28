@@ -286,8 +286,7 @@ class EditItemHandler(BaseHandler):
             thumb = thumb_origin.crop(thumb_crop_region)
             thumb = thumb_origin.crop(thumb_crop_region)
 
-            thumb_125x83 = thumb.resize((580, 197), Image.ANTIALIAS)
-            thumb_125x83.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name, "PNG")
+            thumb.save(usr_home+"/www/meiritugua.com/static/thumb/n_%s.png" % thumb_name, "PNG")
 
             policy = qiniu.rs.PutPolicy(bucket_name+":n_"+thumb_name)
             uptoken = policy.token()
