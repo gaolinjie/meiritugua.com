@@ -103,6 +103,25 @@
                 </a>
               </h3>
             </div>
+            <p class="small-meta">
+              <span class="generic-image icon"></span>
+              <a class="username notranslate" href="/u/{{hot.author_username }}">{{ hot.author_username }}</a>
+              <span class="time-image icon"></span>
+              <span class="time-ago">
+                <font>
+                  <font>{{ hot.created|pretty_date }}</font>
+                </font>
+              </span>
+              <span class="response-image icon"></span>
+              <span class="num">
+                <font>
+                  <font>{{ hot.count }}</font>
+                </font>
+              </span>
+              <font>
+                <font>&nbsp;人看过</font>
+              </font>
+            </p>
           </li>
           {% endfor %}
         </ul>
