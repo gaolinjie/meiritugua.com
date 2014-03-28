@@ -89,6 +89,7 @@ class Application(tornado.web.Application):
 
             (r"/fuli", handler.fuli.FuliHandler),
             (r"/add", handler.fuli.AddItemHandler),
+            (r"/item/edit/(\d+)", handler.fuli.EditItemHandler),
             (r"/bbs", handler.sequ.SequHandler),
             
 

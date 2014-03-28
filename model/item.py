@@ -33,4 +33,7 @@ class ItemModel(Query):
 
     def get_item_by_post_id(self, post_id):
         where = "item.post_id = %s" % post_id
-        return self.where(where).find()
+        join = "LEFT JOIN post ON item.post_id = post.id"
+        field = "item.*, \
+                post.*"
+        return self.where(where).join(join).field(field).find()

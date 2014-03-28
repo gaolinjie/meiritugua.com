@@ -13,19 +13,42 @@
     <div class="section">
       <div class="content">
         <ul id="home_things">
-        	{% for item in items.list %}
-        	<li><div class="thing"><div class="pre_ribbon stock"><span>现货</span></div><figure><a href="/p/{{item.post_id}}" target="_blank"><img alt="{{item.title}}" class="lazy" src="http://mrtgimg.qiniudn.com/n_{{ item.thumb }}" style="visibility: visible; display: block;" data-pinit="registered"></a></figure><figcaption><h5 data-placement="bottom" data-toggle="tooltip" title="{{item.title}}">{{item.title}}</h5><p><span class="fanciers"><i class="fa fa-heart"></i><span class="fanciers_count">{{item.like}}</span></span><span class="owners"><i class="fa fa-check"></i><span class="owners_count">{{item.have}}</span></span><span>¥ {{item.price}}</span></p></figcaption></div></li>
-        	{% endfor %}
+          {% for item in items.list %}
+          <li>
+            <div class="thing">
+              {% if item.label!='' %}
+              <div class="pre_ribbon stock">
+                <span>{{item.label}}</span>
+              </div>
+              {%endif%}
+              <figure>
+                <a href="/p/{{item.post_id}}" target="_blank">
+                  <img alt="{{item.title}}" class="lazy" src="http://mrtgimg.qiniudn.com/n_{{ item.thumb }}" style="visibility: visible; display: block;" data-pinit="registered"></a>
+              </figure>
+              <figcaption>
+                <h5 data-placement="bottom" data-toggle="tooltip" title="{{item.title}}">{{item.title}}</h5>
+                <p>
+                  <span class="fanciers"> <i class="fa fa-heart"></i>
+                    <span class="fanciers_count">{{item.like}}</span>
+                  </span>
+                  <span class="owners"> <i class="fa fa-check"></i>
+                    <span class="owners_count">{{item.have}}</span>
+                  </span>
+                  {%if item.price!=0%}
+                  <span>¥ {{item.price}}</span>
+                  {%endif%}
+                </p>
+              </figcaption>
+            </div>
+          </li>
+          {% endfor %}
         </ul>
-
-
-          </div>
-
-        </div>
       </div>
     </div>
-  {% endblock %}
+  </div>
+</div>
+{% endblock %}
 
 {% block javascript %}
-  <script src="/static/js/jquery.infinitescroll.js"></script>
+<script src="/static/js/jquery.infinitescroll.js"></script>
 {% endblock %}
