@@ -3070,3 +3070,21 @@ margin: 0 auto;
 width: 351px;
 }
 
+.goto-buy {
+font-size: 14px;
+color: #FFF;
+border-radius: 2px;
+display: inline-block;
+text-align: center;
+padding: 5px 26px;
+line-height: 1;
+background: #F2594B;
+text-decoration: none;
+border: 0;
+box-shadow: none;
+}
+
+.goto-buy:hover {
+background: #FD6550;
+color: #FFF;
+}

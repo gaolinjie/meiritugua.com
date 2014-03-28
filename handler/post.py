@@ -65,7 +65,11 @@ class PostHandler(BaseHandler):
         if is_mobile_browser(self):
             self.render("post-m.html", **template_variables)
         else:
-            self.render("post.html", **template_variables)
+            if post.type == 'item':
+                template_variables["item"] = self.item_model.get_item_only_by_post_id(post.id)
+                self.render("item.html", **template_variables)
+            else:
+                self.render("post.html", **template_variables)
 
 class CreatePostHandler(BaseHandler):
     def get(self, template_variables = {}):
